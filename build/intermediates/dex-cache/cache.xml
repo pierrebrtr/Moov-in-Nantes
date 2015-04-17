@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-cf74b35026357b42264d9b7a5fafe08d505fab01.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-23b1afe44df7db241a25fdd968576a93f99ff6b4.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-8c3d351e21a3679b471c5059fe6e68d8b5b9bfbd.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.baoyz.pullrefreshlayout\library\1.0.1\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1b44f6e5da89d2f3ac9bef7e9c20a76ebf8b62c4">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-f33cb097faacc36ce5e93262f52b7577245300ce.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\libs\volley.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\volley-cd4bc0effaffa507ddedbd2f963885ad1ec2f2e1.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-33a6be8ea2a34e3ca2a5d1b4c07cb80c90978a11.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-d3a2f62ce9db6e181dcaf00fb3f8f880b4e4fe18.jar" />
+    </item>
+
+</items>
