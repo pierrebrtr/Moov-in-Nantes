@@ -105,12 +105,12 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 title = getString(R.string.title_home);
                 break;
             case 1:
-                fragment = new AboutFragment();
-                title = "A propos";
+                fragment = new ArretsFragment();
+                title = "Arrêts";
                 break;
             case 2:
-                fragment = new ArretsFragment();
-                title = "Arrets";
+                fragment = new AboutFragment();
+                title = "Á propos";
                 break;
 
             default:
