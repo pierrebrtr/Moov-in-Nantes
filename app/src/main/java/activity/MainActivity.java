@@ -110,7 +110,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 break;
             case 2:
                 fragment = new AboutFragment();
-                title = "Á propos";
+                title = "À propos";
                 break;
 
             default:

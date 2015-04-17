@@ -6,8 +6,8 @@
     <string name="drawer_close">Close</string>
 
     <string name="nav_item_home">Home</string>
-    <string name="nav_item_about">A propos</string>
-    <string name="nav_item_arrets">Arrets</string>
+    <string name="nav_item_about">À propos</string>
+    <string name="nav_item_arrets">Arrêts</string>
 
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
@@ -17,9 +17,9 @@
     </string-array>
 
 
-    <string name="title_about">A propose</string>
+    <string name="title_about">À propos</string>
     <string name="title_home">Home</string>
-    <string name="title_arrets">Arrets</string>
+    <string name="title_arrets">Arrêts</string>
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
