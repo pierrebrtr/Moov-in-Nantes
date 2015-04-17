@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Tan</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_about">A propos</string>
+    <string name="nav_item_arrets">Arrets</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_about</item>
+        <item>@string/nav_item_arrets</item>
+    </string-array>
+
+
+    <string name="title_about">A propose</string>
+    <string name="title_home">Home</string>
+    <string name="title_arrets">Arrets</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
