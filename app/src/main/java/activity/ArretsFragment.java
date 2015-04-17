@@ -44,6 +44,7 @@ public class ArretsFragment extends Fragment {
     private CustomListAdapter adapter;
     private SwipeRefreshLayout swipeLayout;
 
+
     public ArretsFragment() {
 
     }
@@ -254,6 +255,7 @@ public class ArretsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_arrets, container, false);
+
 
 
 
