@@ -60,7 +60,7 @@ public class CustomListAdapter extends BaseAdapter {
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
 
-        TextView arret = (TextView) convertView.findViewById(R.id.arret);
+        
         TextView ligne = (TextView) convertView.findViewById(R.id.ligne);
 
 
