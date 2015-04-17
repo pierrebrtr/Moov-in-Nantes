@@ -12,8 +12,9 @@
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_home</item>
-        <item>@string/nav_item_about</item>
         <item>@string/nav_item_arrets</item>
+        <item>@string/nav_item_about</item>
+
     </string-array>
 
 
