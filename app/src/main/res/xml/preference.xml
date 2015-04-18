@@ -1,0 +1,30 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="LOLILOL">
+
+        <CheckBoxPreference
+            android:key="checkbox_preference"
+            android:title="LOLILOL"
+            android:summary="conarde" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="LOLILOL">
+
+        <EditTextPreference
+            android:key="edittext_preference"
+            android:title="LOLILOL"
+            android:summary="LOLILOL"
+            android:dialogTitle="LOLILOL" />
+
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="LOLILOL">
+    </PreferenceCategory>
+</PreferenceScreen>

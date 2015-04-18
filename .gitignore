@@ -59,3 +59,14 @@ local.properties
 .gradle/
 app/app.iml
 build/intermediates/dex-cache/cache.xml
+local.properties
+
+.gradle/2.2.1/taskArtifacts/cache.properties.lock
+
+.gradle/2.2.1/taskArtifacts/fileSnapshots.bin
+
+.idea/libraries/recyclerview_v7_21_0_3.xml
+
+.idea/libraries/support_annotations_22_0_0.xml
+
+build/intermediates/dex-cache/cache.xml
