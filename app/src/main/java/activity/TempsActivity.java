@@ -37,8 +37,7 @@ public class TempsActivity extends ActionBarActivity {
         position = i.getExtras().getInt("position");
         lieu = i.getStringArrayExtra("lieu");
         setContentView(R.layout.activity_temps);
-        txtView=(TextView)findViewById(R.id.txtView);
-        txtView.setText(lieu);
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(mToolbar);
