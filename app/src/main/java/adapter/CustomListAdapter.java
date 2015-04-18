@@ -3,6 +3,7 @@ package adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,13 @@ import com.example.pierre.tan.R;
 
 import java.util.List;
 
+import activity.ArretsFragment;
+import activity.MainActivity;
+import activity.TempsActivity;
 import app.AppController;
 import model.Arrets;
 
+import static android.support.v4.app.ActivityCompat.startActivity;
 
 
 public class CustomListAdapter extends BaseAdapter {
@@ -50,6 +55,8 @@ public class CustomListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+
 
         if (inflater == null)
             inflater = (LayoutInflater) activity
