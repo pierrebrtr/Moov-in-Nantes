@@ -31,15 +31,9 @@
             android:name="activity.MainActivity"
             android:label="@string/app_name" >
         </activity>
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
 
-
-=======
         <activity android:label="@string/app_name" android:name="activity.TempsActivity"/>
->>>>>>> Stashed changes
->>>>>>> 5d59b4406b351f46b9c4fb01f6c640a912e130b3
+
     </application>
 
 </manifest>
