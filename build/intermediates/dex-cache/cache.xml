@@ -9,6 +9,13 @@
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-cf74b35026357b42264d9b7a5fafe08d505fab01.jar" />
     </item>
     <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.pnikosis\materialish-progress\1.5\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="75c54c470e19b251749e6e6c2cf3d73c0b50aa64">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-a4a3d181214332c9611d63b1b27042989335629b.jar" />
+    </item>
+    <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -21,13 +28,6 @@
         revision="21.1.2"
         sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-8c3d351e21a3679b471c5059fe6e68d8b5b9bfbd.jar" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.baoyz.pullrefreshlayout\library\1.0.1\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="1b44f6e5da89d2f3ac9bef7e9c20a76ebf8b62c4">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-f33cb097faacc36ce5e93262f52b7577245300ce.jar" />
     </item>
     <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\libs\volley.jar"

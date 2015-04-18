@@ -82,7 +82,7 @@ public class TempsActivity extends ActionBarActivity {
 
         swipeLayout = (SwipeRefreshLayout) findViewById(R.id.container);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
+
             public void onRefresh() {
                 Toast.makeText(getApplication(), "Rechargement...", Toast.LENGTH_SHORT).show();
 
@@ -114,6 +114,8 @@ public class TempsActivity extends ActionBarActivity {
 
                                         temps.setTemps(obj.getString("temps"));
 
+                                        directionList.add(temps);
+
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();
@@ -126,11 +128,11 @@ public class TempsActivity extends ActionBarActivity {
                                 adapter.notifyDataSetChanged();
                             }
                         }, new Response.ErrorListener() {
-                    @Override
+
                     public void onErrorResponse(VolleyError error) {
                         VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-                        Toast.makeText(getApplicationContext(), "No internet connection !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
 
 
                     }
@@ -155,14 +157,14 @@ public class TempsActivity extends ActionBarActivity {
     }
 
 
-    @Override
+
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
-    @Override
+
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -192,7 +194,7 @@ public class TempsActivity extends ActionBarActivity {
     }
 
 
-    @Override
+
     public void onCreate(Bundle savedInstanceState) {
 
 
@@ -220,7 +222,7 @@ public class TempsActivity extends ActionBarActivity {
 
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
-                    @Override
+
                     public void onResponse(JSONArray response) {
                         Log.d(TAG, response.toString());
 
@@ -240,6 +242,7 @@ public class TempsActivity extends ActionBarActivity {
                                 temps.setDirection(obj.getString("terminus"));
                                 temps.setLigne(obj.getString("sens"));
                                 temps.setTemps(obj.getString("temps"));
+                                directionList.add(temps);
 
 
                             } catch (JSONException e) {
@@ -253,11 +256,11 @@ public class TempsActivity extends ActionBarActivity {
                         adapter.notifyDataSetChanged();
                     }
                 }, new Response.ErrorListener() {
-            @Override
+
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-                Toast.makeText(getApplicationContext(), "No internet connection !", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
 
 
             }
