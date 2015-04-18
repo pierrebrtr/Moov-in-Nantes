@@ -22,12 +22,22 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
+        android:textSize="28dp"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:text="Moov'in Nantes" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:textSize="18dp"
         android:textStyle="bold"
         android:textColor="#ffffff"
         android:gravity="center_horizontal"
         android:layout_alignParentBottom="true"
-        android:text="L'appli Tan" />
+        android:text="P&amp;F Studio" />
 
 </RelativeLayout>
