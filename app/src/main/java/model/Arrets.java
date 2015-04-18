@@ -1,4 +1,5 @@
 package model;
+
 import java.util.ArrayList;
 
 public class Arrets {
@@ -19,7 +20,6 @@ public class Arrets {
     }
 
 
-
     public String getArret() {
         return arret;
     }
@@ -29,9 +29,11 @@ public class Arrets {
     }
 
 
-    public String getLieu() { return lieu; }
+    public String getLieu() {
+        return lieu;
+    }
 
-    public void setLieu(String lieuurl){
+    public void setLieu(String lieuurl) {
         this.lieu = lieuurl;
     }
 

@@ -40,10 +40,6 @@ public class SettingsActivity extends ActionBarActivity {
     }
 
 
-
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -63,14 +59,13 @@ public class SettingsActivity extends ActionBarActivity {
             return true;
         }
 
-        if(id == R.id.action_search){
+        if (id == R.id.action_search) {
             Toast.makeText(getApplicationContext(), "Salut les copains.", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }

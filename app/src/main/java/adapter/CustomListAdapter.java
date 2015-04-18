@@ -25,8 +25,6 @@ public class CustomListAdapter extends BaseAdapter {
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
 
-
-
     public CustomListAdapter(Activity activity, List<Arrets> arretsItems) {
         this.activity = activity;
         this.arretsItems = arretsItems;
@@ -52,7 +50,6 @@ public class CustomListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
 
-
         if (inflater == null)
             inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -67,29 +64,12 @@ public class CustomListAdapter extends BaseAdapter {
         TextView lieu = (TextView) convertView.findViewById(R.id.lieu);
 
 
-
-
-
-
-
-
-
-
         // getting movie data for the row
         Arrets m = arretsItems.get(position);
 
 
-
-
-
-
-
-
         // title
         arret.setText(m.getArret());
-
-
-
 
 
         // genre
@@ -107,7 +87,6 @@ public class CustomListAdapter extends BaseAdapter {
 
 
     }
-
 
 
 }

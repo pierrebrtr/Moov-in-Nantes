@@ -24,20 +24,10 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     public static Arrets arrets = null;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-
-
-
-
-
-
 
 
         arrets = new Arrets();
@@ -56,10 +46,6 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         displayView(0);
 
     }
-
-
-
-
 
 
     @Override
@@ -81,7 +67,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
             return true;
         }
 
-        if(id == R.id.action_search){
+        if (id == R.id.action_search) {
 
             String title = getString(R.string.app_name);
             Fragment fragment = null;

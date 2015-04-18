@@ -71,7 +71,6 @@ public class ArretsFragment extends Fragment {
         // Showing progress dialog before making http request
 
 
-
         swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.container);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -102,28 +101,20 @@ public class ArretsFragment extends Fragment {
                                         arret.setArret(obj.getString("libelle"));
 
 
-
                                         String lieu = obj.getString("codeLieu");
 
                                         arret.setLieu(lieu);
 
 
-
-
-                                        
-
                                         JSONArray genreArry = obj.getJSONArray("ligne");
                                         ArrayList<String> genre = new ArrayList<String>();
                                         int ligne = genreArry.length();
 
-                                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
-
+                                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 
                                             @Override
                                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
 
 
                                                 Intent intent = new Intent(getActivity().getBaseContext(), TempsActivity.class);
@@ -133,10 +124,8 @@ public class ArretsFragment extends Fragment {
                                                 startActivity(intent);
 
 
-
                                             }
                                         });
-
 
 
                                         for (int v = 0; v < ligne; v++) {
@@ -150,11 +139,7 @@ public class ArretsFragment extends Fragment {
                                         }
 
 
-
-
                                         arret.setLigne(genre);
-
-
 
 
                                         // adding movie to movies array
@@ -186,12 +171,7 @@ public class ArretsFragment extends Fragment {
 
                 AppController.getInstance().addToRequestQueue(movieReq);
 
-               swipeLayout.setRefreshing(false);
-
-
-
-
-
+                swipeLayout.setRefreshing(false);
 
 
             }
@@ -202,14 +182,11 @@ public class ArretsFragment extends Fragment {
                 android.R.color.holo_red_light);
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
-
 
 
                 TextView textView = (TextView) view.findViewById(R.id.lieu);
@@ -224,10 +201,7 @@ public class ArretsFragment extends Fragment {
         });
 
 
-
-
     }
-
 
 
     public static Object getKeyFromValue(Map hm, Object value) {
@@ -245,11 +219,6 @@ public class ArretsFragment extends Fragment {
 
 
         super.onCreate(savedInstanceState);
-
-
-
-
-
 
 
         // Creating volley request obj
@@ -327,15 +296,7 @@ public class ArretsFragment extends Fragment {
         AppController.getInstance().addToRequestQueue(movieReq);
 
 
-
-
-
-
     }
-
-
-
-
 
 
     @Override
@@ -344,25 +305,8 @@ public class ArretsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_arrets, container, false);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // Inflate the layout for this fragment
         return rootView;
-
 
 
     }
@@ -373,13 +317,10 @@ public class ArretsFragment extends Fragment {
     }
 
 
-
-
     @Override
     public void onDetach() {
         super.onDetach();
     }
-
 
 
     @Override
@@ -394,14 +335,13 @@ public class ArretsFragment extends Fragment {
             return true;
         }
 
-        if(id == R.id.action_search){
+        if (id == R.id.action_search) {
             Toast.makeText(getActivity(), "Search action is selected!", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }

@@ -11,8 +11,6 @@ import android.widget.Toast;
 
 import com.example.pierre.tan.R;
 
-import adapter.FragmentDrawer;
-
 
 public class TempsActivity extends ActionBarActivity {
 
@@ -28,12 +26,12 @@ public class TempsActivity extends ActionBarActivity {
 
         Intent intent = getIntent();
 
-        String text = "https://open.tan.fr/ewp/arrets.json" + intent.getExtras().getString("text") +" ";
+        String url = "https://open.tan.fr/ewp/tempsattente.json/" + intent.getExtras().getString("text") + " ";
 
 
-        TextView modelTextView = (TextView)findViewById(R.id.model);
+        TextView modelTextView = (TextView) findViewById(R.id.model);
 
-        modelTextView.setText(text);
+        modelTextView.setText(url);
 
 
         setSupportActionBar(mToolbar);
@@ -41,10 +39,6 @@ public class TempsActivity extends ActionBarActivity {
 
 
     }
-
-
-
-
 
 
     @Override
@@ -66,14 +60,13 @@ public class TempsActivity extends ActionBarActivity {
             return true;
         }
 
-        if(id == R.id.action_search){
+        if (id == R.id.action_search) {
             Toast.makeText(getApplicationContext(), "Salut les copains.", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }
