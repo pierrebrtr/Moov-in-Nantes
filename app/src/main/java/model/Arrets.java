@@ -4,15 +4,18 @@ import java.util.ArrayList;
 public class Arrets {
     private String arret;
     private ArrayList<String> ligne;
+    private String lieu;
 
     public Arrets() {
     }
 
-    public Arrets(String thumbnailUrl, ArrayList<String> ligne) {
+    public Arrets(String thumbnailUrl, ArrayList<String> ligne, String lieu) {
 
         this.arret = thumbnailUrl;
 
         this.ligne = ligne;
+
+        this.lieu = lieu;
     }
 
 
@@ -26,7 +29,12 @@ public class Arrets {
     }
 
 
-
+    public String getLieu() {
+        return lieu;
+    }
+    public void setLieu(String lieu2){
+        this.lieu = lieu2;
+    }
 
     public ArrayList<String> getLigne() {
         return ligne;
