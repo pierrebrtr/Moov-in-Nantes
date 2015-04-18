@@ -96,7 +96,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
             // set the toolbar title
 
-            
+
             return true;
         }
 
