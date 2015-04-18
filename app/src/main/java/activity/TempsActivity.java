@@ -74,6 +74,7 @@ public class TempsActivity extends ActionBarActivity {
 
         listView2 = (ListView) findViewById(R.id.list_temps);
 
+
         // movieList is an empty array at this point.
         adapter = new CustomListAdapterTemps(getParent(), directionList);
         listView2.setAdapter(adapter);
@@ -207,6 +208,7 @@ public class TempsActivity extends ActionBarActivity {
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         Intent intent = getIntent();
