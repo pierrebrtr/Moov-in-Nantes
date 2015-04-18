@@ -53,6 +53,7 @@ public class CustomListAdapter extends BaseAdapter {
         return position;
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -69,6 +70,7 @@ public class CustomListAdapter extends BaseAdapter {
 
         TextView arret = (TextView) convertView.findViewById(R.id.arret);
         TextView ligne = (TextView) convertView.findViewById(R.id.ligne);
+
 
 
 

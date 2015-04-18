@@ -65,7 +65,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_arrets, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -119,13 +119,12 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 break;
             case 1:
                 fragment = new ArretsFragment();
-                title = "Arrêts";
+                title = "Arrets";
                 break;
             case 2:
                 fragment = new AboutFragment();
-                title = "À propos";
+                title = "A propos";
                 break;
-
             default:
                 break;
         }
