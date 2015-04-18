@@ -132,7 +132,7 @@ public class TempsActivity extends ActionBarActivity {
                     public void onErrorResponse(VolleyError error) {
                         VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
 
 
                     }
@@ -213,6 +213,8 @@ public class TempsActivity extends ActionBarActivity {
 
         final String url = "https://open.tan.fr/ewp/tempsattente.json/" + intent.getExtras().getString("text") + " ";
 
+        Toast.makeText(getApplicationContext(), intent.getExtras().getString("text"), Toast.LENGTH_LONG).show();
+
 
         listView2 = (ListView) findViewById(R.id.list_temps);
 
@@ -260,7 +262,7 @@ public class TempsActivity extends ActionBarActivity {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
 
 
             }

@@ -292,6 +292,26 @@ public class ArretsFragment extends Fragment {
 
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                TextView textView = (TextView) view.findViewById(R.id.lieu);
+                String text = textView.getText().toString();
+
+                Intent i = new Intent(ArretsFragment.this.getActivity(), TempsActivity.class);
+                i.putExtra("text", text);
+                startActivity(i);
+
+
+            }
+        });
+
+
+
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(movieReq);
 
