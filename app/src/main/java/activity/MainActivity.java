@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,6 +42,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
+        drawerFragment.setFocusableInTouchMode(false);
 
         // display the first navigation drawer view on app launch
         displayView(0);
@@ -88,6 +90,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
         return super.onOptionsItemSelected(item);
     }
+
 
     @Override
     public void onDrawerItemSelected(View view, int position) {

@@ -125,6 +125,10 @@ public class FragmentDrawer extends Fragment {
 
     }
 
+    public void setFocusableInTouchMode(boolean b) {
+    }
+
+
     public static interface ClickListener {
         public void onClick(View view, int position);
 
