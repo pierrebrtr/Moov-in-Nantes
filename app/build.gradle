@@ -25,7 +25,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:21.0.+'
     compile files('libs/volley.jar')
     compile 'com.android.support:support-v4:21.0.+'
-    compile 'com.pnikosis:materialish-progress:1.5'
 
 }
 

@@ -11,14 +11,13 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:src="@drawable/ic_bus" />
-    <com.pnikosis.materialishprogress.ProgressWheel
-        android:id="@+id/progress_wheel"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/imgLogo"
-        wheel:matProg_barColor="#FFFFFF"
-        wheel:matProg_progressIndeterminate="true" />
+        android:layout_marginRight="5dp" />
 
     <TextView
         android:layout_width="fill_parent"
