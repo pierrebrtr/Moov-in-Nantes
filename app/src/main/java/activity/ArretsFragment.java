@@ -1,8 +1,6 @@
 package activity;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -28,7 +27,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import adapter.CustomListAdapter;
 import app.AppController;
@@ -51,7 +52,7 @@ public class ArretsFragment extends Fragment {
     private SwipeRefreshLayout swipeLayout;
     private Menu menu;
     private MenuInflater inflater;
-
+    HashMap<String, String> lieumap = new HashMap<String, String>();
 
     public ArretsFragment() {
 
@@ -97,10 +98,17 @@ public class ArretsFragment extends Fragment {
                                             e.printStackTrace();
                                         }
                                         Arrets arret = new Arrets();
+
                                         arret.setArret(obj.getString("libelle"));
 
-                                        Arrets lieu = new Arrets();
-                                        lieu.setLieu(obj.getString("codeLieu"));
+
+
+                                        String lieu = obj.getString("codeLieu");
+
+                                        arret.setLieu(lieu);
+
+
+
 
                                         JSONArray genreArry = obj.getJSONArray("ligne");
                                         ArrayList<String> genre = new ArrayList<String>();
@@ -121,6 +129,8 @@ public class ArretsFragment extends Fragment {
 
 
                                         arret.setLigne(genre);
+
+
 
 
                                         // adding movie to movies array
@@ -167,7 +177,6 @@ public class ArretsFragment extends Fragment {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
 
@@ -175,17 +184,34 @@ public class ArretsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                Intent intent = new Intent(getActivity().getBaseContext(), TempsActivity.class);
-                intent.putExtra("lieu", "lieu");
-                startActivity(intent);
+
+                TextView textView = (TextView) view.findViewById(R.id.lieu);
+                String text = textView.getText().toString();
+
+
+                Toast.makeText(getActivity(), text, Toast.LENGTH_LONG).show();
+
+
+
 
 
             }
         });
 
+
+
     }
 
 
+
+    public static Object getKeyFromValue(Map hm, Object value) {
+        for (Object o : hm.keySet()) {
+            if (hm.get(o).equals(value)) {
+                return o;
+            }
+        }
+        return null;
+    }
 
 
     @Override
@@ -220,6 +246,11 @@ public class ArretsFragment extends Fragment {
                                 }
                                 Arrets arret = new Arrets();
                                 arret.setArret(obj.getString("libelle"));
+
+
+                                String lieu = obj.getString("codeLieu");
+
+                                arret.setLieu(lieu);
 
 
                                 JSONArray genreArry = obj.getJSONArray("ligne");

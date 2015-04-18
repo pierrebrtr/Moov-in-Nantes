@@ -3,7 +3,6 @@ package adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +14,8 @@ import com.example.pierre.tan.R;
 
 import java.util.List;
 
-import activity.ArretsFragment;
-import activity.MainActivity;
-import activity.TempsActivity;
 import app.AppController;
 import model.Arrets;
-
-import static android.support.v4.app.ActivityCompat.startActivity;
 
 
 public class CustomListAdapter extends BaseAdapter {
@@ -70,6 +64,8 @@ public class CustomListAdapter extends BaseAdapter {
 
         TextView arret = (TextView) convertView.findViewById(R.id.arret);
         TextView ligne = (TextView) convertView.findViewById(R.id.ligne);
+        TextView lieu = (TextView) convertView.findViewById(R.id.lieu);
+
 
 
 
@@ -83,8 +79,16 @@ public class CustomListAdapter extends BaseAdapter {
         Arrets m = arretsItems.get(position);
 
 
+
+
+
+
+
+
         // title
         arret.setText(m.getArret());
+
+
 
 
 
@@ -97,7 +101,7 @@ public class CustomListAdapter extends BaseAdapter {
                 ligneStr.length() - 2) : ligneStr;
         ligne.setText(ligneStr);
 
-
+        lieu.setText(m.getLieu());
 
         return convertView;
 

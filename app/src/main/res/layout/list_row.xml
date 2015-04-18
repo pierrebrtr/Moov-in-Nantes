@@ -20,7 +20,14 @@
 
 
     <!-- Genre -->
-
+    <TextView
+        android:id="@+id/lieu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/year"
+        android:textSize="0dp" />
 
     <!-- Release Year -->
     <TextView

@@ -9,13 +9,13 @@ public class Arrets {
     public Arrets() {
     }
 
-    public Arrets(String thumbnailUrl, ArrayList<String> ligne, String lieu) {
+    public Arrets(String thumbnailUrl, ArrayList<String> ligne, String lieuurl) {
 
         this.arret = thumbnailUrl;
 
         this.ligne = ligne;
 
-        this.lieu = lieu;
+        this.lieu = lieuurl;
     }
 
 
@@ -29,11 +29,10 @@ public class Arrets {
     }
 
 
-    public String getLieu() {
-        return lieu;
-    }
-    public void setLieu(String lieu2){
-        this.lieu = lieu2;
+    public String getLieu() { return lieu; }
+
+    public void setLieu(String lieuurl){
+        this.lieu = lieuurl;
     }
 
     public ArrayList<String> getLigne() {

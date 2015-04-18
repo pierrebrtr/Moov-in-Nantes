@@ -2,23 +2,15 @@ package activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pierre.tan.R;
 
 import adapter.FragmentDrawer;
-import model.Arrets;
 
 
 public class TempsActivity extends ActionBarActivity {
@@ -36,6 +28,7 @@ public class TempsActivity extends ActionBarActivity {
         // Get the listview item click position
         position = i.getExtras().getInt("position");
         lieu = i.getStringArrayExtra("lieu");
+
         setContentView(R.layout.activity_temps);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
