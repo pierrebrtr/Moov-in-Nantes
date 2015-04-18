@@ -110,22 +110,6 @@ public class ArretsFragment extends Fragment {
                                         ArrayList<String> genre = new ArrayList<String>();
                                         int ligne = genreArry.length();
 
-                                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-
-                                            @Override
-                                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
-                                                Intent intent = new Intent(getActivity().getBaseContext(), TempsActivity.class);
-                                                Bundle extras = new Bundle();
-                                                extras.putString("status", "lieu");
-                                                intent.putExtras(extras);
-                                                startActivity(intent);
-
-
-                                            }
-                                        });
 
 
                                         for (int v = 0; v < ligne; v++) {
@@ -214,6 +198,8 @@ public class ArretsFragment extends Fragment {
     }
 
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -257,7 +243,6 @@ public class ArretsFragment extends Fragment {
 
                                     JSONObject nl = genreArry.getJSONObject(v);
 
-
                                     genre.add(nl.optString("numLigne").toString());
 
 
@@ -265,8 +250,6 @@ public class ArretsFragment extends Fragment {
 
 
                                 arret.setLigne(genre);
-
-
                                 arretsList.add(arret);
 
                             } catch (JSONException e) {
@@ -292,12 +275,11 @@ public class ArretsFragment extends Fragment {
 
         });
 
-
-
-
-
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(movieReq);
+
+
+        
 
 
     }
