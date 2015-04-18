@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pierre.tan.R;
@@ -16,22 +17,21 @@ import adapter.FragmentDrawer;
 public class TempsActivity extends ActionBarActivity {
 
     private Toolbar mToolbar;
-    private FragmentDrawer drawerFragment;
-
-    int position;
-    String[] lieu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent i = getIntent();
-        // Get the listview item click position
-        position = i.getExtras().getInt("position");
-        lieu = i.getStringArrayExtra("lieu");
 
         setContentView(R.layout.activity_temps);
-
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        Intent intent = getIntent();
+
+        String text = intent.getExtras().getString("text");
+
+        TextView modelTextView = (TextView)findViewById(R.id.model);
+
+        modelTextView.setText(intent.getExtras().getString("text"));
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

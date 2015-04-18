@@ -1,6 +1,7 @@
 package activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -61,16 +62,14 @@ public class ArretsFragment extends Fragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         listView = (ListView) getActivity().findViewById(R.id.list);
-
-
-
 
         // movieList is an empty array at this point.
         adapter = new CustomListAdapter(getActivity(), arretsList);
         listView.setAdapter(adapter);
         // Showing progress dialog before making http request
-        super.onActivityCreated(savedInstanceState);
+
 
 
         swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.container);
@@ -97,6 +96,7 @@ public class ArretsFragment extends Fragment {
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
+
                                         Arrets arret = new Arrets();
 
                                         arret.setArret(obj.getString("libelle"));
@@ -110,9 +110,33 @@ public class ArretsFragment extends Fragment {
 
 
 
+                                        
+
                                         JSONArray genreArry = obj.getJSONArray("ligne");
                                         ArrayList<String> genre = new ArrayList<String>();
                                         int ligne = genreArry.length();
+
+                                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+
+
+
+                                            @Override
+                                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+
+                                                Intent intent = new Intent(getActivity().getBaseContext(), TempsActivity.class);
+                                                Bundle extras = new Bundle();
+                                                extras.putString("status", "lieu");
+                                                intent.putExtras(extras);
+                                                startActivity(intent);
+
+
+
+                                            }
+                                        });
+
 
 
                                         for (int v = 0; v < ligne; v++) {
@@ -177,6 +201,7 @@ public class ArretsFragment extends Fragment {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
 
@@ -185,18 +210,19 @@ public class ArretsFragment extends Fragment {
 
 
 
+
+
                 TextView textView = (TextView) view.findViewById(R.id.lieu);
                 String text = textView.getText().toString();
 
-
-                Toast.makeText(getActivity(), text, Toast.LENGTH_LONG).show();
-
-
-
+                Intent i = new Intent(ArretsFragment.this.getActivity(), TempsActivity.class);
+                i.putExtra("text", text);
+                startActivity(i);
 
 
             }
         });
+
 
 
 
