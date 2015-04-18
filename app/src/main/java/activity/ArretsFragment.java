@@ -64,7 +64,7 @@ public class ArretsFragment extends Fragment {
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getActivity(), "Refreshing...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Rechargement...", Toast.LENGTH_SHORT).show();
 
 
                 JsonArrayRequest movieReq = new JsonArrayRequest(url,
