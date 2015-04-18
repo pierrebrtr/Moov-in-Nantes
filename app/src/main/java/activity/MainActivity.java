@@ -134,6 +134,10 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 fragment = new AboutFragment();
                 title = "A propos";
                 break;
+            case 3:
+                fragment = new SettingsFragment();
+                title = "Paramètres";
+                break;
             default:
                 break;
         }
