@@ -102,8 +102,6 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
             fragmentTransaction.commit();
             getSupportActionBar().setTitle(title);
 
-            // set the toolbar title
-
 
             return true;
         }
