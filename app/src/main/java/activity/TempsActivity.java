@@ -18,6 +18,7 @@ public class TempsActivity extends ActionBarActivity {
 
     private Toolbar mToolbar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +28,13 @@ public class TempsActivity extends ActionBarActivity {
 
         Intent intent = getIntent();
 
-        String text = intent.getExtras().getString("text");
+        String text = "https://open.tan.fr/ewp/arrets.json" + intent.getExtras().getString("text") +" ";
+
 
         TextView modelTextView = (TextView)findViewById(R.id.model);
 
-        modelTextView.setText(intent.getExtras().getString("text"));
+        modelTextView.setText(text);
+
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
