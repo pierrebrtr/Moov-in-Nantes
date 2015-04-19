@@ -41,27 +41,21 @@ import model.Temps;
 
 public class TempsActivity extends ActionBarActivity {
 
-    private Toolbar mToolbar;
     private static final String TAG = MainActivity.class.getSimpleName();
+    HashMap<String, String> lieumap = new HashMap<String, String>();
 
     // Movies json url
-
+    private Toolbar mToolbar;
     private List<Temps> directionList = new ArrayList<Temps>();
     private ListView listView2;
     private CustomListAdapterTemps adapter;
     private SwipeRefreshLayout swipeLayout;
     private Menu menu;
     private MenuInflater inflater;
-    HashMap<String, String> lieumap = new HashMap<String, String>();
-
-
-
-
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_temps, container, false);
-
 
 
         // Inflate the layout for this fragment
@@ -71,8 +65,6 @@ public class TempsActivity extends ActionBarActivity {
     }
 
 
-
-
     public void onActivityCreated(Bundle savedInstanceState) {
 
         Intent intent = getIntent();
@@ -80,8 +72,6 @@ public class TempsActivity extends ActionBarActivity {
 
         final String url = "https://open.tan.fr/ewp/tempsattente.json/" + intent.getExtras().getString("text") + " ";
         System.out.println(intent.getExtras().getString("text") + " Test Test ");
-
-
 
 
         // movieList is an empty array at this point.
@@ -119,11 +109,19 @@ public class TempsActivity extends ActionBarActivity {
                                             e.printStackTrace();
                                         }
 
+                                        JSONObject jObject = obj.getJSONObject("ligne");
+
+
+
+
+
+
+
                                         Temps temps = new Temps();
 
                                         temps.setDirection(obj.getString("terminus"));
 
-                                        temps.setLigne(obj.getString("sens"));
+                                        temps.setLigne(jObject.getString("numLigne"));
 
 
                                         temps.setTemps(obj.getString("temps"));
@@ -167,7 +165,6 @@ public class TempsActivity extends ActionBarActivity {
     }
 
 
-
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -180,7 +177,6 @@ public class TempsActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
 
 
         //noinspection SimplifiableIfStatement
@@ -206,7 +202,6 @@ public class TempsActivity extends ActionBarActivity {
     }
 
 
-
     public void onCreate(Bundle savedInstanceState) {
 
 
@@ -216,7 +211,6 @@ public class TempsActivity extends ActionBarActivity {
 
         String id = intents.getStringExtra("libelle");
         setContentView(R.layout.activity_temps);
-
 
 
         View headerView = getLayoutInflater().inflate(
@@ -291,8 +285,12 @@ public class TempsActivity extends ActionBarActivity {
                                 }
 
                                 Temps temps = new Temps();
+
+                                JSONObject jObject = obj.getJSONObject("ligne");
+
                                 temps.setDirection(obj.getString("terminus"));
-                                temps.setLigne(obj.getString("sens"));
+
+                                temps.setLigne(jObject.getString("numLigne"));
                                 temps.setTemps(obj.getString("temps"));
                                 directionList.add(temps);
 
