@@ -9,17 +9,8 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
 
 import com.example.pierre.tan.R;
 
@@ -62,6 +53,8 @@ public class MyPreferencesActivity extends ActionBarActivity {
                 public boolean onPreferenceClick(Preference arg0) {
                     String url = "https://open.tan.fr/ewp/arrets.json";
                     AppController.getInstance().getRequestQueue().getCache().remove(url);
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            "Le cache a été vidé.", Toast.LENGTH_LONG).show();
                     return true;
                 }
             });
