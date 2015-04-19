@@ -212,7 +212,10 @@ public class TempsActivity extends ActionBarActivity {
                                 temps.setDirection(obj.getString("terminus"));
 
                                 temps.setLigne(jObject.getString("numLigne"));
-                                temps.setTemps(obj.getString("temps"));
+
+                                String temp = obj.getString("temps").replace("Close", "En approche");
+
+                                temps.setTemps(temp);
                                 directionList.add(temps);
 
 
@@ -292,8 +295,9 @@ public class TempsActivity extends ActionBarActivity {
 
                                         temps.setLigne(jObject.getString("numLigne"));
 
+                                        String temp = obj.getString("temps").replace("Close", "En approche");
 
-                                        temps.setTemps(obj.getString("temps"));
+                                        temps.setTemps(temp);
 
                                         directionList.add(temps);
 
