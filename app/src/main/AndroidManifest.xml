@@ -44,6 +44,26 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="activity.MainActivity" />
 </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name="activity.MyPreferencesActivity"
+            android:parentActivityName="activity.MainActivity"
+            android:configChanges="orientation|screenSize"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="activity.MainActivity" />
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name="activity.ChangelogActivity"
+            android:parentActivityName="activity.MyPreferencesActivity"
+            android:configChanges="orientation|screenSize"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="activity.MyPreferencesActivity" />
+        </activity>
     </application>
 
 </manifest>
