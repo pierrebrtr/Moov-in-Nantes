@@ -21,7 +21,9 @@ import model.Arrets;
 public class CustomListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
+
     private List<Arrets> arretsItems;
+
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
 
@@ -87,6 +89,11 @@ public class CustomListAdapter extends BaseAdapter {
 
 
     }
+
+
+
+
+
 
 
 }

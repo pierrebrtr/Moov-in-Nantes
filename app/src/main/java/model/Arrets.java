@@ -45,4 +45,10 @@ public class Arrets {
         this.ligne = ligne;
     }
 
+
+    @Override
+    public String toString() {
+        return "Arret [id=" + arret + ", name=" + ligne + ", picture=" + lieu + "]";
+    }
+
 }

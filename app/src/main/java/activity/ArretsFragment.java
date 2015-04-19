@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +33,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import adapter.CustomListAdapter;
 import app.AppController;
@@ -38,7 +40,7 @@ import helper.ConnectionDetector;
 import model.Arrets;
 
 
-public class ArretsFragment extends Fragment {
+public class ArretsFragment extends Fragment  {
 
 
     ConnectionDetector cd;
@@ -54,11 +56,33 @@ public class ArretsFragment extends Fragment {
     private Menu menu;
     private MenuInflater inflater;
     HashMap<String, String> lieumap = new HashMap<String, String>();
+    EditText search;
+
+    ArrayList listArrets;
+
 
     public ArretsFragment() {
 
     }
 
+
+    public void filtrer() {
+        // retourner la chaine saisie par l'utilisateur
+        String name = search.getText().toString();
+        // créer une nouvelle liste qui va contenir la résultat à afficher
+        ArrayList listFoodNew = new ArrayList();
+
+        for (Arrets food : arretsList) {
+            // si le nom du food commence par la chaine saisie , ajouter-le !
+            if (food.getArret().toLowerCase().toString().startsWith(name)) {
+                listFoodNew.add(food);
+            }
+        }
+        //vider la liste
+        listView.setAdapter(null);
+        // ajouter la nouvelle liste
+        listView.setAdapter(new CustomListAdapter(getActivity(), listFoodNew));
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -68,7 +92,37 @@ public class ArretsFragment extends Fragment {
         // movieList is an empty array at this point.
         adapter = new CustomListAdapter(getActivity(), arretsList);
         listView.setAdapter(adapter);
+
+
+
+        search = (EditText) getActivity().findViewById(R.id.search);
+        search.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+                                      int arg3) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1,
+                                          int arg2, int arg3) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+                filtrer();
+            }
+        });
+
         // Showing progress dialog before making http request
+
+
+
 
 
         swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.container);
@@ -77,6 +131,8 @@ public class ArretsFragment extends Fragment {
             public void onRefresh() {
                 Toast.makeText(getActivity(), "Rechargement...", Toast.LENGTH_SHORT).show();
 
+
+                arretsList.clear();
 
                 JsonArrayRequest movieReq = new JsonArrayRequest(url,
                         new Response.Listener<JSONArray>() {
@@ -193,14 +249,9 @@ public class ArretsFragment extends Fragment {
     }
 
 
-    public static Object getKeyFromValue(Map hm, Object value) {
-        for (Object o : hm.keySet()) {
-            if (hm.get(o).equals(value)) {
-                return o;
-            }
-        }
-        return null;
-    }
+
+
+
 
 
 
@@ -210,6 +261,16 @@ public class ArretsFragment extends Fragment {
 
 
         super.onCreate(savedInstanceState);
+
+
+
+
+
+
+
+
+        listArrets = new ArrayList();
+
 
 
         // Creating volley request obj
