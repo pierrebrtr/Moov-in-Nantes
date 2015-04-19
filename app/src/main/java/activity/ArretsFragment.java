@@ -267,14 +267,9 @@ public class ArretsFragment extends Fragment  {
 
                     button.setTag("red");
                     button.setImageResource(R.drawable.ic_heart_red);
-                } else {
-                    sharedPreference.removeFavorite(getActivity(), arretsList.get(position));
-                    button.setTag("grey");
-                    button.setImageResource(R.drawable.ic_heart_white);
-                    Toast.makeText(getActivity(), "Supprimé des favoris !", Toast.LENGTH_LONG).show();
-                }
+                } 
 
-                sharedPreference.addFavorite(getActivity(), arretsList.get(position));
+
 
 
 
