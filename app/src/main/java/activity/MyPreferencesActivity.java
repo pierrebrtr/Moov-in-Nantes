@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 
 import com.example.pierre.tan.R;
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.ui.LibsActivity;
 
 import app.AppController;
 import model.Arrets;
@@ -62,6 +64,22 @@ public class MyPreferencesActivity extends ActionBarActivity {
                     AppController.getInstance().getRequestQueue().getCache().remove(url);
                     Toast.makeText(getActivity().getApplicationContext(),
                             "Le cache a été vidé.", Toast.LENGTH_LONG).show();
+                    return true;
+                }
+            });
+            Preference userButtonee = (Preference) findPreference("library");
+            userButtonee.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference arg0) {
+                    Intent i = new Intent(getActivity().getApplicationContext(), LibsActivity.class);
+//Pass the fields of your application to the lib so it can find all external lib information
+                    i.putExtra(Libs.BUNDLE_FIELDS, Libs.toStringArray(R.string.class.getFields()));
+
+                    i.putExtra(Libs.BUNDLE_VERSION, true);
+                    i.putExtra(Libs.BUNDLE_LICENSE, true);
+                    i.putExtra(Libs.BUNDLE_TITLE, "Crédits librairies");
+                    i.putExtra(Libs.BUNDLE_THEME, R.style.Theme_AppCompat);
+                    startActivity(i);
                     return true;
                 }
             });

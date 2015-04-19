@@ -11,6 +11,12 @@
         android:summary="Consulter le changelog"
         android:key="user">
     </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Crédits"
+            android:summary="Consulter les licences"
+            android:key="library"
+            >
+        </PreferenceScreen>
     </PreferenceCategory>
     <PreferenceCategory android:title="Divers" >
     <PreferenceScreen
