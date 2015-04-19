@@ -287,7 +287,7 @@ public class ArretsFragment extends Fragment  {
 
 
 
-                return false;
+                return true;
             }
         });
 

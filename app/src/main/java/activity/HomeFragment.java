@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -90,6 +91,38 @@ public class HomeFragment extends Fragment {
 
 
                 }
+            });
+
+
+            favoriteList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+                @Override
+                public boolean onItemLongClick(
+                        AdapterView<?> parent, View view,
+                        int position, long id) {
+
+                    ImageView button = (ImageView) view
+                            .findViewById(R.id.imgbtn_favorite);
+
+                    String tag = button.getTag().toString();
+
+                        sharedPreference.removeFavorite(activity,
+                                favorites.get(position));
+                        button.setTag("grey");
+                        button.setImageResource(R.drawable.ic_heart_white);
+                       favorites.remove(favorites.get(position));
+                        Toast.makeText(
+                                activity,
+                                activity.getResources().getString(
+                                        R.string.remove_favr),
+                                Toast.LENGTH_SHORT).show();
+                    sharedPreference.saveFavorites(activity, favorites);
+
+                    productListAdapter.notifyDataSetChanged();
+
+return true;
+                }
+
             });
 
             // Inflate the layout for this fragment
