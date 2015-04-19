@@ -26,37 +26,31 @@ public class MyPreferencesActivity extends ActionBarActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
             setContentView(R.layout.activity_settings);
-            mToolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(mToolbar);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            getFragmentManager().beginTransaction().replace(R.id.content_frame, new MyPreferenceFragment()).commit();
         }
 
 
+    public static class MyPreferenceFragment extends PreferenceFragment{
+        @Override
+        public void onCreate(final Bundle savedInstanceState){
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.preferences);
 
-
-
-    public static class MyPreferenceFragment extends PreferenceFragment
-        {
-            @Override
-            public void onCreate(final Bundle savedInstanceState)
-            {
-                super.onCreate(savedInstanceState);
-
-                addPreferencesFromResource(R.xml.preferences);
-
-                Preference userButton = (Preference) findPreference("user");
-                userButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                    @Override
-                    public boolean onPreferenceClick(Preference arg0) {
-                        Intent intent = new Intent(getActivity(), ChangelogActivity.class);
-                        startActivity(intent);
-                        return true;
-                    }
-                });
-            }
+            Preference userButton = (Preference) findPreference("user");
+            userButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference arg0) {
+                    Intent intent = new Intent(getActivity(), ChangelogActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+            });
         }
-
     }
+}
+
+
+
