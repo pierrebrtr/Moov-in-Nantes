@@ -34,6 +34,8 @@ import java.util.List;
 
 import adapter.CustomListAdapterTemps;
 import app.AppController;
+import it.carlom.stikkyheader.core.animator.AnimatorBuilder;
+import it.carlom.stikkyheader.core.animator.HeaderStikkyAnimator;
 import model.Temps;
 
 
@@ -57,12 +59,14 @@ public class TempsActivity extends ActionBarActivity {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_temps, container, false);
 
-
         // Inflate the layout for this fragment
         return rootView;
 
 
     }
+
+
+
 
     public void onActivityCreated(Bundle savedInstanceState) {
 
@@ -200,6 +204,8 @@ public class TempsActivity extends ActionBarActivity {
 
 
         super.onCreate(savedInstanceState);
+
+
 
 
         setContentView(R.layout.activity_temps);

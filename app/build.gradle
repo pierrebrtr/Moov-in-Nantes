@@ -28,6 +28,7 @@ dependencies {
     compile 'com.github.hotchemi:Android-Rate:0.4.3'
     compile 'com.github.gabrielemariotti.changeloglib:library:1.5.2'
 
+
 }
 
 repositories {

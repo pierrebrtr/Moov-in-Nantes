@@ -279,7 +279,7 @@ public class ArretsFragment extends Fragment {
         AppController.getInstance().addToRequestQueue(movieReq);
 
 
-        
+
 
 
     }
