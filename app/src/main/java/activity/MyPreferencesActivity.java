@@ -56,6 +56,15 @@ public class MyPreferencesActivity extends ActionBarActivity {
                     return true;
                 }
             });
+            Preference userButtona = (Preference) findPreference("theme");
+            userButtona.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference arg0) {
+                    Intent intent = new Intent(getActivity(), ThemeActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+            });
             Preference userButtone = (Preference) findPreference("cache");
             userButtone.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -74,7 +83,6 @@ public class MyPreferencesActivity extends ActionBarActivity {
                     Intent i = new Intent(getActivity().getApplicationContext(), LibsActivity.class);
 //Pass the fields of your application to the lib so it can find all external lib information
                     i.putExtra(Libs.BUNDLE_FIELDS, Libs.toStringArray(R.string.class.getFields()));
-
                     i.putExtra(Libs.BUNDLE_VERSION, true);
                     i.putExtra(Libs.BUNDLE_LICENSE, true);
                     i.putExtra(Libs.BUNDLE_TITLE, "Crédits librairies");
