@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -34,8 +35,6 @@ import java.util.List;
 
 import adapter.CustomListAdapterTemps;
 import app.AppController;
-import it.carlom.stikkyheader.core.animator.AnimatorBuilder;
-import it.carlom.stikkyheader.core.animator.HeaderStikkyAnimator;
 import model.Temps;
 
 
@@ -76,7 +75,6 @@ public class TempsActivity extends ActionBarActivity {
         System.out.println(intent.getExtras().getString("text") + " Test Test ");
 
 
-        listView2 = (ListView) findViewById(R.id.list_temps);
 
 
         // movieList is an empty array at this point.
@@ -209,6 +207,39 @@ public class TempsActivity extends ActionBarActivity {
 
 
         setContentView(R.layout.activity_temps);
+
+
+
+        View headerView = getLayoutInflater().inflate(
+                R.layout.view_list_item_header, null);
+
+        listView2 = (ListView) findViewById(R.id.list_temps);
+        listView2.addHeaderView(headerView);
+        listView2.setOnScrollListener(new AbsListView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+
+                View headerView = view.findViewById(R.id.header);
+
+                final float mTop = -headerView.getTop();
+                float height = headerView.getHeight();
+                if (mTop > height) {
+                    // ignore
+                    return;
+                }
+                View imgView = headerView.findViewById(R.id.imageView);
+                imgView.setTranslationY(mTop / 2f);
+
+            }
+        });
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
 
