@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -62,6 +63,8 @@ public class MyPreferencesActivity extends ActionBarActivity {
                 public boolean onPreferenceClick(Preference arg0) {
                     String url = "https://open.tan.fr/ewp/arrets.json";
                     AppController.getInstance().getRequestQueue().getCache().remove(url);
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            "Le cache a été vidé.", Toast.LENGTH_LONG).show();
                     return true;
                 }
             });
