@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -54,9 +55,14 @@ public class TempsActivity extends ActionBarActivity {
     HashMap<String, String> lieumap = new HashMap<String, String>();
 
 
+
+
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_temps, container, false);
+
+
 
         // Inflate the layout for this fragment
         return rootView;
@@ -71,6 +77,7 @@ public class TempsActivity extends ActionBarActivity {
 
         Intent intent = getIntent();
 
+
         final String url = "https://open.tan.fr/ewp/tempsattente.json/" + intent.getExtras().getString("text") + " ";
         System.out.println(intent.getExtras().getString("text") + " Test Test ");
 
@@ -83,7 +90,11 @@ public class TempsActivity extends ActionBarActivity {
         // Showing progress dialog before making http request
 
 
-        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.container);
+        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.container2);
+        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             public void onRefresh() {
@@ -151,10 +162,6 @@ public class TempsActivity extends ActionBarActivity {
 
             }
         });
-        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
 
 
     }
@@ -173,6 +180,8 @@ public class TempsActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
@@ -203,9 +212,9 @@ public class TempsActivity extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
 
+        Intent intents = getIntent();
 
-
-
+        String id = intents.getStringExtra("libelle");
         setContentView(R.layout.activity_temps);
 
 
@@ -215,6 +224,8 @@ public class TempsActivity extends ActionBarActivity {
 
         listView2 = (ListView) findViewById(R.id.list_temps);
         listView2.addHeaderView(headerView);
+        TextView t = (TextView) findViewById(R.id.headertext);
+        t.setText(id);
         listView2.setOnScrollListener(new AbsListView.OnScrollListener() {
 
             @Override

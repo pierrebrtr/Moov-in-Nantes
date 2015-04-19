@@ -13,13 +13,14 @@
         android:src="@color/background_material_dark" />
 
     <TextView
+        android:id="@+id/headertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:text="Hello World!"
         android:textSize="30sp"
         android:textColor="@color/abc_primary_text_disable_only_material_dark"
-        
+
         android:layout_gravity="center" />
 
 

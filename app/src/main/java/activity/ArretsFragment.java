@@ -176,8 +176,13 @@ public class ArretsFragment extends Fragment {
                 TextView textView = (TextView) view.findViewById(R.id.lieu);
                 String text = textView.getText().toString();
 
+
+                TextView textView2 = (TextView) view.findViewById(R.id.arret);
+                String libelle = textView2.getText().toString();
+
                 Intent i = new Intent(ArretsFragment.this.getActivity(), TempsActivity.class);
                 i.putExtra("text", text);
+                i.putExtra("libelle", libelle);
                 startActivity(i);
 
 
