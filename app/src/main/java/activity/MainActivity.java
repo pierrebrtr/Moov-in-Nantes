@@ -39,7 +39,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 .setLaunchTimes(10) // default 10
                 .setRemindInterval(1) // default 1
                 .setShowNeutralButton(true) // default true
-                .setDebug(true) // default false
+                .setDebug(false) // default false
                 .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
                     @Override
                     public void onClickButton(int which) {
