@@ -31,6 +31,13 @@ public class MyPreferencesActivity extends ActionBarActivity {
             getFragmentManager().beginTransaction().replace(R.id.content_frame, new MyPreferenceFragment()).commit();
         }
 
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(MyPreferencesActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     public static class MyPreferenceFragment extends PreferenceFragment{
         @Override
@@ -60,6 +67,7 @@ public class MyPreferencesActivity extends ActionBarActivity {
             });
         }
     }
+
 }
 
 
