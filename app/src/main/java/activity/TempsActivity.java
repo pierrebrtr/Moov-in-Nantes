@@ -49,7 +49,7 @@ public class TempsActivity extends ActionBarActivity {
     private List<Temps> directionList = new ArrayList<Temps>();
     private ListView listView2;
     private CustomListAdapterTemps adapter;
-    private SwipeRefreshLayout swipeLayout;
+    private SwipeRefreshLayout swipeLayout2;
     private Menu menu;
     private MenuInflater inflater;
 
@@ -80,86 +80,7 @@ public class TempsActivity extends ActionBarActivity {
         // Showing progress dialog before making http request
 
 
-        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.container2);
-        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
-            public void onRefresh() {
-                Toast.makeText(getApplication(), "Rechargement...", Toast.LENGTH_SHORT).show();
-
-
-                JsonArrayRequest movieReq = new JsonArrayRequest(url,
-                        new Response.Listener<JSONArray>() {
-                            @Override
-                            public void onResponse(JSONArray response) {
-                                Log.d(TAG, response.toString());
-
-
-                                // Parsing json
-                                for (int i = 0; i < response.length(); i++) {
-                                    try {
-
-                                        JSONObject obj = null;
-                                        try {
-                                            obj = response.getJSONObject(i);
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                        JSONObject jObject = obj.getJSONObject("ligne");
-
-
-
-
-
-
-
-                                        Temps temps = new Temps();
-
-                                        temps.setDirection(obj.getString("terminus"));
-
-                                        temps.setLigne(jObject.getString("numLigne"));
-
-
-                                        temps.setTemps(obj.getString("temps"));
-
-                                        directionList.add(temps);
-
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-
-                                // notifying list adapter about data changes
-                                // so that it renders the list view with updated data
-                                adapter.notifyDataSetChanged();
-                            }
-                        }, new Response.ErrorListener() {
-
-                    public void onErrorResponse(VolleyError error) {
-                        VolleyLog.d(TAG, "Error: " + error.getMessage());
-
-                        Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
-
-
-                    }
-
-
-                });
-
-
-                AppController.getInstance().addToRequestQueue(movieReq);
-
-                swipeLayout.setRefreshing(false);
-
-
-            }
-        });
 
 
     }
@@ -322,7 +243,100 @@ public class TempsActivity extends ActionBarActivity {
         AppController.getInstance().addToRequestQueue(movieReq);
 
 
+
+        swipeLayout2 = (SwipeRefreshLayout) findViewById(R.id.container2);
+        swipeLayout2.setColorScheme(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+
+        swipeLayout2.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            public void onRefresh() {
+                Toast.makeText(getApplication(), "Rechargement...", Toast.LENGTH_SHORT).show();
+
+
+                directionList.clear();
+
+
+                JsonArrayRequest movieReq = new JsonArrayRequest(url,
+                        new Response.Listener<JSONArray>() {
+                            @Override
+                            public void onResponse(JSONArray response) {
+                                Log.d(TAG, response.toString());
+
+
+                                // Parsing json
+                                for (int i = 0; i < response.length(); i++) {
+                                    try {
+
+                                        JSONObject obj = null;
+                                        try {
+                                            obj = response.getJSONObject(i);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        JSONObject jObject = obj.getJSONObject("ligne");
+
+
+
+
+
+
+
+                                        Temps temps = new Temps();
+
+                                        temps.setDirection(obj.getString("terminus"));
+
+                                        temps.setLigne(jObject.getString("numLigne"));
+
+
+                                        temps.setTemps(obj.getString("temps"));
+
+                                        directionList.add(temps);
+
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+
+                                // notifying list adapter about data changes
+                                // so that it renders the list view with updated data
+                                adapter.notifyDataSetChanged();
+                            }
+                        }, new Response.ErrorListener() {
+
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+                        Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
+
+
+                    }
+
+
+                });
+
+
+                AppController.getInstance().addToRequestQueue(movieReq);
+
+                swipeLayout2.setRefreshing(false);
+
+
+            }
+        });
+
+
     }
+
+
+
+
+
 
 
 }
