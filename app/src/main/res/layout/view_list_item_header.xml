@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/max_height_header"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:src="@color/background_material_dark" />
@@ -19,7 +19,7 @@
         android:text="Hello World!"
         android:textSize="30sp"
         android:textColor="@color/abc_primary_text_disable_only_material_dark"
-        android:layout_marginBottom="20dp"
+        
         android:layout_gravity="center" />
 
 

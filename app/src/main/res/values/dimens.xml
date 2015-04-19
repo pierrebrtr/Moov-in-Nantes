@@ -10,6 +10,6 @@
     <dimen name="year">12dip</dimen>
 
     <!-- FAKE HEADER HEIGHT -->
-    <dimen name="max_height_header">150dp</dimen>
+    <dimen name="max_height_header">110dp</dimen>
 
 </resources>

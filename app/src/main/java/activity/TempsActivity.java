@@ -211,7 +211,7 @@ public class TempsActivity extends ActionBarActivity {
 
 
         View headerView = getLayoutInflater().inflate(
-                R.layout.view_list_item_header, null);
+                R.layout.view_list_item_header, listView2, false);
 
         listView2 = (ListView) findViewById(R.id.list_temps);
         listView2.addHeaderView(headerView);
@@ -234,7 +234,7 @@ public class TempsActivity extends ActionBarActivity {
                     // ignore
                     return;
                 }
-                View imgView = headerView.findViewById(R.id.imageView);
+                View imgView = headerView.findViewById(R.id.header);
                 imgView.setTranslationY(mTop / 2f);
 
             }
