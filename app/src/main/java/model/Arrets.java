@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Arrets {
     private String arret;
-    private ArrayList<String> ligne;
+    public ArrayList<String> ligne;
     private String lieu;
 
     public Arrets() {

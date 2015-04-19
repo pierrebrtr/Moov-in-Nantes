@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ import adapter.CustomListAdapter;
 import app.AppController;
 import helper.ConnectionDetector;
 import model.Arrets;
+import util.Spfav;
 
 
 public class ArretsFragment extends Fragment  {
@@ -57,6 +59,7 @@ public class ArretsFragment extends Fragment  {
     private MenuInflater inflater;
     HashMap<String, String> lieumap = new HashMap<String, String>();
     EditText search;
+    Spfav sharedPreference;
 
     ArrayList listArrets;
 
@@ -242,6 +245,49 @@ public class ArretsFragment extends Fragment  {
                 startActivity(i);
 
 
+            }
+        });
+
+
+
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long arg3) {
+
+                ImageView button = (ImageView) view.findViewById(R.id.imgbtn_favorite);
+                sharedPreference = new Spfav();
+
+                String tag = button.getTag().toString();
+                if (tag.equalsIgnoreCase("grey")) {
+                    sharedPreference.addFavorite(getActivity(), arretsList.get(position));
+                    Toast.makeText(getActivity(), "Ajouté au favoris !", Toast.LENGTH_LONG).show();
+
+                    button.setTag("red");
+                    button.setImageResource(R.drawable.ic_heart_red);
+                } else {
+                    sharedPreference.removeFavorite(getActivity(), arretsList.get(position));
+                    button.setTag("grey");
+                    button.setImageResource(R.drawable.ic_heart_white);
+                    Toast.makeText(getActivity(), "Supprimé des favoris !", Toast.LENGTH_LONG).show();
+                }
+
+                sharedPreference.addFavorite(getActivity(), arretsList.get(position));
+
+
+
+
+
+
+
+
+
+
+
+
+                return false;
             }
         });
 

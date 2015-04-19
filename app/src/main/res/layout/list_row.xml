@@ -39,4 +39,14 @@
         android:textColor="@color/year"
         android:textSize="12dp" />
 
+    <ImageView
+        android:id="@+id/imgbtn_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="3dp"
+        android:background="@null"
+        android:maxHeight="10dp"
+        android:maxWidth="10dp" />
+
 </RelativeLayout>

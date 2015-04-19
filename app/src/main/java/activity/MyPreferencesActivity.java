@@ -1,23 +1,18 @@
 package activity;
 
-import android.app.FragmentManager;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
-
 
 import com.example.pierre.tan.R;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.ui.LibsActivity;
 
 import app.AppController;
-import model.Arrets;
 
 /**
  * Created by dev on 19/04/15.
@@ -56,15 +51,7 @@ public class MyPreferencesActivity extends ActionBarActivity {
                     return true;
                 }
             });
-            Preference userButtona = (Preference) findPreference("theme");
-            userButtona.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference arg0) {
-                    Intent intent = new Intent(getActivity(), ThemeActivity.class);
-                    startActivity(intent);
-                    return true;
-                }
-            });
+
             Preference userButtone = (Preference) findPreference("cache");
             userButtone.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override

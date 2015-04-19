@@ -77,6 +77,7 @@ public class TempsActivity extends ActionBarActivity {
         // movieList is an empty array at this point.
         adapter = new CustomListAdapterTemps(getParent(), directionList);
         listView2.setAdapter(adapter);
+
         // Showing progress dialog before making http request
 
 

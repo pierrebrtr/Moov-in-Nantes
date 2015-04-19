@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -16,13 +17,22 @@ import java.util.List;
 
 import app.AppController;
 import model.Arrets;
+import util.Spfav;
 
 
-public class CustomListAdapter extends BaseAdapter {
+public class CustomListAdapter extends BaseAdapter  {
     private Activity activity;
     private LayoutInflater inflater;
 
     private List<Arrets> arretsItems;
+    Spfav sharedPreference;
+
+
+
+
+
+
+
 
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
@@ -30,7 +40,14 @@ public class CustomListAdapter extends BaseAdapter {
     public CustomListAdapter(Activity activity, List<Arrets> arretsItems) {
         this.activity = activity;
         this.arretsItems = arretsItems;
+
+
+
+
+
     }
+
+
 
     @Override
     public int getCount() {
@@ -64,7 +81,18 @@ public class CustomListAdapter extends BaseAdapter {
         TextView arret = (TextView) convertView.findViewById(R.id.arret);
         TextView ligne = (TextView) convertView.findViewById(R.id.ligne);
         TextView lieu = (TextView) convertView.findViewById(R.id.lieu);
+        ImageView image = (ImageView) convertView.findViewById(R.id.imgbtn_favorite);
 
+
+        Arrets product = (Arrets) getItem(position);
+
+        if (checkFavoriteItem(product)) {
+            image.setImageResource(R.drawable.ic_heart_red);
+            image.setTag("red");
+        } else {
+            image.setImageResource(R.drawable.ic_heart_white);
+           image.setTag("grey");
+        }
 
         // getting movie data for the row
         Arrets m = arretsItems.get(position);
@@ -93,7 +121,20 @@ public class CustomListAdapter extends BaseAdapter {
 
 
 
-
+    public boolean checkFavoriteItem(Arrets checkProduct) {
+        boolean check = false;
+        sharedPreference = new Spfav();
+        List<Arrets> favorites = sharedPreference.getFavorites(activity);
+        if (favorites != null) {
+            for (Arrets product : favorites) {
+                if (product.equals(checkProduct)) {
+                    check = true;
+                    break;
+                }
+            }
+        }
+        return check;
+    }
 
 
 }
