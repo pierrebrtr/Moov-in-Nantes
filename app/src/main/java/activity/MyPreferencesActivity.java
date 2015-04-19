@@ -2,23 +2,39 @@ package activity;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.example.pierre.tan.R;
 
 /**
  * Created by dev on 19/04/15.
  */
-public class MyPreferencesActivity extends PreferenceActivity {
-
+public class MyPreferencesActivity extends ActionBarActivity {
+    private Toolbar mToolbar;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
+            setContentView(R.layout.activity_settings);
+            mToolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(mToolbar);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+
 
 
 
@@ -28,6 +44,7 @@ public class MyPreferencesActivity extends PreferenceActivity {
             public void onCreate(final Bundle savedInstanceState)
             {
                 super.onCreate(savedInstanceState);
+
                 addPreferencesFromResource(R.xml.preferences);
 
                 Preference userButton = (Preference) findPreference("user");
