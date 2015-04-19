@@ -13,17 +13,26 @@
         android:defaultValue="1"
         android:entries="@array/listArray"
         android:entryValues="@array/listValues" />
+    <PreferenceCategory android:title="Application" >
     <PreferenceScreen
-        android:title="Test de merde"
-        android:summary="Lolilol de merde">
+        android:title="Vider le cache"
+        android:summary="LOLILOL"
+        android:key="cache">
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:title="Changelog"
+        android:summary="Consulter le changelog"
+        android:key="user">
+    </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Divers" >
+    <PreferenceScreen
+        android:title="P&amp;F Studio"
+        android:summary="Visiter le site">
 
         <intent android:action="android.intent.action.VIEW"
             android:data="http://www.android.com" />
 
     </PreferenceScreen>
-    <PreferenceScreen
-        android:title="Test de merde"
-        android:summary="Lolilol de merde"
-        android:key="user">
-    </PreferenceScreen>
+    </PreferenceCategory>
 </PreferenceScreen>
