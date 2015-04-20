@@ -259,18 +259,23 @@ public class ArretsFragment extends Fragment  {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long arg3) {
 
+
+                    Arrets item = (Arrets) arg0.getItemAtPosition(position);
+
                     ImageView button = (ImageView) view.findViewById(R.id.imgbtn_favorite);
                     sharedPreference = new Spfav();
 
+
+
                     String tag = button.getTag().toString();
                     if (tag.equalsIgnoreCase("grey")) {
-                        sharedPreference.addFavorite(getActivity(), arretsList.get(position));
+                        sharedPreference.addFavorite(getActivity(), item);
                         Toast.makeText(getActivity(), "Ajouté au favoris !", Toast.LENGTH_LONG).show();
 
                         button.setTag("red");
                         button.setImageResource(R.drawable.ic_heart_red);
                     } else {
-                        sharedPreference.removeFavorite(getActivity(), arretsList.get(position));
+                        sharedPreference.removeFavorite(getActivity(), item);
                         button.setTag("grey");
                         button.setImageResource(R.drawable.ic_heart_white);
                         Toast.makeText(getActivity(), "Supprimé des favoris !", Toast.LENGTH_LONG).show();

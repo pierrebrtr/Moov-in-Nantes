@@ -2,18 +2,25 @@
 <items version="2" >
 
     <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.mikepenz.aboutlibraries\library\4.5.9\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9cf43a7984a739880c1c0b8a6959cd9cfb4b242c">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-6b15313a9ccbc60147836f98f844068f6b69f4b9.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\gson-2.3.1-d7308cd28d769732f4352f2b3344594fe3408b73.jar" />
+    </item>
+    <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="d84409890828e07d344a3b9b1da545dba9897b51">
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-cf74b35026357b42264d9b7a5fafe08d505fab01.jar" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.pnikosis\materialish-progress\1.5\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="75c54c470e19b251749e6e6c2cf3d73c0b50aa64">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-a4a3d181214332c9611d63b1b27042989335629b.jar" />
     </item>
     <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
@@ -23,11 +30,32 @@
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-23b1afe44df7db241a25fdd968576a93f99ff6b4.jar" />
     </item>
     <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c6d79137693d494dee16372d3921f919eb724ced">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-42315c729c11b3f509754c51fcd012e8eef66e96.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.github.hotchemi\Android-Rate\0.4.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="fd93b90ced7349fb00996f1642b042ad1bd26b12">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-69cb02e017f5a07786d9607e44a74ad9e569e721.jar" />
+    </item>
+    <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-8c3d351e21a3679b471c5059fe6e68d8b5b9bfbd.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="11842de6a309c447b3a3d60d73ad637a87c58994">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-a27c665d3fdb4cc93034e9afde36ae626d751fd0.jar" />
     </item>
     <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\libs\volley.jar"
@@ -37,18 +65,18 @@
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\volley-cd4bc0effaffa507ddedbd2f963885ad1ec2f2e1.jar" />
     </item>
     <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-33a6be8ea2a34e3ca2a5d1b4c07cb80c90978a11.jar" />
-    </item>
-    <item
         jar="C:\Users\pierre\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-d3a2f62ce9db6e181dcaf00fb3f8f880b4e4fe18.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.github.gabrielemariotti.changeloglib\library\1.5.2\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="494089d9d84042634d2be0355702e96805f847d3">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-df156e853eb2c04919776d379fa9f6ce2f6f4313.jar" />
     </item>
 
 </items>
