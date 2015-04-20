@@ -5,10 +5,6 @@
     android:background="@drawable/list_row_selector"
     android:padding="8dp" >
 
-    <!-- Thumbnail Image -->
-
-
-    <!-- Movie Title -->
     <TextView
         android:id="@+id/direction"
         android:layout_width="wrap_content"
@@ -17,7 +13,6 @@
         android:layout_alignParentTop="true"
         android:textSize="20dp"
         android:textStyle="bold" />
-
 
     <TextView
         android:id="@+id/ligne"
@@ -28,7 +23,6 @@
         android:textColor="@color/year"
         android:textSize="12dp" />
 
-    <!-- Genre -->
     <TextView
         android:id="@+id/temps"
         android:layout_width="wrap_content"
@@ -37,8 +31,5 @@
         android:layout_alignParentLeft="true"
         android:textColor="@color/year"
         android:textSize="15dp" />
-
-    <!-- Release Year -->
-
 
 </RelativeLayout>
