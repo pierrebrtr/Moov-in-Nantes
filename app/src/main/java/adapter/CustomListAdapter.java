@@ -47,7 +47,7 @@ public class CustomListAdapter extends BaseAdapter  {
 
         sharedPreference = new Spfav();
 
-        context = activity.getApplicationContext();
+
 
     }
 
@@ -134,7 +134,7 @@ public class CustomListAdapter extends BaseAdapter  {
     public boolean checkFavoriteItem(Arrets checkProduct) {
         boolean check = false;
 
-        List<Arrets> favorites = sharedPreference.getFavorites(context);
+        List<Arrets> favorites = sharedPreference.getFavorites(activity);
         if (favorites != null) {
             for (Arrets product : favorites) {
                 if (product.equals(checkProduct)) {
