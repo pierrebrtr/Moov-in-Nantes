@@ -28,6 +28,10 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     public static Arrets arrets = null;
 
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,8 +86,11 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
 
 
+
+
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         new AlertDialog.Builder(this)
                 .setMessage("Voulez-vous quitter l\'application ?")
                 .setPositiveButton("oui", new DialogInterface.OnClickListener() {
@@ -97,6 +104,8 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                         finish();
                     }
                 }).setNegativeButton("non", null).show();
+
+
     }
 
     @Override
