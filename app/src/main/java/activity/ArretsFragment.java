@@ -312,7 +312,6 @@ public class ArretsFragment extends Fragment  {
 
 
 
-
         listArrets = new ArrayList();
 
 
@@ -433,10 +432,7 @@ public class ArretsFragment extends Fragment  {
             return true;
         }
 
-        if (id == R.id.action_search) {
-            Toast.makeText(getActivity(), "Search action is selected!", Toast.LENGTH_SHORT).show();
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }

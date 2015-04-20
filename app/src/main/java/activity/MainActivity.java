@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.pierre.tan.R;
 
@@ -61,7 +63,22 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        
+
+
+        View searchContainer = findViewById(R.id.search_container);
+        final EditText toolbarSearchView = (EditText) findViewById(R.id.search);
+        ImageView searchClearButton = (ImageView) findViewById(R.id.search_clear);
+
+
+
+        searchClearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              toolbarSearchView.setText("");
+            }
+        });
+
+
 
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
@@ -71,6 +88,8 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
         // display the first navigation drawer view on app launch
         displayView(0);
+
+        searchContainer.setVisibility(View.GONE);
 
     }
 
