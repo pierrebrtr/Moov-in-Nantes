@@ -1,5 +1,6 @@
 package activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,9 +17,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Random;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -40,7 +43,7 @@ import model.Temps;
 
 
 public class TempsActivity extends ActionBarActivity {
-
+    final Random rnd = new Random();
     private static final String TAG = MainActivity.class.getSimpleName();
     HashMap<String, String> lieumap = new HashMap<String, String>();
 
@@ -57,6 +60,8 @@ public class TempsActivity extends ActionBarActivity {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_temps, container, false);
 
+        View headerView = getLayoutInflater().inflate(
+                R.layout.view_list_item_header, listView2, false);
 
         // Inflate the layout for this fragment
         return rootView;
@@ -64,70 +69,11 @@ public class TempsActivity extends ActionBarActivity {
 
     }
 
-
-    public void onActivityCreated(Bundle savedInstanceState) {
-
-        Intent intent = getIntent();
-
-
-        final String url = "https://open.tan.fr/ewp/tempsattente.json/" + intent.getExtras().getString("text") + " ";
-        System.out.println(intent.getExtras().getString("text") + " Test Test ");
-
-
-        // movieList is an empty array at this point.
-        adapter = new CustomListAdapterTemps(getParent(), directionList);
-        listView2.setAdapter(adapter);
-
-        // Showing progress dialog before making http request
-
-
-
-
-
-    }
-
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        if (id == R.id.action_search) {
-            String title = getString(R.string.app_name);
-            Fragment fragment = null;
-            fragment = new ArretsFragment();
-            title = "Rechercher";
-
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_body, fragment);
-            fragmentTransaction.commit();
-            getSupportActionBar().setTitle(title);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    public void onCreate(Bundle savedInstanceState) {
-
+    public void onCreate (
+            final Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
 
         Intent intents = getIntent();
 
@@ -138,10 +84,26 @@ public class TempsActivity extends ActionBarActivity {
         View headerView = getLayoutInflater().inflate(
                 R.layout.view_list_item_header, listView2, false);
 
+
+        final ImageView img = (ImageView) headerView.findViewById(R.id.imageView);
+        // I have 3 images named img_0 to img_2, so...
+        final String str = "img_" + rnd.nextInt(3);
+        img.setImageDrawable
+                (
+                        getResources().getDrawable(getResourceID(str, "drawable",
+                                getApplicationContext()))
+                );
+
+
+
+
         listView2 = (ListView) findViewById(R.id.list_temps);
         listView2.addHeaderView(headerView);
         TextView t = (TextView) findViewById(R.id.headertext);
         t.setText(id);
+
+
+
         listView2.setOnScrollListener(new AbsListView.OnScrollListener() {
 
             @Override
@@ -353,6 +315,88 @@ public class TempsActivity extends ActionBarActivity {
 
 
     }
+
+
+
+    public void onActivityCreated(Bundle savedInstanceState) {
+
+        Intent intent = getIntent();
+
+
+        final String url = "https://open.tan.fr/ewp/tempsattente.json/" + intent.getExtras().getString("text") + " ";
+        System.out.println(intent.getExtras().getString("text") + " Test Test ");
+
+
+        // movieList is an empty array at this point.
+        adapter = new CustomListAdapterTemps(getParent(), directionList);
+        listView2.setAdapter(adapter);
+
+        // Showing progress dialog before making http request
+
+
+
+
+
+    }
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if (id == R.id.action_search) {
+            String title = getString(R.string.app_name);
+            Fragment fragment = null;
+            fragment = new ArretsFragment();
+            title = "Rechercher";
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle(title);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    protected final static int getResourceID
+            (final String resName, final String resType, final Context ctx)
+    {
+        final int ResourceID =
+                ctx.getResources().getIdentifier(resName, resType,
+                        ctx.getApplicationInfo().packageName);
+        if (ResourceID == 0)
+        {
+            throw new IllegalArgumentException
+                    (
+                            "No resource string found with name " + resName
+                    );
+        }
+        else
+        {
+            return ResourceID;
+        }
+    }
+
+
+
 
 
 

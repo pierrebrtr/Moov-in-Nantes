@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/max_height_header"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         android:src="@color/background_material_dark" />
 
     <TextView
