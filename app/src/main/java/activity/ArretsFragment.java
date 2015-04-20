@@ -64,6 +64,8 @@ public class ArretsFragment extends Fragment  {
     ArrayList listArrets;
 
 
+
+
     public ArretsFragment() {
 
     }
@@ -73,7 +75,7 @@ public class ArretsFragment extends Fragment  {
         // retourner la chaine saisie par l'utilisateur
         String name = search.getText().toString();
         // créer une nouvelle liste qui va contenir la résultat à afficher
-        ArrayList listFoodNew = new ArrayList();
+      ArrayList listFoodNew = new ArrayList();
 
         for (Arrets food : arretsList) {
             // si le nom du food commence par la chaine saisie , ajouter-le !
@@ -85,6 +87,8 @@ public class ArretsFragment extends Fragment  {
         listView.setAdapter(null);
         // ajouter la nouvelle liste
         listView.setAdapter(new CustomListAdapter(getActivity(), listFoodNew));
+
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -95,7 +99,6 @@ public class ArretsFragment extends Fragment  {
         // movieList is an empty array at this point.
         adapter = new CustomListAdapter(getActivity(), arretsList);
         listView.setAdapter(adapter);
-
 
 
         search = (EditText) getActivity().findViewById(R.id.search);
@@ -113,19 +116,20 @@ public class ArretsFragment extends Fragment  {
                                           int arg2, int arg3) {
                 // TODO Auto-generated method stub
 
+
+
             }
 
             @Override
             public void afterTextChanged(Editable arg0) {
                 // TODO Auto-generated method stub
                 filtrer();
+                adapter.notifyDataSetChanged();
+
             }
         });
 
         // Showing progress dialog before making http request
-
-
-
 
 
         swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.container);
@@ -168,7 +172,6 @@ public class ArretsFragment extends Fragment  {
                                         JSONArray genreArry = obj.getJSONArray("ligne");
                                         ArrayList<String> genre = new ArrayList<String>();
                                         int ligne = genreArry.length();
-
 
 
                                         for (int v = 0; v < ligne; v++) {
@@ -250,49 +253,39 @@ public class ArretsFragment extends Fragment  {
 
 
 
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+                @Override
+                public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long arg3) {
+
+                    ImageView button = (ImageView) view.findViewById(R.id.imgbtn_favorite);
+                    sharedPreference = new Spfav();
+
+                    String tag = button.getTag().toString();
+                    if (tag.equalsIgnoreCase("grey")) {
+                        sharedPreference.addFavorite(getActivity(), arretsList.get(position));
+                        Toast.makeText(getActivity(), "Ajouté au favoris !", Toast.LENGTH_LONG).show();
+
+                        button.setTag("red");
+                        button.setImageResource(R.drawable.ic_heart_red);
+                    } else {
+                        sharedPreference.removeFavorite(getActivity(), arretsList.get(position));
+                        button.setTag("grey");
+                        button.setImageResource(R.drawable.ic_heart_white);
+                        Toast.makeText(getActivity(), "Supprimé des favoris !", Toast.LENGTH_LONG).show();
+                    }
 
 
-            @Override
-            public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long arg3) {
-
-                ImageView button = (ImageView) view.findViewById(R.id.imgbtn_favorite);
-                sharedPreference = new Spfav();
-
-                String tag = button.getTag().toString();
-                if (tag.equalsIgnoreCase("grey")) {
-                    sharedPreference.addFavorite(getActivity(), arretsList.get(position));
-                    Toast.makeText(getActivity(), "Ajouté au favoris !", Toast.LENGTH_LONG).show();
-
-                    button.setTag("red");
-                    button.setImageResource(R.drawable.ic_heart_red);
-                } else {
-                    sharedPreference.removeFavorite(getActivity(), arretsList.get(position));
-                    button.setTag("grey");
-                    button.setImageResource(R.drawable.ic_heart_white);
-                    Toast.makeText(getActivity(), "Supprimé des favoris !", Toast.LENGTH_LONG).show();
+                    return true;
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                return true;
-            }
-        });
+            });
 
 
     }
+
+
+
 
 
 
