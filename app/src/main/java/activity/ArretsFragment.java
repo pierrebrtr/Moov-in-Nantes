@@ -401,6 +401,8 @@ public class ArretsFragment extends Fragment  {
         View rootView = inflater.inflate(R.layout.fragment_arrets, container, false);
 
 
+
+
         // Inflate the layout for this fragment
         return rootView;
 

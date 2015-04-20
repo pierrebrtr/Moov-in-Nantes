@@ -11,7 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,8 +57,11 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
+
+
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        
 
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
@@ -94,22 +96,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
             return true;
         }
 
-        if (id == R.id.action_search) {
 
-            String title = getString(R.string.app_name);
-            Fragment fragment = null;
-            fragment = new ArretsFragment();
-            title = "Rechercher";
-
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_body, fragment);
-            fragmentTransaction.commit();
-            getSupportActionBar().setTitle(title);
-
-
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

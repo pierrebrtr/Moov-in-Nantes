@@ -5,12 +5,7 @@
     android:orientation="vertical"
     tools:context="activity.ArretsFragment">
 
-    <EditText
-        android:id="@+id/search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Rechercher un arrêt..." />
+
 
 
 
