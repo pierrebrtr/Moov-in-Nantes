@@ -350,7 +350,7 @@ public class TempsActivity extends ActionBarActivity {
     }
 
 
-    
+
 
     protected final static int getResourceID
             (final String resName, final String resType, final Context ctx)
