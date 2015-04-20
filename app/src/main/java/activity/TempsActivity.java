@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -79,7 +80,16 @@ public class TempsActivity extends ActionBarActivity {
 
         String id = intents.getStringExtra("libelle");
         setContentView(R.layout.activity_temps);
-
+        View searchContainer = findViewById(R.id.search_container);
+        final EditText toolbarSearchView = (EditText) findViewById(R.id.search);
+        ImageView searchClearButton = (ImageView) findViewById(R.id.search_clear);
+        searchClearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toolbarSearchView.setText("");
+            }
+        });
+        searchContainer.setVisibility(View.GONE);
 
         View headerView = getLayoutInflater().inflate(
                 R.layout.view_list_item_header, listView2, false);
