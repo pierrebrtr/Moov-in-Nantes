@@ -3,7 +3,7 @@
     xmlns:wheel="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary" >
+    android:background="@color/colorPrimaryDark" >
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -17,7 +17,8 @@
         style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/imgLogo"
-        android:layout_marginRight="5dp" />
+        android:layout_marginRight="5dp"
+        />
 
     <TextView
         android:layout_width="fill_parent"

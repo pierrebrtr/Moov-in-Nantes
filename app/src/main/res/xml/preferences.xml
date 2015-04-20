@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="Application" >
+    <PreferenceCategory android:title="Application">
         <PreferenceScreen
             android:title="Thèmes"
             android:summary="Choisir un thème"
@@ -11,19 +11,19 @@
         android:summary="Fonctionnalité en beta."
         android:key="cache">
     </PreferenceScreen>
-    <PreferenceScreen
-        android:title="Changelog"
-        android:summary="Consulter le changelog"
-        android:key="user">
-    </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Divers" >
+        <PreferenceScreen
+            android:title="Changelog"
+            android:summary="Consulter le changelog"
+            android:key="user">
+        </PreferenceScreen>
         <PreferenceScreen
             android:title="Crédits"
             android:summary="Consulter les licences"
             android:key="library"
             >
         </PreferenceScreen>
-    </PreferenceCategory>
-    <PreferenceCategory android:title="Divers" >
     <PreferenceScreen
         android:title="P&amp;F Studio"
         android:summary="Visiter le site">
