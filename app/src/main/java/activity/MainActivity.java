@@ -66,17 +66,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
 
         View searchContainer = findViewById(R.id.search_container);
-        final EditText toolbarSearchView = (EditText) findViewById(R.id.search);
-        ImageView searchClearButton = (ImageView) findViewById(R.id.search_clear);
 
-
-
-        searchClearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              toolbarSearchView.setText("");
-            }
-        });
 
 
 
@@ -89,36 +79,12 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         // display the first navigation drawer view on app launch
         displayView(0);
 
-        searchContainer.setVisibility(View.GONE);
+
 
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent i = new Intent(this, MyPreferencesActivity.class);
-            startActivity(i);
-            return true;
-        }
-
-
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onBackPressed() {

@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 
 import com.example.pierre.tan.R;
@@ -20,6 +22,16 @@ public class AboutFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        View searchContainer = getActivity().findViewById(R.id.search_container);
+        final EditText toolbarSearchView = (EditText) getActivity().findViewById(R.id.search);
+        ImageView searchClearButton = (ImageView) getActivity().findViewById(R.id.search_clear);
+        searchClearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toolbarSearchView.setText("");
+            }
+        });
+        searchContainer.setVisibility(View.GONE);
 
     }
 

@@ -308,8 +308,17 @@ public class ArretsFragment extends Fragment  {
 
 
 
-
-
+        setHasOptionsMenu(true);
+        View searchContainer = getActivity().findViewById(R.id.search_container);
+        final EditText toolbarSearchView = (EditText) getActivity().findViewById(R.id.search);
+        ImageView searchClearButton = (ImageView) getActivity().findViewById(R.id.search_clear);
+        searchClearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toolbarSearchView.setText("");
+            }
+        });
+        searchContainer.setVisibility(View.GONE);
 
 
         listArrets = new ArrayList();
@@ -393,14 +402,16 @@ public class ArretsFragment extends Fragment  {
 
     }
 
+    @Override
+    public void onCreateOptionsMenu(
+            Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_main, menu);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_arrets, container, false);
-
-
-
 
         // Inflate the layout for this fragment
         return rootView;
@@ -420,6 +431,8 @@ public class ArretsFragment extends Fragment  {
     }
 
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -431,8 +444,12 @@ public class ArretsFragment extends Fragment  {
         if (id == R.id.action_settings) {
             return true;
         }
+        View searchContainer = getActivity().findViewById(R.id.search_container);
 
-
+        if (id == R.id.action_search){
+            searchContainer.setVisibility(View.VISIBLE);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

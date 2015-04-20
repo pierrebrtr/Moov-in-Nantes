@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -47,6 +48,16 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View searchContainer = getActivity().findViewById(R.id.search_container);
+        final EditText toolbarSearchView = (EditText) getActivity().findViewById(R.id.search);
+        ImageView searchClearButton = (ImageView) getActivity().findViewById(R.id.search_clear);
+        searchClearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toolbarSearchView.setText("");
+            }
+        });
+        searchContainer.setVisibility(View.GONE);
 
 
         sharedPreference = new Spfav();

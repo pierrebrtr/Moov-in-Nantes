@@ -8,6 +8,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.pierre.tan.R;
 
@@ -27,6 +30,16 @@ public class ChangelogActivity extends ActionBarActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        View searchContainer = findViewById(R.id.search_container);
+        final EditText toolbarSearchView = (EditText) findViewById(R.id.search);
+        ImageView searchClearButton = (ImageView) findViewById(R.id.search_clear);
+        searchClearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toolbarSearchView.setText("");
+            }
+        });
+        searchContainer.setVisibility(View.GONE);
 
     }
 
