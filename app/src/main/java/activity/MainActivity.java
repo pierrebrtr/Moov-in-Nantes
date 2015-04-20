@@ -109,7 +109,6 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         String title = getString(R.string.app_name);
         switch (position) {
             case 0:
-
                 fragment = new HomeFragment();
                 title = getString(R.string.title_home);
                 break;
