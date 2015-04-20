@@ -9,7 +9,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 21
         versionCode 1
-        versionName "1.0"
+        versionName "0.1"
     }
     buildTypes {
         release {
@@ -33,6 +33,7 @@ dependencies {
     compile('com.mikepenz.aboutlibraries:library:4.5.9@aar') {
         transitive = true
     }
+
 }
 
 repositories {
