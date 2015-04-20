@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.example.pierre.tan.R;
@@ -23,6 +24,7 @@ import util.Spfav;
 public class CustomListAdapter extends BaseAdapter  {
     private Activity activity;
     private LayoutInflater inflater;
+    private Context context;
 
     private List<Arrets> arretsItems;
     Spfav sharedPreference;
@@ -38,12 +40,14 @@ public class CustomListAdapter extends BaseAdapter  {
 
 
     public CustomListAdapter(Activity activity, List<Arrets> arretsItems) {
+
+
         this.activity = activity;
         this.arretsItems = arretsItems;
 
+        sharedPreference = new Spfav();
 
-
-
+        context = activity.getApplicationContext();
 
     }
 
@@ -65,16 +69,11 @@ public class CustomListAdapter extends BaseAdapter  {
     }
 
 
-    private class ViewHolder {
-        TextView arret;
-        TextView ligne;
-        TextView lieu;
-        ImageView favoriteImg;
-    }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
+
 
         if (inflater == null)
             inflater = (LayoutInflater) activity
@@ -90,22 +89,23 @@ public class CustomListAdapter extends BaseAdapter  {
         TextView lieu = (TextView) convertView.findViewById(R.id.lieu);
 
 
-        holder = new ViewHolder();
-        holder.favoriteImg = (ImageView) convertView.findViewById(R.id.imgbtn_favorite);
+
+        ImageView favoriteImg = (ImageView) convertView.findViewById(R.id.imgbtn_favorite);
+
+        Arrets m = arretsItems.get(position);
 
 
-        Arrets product = (Arrets) getItem(position);
-
-        if (checkFavoriteItem(product)) {
-            holder.favoriteImg.setImageResource(R.drawable.ic_heart_red);
-            holder.favoriteImg.setTag("red");
+        if (checkFavoriteItem(m)) {
+            favoriteImg.setImageResource(R.drawable.ic_heart_red);
+            favoriteImg.setTag("red");
+            Toast.makeText(activity, "Favoris deja !", Toast.LENGTH_LONG).show();
         } else {
-            holder.favoriteImg.setImageResource(R.drawable.ic_heart_white);
-            holder.favoriteImg.setTag("grey");
+            favoriteImg.setImageResource(R.drawable.ic_heart_white);
+            favoriteImg.setTag("grey");
         }
 
         // getting movie data for the row
-        Arrets m = arretsItems.get(position);
+
 
 
         // title
@@ -133,8 +133,8 @@ public class CustomListAdapter extends BaseAdapter  {
 
     public boolean checkFavoriteItem(Arrets checkProduct) {
         boolean check = false;
-        sharedPreference = new Spfav();
-        List<Arrets> favorites = sharedPreference.getFavorites(activity.getBaseContext());
+
+        List<Arrets> favorites = sharedPreference.getFavorites(context);
         if (favorites != null) {
             for (Arrets product : favorites) {
                 if (product.equals(checkProduct)) {
