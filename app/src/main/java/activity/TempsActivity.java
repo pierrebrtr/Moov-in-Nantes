@@ -263,6 +263,20 @@ public class TempsActivity extends ActionBarActivity {
 
                 directionList.clear();
 
+                final Temps temps2 = new Temps();
+
+                temps2.setDirection("Chargement...");
+
+                temps2.setLigne("  ");
+
+                temps2.setTemps(" ");
+
+                directionList.add(temps2);
+
+
+
+
+                adapter.notifyDataSetChanged();
 
                 JsonArrayRequest movieReq = new JsonArrayRequest(url,
                         new Response.Listener<JSONArray>() {
@@ -286,11 +300,13 @@ public class TempsActivity extends ActionBarActivity {
 
 
 
-
+                                        directionList.remove(temps2);
 
 
 
                                         Temps temps = new Temps();
+
+
 
                                         temps.setDirection(obj.getString("terminus"));
 
