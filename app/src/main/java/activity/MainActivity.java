@@ -126,10 +126,14 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 title = "Arrets";
                 break;
             case 2:
+                fragment = new GeoFragment();
+                title = "Geo";
+                break;
+            case 3:
                 fragment = new AboutFragment();
                 title = "A propos";
                 break;
-            case 3:
+            case 4:
                 fragment = new SettingsFragment();
                 title = "Paramètres";
                 break;
