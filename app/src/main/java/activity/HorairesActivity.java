@@ -51,7 +51,9 @@ public class HorairesActivity extends ActionBarActivity {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_temps, container, false);
+        View rootView = inflater.inflate(R.layout.activity_horaires, container, false);
+
+
 
         View headerView = getLayoutInflater().inflate(
                 R.layout.view_list_item_header, listView3, false);
@@ -67,7 +69,18 @@ public class HorairesActivity extends ActionBarActivity {
     public void onCreate (
             final Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
+
+
+
+
+
+
+
+super.onCreate(savedInstanceState);
+
+
+
+
 
 
         Intent intents = getIntent();
@@ -105,6 +118,10 @@ public class HorairesActivity extends ActionBarActivity {
         listView3.addHeaderView(headerView);
         TextView t = (TextView) findViewById(R.id.headertext);
         t.setText(id);
+
+        adapter = new CustomListAdapterHoraires(this, horairesList);
+        listView3.setAdapter(adapter);
+
 
 
 
@@ -179,7 +196,7 @@ public class HorairesActivity extends ActionBarActivity {
                     // response will be a json object
 
 
-                    Horaires horaires = new Horaires();
+
 
 
 
@@ -191,10 +208,14 @@ public class HorairesActivity extends ActionBarActivity {
 
                     JSONArray configJsonArray = response.getJSONArray("horaires");
                     for(int configIterator = 0; configIterator < configJsonArray.length(); configIterator++){
+
+
+
+                        Horaires horaires = new Horaires();
                         JSONObject innerConfigObj = configJsonArray.getJSONObject(configIterator);
                          configGrade = innerConfigObj.getString("heure");
                         horaires.setHeure(configGrade);
-
+                        listdata.clear();
 
                         JSONArray courseJsonArray = innerConfigObj.getJSONArray("passages");
                         for(int courseIterator = 0; courseIterator < courseJsonArray.length(); courseIterator++){
@@ -202,13 +223,15 @@ public class HorairesActivity extends ActionBarActivity {
                             listdata.add(courseJsonArray.get(courseIterator).toString());
                             horaires.setPassages(listdata);
 
+
                         }
 
 
                         horairesList.add(horaires);
+
                     }
 
-                    adapter.notifyDataSetChanged();
+
 
 
 
@@ -225,6 +248,7 @@ public class HorairesActivity extends ActionBarActivity {
                             "Error: " + e.getMessage(),
                             Toast.LENGTH_LONG).show();
                 }
+                adapter.notifyDataSetChanged();
 
             }
 
@@ -316,7 +340,7 @@ public class HorairesActivity extends ActionBarActivity {
 
 
 
-                            adapter.notifyDataSetChanged();
+
 
 
                         } catch (JSONException e) {
@@ -325,6 +349,7 @@ public class HorairesActivity extends ActionBarActivity {
                                     "Error: " + e.getMessage(),
                                     Toast.LENGTH_LONG).show();
                         }
+                        adapter.notifyDataSetChanged();
 
                     }
 
@@ -372,15 +397,6 @@ public class HorairesActivity extends ActionBarActivity {
         }
     }
 
-    public void onActivityCreated(Bundle savedInstanceState) {
-
-        adapter = new CustomListAdapterHoraires(this, horairesList);
-        listView3.setAdapter(adapter);
-
-
-
-
-    }
 
 
 

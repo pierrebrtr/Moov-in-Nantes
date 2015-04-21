@@ -4,17 +4,19 @@ public class Temps {
     private String direction;
     private String ligne;
     private String temps;
+    private String sens;
 
     public Temps() {
     }
 
-    public Temps(String direction, String ligne, String temps) {
+    public Temps(String direction, String ligne, String temps, String sens) {
 
         this.direction = direction;
 
         this.ligne = ligne;
 
         this.temps = temps;
+        this.sens = sens;
     }
 
 
@@ -43,4 +45,9 @@ public class Temps {
         this.ligne = ligne;
     }
 
+    public void setSens(String sens) {
+        this.sens = sens;
+    }
+
+    public String getSens() {return sens;}
 }

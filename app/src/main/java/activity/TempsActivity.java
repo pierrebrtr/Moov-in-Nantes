@@ -31,7 +31,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -43,7 +42,7 @@ import model.Temps;
 public class TempsActivity extends ActionBarActivity {
     final Random rnd = new Random();
     private static final String TAG = MainActivity.class.getSimpleName();
-    HashMap<String, String> lieumap = new HashMap<String, String>();
+
 
     // Movies json url
     private Toolbar mToolbar;
@@ -53,7 +52,7 @@ public class TempsActivity extends ActionBarActivity {
     private SwipeRefreshLayout swipeLayout2;
     private Menu menu;
     private MenuInflater inflater;
-    private String sens;
+
     private String ligne;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -181,7 +180,11 @@ public class TempsActivity extends ActionBarActivity {
 
                 Intent i = new Intent(getBaseContext(), HorairesActivity.class);
 
-                i.putExtra("sens", sens);
+
+                TextView textView2 = (TextView) view.findViewById(R.id.sens);
+                String libelle = textView2.getText().toString();
+
+                i.putExtra("sens", libelle);
                 i.putExtra("id", intent.getExtras().getString("text"));
                 i.putExtra("ligne", ligne);
                 startActivity(i);
@@ -222,7 +225,7 @@ public class TempsActivity extends ActionBarActivity {
 
                                 ligne = jObject.getString("numLigne");
 
-                                sens = obj.getString("sens");
+                                temps.setSens(obj.getString("sens"));
 
                                 String temp = obj.getString("temps").replace("Close", "En approche");
 

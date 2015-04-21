@@ -61,6 +61,7 @@ public class CustomListAdapterTemps extends BaseAdapter {
 
         TextView direction = (TextView) convertView.findViewById(R.id.direction);
         TextView ligne = (TextView) convertView.findViewById(R.id.ligne);
+        TextView sens = (TextView) convertView.findViewById(R.id.sens);
         TextView temps = (TextView) convertView.findViewById(R.id.temps);
 
 
@@ -75,6 +76,8 @@ public class CustomListAdapterTemps extends BaseAdapter {
         ligne.setText(m.getLigne());
 
         temps.setText(m.getTemps());
+
+        sens.setText(m.getSens());
 
         return convertView;
 

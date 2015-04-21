@@ -54,7 +54,7 @@ public class CustomListAdapterHoraires extends BaseAdapter {
             inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.list_rowtemps, null);
+            convertView = inflater.inflate(R.layout.list_rowhoraires, null);
 
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
