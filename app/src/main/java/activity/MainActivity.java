@@ -90,7 +90,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
         new AlertDialog.Builder(this)
                 .setMessage("Voulez-vous quitter l\'application ?")
                 .setPositiveButton("oui", new DialogInterface.OnClickListener() {

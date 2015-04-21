@@ -3,6 +3,7 @@ package adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,10 +100,15 @@ public class CustomListAdapter extends BaseAdapter  {
             favoriteImg.setImageResource(R.drawable.ic_heart_red);
             favoriteImg.setTag("red");
             Toast.makeText(activity, "Favoris deja !", Toast.LENGTH_LONG).show();
+            Log.d("Request", "sweg");
+
         } else {
             favoriteImg.setImageResource(R.drawable.ic_heart_white);
+            Log.d("Request", "sweg");
             favoriteImg.setTag("grey");
+
         }
+
 
         // getting movie data for the row
 

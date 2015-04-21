@@ -156,6 +156,18 @@ public class TempsActivity extends ActionBarActivity {
         adapter = new CustomListAdapterTemps(this, directionList);
         listView2.setAdapter(adapter);
 
+
+        final Temps temps2 = new Temps();
+
+        temps2.setDirection("Chargement...");
+
+        temps2.setLigne("  ");
+
+        temps2.setTemps(" ");
+
+        directionList.add(temps2);
+
+
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
 
@@ -173,6 +185,9 @@ public class TempsActivity extends ActionBarActivity {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
+
+
+                                directionList.remove(temps2);
 
                                 Temps temps = new Temps();
 
