@@ -445,7 +445,22 @@ public class ArretsFragment extends Fragment  {
         View searchContainer = getActivity().findViewById(R.id.search_container);
 
         if (id == R.id.action_search){
-            searchContainer.setVisibility(View.VISIBLE);
+
+           if (searchContainer.getVisibility() == View.GONE){
+
+
+               searchContainer.setVisibility(View.VISIBLE);
+           } else {
+               searchContainer.setVisibility(View.GONE);
+
+           }
+            return true;
+        }
+
+        if (id == R.id.action_geo){
+
+            
+
             return true;
         }
 

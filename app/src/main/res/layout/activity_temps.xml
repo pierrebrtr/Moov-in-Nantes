@@ -1,11 +1,14 @@
- <LinearLayout
+ <FrameLayout
      xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:fab="http://schemas.android.com/apk/res-auto"
+
      xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
      tools:context="activity.TempsActivity">
+
+
 
 
         <LinearLayout
@@ -16,10 +19,14 @@
 
 
 
+
+
+
+
+
             <include
                 android:id="@+id/toolbar"
                 layout="@layout/toolbar" />
-
 
 
 
@@ -28,6 +35,7 @@
                 android:id="@+id/container2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <ListView
                     android:id="@+id/list_temps"
                     android:layout_width="match_parent"
@@ -38,7 +46,10 @@
 
 
 
+
             </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
 
 
@@ -50,7 +61,9 @@
 
 
 
- </LinearLayout>
+ </FrameLayout>
+
+
 
 
 
