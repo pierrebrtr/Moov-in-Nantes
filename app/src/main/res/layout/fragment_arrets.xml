@@ -22,7 +22,7 @@
         android:dividerHeight="0.5dp"
         android:listSelector="@drawable/list_row_selector"
         android:fastScrollEnabled="true"
-        android:fastScrollAlwaysVisible="true"/>
+        android:fastScrollAlwaysVisible="false"/>
 
 
     </android.support.v4.widget.SwipeRefreshLayout>

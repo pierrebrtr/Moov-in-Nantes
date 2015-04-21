@@ -3,7 +3,7 @@
     <PreferenceCategory android:title="Application">
         <PreferenceScreen
             android:title="Thèmes"
-            android:summary="Choisir un thème"
+            android:summary="Bientôt dans l'appli"
             android:key="theme">
         </PreferenceScreen>
     <PreferenceScreen
