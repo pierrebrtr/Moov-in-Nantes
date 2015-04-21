@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -52,6 +53,7 @@ public class TempsActivity extends ActionBarActivity {
     private SwipeRefreshLayout swipeLayout2;
     private Menu menu;
     private MenuInflater inflater;
+    private String sens;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -167,6 +169,24 @@ public class TempsActivity extends ActionBarActivity {
 
         directionList.add(temps2);
 
+        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+
+
+                Intent i = new Intent(getBaseContext(), HorairesActivity.class);
+
+                i.putExtra("sens", sens);
+                startActivity(i);
+
+
+            }
+        });
+
 
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
@@ -196,6 +216,10 @@ public class TempsActivity extends ActionBarActivity {
                                 temps.setDirection(obj.getString("terminus"));
 
                                 temps.setLigne(jObject.getString("numLigne"));
+
+
+
+                                sens = obj.getString("sens");
 
                                 String temp = obj.getString("temps").replace("Close", "En approche");
 
