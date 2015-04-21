@@ -32,7 +32,7 @@ public class HomeFragment extends Fragment {
     List<Arrets> favorites;
 
     Activity activity;
-    final ImageView unreadCount = (ImageView) getActivity().findViewById(R.id.fav);
+
     CustomListAdapter productListAdapter;
 
     public HomeFragment() {
