@@ -70,3 +70,5 @@ local.properties
 .idea/libraries/support_annotations_22_0_0.xml
 
 build/intermediates/dex-cache/cache.xml
+
+local.properties
