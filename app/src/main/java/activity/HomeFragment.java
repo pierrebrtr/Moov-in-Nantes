@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +32,7 @@ public class HomeFragment extends Fragment {
     List<Arrets> favorites;
 
     Activity activity;
+    final ImageView unreadCount = (ImageView) getActivity().findViewById(R.id.fav);
     CustomListAdapter productListAdapter;
 
     public HomeFragment() {
@@ -82,11 +85,12 @@ public class HomeFragment extends Fragment {
 
         if (favorites == null) {
             Toast.makeText(getActivity(), "Pas de favoris ! :(", Toast.LENGTH_SHORT).show();
+
+
         } else {
 
             if (favorites.size() == 0) {
                 Toast.makeText(getActivity(), "Pas de favoris ! :(", Toast.LENGTH_SHORT).show();
-
 
             }
 

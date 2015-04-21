@@ -5,8 +5,19 @@
     android:orientation="vertical"
     tools:context="activity.HomeFragment">
 
-
-
+<ImageView
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:id="@+id/fav"
+    android:src="@drawable/ic_bus"
+    android:visibility="gone"
+    />
+<TextView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/text"
+    android:visibility="gone"
+    />
 
         <ListView
             android:id="@+id/list"
