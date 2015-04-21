@@ -93,8 +93,12 @@ public class HomeFragment extends Fragment {
 
             favoriteList = (ListView) view.findViewById(R.id.list);
             if (favorites != null) {
-                productListAdapter = new CustomListAdapter(activity, favorites);
+                productListAdapter = new CustomListAdapter(activity, favorites, true);
                 favoriteList.setAdapter(productListAdapter);
+
+
+
+
             }
 
 

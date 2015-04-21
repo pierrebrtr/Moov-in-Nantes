@@ -86,7 +86,7 @@ public class ArretsFragment extends Fragment  {
         //vider la liste
         listView.setAdapter(null);
         // ajouter la nouvelle liste
-        listView.setAdapter(new CustomListAdapter(getActivity(), listFoodNew));
+        listView.setAdapter(new CustomListAdapter(getActivity(), listFoodNew, false));
 
         adapter.notifyDataSetChanged();
     }
@@ -97,7 +97,7 @@ public class ArretsFragment extends Fragment  {
         listView = (ListView) getActivity().findViewById(R.id.list);
 
         // movieList is an empty array at this point.
-        adapter = new CustomListAdapter(getActivity(), arretsList);
+        adapter = new CustomListAdapter(getActivity(), arretsList, false);
         listView.setAdapter(adapter);
 
 
