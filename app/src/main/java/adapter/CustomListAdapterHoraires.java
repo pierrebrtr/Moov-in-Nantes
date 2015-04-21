@@ -15,29 +15,29 @@ import com.example.pierre.tan.R;
 import java.util.List;
 
 import app.AppController;
-import model.Temps;
+import model.Horaires;
 
 
 public class CustomListAdapterHoraires extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
-    private List<Temps> directionItems;
+    private List<Horaires> horaireItems;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
 
-    public CustomListAdapterHoraires(Activity activity, List<Temps> directionItems) {
+    public CustomListAdapterHoraires(Activity activity, List<Horaires> horaireItems) {
         this.activity = activity;
-        this.directionItems = directionItems;
+        this.horaireItems = horaireItems;
     }
 
     @Override
     public int getCount() {
-        return directionItems.size();
+        return horaireItems.size();
     }
 
     @Override
     public Object getItem(int location) {
-        return directionItems.get(location);
+        return horaireItems.get(location);
     }
 
     @Override
@@ -59,22 +59,29 @@ public class CustomListAdapterHoraires extends BaseAdapter {
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
 
-        TextView direction = (TextView) convertView.findViewById(R.id.direction);
-        TextView ligne = (TextView) convertView.findViewById(R.id.ligne);
-        TextView temps = (TextView) convertView.findViewById(R.id.temps);
+        TextView heure = (TextView) convertView.findViewById(R.id.heure);
+        TextView passage = (TextView) convertView.findViewById(R.id.passage);
+
 
 
         // getting movie data for the row
-        Temps m = directionItems.get(position);
+       Horaires m = horaireItems.get(position);
 
 
         // title
-        direction.setText(m.getDirection());
+        heure.setText(m.getHeure());
 
 
-        ligne.setText(m.getLigne());
+        String ligneStr = "";
+        for (String str : m.getPassages()) {
+            ligneStr += str + ", ";
+        }
+        ligneStr = ligneStr.length() > 0 ? ligneStr.substring(0,
+                ligneStr.length() - 2) : ligneStr;
+        passage.setText(ligneStr);
 
-        temps.setText(m.getTemps());
+
+
 
         return convertView;
 

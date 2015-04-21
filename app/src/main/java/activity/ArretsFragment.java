@@ -459,7 +459,7 @@ public class ArretsFragment extends Fragment  {
 
         if (id == R.id.action_geo){
 
-            
+
 
             return true;
         }

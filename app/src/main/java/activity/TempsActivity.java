@@ -54,6 +54,7 @@ public class TempsActivity extends ActionBarActivity {
     private Menu menu;
     private MenuInflater inflater;
     private String sens;
+    private String ligne;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -145,7 +146,7 @@ public class TempsActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
 
         final String url = "https://open.tan.fr/ewp/tempsattente.json/" + intent.getExtras().getString("text") + " ";
 
@@ -181,6 +182,8 @@ public class TempsActivity extends ActionBarActivity {
                 Intent i = new Intent(getBaseContext(), HorairesActivity.class);
 
                 i.putExtra("sens", sens);
+                i.putExtra("id", intent.getExtras().getString("text"));
+                i.putExtra("ligne", ligne);
                 startActivity(i);
 
 
@@ -217,7 +220,7 @@ public class TempsActivity extends ActionBarActivity {
 
                                 temps.setLigne(jObject.getString("numLigne"));
 
-
+                                ligne = jObject.getString("numLigne");
 
                                 sens = obj.getString("sens");
 

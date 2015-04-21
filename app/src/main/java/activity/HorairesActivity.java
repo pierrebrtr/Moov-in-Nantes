@@ -8,8 +8,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -19,10 +17,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.pierre.tan.R;
 
 import org.json.JSONArray;
@@ -30,38 +29,51 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-import adapter.CustomListAdapterTemps;
+import adapter.CustomListAdapterHoraires;
 import app.AppController;
-import model.Temps;
+import model.Horaires;
 
 
 public class HorairesActivity extends ActionBarActivity {
     private Toolbar mToolbar;
+    private ListView listView3;
+    private List<Horaires> horairesList = new ArrayList<Horaires>();
+    private CustomListAdapterHoraires adapter;
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private SwipeRefreshLayout swipeLayout3;
+    final Random rnd = new Random();
+    private String configGrade;
 
-    public void onCreate(Bundle savedInstanceState) {
+
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_temps, container, false);
+
+        View headerView = getLayoutInflater().inflate(
+                R.layout.view_list_item_header, listView3, false);
+
+        // Inflate the layout for this fragment
+        return rootView;
+
+
+    }
+
+
+    @Override
+    public void onCreate (
+            final Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
-
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mToolbar.setTitle("My title");
-
-        setContentView(R.layout.activity_horaires);
 
         Intent intents = getIntent();
 
-        String id = intents.getStringExtra("sens");
-        Intent intent = getIntent();
-        Toast.makeText(getApplicationContext(), intent.getExtras().getString("sens"), Toast.LENGTH_LONG).show();
-
-
+        String id = intents.getStringExtra("libelle");
+        setContentView(R.layout.activity_horaires);
         View searchContainer = findViewById(R.id.search_container);
         final EditText toolbarSearchView = (EditText) findViewById(R.id.search);
         ImageView searchClearButton = (ImageView) findViewById(R.id.search_clear);
@@ -73,7 +85,303 @@ public class HorairesActivity extends ActionBarActivity {
         });
         searchContainer.setVisibility(View.GONE);
 
+        View headerView = getLayoutInflater().inflate(
+                R.layout.view_list_item_header, listView3, false);
+
+
+        final ImageView img = (ImageView) headerView.findViewById(R.id.imageView);
+        // I have 3 images named img_0 to img_2, so...
+        final String str = "img_" + rnd.nextInt(3);
+        img.setImageDrawable
+                (
+                        getResources().getDrawable(getResourceID(str, "drawable",
+                                getApplicationContext()))
+                );
+
+
+
+
+        listView3 = (ListView) findViewById(R.id.list_horaires);
+        listView3.addHeaderView(headerView);
+        TextView t = (TextView) findViewById(R.id.headertext);
+        t.setText(id);
+
+
+
+        listView3.setOnScrollListener(new AbsListView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+
+                View headerView = view.findViewById(R.id.header);
+
+                final float mTop = -headerView.getTop();
+                float height = headerView.getHeight();
+                if (mTop > height) {
+                    // ignore
+                    return;
+                }
+                View imgView = headerView.findViewById(R.id.header);
+                imgView.setTranslationY(mTop / 2f);
+
+            }
+        });
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        Intent intent = getIntent();
+
+        final String url = "" + "https://open.tan.fr/ewp/horairesarret.json/" + intent.getExtras().getString("id") + "/" + intent.getExtras().getString("ligne") + "/" + intent.getExtras().getString("sens") + "";
+
+        Toast.makeText(getApplicationContext(), intent.getExtras().getString("text"), Toast.LENGTH_LONG).show();
+        Log.d("Test", url);
+
+
+        listView3 = (ListView) findViewById(R.id.list_horaires);
+
+        // movieList is an empty array at this point.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                url, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, response.toString());
+
+                try {
+                    // Parsing json object response
+                    // response will be a json object
+
+
+                    Horaires horaires = new Horaires();
+
+
+
+
+
+
+
+                    ArrayList<String> listdata = new ArrayList<String>();
+
+                    JSONArray configJsonArray = response.getJSONArray("horaires");
+                    for(int configIterator = 0; configIterator < configJsonArray.length(); configIterator++){
+                        JSONObject innerConfigObj = configJsonArray.getJSONObject(configIterator);
+                         configGrade = innerConfigObj.getString("heure");
+                        horaires.setHeure(configGrade);
+
+
+                        JSONArray courseJsonArray = innerConfigObj.getJSONArray("passages");
+                        for(int courseIterator = 0; courseIterator < courseJsonArray.length(); courseIterator++){
+
+                            listdata.add(courseJsonArray.get(courseIterator).toString());
+                            horaires.setPassages(listdata);
+
+                        }
+
+
+                        horairesList.add(horaires);
+                    }
+
+                    adapter.notifyDataSetChanged();
+
+
+
+
+
+
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(),
+                            "Error: " + e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_SHORT).show();
+                // hide the progress dialog
+
+            }
+        });
+
+
+
+
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+
+
+        swipeLayout3 = (SwipeRefreshLayout) findViewById(R.id.container3);
+        swipeLayout3.setColorScheme(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+
+        swipeLayout3.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            public void onRefresh() {
+                Toast.makeText(getApplication(), "Rechargement...", Toast.LENGTH_SHORT).show();
+
+
+                horairesList.clear();
+
+
+
+
+
+                adapter.notifyDataSetChanged();
+
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                        url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+
+                        try {
+                            // Parsing json object response
+                            // response will be a json object
+
+
+                            Horaires horaires = new Horaires();
+
+
+
+
+
+
+
+                            ArrayList<String> listdata = new ArrayList<String>();
+
+                            JSONArray configJsonArray = response.getJSONArray("horaires");
+                            for(int configIterator = 0; configIterator < configJsonArray.length(); configIterator++){
+                                JSONObject innerConfigObj = configJsonArray.getJSONObject(configIterator);
+                                configGrade = innerConfigObj.getString("heure");
+
+
+                                JSONArray courseJsonArray = innerConfigObj.getJSONArray("passages");
+                                for(int courseIterator = 0; courseIterator < courseJsonArray.length(); courseIterator++){
+
+                                    listdata.add(courseJsonArray.get(courseIterator).toString());
+
+                                }
+
+                            }
+
+                            horaires.setHeure(configGrade);
+                            horaires.setPassages(listdata);
+
+                            horairesList.add(horaires);
+
+
+
+
+                            adapter.notifyDataSetChanged();
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(),
+                                    "Error: " + e.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+
+
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.d(TAG, "Error: " + error.getMessage());
+                        Toast.makeText(getApplicationContext(),
+                                error.getMessage(), Toast.LENGTH_SHORT).show();
+                        // hide the progress dialog
+
+                    }
+                });
+
+                AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+                swipeLayout3.setRefreshing(false);
+
+
+            }
+        });
+
+
     }
+
+
+    protected final static int getResourceID
+            (final String resName, final String resType, final Context ctx)
+    {
+        final int ResourceID =
+                ctx.getResources().getIdentifier(resName, resType,
+                        ctx.getApplicationInfo().packageName);
+        if (ResourceID == 0)
+        {
+            throw new IllegalArgumentException
+                    (
+                            "No resource string found with name " + resName
+                    );
+        }
+        else
+        {
+            return ResourceID;
+        }
+    }
+
+    public void onActivityCreated(Bundle savedInstanceState) {
+
+        adapter = new CustomListAdapterHoraires(this, horairesList);
+        listView3.setAdapter(adapter);
+
+
+
+
+    }
+
 
 
 }
