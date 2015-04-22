@@ -2,6 +2,9 @@ package activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -28,6 +31,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -47,6 +55,9 @@ public class HorairesActivity extends ActionBarActivity {
     final Random rnd = new Random();
     private String configGrade;
 
+    public final String URL =
+            "http://pierre.hellophoto.fr/tan2/" + rnd.nextInt(3) +".png";
+    ImageView imageView;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,15 +113,10 @@ super.onCreate(savedInstanceState);
                 R.layout.view_list_item_header, listView3, false);
 
 
-        final ImageView img = (ImageView) headerView.findViewById(R.id.imageView);
-        // I have 3 images named img_0 to img_2, so...
-        final String str = "img_" + rnd.nextInt(3);
-        img.setImageDrawable
-                (
-                        getResources().getDrawable(getResourceID(str, "drawable",
-                                getApplicationContext()))
-                );
-
+        // Create an object for subclass of AsyncTask
+        GetXMLTask task = new GetXMLTask();
+        // Execute the task
+        task.execute(new String[] { URL });
 
 
 
@@ -137,6 +143,8 @@ super.onCreate(savedInstanceState);
                                  int visibleItemCount, int totalItemCount) {
 
                 View headerView = view.findViewById(R.id.header);
+
+                imageView = (ImageView) headerView.findViewById(R.id.imageView);
 
                 final float mTop = -headerView.getTop();
                 float height = headerView.getHeight();
@@ -407,7 +415,61 @@ super.onCreate(savedInstanceState);
         }
     }
 
+    private class GetXMLTask extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            Bitmap map = null;
+            for (String url : urls) {
+                map = downloadImage(url);
+            }
+            return map;
+        }
 
+        // Sets the Bitmap returned by doInBackground
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            imageView.setImageBitmap(result);
+        }
+
+        // Creates Bitmap from InputStream and returns it
+        private Bitmap downloadImage(String url) {
+            Bitmap bitmap = null;
+            InputStream stream = null;
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            bmOptions.inSampleSize = 1;
+
+            try {
+                stream = getHttpConnection(url);
+                bitmap = BitmapFactory.
+                        decodeStream(stream, null, bmOptions);
+                stream.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            return bitmap;
+        }
+
+        // Makes HttpURLConnection and returns InputStream
+        private InputStream getHttpConnection(String urlString)
+                throws IOException {
+            InputStream stream = null;
+            java.net.URL url = new URL(urlString);
+            URLConnection connection = url.openConnection();
+
+            try {
+                HttpURLConnection httpConnection = (HttpURLConnection) connection;
+                httpConnection.setRequestMethod("GET");
+                httpConnection.connect();
+
+                if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    stream = httpConnection.getInputStream();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return stream;
+        }
+    }
 
 
 }
