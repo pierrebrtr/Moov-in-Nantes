@@ -217,13 +217,19 @@ super.onCreate(savedInstanceState);
                         horaires.setHeure(configGrade);
                         listdata.clear();
 
-                        JSONArray courseJsonArray = innerConfigObj.getJSONArray("passages");
-                        for(int courseIterator = 0; courseIterator < courseJsonArray.length(); courseIterator++){
+                        JSONArray jr = configJsonArray.getJSONObject(configIterator).getJSONArray("passages");
 
-                            listdata.add(courseJsonArray.get(courseIterator).toString());
+
+
+
+
+                        for(int v = 0; v < jr.length(); v++){
+
+
+
+
+                            listdata.add(jr.getString(v));
                             horaires.setPassages(listdata);
-
-
                         }
 
 
