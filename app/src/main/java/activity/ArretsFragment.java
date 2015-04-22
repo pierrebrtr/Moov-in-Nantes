@@ -1,6 +1,7 @@
 package activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -103,6 +105,7 @@ public class ArretsFragment extends Fragment  {
 
         search = (EditText) getActivity().findViewById(R.id.search);
         search.addTextChangedListener(new TextWatcher() {
+
 
             @Override
             public void onTextChanged(CharSequence arg0, int arg1, int arg2,
@@ -448,9 +451,14 @@ public class ArretsFragment extends Fragment  {
 
            if (searchContainer.getVisibility() == View.GONE){
 
-
+              search.requestFocus();
+               InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+               imm.showSoftInput(search, InputMethodManager.SHOW_IMPLICIT);
                searchContainer.setVisibility(View.VISIBLE);
+
            } else {
+               InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+               imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
                searchContainer.setVisibility(View.GONE);
 
            }
