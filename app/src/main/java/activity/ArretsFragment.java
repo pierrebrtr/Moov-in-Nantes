@@ -444,7 +444,7 @@ public class ArretsFragment extends Fragment  {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-       
+
         View searchContainer = getActivity().findViewById(R.id.search_container);
 
         if (id == R.id.action_search){
