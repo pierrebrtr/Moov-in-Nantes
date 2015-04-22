@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -78,6 +79,8 @@ public class HorairesActivity extends ActionBarActivity {
     }
 
 
+
+
     @Override
     public void onCreate (
             final Bundle savedInstanceState) {
@@ -112,7 +115,7 @@ super.onCreate(savedInstanceState);
         searchContainer.setVisibility(View.GONE);
 
         View headerView = getLayoutInflater().inflate(
-                R.layout.view_list_item_header2, listView3, false);
+                R.layout.view_list_item_header, listView3, false);
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -133,13 +136,8 @@ super.onCreate(savedInstanceState);
 
         listView3 = (ListView) findViewById(R.id.list_horaires);
         listView3.addHeaderView(headerView);
-        TextView t = (TextView) findViewById(R.id.headertext2);
-
-
-
-
-
-        t.setText(intents.getStringExtra("arret") + "  ->   " + intents.getStringExtra("terminus"));
+        TextView t = (TextView) findViewById(R.id.headertext);
+        t.setText(id);
 
         adapter = new CustomListAdapterHoraires(this, horairesList);
         listView3.setAdapter(adapter);
@@ -412,6 +410,16 @@ super.onCreate(savedInstanceState);
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+              super.onBackPressed();
+        }
+        return (super.onOptionsItemSelected(menuItem));
+    }
+
+
     protected final static int getResourceID
             (final String resName, final String resType, final Context ctx)
     {
@@ -430,6 +438,7 @@ super.onCreate(savedInstanceState);
             return ResourceID;
         }
     }
+
 
     private class GetXMLTask extends AsyncTask<String, Void, Bitmap> {
         @Override
