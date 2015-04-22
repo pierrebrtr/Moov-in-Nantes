@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -45,7 +44,7 @@ import model.Arrets;
 import util.Spfav;
 
 
-public class ArretsFragment extends Fragment  {
+public class BiclooFragment extends Fragment  {
 
 
     ConnectionDetector cd;
@@ -53,7 +52,7 @@ public class ArretsFragment extends Fragment  {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     // Movies json url
-    private static final String url = "https://open.tan.fr/ewp/arrets.json";
+    private static final String url = "https://api.jcdecaux.com/vls/v1/stations?contract=Nantes&apiKey=e7eaf7d32891eb367bdc40e3318478bb618e1487";
     private List<Arrets> arretsList = new ArrayList<Arrets>();
     private ListView listView;
     private CustomListAdapter adapter;
@@ -69,7 +68,7 @@ public class ArretsFragment extends Fragment  {
 
 
 
-    public ArretsFragment() {
+    public BiclooFragment() {
 
     }
 
@@ -165,7 +164,7 @@ public class ArretsFragment extends Fragment  {
 
                                         Arrets arret = new Arrets();
 
-                                        arret.setArret(obj.getString("libelle"));
+                                        arret.setArret(obj.getString("adress"));
 
 
                                         String lieu = obj.getString("codeLieu");
@@ -246,7 +245,7 @@ public class ArretsFragment extends Fragment  {
                 TextView textView2 = (TextView) view.findViewById(R.id.arret);
                 String libelle = textView2.getText().toString();
 
-                Intent i = new Intent(ArretsFragment.this.getActivity(), TempsActivity.class);
+                Intent i = new Intent(BiclooFragment.this.getActivity(), TempsActivity.class);
                 i.putExtra("text", text);
                 i.putExtra("libelle", libelle);
                 startActivity(i);
@@ -348,10 +347,10 @@ public class ArretsFragment extends Fragment  {
                                     e.printStackTrace();
                                 }
                                 Arrets arret = new Arrets();
-                                arret.setArret(obj.getString("libelle"));
+                                arret.setArret(obj.getString("adress"));
 
 
-                                String lieu = obj.getString("codeLieu");
+                                String lieu = obj.getString("available_bikes");
 
                                 arret.setLieu(lieu);
 
@@ -415,7 +414,7 @@ public class ArretsFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_arrets, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_bicloo, container, false);
 
         // Inflate the layout for this fragment
         return rootView;

@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/petitblanc"
+            android:src="@mipmap/ic_launcher"
             android:scaleType="fitCenter"
             android:layout_centerInParent="true" />
 
