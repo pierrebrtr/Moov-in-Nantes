@@ -63,7 +63,6 @@ public class TempsActivity extends ActionBarActivity {
     private Menu menu;
     private MenuInflater inflater;
 
-    private String ligne;
    private String arret;
 
     public final String URL =
@@ -212,6 +211,10 @@ public class TempsActivity extends ActionBarActivity {
                 TextView textView4 = (TextView) view.findViewById(R.id.codearret);
                 String arret2 = textView4.getText().toString();
 
+                TextView textView5 = (TextView) view.findViewById(R.id.ligne);
+                String ligne = textView5.getText().toString();
+
+
 
 
                 TextView t = (TextView) findViewById(R.id.headertext);
@@ -261,7 +264,7 @@ public class TempsActivity extends ActionBarActivity {
 
 
 
-                                ligne = jObject.getString("numLigne");
+
 
                                 temps.setSens(obj.getString("sens"));
 
