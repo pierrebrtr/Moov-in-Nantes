@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -462,13 +463,6 @@ public class ArretsFragment extends Fragment  {
                searchContainer.setVisibility(View.GONE);
 
            }
-            return true;
-        }
-
-        if (id == R.id.action_geo){
-
-
-
             return true;
         }
 
