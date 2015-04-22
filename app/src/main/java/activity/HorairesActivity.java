@@ -204,20 +204,22 @@ super.onCreate(savedInstanceState);
 
 
 
-                    ArrayList<String> listdata = new ArrayList<String>();
+
 
                     JSONArray configJsonArray = response.getJSONArray("horaires");
                     for(int configIterator = 0; configIterator < configJsonArray.length(); configIterator++){
-
+                        ArrayList<String> listdata = new ArrayList<String>();
+                        listdata.clear();
 
 
                         Horaires horaires = new Horaires();
                         JSONObject innerConfigObj = configJsonArray.getJSONObject(configIterator);
                          configGrade = innerConfigObj.getString("heure");
                         horaires.setHeure(configGrade);
-                        listdata.clear();
 
-                        JSONArray jr = configJsonArray.getJSONObject(configIterator).getJSONArray("passages");
+
+                        JSONArray jr = innerConfigObj.getJSONArray("passages");
+
 
 
 
@@ -227,9 +229,11 @@ super.onCreate(savedInstanceState);
 
 
 
-
-                            listdata.add(jr.getString(v));
+                            listdata.add(jr.get(v).toString());
                             horaires.setPassages(listdata);
+
+
+
                         }
 
 
