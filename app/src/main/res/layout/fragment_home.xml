@@ -5,7 +5,7 @@
     android:orientation="vertical"
     tools:context="MainActivity">
 
-    <com.example.pierre.tan.SlidingTabLayout
+    <activity.SlidingTabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

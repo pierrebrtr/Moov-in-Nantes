@@ -80,12 +80,7 @@ public class Tab1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-
-
-
-
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.tab_1, container, false);
         View searchContainer = getActivity().findViewById(R.id.search_container);
         final EditText toolbarSearchView = (EditText) getActivity().findViewById(R.id.search);
         ImageView searchClearButton = (ImageView) getActivity().findViewById(R.id.search_clear);
