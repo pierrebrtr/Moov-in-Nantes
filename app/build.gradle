@@ -35,6 +35,9 @@ dependencies {
     compile('com.mikepenz.aboutlibraries:library:4.5.9@aar') {
         transitive = true
     }
+    compile 'com.github.gabrielemariotti.cards:cardslib-core:2.0.1'
+    compile 'com.github.gabrielemariotti.cards:cardslib-cards:2.0.1'
+    compile 'com.github.gabrielemariotti.cards:cardslib-recyclerview:2.0.1'
 
 
 }
