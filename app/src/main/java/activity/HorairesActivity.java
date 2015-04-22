@@ -67,7 +67,7 @@ public class HorairesActivity extends ActionBarActivity {
 
 
         View headerView = getLayoutInflater().inflate(
-                R.layout.view_list_item_header, listView3, false);
+                R.layout.view_list_item_header2, listView3, false);
 
         // Inflate the layout for this fragment
         return rootView;
@@ -110,7 +110,7 @@ super.onCreate(savedInstanceState);
         searchContainer.setVisibility(View.GONE);
 
         View headerView = getLayoutInflater().inflate(
-                R.layout.view_list_item_header, listView3, false);
+                R.layout.view_list_item_header2, listView3, false);
 
 
         // Create an object for subclass of AsyncTask
@@ -122,8 +122,13 @@ super.onCreate(savedInstanceState);
 
         listView3 = (ListView) findViewById(R.id.list_horaires);
         listView3.addHeaderView(headerView);
-        TextView t = (TextView) findViewById(R.id.headertext);
-        t.setText(id);
+        TextView t = (TextView) findViewById(R.id.headertext2);
+
+
+
+
+
+        t.setText(intents.getStringExtra("arret") + "  ->   " + intents.getStringExtra("terminus"));
 
         adapter = new CustomListAdapterHoraires(this, horairesList);
         listView3.setAdapter(adapter);

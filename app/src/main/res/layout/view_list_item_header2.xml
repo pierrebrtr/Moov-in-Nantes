@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/header"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/max_height_header" >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/max_height_header"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@color/background_material_dark" />
+
+    <TextView
+        android:id="@+id/headertext2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Hello World!"
+        android:textSize="20sp"
+        android:textColor="@color/abc_primary_text_disable_only_material_dark"
+
+        android:layout_gravity="center" />
+
+
+</FrameLayout>

@@ -63,7 +63,7 @@ public class CustomListAdapterTemps extends BaseAdapter {
         TextView ligne = (TextView) convertView.findViewById(R.id.ligne);
         TextView sens = (TextView) convertView.findViewById(R.id.sens);
         TextView temps = (TextView) convertView.findViewById(R.id.temps);
-
+        TextView terminus = (TextView) convertView.findViewById(R.id.terminus);
 
         // getting movie data for the row
         Temps m = directionItems.get(position);
@@ -78,6 +78,8 @@ public class CustomListAdapterTemps extends BaseAdapter {
         temps.setText(m.getTemps());
 
         sens.setText(m.getSens());
+
+        terminus.setText(m.getTerminus());
 
         return convertView;
 

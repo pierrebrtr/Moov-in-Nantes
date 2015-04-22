@@ -191,9 +191,16 @@ public class TempsActivity extends ActionBarActivity {
                 TextView textView2 = (TextView) view.findViewById(R.id.sens);
                 String libelle = textView2.getText().toString();
 
+                TextView textView3 = (TextView) view.findViewById(R.id.terminus);
+                String terminus = textView3.getText().toString();
+
+                TextView t = (TextView) findViewById(R.id.headertext);
+
                 i.putExtra("sens", libelle);
                 i.putExtra("id", intent.getExtras().getString("text"));
                 i.putExtra("ligne", ligne);
+                i.putExtra("arret", t.getText());
+                i.putExtra("terminus", terminus);
                 startActivity(i);
 
 
@@ -233,6 +240,8 @@ public class TempsActivity extends ActionBarActivity {
                                 ligne = jObject.getString("numLigne");
 
                                 temps.setSens(obj.getString("sens"));
+
+                                temps.setTerminus(obj.getString("terminus"));
 
                                 String temp = obj.getString("temps").replace("Close", "En approche");
 
