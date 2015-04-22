@@ -1,11 +1,8 @@
 package activity;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,12 +21,6 @@ import com.example.pierre.tan.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 
 import app.AppController;
 import it.gmariotti.cardslib.library.internal.Card;
@@ -53,7 +44,9 @@ public class Tab2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v =inflater.inflate(R.layout.tab_2,container,false);
 
-        final View c = inflater.inflate(R.layout.row_card,container,false);
+        CardView cardView = (CardView) v.findViewById(R.id.carddemo);
+        cardView.setVisibility(View.GONE);
+
 
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -77,7 +70,8 @@ public class Tab2 extends Fragment {
 
 
 
-
+                    CardView cardView2 = (CardView) v.findViewById(R.id.carddemo);
+                    cardView2.setVisibility(View.VISIBLE);
 
 
 
