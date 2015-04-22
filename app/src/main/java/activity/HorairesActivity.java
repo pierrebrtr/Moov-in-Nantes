@@ -115,7 +115,7 @@ super.onCreate(savedInstanceState);
         searchContainer.setVisibility(View.GONE);
 
         View headerView = getLayoutInflater().inflate(
-                R.layout.view_list_item_header, listView3, false);
+                R.layout.view_list_item_header2, listView3, false);
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -136,8 +136,10 @@ super.onCreate(savedInstanceState);
 
         listView3 = (ListView) findViewById(R.id.list_horaires);
         listView3.addHeaderView(headerView);
-        TextView t = (TextView) findViewById(R.id.headertext);
-        t.setText(id);
+        TextView t = (TextView) findViewById(R.id.headertext2);
+
+
+        t.setText(intents.getStringExtra("arret") + "  ->   " + intents.getStringExtra("terminus"));
 
         adapter = new CustomListAdapterHoraires(this, horairesList);
         listView3.setAdapter(adapter);
@@ -156,7 +158,7 @@ super.onCreate(savedInstanceState);
             public void onScroll(AbsListView view, int firstVisibleItem,
                                  int visibleItemCount, int totalItemCount) {
 
-                View headerView = view.findViewById(R.id.header);
+                View headerView = view.findViewById(R.id.header2);
 
                 imageView = (ImageView) headerView.findViewById(R.id.imageView);
 
@@ -166,7 +168,7 @@ super.onCreate(savedInstanceState);
                     // ignore
                     return;
                 }
-                View imgView = headerView.findViewById(R.id.header);
+                View imgView = headerView.findViewById(R.id.header2);
                 imgView.setTranslationY(mTop / 2f);
 
             }
