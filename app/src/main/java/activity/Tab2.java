@@ -1,5 +1,11 @@
 package activity;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -17,6 +24,12 @@ import com.example.pierre.tan.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 
 import app.AppController;
 import it.gmariotti.cardslib.library.internal.Card;
@@ -42,7 +55,12 @@ public class Tab2 extends Fragment {
 
         final View c = inflater.inflate(R.layout.row_card,container,false);
 
+        ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Create an object for subclass of AsyncTask
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 "http://www.prevision-meteo.ch/services/json/nantes", null, new Response.Listener<JSONObject>() {
@@ -72,8 +90,6 @@ public class Tab2 extends Fragment {
 
 
 
-
-
                     Card card = new Card(getActivity(), R.layout.row_card);
 
 
@@ -89,7 +105,7 @@ public class Tab2 extends Fragment {
 
 
                     CardThumbnail thumb = new CardThumbnail(getActivity());
-                    thumb.setDrawableResource(R.drawable.ic_heart_red);
+                    thumb.setUrlResource(icon);
 
                     card.addCardThumbnail(thumb);
 
@@ -128,16 +144,23 @@ public class Tab2 extends Fragment {
             }
         });
 
+
+
         AppController.getInstance().addToRequestQueue(jsonObjReq);
 
 
-
+        } else {
+            Toast.makeText(getActivity().getApplicationContext(),
+                    "Pas de connexion internet",
+                    Toast.LENGTH_LONG).show();
+        }
 
 
         // Create a Card
 
         return v;
     }
+
 
 
     public void createCard(View c){
