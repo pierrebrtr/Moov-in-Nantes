@@ -6,11 +6,12 @@ public class Temps {
     private String temps;
     private String sens;
     private String terminus;
+    private String arret;
 
     public Temps() {
     }
 
-    public Temps(String direction, String ligne, String temps, String sens, String terminus) {
+    public Temps(String direction, String ligne, String temps, String sens, String terminus, String arret) {
 
         this.direction = direction;
 
@@ -19,6 +20,7 @@ public class Temps {
         this.temps = temps;
         this.sens = sens;
         this.terminus = terminus;
+        this.arret = arret;
     }
 
 
@@ -64,6 +66,15 @@ public class Temps {
 
 
         return terminus;
+    }
+
+    public void setArret(String arret){
+
+        this.arret = arret;
+    }
+
+    public String getArret() {
+        return arret;
     }
 
 }

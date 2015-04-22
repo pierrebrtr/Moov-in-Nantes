@@ -64,6 +64,7 @@ public class TempsActivity extends ActionBarActivity {
     private MenuInflater inflater;
 
     private String ligne;
+   private String arret;
 
     public final String URL =
             "http://pierre.hellophoto.fr/tan2/" + rnd.nextInt(3) +".png";
@@ -208,12 +209,17 @@ public class TempsActivity extends ActionBarActivity {
                 TextView textView3 = (TextView) view.findViewById(R.id.terminus);
                 String terminus = textView3.getText().toString();
 
+                TextView textView4 = (TextView) view.findViewById(R.id.codearret);
+                String arret2 = textView4.getText().toString();
+
+
+
                 TextView t = (TextView) findViewById(R.id.headertext);
 
                 i.putExtra("sens", libelle);
-                i.putExtra("id", intent.getExtras().getString("text"));
+                i.putExtra("id", arret2);
                 i.putExtra("ligne", ligne);
-                i.putExtra("arret", t.getText());
+                i.putExtra("arret", t.getText().toString());
                 i.putExtra("terminus", terminus);
                 startActivity(i);
 
@@ -246,10 +252,14 @@ public class TempsActivity extends ActionBarActivity {
                                 Temps temps = new Temps();
 
                                 JSONObject jObject = obj.getJSONObject("ligne");
+                                JSONObject jObject2 = obj.getJSONObject("arret");
 
                                 temps.setDirection(obj.getString("terminus"));
 
                                 temps.setLigne(jObject.getString("numLigne"));
+
+
+
 
                                 ligne = jObject.getString("numLigne");
 
@@ -260,6 +270,9 @@ public class TempsActivity extends ActionBarActivity {
                                 String temp = obj.getString("temps").replace("Close", "En approche");
 
                                 temps.setTemps(temp);
+
+
+                                temps.setArret(jObject2.getString("codeArret"));
                                 directionList.add(temps);
 
 

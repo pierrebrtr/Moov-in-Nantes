@@ -187,6 +187,8 @@ super.onCreate(savedInstanceState);
         final String url = "" + "https://open.tan.fr/ewp/horairesarret.json/" + intent.getExtras().getString("id") + "/" + intent.getExtras().getString("ligne") + "/" + intent.getExtras().getString("sens") + "";
 
 
+        Log.d("Erreur", url);
+
         listView3 = (ListView) findViewById(R.id.list_horaires);
 
         // movieList is an empty array at this point.
