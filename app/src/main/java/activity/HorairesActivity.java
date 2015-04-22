@@ -171,19 +171,6 @@ super.onCreate(savedInstanceState);
         // movieList is an empty array at this point.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 url, null, new Response.Listener<JSONObject>() {
 
@@ -303,8 +290,6 @@ super.onCreate(savedInstanceState);
 
 
 
-                adapter.notifyDataSetChanged();
-
                 JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                         url, null, new Response.Listener<JSONObject>() {
 
@@ -317,7 +302,6 @@ super.onCreate(savedInstanceState);
                             // response will be a json object
 
 
-                            Horaires horaires = new Horaires();
 
 
 
@@ -325,27 +309,48 @@ super.onCreate(savedInstanceState);
 
 
 
-                            ArrayList<String> listdata = new ArrayList<String>();
+
+
 
                             JSONArray configJsonArray = response.getJSONArray("horaires");
                             for(int configIterator = 0; configIterator < configJsonArray.length(); configIterator++){
+                                ArrayList<String> listdata = new ArrayList<String>();
+                                listdata.clear();
+
+
+                                Horaires horaires = new Horaires();
                                 JSONObject innerConfigObj = configJsonArray.getJSONObject(configIterator);
                                 configGrade = innerConfigObj.getString("heure");
+                                horaires.setHeure(configGrade);
 
 
-                                JSONArray courseJsonArray = innerConfigObj.getJSONArray("passages");
-                                for(int courseIterator = 0; courseIterator < courseJsonArray.length(); courseIterator++){
+                                JSONArray jr = innerConfigObj.getJSONArray("passages");
 
-                                    listdata.add(courseJsonArray.get(courseIterator).toString());
+
+
+
+
+
+                                for(int v = 0; v < jr.length(); v++){
+
+
+
+                                    listdata.add(jr.get(v).toString());
+                                    horaires.setPassages(listdata);
+
+
 
                                 }
 
+
+                                horairesList.add(horaires);
+
                             }
 
-                            horaires.setHeure(configGrade);
-                            horaires.setPassages(listdata);
 
-                            horairesList.add(horaires);
+
+
+
 
 
 
