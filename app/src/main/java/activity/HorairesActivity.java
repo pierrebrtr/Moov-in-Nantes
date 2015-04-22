@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -112,11 +114,20 @@ super.onCreate(savedInstanceState);
         View headerView = getLayoutInflater().inflate(
                 R.layout.view_list_item_header, listView3, false);
 
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        // Create an object for subclass of AsyncTask
-        GetXMLTask task = new GetXMLTask();
-        // Execute the task
-        task.execute(new String[] { URL });
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Create an object for subclass of AsyncTask
+            GetXMLTask task = new GetXMLTask();
+            // Execute the task
+            task.execute(new String[] { URL });
+        } else {
+            Toast.makeText(getApplicationContext(),
+                    "Pas de connexion internet",
+                    Toast.LENGTH_LONG).show();
+        }
 
 
 
@@ -169,9 +180,6 @@ super.onCreate(savedInstanceState);
         Intent intent = getIntent();
 
         final String url = "" + "https://open.tan.fr/ewp/horairesarret.json/" + intent.getExtras().getString("id") + "/" + intent.getExtras().getString("ligne") + "/" + intent.getExtras().getString("sens") + "";
-
-        Toast.makeText(getApplicationContext(), intent.getExtras().getString("text"), Toast.LENGTH_LONG).show();
-        Log.d("Test", url);
 
 
         listView3 = (ListView) findViewById(R.id.list_horaires);
@@ -249,9 +257,7 @@ super.onCreate(savedInstanceState);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(),
-                            "Error: " + e.getMessage(),
-                            Toast.LENGTH_LONG).show();
+
                 }
                 adapter.notifyDataSetChanged();
 
@@ -263,9 +269,7 @@ super.onCreate(savedInstanceState);
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
-                // hide the progress dialog
+
 
             }
         });

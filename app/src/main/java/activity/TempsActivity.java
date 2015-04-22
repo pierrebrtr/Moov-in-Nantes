@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -113,10 +115,23 @@ public class TempsActivity extends ActionBarActivity {
         t.setText(id);
 
 
-        // Create an object for subclass of AsyncTask
-        GetXMLTask task = new GetXMLTask();
-        // Execute the task
-        task.execute(new String[] { URL });
+
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Create an object for subclass of AsyncTask
+            GetXMLTask task = new GetXMLTask();
+            // Execute the task
+            task.execute(new String[] { URL });
+        } else {
+            Toast.makeText(getApplicationContext(),
+                    "Pas de connexion internet",
+                    Toast.LENGTH_LONG).show();
+        }
+
+
 
 
         listView2.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -156,7 +171,6 @@ public class TempsActivity extends ActionBarActivity {
 
         final String url = "https://open.tan.fr/ewp/tempsattente.json/" + intent.getExtras().getString("text") + " ";
 
-        Toast.makeText(getApplicationContext(), intent.getExtras().getString("text"), Toast.LENGTH_LONG).show();
 
 
         listView2 = (ListView) findViewById(R.id.list_temps);
@@ -255,7 +269,7 @@ public class TempsActivity extends ActionBarActivity {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-                Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
+
 
 
             }
