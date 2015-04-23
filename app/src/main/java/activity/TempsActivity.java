@@ -296,6 +296,17 @@ public class TempsActivity extends ActionBarActivity {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
 
+                final Temps temps2 = new Temps();
+
+                temps2.setDirection("Pas de données disponible");
+
+                temps2.setLigne("  ");
+
+                temps2.setTemps(" ");
+
+                directionList.add(temps2);
+
+                adapter.notifyDataSetChanged();
 
 
             }
@@ -394,7 +405,18 @@ public class TempsActivity extends ActionBarActivity {
                     public void onErrorResponse(VolleyError error) {
                         VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-                        Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
+
+                        final Temps temps2 = new Temps();
+
+                        temps2.setDirection("Pas de données disponible");
+
+                        temps2.setLigne("  ");
+
+                        temps2.setTemps(" ");
+
+                        directionList.add(temps2);
+
+                        adapter.notifyDataSetChanged();
 
 
                     }
