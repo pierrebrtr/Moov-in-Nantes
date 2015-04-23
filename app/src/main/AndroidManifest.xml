@@ -43,12 +43,8 @@
         <activity
             android:label="@string/app_name"
             android:name="activity.TempsActivity"
-            android:parentActivityName="activity.MainActivity"
             android:configChanges="orientation|screenSize"
             >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="activity.MainActivity" />
 </activity>
         <activity
             android:label="@string/app_name"
@@ -83,12 +79,8 @@
         <activity
             android:label="@string/app_name"
             android:name="activity.BicloocartActivity"
-            android:parentActivityName="activity.MainActivity"
             android:configChanges="orientation|screenSize"
             >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="activity.MainActivity" />
         </activity>
         <activity
             android:label="@string/app_name"
