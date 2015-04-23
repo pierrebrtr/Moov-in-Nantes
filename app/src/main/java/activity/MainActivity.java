@@ -134,10 +134,6 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 title = "Bicloo";
                 break;
             case 4:
-                fragment = new AboutFragment();
-                title = "A propos";
-                break;
-            case 5:
                 fragment = new SettingsFragment();
                 title = "Paramètres";
                 break;

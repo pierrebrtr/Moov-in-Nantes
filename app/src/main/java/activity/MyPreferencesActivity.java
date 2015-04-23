@@ -52,6 +52,16 @@ public class MyPreferencesActivity extends ActionBarActivity {
                 }
             });
 
+            Preference userButtona = (Preference) findPreference("propos");
+            userButtona.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference arg0) {
+                    Intent intent = new Intent(getActivity(), AproposActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+            });
+
             Preference userButtone = (Preference) findPreference("cache");
             userButtone.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
