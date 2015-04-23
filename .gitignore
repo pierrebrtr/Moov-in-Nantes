@@ -73,3 +73,7 @@ build/intermediates/dex-cache/cache.xml
 
 local.properties
 *.db
+*.lock
+*.lock
+.gradle/2.2.1/taskArtifacts/outputFileStates.bin
+.idea/libraries/support_annotations_22_0_0.xml
