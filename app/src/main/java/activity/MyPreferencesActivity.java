@@ -110,7 +110,7 @@ public class MyPreferencesActivity extends ActionBarActivity {
 
         int id = item.getItemId();
         if (id == R.id.action_search){
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.imangi.templerun2"));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.pandf.moovin"));
             startActivity(browserIntent);
             return true;
         }
