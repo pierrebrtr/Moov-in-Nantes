@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.example.pierre.tan.R;
+import com.pandf.moovin.R;
 
 import java.util.List;
 

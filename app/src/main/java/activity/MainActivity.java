@@ -13,7 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
-import com.example.pierre.tan.R;
+import com.pandf.moovin.R;
 
 import adapter.FragmentDrawer;
 import hotchemi.android.rate.AppRate;

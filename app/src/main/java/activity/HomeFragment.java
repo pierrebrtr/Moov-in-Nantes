@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.pierre.tan.R;
+import com.pandf.moovin.R;
 
 public class HomeFragment extends Fragment {
 

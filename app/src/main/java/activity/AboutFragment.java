@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 
-import com.example.pierre.tan.R;
+import com.pandf.moovin.R;
 
 
 public class AboutFragment extends Fragment {

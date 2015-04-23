@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.pierre.tan.R;
+import com.pandf.moovin.R;
 
 import java.util.Collections;
 import java.util.List;

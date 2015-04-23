@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.pierre.tan.R;
+import com.pandf.moovin.R;
 
 /**
  * Created by dev on 19/04/15.

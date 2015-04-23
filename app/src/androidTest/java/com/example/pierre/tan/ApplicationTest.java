@@ -1,4 +1,4 @@
-package com.example.pierre.tan;
+package com.pandf.moovin;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

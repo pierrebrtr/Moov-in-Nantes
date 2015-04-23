@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.pierre.tan.R;
+import com.pandf.moovin.R;
 
 public class SplashScreen extends Activity {
 

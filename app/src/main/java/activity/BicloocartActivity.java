@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.pierre.tan.R;
+import com.pandf.moovin.R;
 
 /**
  * Created by dev on 23/04/15.

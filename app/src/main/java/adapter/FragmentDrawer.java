@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.pierre.tan.R;
+import com.pandf.moovin.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -16,7 +16,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.pierre.tan.R;
+import com.pandf.moovin.R;
 
 
 public class SlidingTabLayout extends HorizontalScrollView {
