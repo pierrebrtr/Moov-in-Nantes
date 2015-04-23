@@ -93,7 +93,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
         new AlertDialog.Builder(this)
                 .setMessage("Voulez-vous quitter l\'application ?")
-                .setPositiveButton("oui", new DialogInterface.OnClickListener() {
+                .setPositiveButton("NON", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -103,7 +103,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                         startActivity(intent);
                         finish();
                     }
-                }).setNegativeButton("non", null).show();
+                }).setNegativeButton("NON", null).show();
 
 
     }

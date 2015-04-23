@@ -32,6 +32,7 @@ public class Tab2 extends Fragment {
 
 
     String condition = " ";
+    String tmp = " ";
     String icon = " ";
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -74,9 +75,14 @@ public class Tab2 extends Fragment {
 
 
 
-                    JSONObject object = response.getJSONObject("fcst_day_0");
+                    JSONObject object = response.getJSONObject("current_condition");
+
+
+                    tmp = object.getString("tmp");
 
                     condition = object.getString("condition");
+
+
 
                     icon = object.getString("icon");
 
@@ -91,9 +97,9 @@ public class Tab2 extends Fragment {
 
 // Create a CardHeader
                     CardHeader header = new CardHeader(getActivity());
-                    header.setTitle("Météo du jour :");
+                    header.setTitle("En direct du ciel :");
 
-                    card.setTitle(condition);
+                    card.setTitle(condition +" ("+ tmp +"°)");
 
 
 

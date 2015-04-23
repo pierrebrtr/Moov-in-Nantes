@@ -36,6 +36,7 @@ public class GeoFragment extends Fragment implements
 
     protected TextView latitude_Text;
     protected TextView longitude_Text;
+    protected TextView url_Text;
 
 
     @Override
@@ -44,6 +45,7 @@ public class GeoFragment extends Fragment implements
         View rootView = inflater.inflate(R.layout.fragment_geo, container, false);
         TextView latitude_text= (TextView) rootView.findViewById(R.id.latitude_text);
         TextView longitude_text= (TextView) rootView.findViewById(R.id.longitude_text);
+        TextView url_text= (TextView) rootView.findViewById(R.id.url_text);
 
 
         // Inflate the layout for this fragment
@@ -67,6 +69,7 @@ public class GeoFragment extends Fragment implements
 
 
         buildGoogleApiClient();
+
 
     }
 
@@ -104,6 +107,7 @@ public class GeoFragment extends Fragment implements
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         latitude_Text = (TextView) getView().findViewById((R.id.latitude_text));
         longitude_Text = (TextView) getView().findViewById((R.id.longitude_text));
+        url_Text = (TextView) getView().findViewById((R.id.url_text));
         String url = null;
         if (mLastLocation != null) {
             latitude_Text.setText(valueOf(mLastLocation.getLatitude()));
@@ -116,6 +120,9 @@ public class GeoFragment extends Fragment implements
 
             url = "https://open.tan.fr/ewp/arrets.json/" + lat + "/" + lon + " ";
             Log.d("Url", url);
+            url_Text.setText(url);
+            Toast.makeText(getActivity(), valueOf(url_Text), Toast.LENGTH_LONG).show();
+            String love = url_Text.getText().toString();
         } else {
             Log.d("Url", url);
         }
