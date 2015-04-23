@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_row_selector"
+    android:padding="8dp" >
+
+    <!-- Thumbnail Image -->
+
+
+    <!-- Movie Title -->
+    <TextView
+        android:id="@+id/arretgeo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+
+    <!-- Genre -->
+    <TextView
+        android:id="@+id/lieugeo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/year"
+        android:textSize="0dp" />
+
+    <!-- Release Year -->
+    <TextView
+        android:id="@+id/lignegeo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/year"
+        android:textSize="12dp" />
+
+
+    <TextView
+        android:id="@+id/geometre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/arretgeo"
+        android:textColor="@color/year"
+        android:textSize="12dp" />
+
+    <ImageView
+        android:id="@+id/imgbtn_favorite"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="3dp"
+        android:background="@null"
+        android:maxHeight="10dp"
+        android:maxWidth="10dp" />
+
+</RelativeLayout>

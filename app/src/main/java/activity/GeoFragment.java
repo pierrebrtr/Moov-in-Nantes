@@ -1,24 +1,40 @@
 package activity;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.pierre.tan.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import adapter.CustomListAdapterGeo;
+import app.AppController;
+import model.Arretsgeo;
 
 import static java.lang.String.valueOf;
 
@@ -37,15 +53,162 @@ public class GeoFragment extends Fragment implements
     protected TextView latitude_Text;
     protected TextView longitude_Text;
     protected TextView url_Text;
+    private List<Arretsgeo> geoList = new ArrayList<Arretsgeo>();
+    private CustomListAdapterGeo adapter;
+    private ListView listView;
+    private String url;
+    private SwipeRefreshLayout swipeLayout;
+
+
+
+
+
+
+
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+super.onActivityCreated(savedInstanceState);
+
+        swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.containergeo);
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(getActivity(), "Rechargement...", Toast.LENGTH_SHORT).show();
+
+
+                geoList.clear();
+                adapter.notifyDataSetChanged();
+
+                // Creating volley request obj
+                JsonArrayRequest movieReq = new JsonArrayRequest(url,
+                        new Response.Listener<JSONArray>() {
+                            @Override
+                            public void onResponse(JSONArray response) {
+                                Log.d(TAG, response.toString());
+
+
+                                // Parsing json
+                                for (int i = 0; i < response.length(); i++) {
+                                    try {
+
+                                        JSONObject obj = null;
+                                        try {
+                                            obj = response.getJSONObject(i);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        Arretsgeo arret = new Arretsgeo();
+                                        arret.setArret(obj.getString("libelle"));
+
+
+                                        String lieu = obj.getString("codeLieu");
+
+                                        arret.setLieu(lieu);
+
+                                        arret.setGeo(obj.getString("distance"));
+
+
+                                        JSONArray genreArry = obj.getJSONArray("ligne");
+                                        ArrayList<String> genre = new ArrayList<String>();
+                                        int ligne = genreArry.length();
+
+
+                                        for (int v = 0; v < ligne; v++) {
+
+                                            JSONObject nl = genreArry.getJSONObject(v);
+
+                                            genre.add(nl.optString("numLigne").toString());
+
+
+                                        }
+
+
+                                        arret.setLigne(genre);
+                                        geoList.add(arret);
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+
+                                // notifying list adapter about data changes
+                                // so that it renders the list view with updated data
+                                adapter.notifyDataSetChanged();
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+                        Toast.makeText(getActivity(), "No internet connection !", Toast.LENGTH_LONG).show();
+
+
+                    }
+
+
+                });
+
+
+                AppController.getInstance().addToRequestQueue(movieReq);
+
+                swipeLayout.setRefreshing(false);
+
+
+            }
+        });
+        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+
+        listView = (ListView) getActivity().findViewById(R.id.listgeo);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                TextView textView = (TextView) view.findViewById(R.id.lieugeo);
+                String text = textView.getText().toString();
+
+
+                TextView textView2 = (TextView) view.findViewById(R.id.arretgeo);
+                String libelle = textView2.getText().toString();
+
+                Intent i = new Intent(GeoFragment.this.getActivity(), TempsActivity.class);
+                i.putExtra("text", text);
+                i.putExtra("libelle", libelle);
+                startActivity(i);
+
+
+            }
+        });
+
+
+
+
+
+
+
+    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_geo, container, false);
-        TextView latitude_text= (TextView) rootView.findViewById(R.id.latitude_text);
-        TextView longitude_text= (TextView) rootView.findViewById(R.id.longitude_text);
-        TextView url_text= (TextView) rootView.findViewById(R.id.url_text);
+
+
+
+
+
+
+
 
 
         // Inflate the layout for this fragment
@@ -105,13 +268,11 @@ public class GeoFragment extends Fragment implements
         // updates. Gets the best and most recent location currently available, which may be null
         // in rare cases when a location is not available.
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        latitude_Text = (TextView) getView().findViewById((R.id.latitude_text));
-        longitude_Text = (TextView) getView().findViewById((R.id.longitude_text));
-        url_Text = (TextView) getView().findViewById((R.id.url_text));
-        String url = null;
+
+        TextView url_Text = (TextView) getView().findViewById((R.id.url_text));
+
         if (mLastLocation != null) {
-            latitude_Text.setText(valueOf(mLastLocation.getLatitude()));
-            longitude_Text.setText(valueOf(mLastLocation.getLongitude()));
+
             String lat = valueOf(mLastLocation.getLatitude());
             lat = lat.replace(".", ",");
 
@@ -121,11 +282,101 @@ public class GeoFragment extends Fragment implements
             url = "https://open.tan.fr/ewp/arrets.json/" + lat + "/" + lon + " ";
             Log.d("Url", url);
             url_Text.setText(url);
-            Toast.makeText(getActivity(), valueOf(url_Text), Toast.LENGTH_LONG).show();
+
             String love = url_Text.getText().toString();
         } else {
             Log.d("Url", url);
         }
+
+
+
+
+        listView = (ListView) getActivity().findViewById(R.id.listgeo);
+
+        // movieList is an empty array at this point.
+        adapter = new CustomListAdapterGeo(getActivity(), geoList);
+        listView.setAdapter(adapter);
+
+
+        geoList.clear();
+        adapter.notifyDataSetChanged();
+
+        // Creating volley request obj
+        JsonArrayRequest movieReq = new JsonArrayRequest(url,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d(TAG, response.toString());
+
+
+                        // Parsing json
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+
+                                JSONObject obj = null;
+                                try {
+                                    obj = response.getJSONObject(i);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                Arretsgeo arret = new Arretsgeo();
+                                arret.setArret(obj.getString("libelle"));
+
+
+                                String lieu = obj.getString("codeLieu");
+
+                                arret.setLieu(lieu);
+
+                                arret.setGeo(obj.getString("distance"));
+
+
+                                JSONArray genreArry = obj.getJSONArray("ligne");
+                                ArrayList<String> genre = new ArrayList<String>();
+                                int ligne = genreArry.length();
+
+
+                                for (int v = 0; v < ligne; v++) {
+
+                                    JSONObject nl = genreArry.getJSONObject(v);
+
+                                    genre.add(nl.optString("numLigne").toString());
+
+
+                                }
+
+
+                                arret.setLigne(genre);
+                                geoList.add(arret);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        // notifying list adapter about data changes
+                        // so that it renders the list view with updated data
+                        adapter.notifyDataSetChanged();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+                Toast.makeText(getActivity(), "No internet connection !", Toast.LENGTH_LONG).show();
+
+
+            }
+
+
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(movieReq);
+
+
+
+
     }
 
     @Override

@@ -99,7 +99,8 @@ public class BiclooFragment extends Fragment  {
 
                 bicloo2.setAdresse("Chargement...");
                 
-
+                bicloo2.setVelodispo(" ");
+                bicloo2.setPlacedispo(" ");
                 listbicloo.add(bicloo2);
 
                 adapter.notifyDataSetChanged();
@@ -203,8 +204,6 @@ public class BiclooFragment extends Fragment  {
 
 
 
-
-
             // Creating volley request obj
             JsonArrayRequest movieReq = new JsonArrayRequest(url,
                     new Response.Listener<JSONArray>() {
@@ -223,6 +222,9 @@ public class BiclooFragment extends Fragment  {
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
+
+
+
 
 
 

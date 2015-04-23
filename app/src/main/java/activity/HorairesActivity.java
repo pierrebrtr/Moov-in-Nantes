@@ -194,6 +194,23 @@ super.onCreate(savedInstanceState);
         // movieList is an empty array at this point.
 
 
+        final Horaires horaires2 = new Horaires();
+
+        horaires2.setHeure("Chargement");
+
+
+
+
+        ArrayList<String> listdata = new ArrayList<String>();
+        listdata.add(0, " ");
+
+
+        horaires2.setPassages(listdata);
+        horairesList.add(horaires2);
+
+        adapter.notifyDataSetChanged();
+
+
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 url, null, new Response.Listener<JSONObject>() {
 
@@ -210,7 +227,7 @@ super.onCreate(savedInstanceState);
 
 
 
-
+                    horairesList.remove(horaires2);
 
 
 
@@ -306,7 +323,21 @@ super.onCreate(savedInstanceState);
                 horairesList.clear();
 
 
+                final Horaires horaires2 = new Horaires();
 
+                horaires2.setHeure("Chargement");
+
+                ArrayList<String> listdata = new ArrayList<String>();
+                listdata.add(0, " ");
+
+
+                horaires2.setPassages(listdata);
+
+
+                horairesList.add(horaires2);
+
+
+                adapter.notifyDataSetChanged();
 
 
                 JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
@@ -326,7 +357,7 @@ super.onCreate(savedInstanceState);
 
 
 
-
+                            horairesList.remove(horaires2);
 
 
 
