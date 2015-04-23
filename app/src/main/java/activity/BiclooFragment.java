@@ -155,7 +155,17 @@ public class BiclooFragment extends Fragment  {
                     public void onErrorResponse(VolleyError error) {
                         VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-                        Toast.makeText(getActivity(), "No internet connection !", Toast.LENGTH_LONG).show();
+                        listbicloo.clear();
+
+                        Bicloo bicloo = new Bicloo();
+                        bicloo.setAdresse("Pas de données disponible");
+
+                        bicloo.setPlacedispo(" ");
+
+                        bicloo.setVelodispo(" ");
+                        listbicloo.add(bicloo);
+
+                        adapter.notifyDataSetChanged();
 
 
                     }
@@ -255,8 +265,19 @@ public class BiclooFragment extends Fragment  {
                 public void onErrorResponse(VolleyError error) {
                     VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-                    Toast.makeText(getActivity(), "No internet connection !", Toast.LENGTH_LONG).show();
 
+
+                    listbicloo.clear();
+
+                    Bicloo bicloo = new Bicloo();
+                    bicloo.setAdresse("Pas de données disponible");
+
+                    bicloo.setPlacedispo(" ");
+
+                    bicloo.setVelodispo(" ");
+                    listbicloo.add(bicloo);
+
+                    adapter.notifyDataSetChanged();
 
                 }
 

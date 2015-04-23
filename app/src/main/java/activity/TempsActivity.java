@@ -296,6 +296,8 @@ public class TempsActivity extends ActionBarActivity {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
 
+                directionList.clear();
+
                 final Temps temps2 = new Temps();
 
                 temps2.setDirection("Pas de données disponible");
@@ -405,6 +407,7 @@ public class TempsActivity extends ActionBarActivity {
                     public void onErrorResponse(VolleyError error) {
                         VolleyLog.d(TAG, "Error: " + error.getMessage());
 
+                        directionList.clear();
 
                         final Temps temps2 = new Temps();
 

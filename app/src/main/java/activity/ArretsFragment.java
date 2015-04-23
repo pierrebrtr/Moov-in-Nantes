@@ -209,7 +209,25 @@ public class ArretsFragment extends Fragment  {
                     public void onErrorResponse(VolleyError error) {
                         VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-                        Toast.makeText(getActivity(), "No internet connection !", Toast.LENGTH_LONG).show();
+
+
+
+                        arretsList.clear();
+
+                        final Arrets temps2 = new Arrets();
+
+                        temps2.setArret("Pas de donées disponible !");
+
+                        ArrayList list = new ArrayList();
+                        list.add(0, " ");
+
+                        temps2.setLigne(list);
+
+                        temps2.setLieu(" ");
+
+                        arretsList.add(temps2);
+
+                        adapter.notifyDataSetChanged();
 
 
                     }
@@ -388,7 +406,23 @@ public class ArretsFragment extends Fragment  {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-                Toast.makeText(getActivity(), "No internet connection !", Toast.LENGTH_LONG).show();
+
+                arretsList.clear();
+
+                final Arrets temps2 = new Arrets();
+
+                temps2.setArret("Pas de donées disponible !");
+
+                ArrayList list = new ArrayList();
+                list.add(0, " ");
+
+                temps2.setLigne(list);
+
+                temps2.setLieu(" ");
+
+                arretsList.add(temps2);
+
+                adapter.notifyDataSetChanged();
 
 
             }

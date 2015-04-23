@@ -145,6 +145,22 @@ super.onActivityCreated(savedInstanceState);
                         Toast.makeText(getActivity(), "No internet connection !", Toast.LENGTH_LONG).show();
 
 
+                        geoList.clear();
+                        Arretsgeo arret2 = new Arretsgeo();
+                        arret2.setArret("Pas de données disponible !");
+
+
+                        ArrayList list = new ArrayList();
+                        list.add(0, " ");
+                        arret2.setLigne(list);
+
+
+                        arret2.setLieu(" ");
+
+                      geoList.add(arret2);
+                        adapter.notifyDataSetChanged();
+
+
                     }
 
 
@@ -285,7 +301,7 @@ super.onActivityCreated(savedInstanceState);
 
             String love = url_Text.getText().toString();
         } else {
-            Log.d("Url", url);
+
         }
 
 
@@ -363,7 +379,21 @@ super.onActivityCreated(savedInstanceState);
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-                Toast.makeText(getActivity(), "No internet connection !", Toast.LENGTH_LONG).show();
+
+                geoList.clear();
+                Arretsgeo arret2 = new Arretsgeo();
+                arret2.setArret("Pas de données disponible !");
+
+
+
+                ArrayList list = new ArrayList();
+                list.add(0, " ");
+                arret2.setLigne(list);
+
+                arret2.setLieu(" ");
+
+                geoList.add(arret2);
+                adapter.notifyDataSetChanged();
 
 
             }
