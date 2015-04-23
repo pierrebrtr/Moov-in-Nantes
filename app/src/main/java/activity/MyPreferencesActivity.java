@@ -1,11 +1,15 @@
 package activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.pierre.tan.R;
@@ -90,6 +94,30 @@ public class MyPreferencesActivity extends ActionBarActivity {
             });
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menu_settings, menu);
+
+
+        return true;//return true so that the menu pop up is opened
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.action_search){
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.imangi.templerun2"));
+            startActivity(browserIntent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }
 

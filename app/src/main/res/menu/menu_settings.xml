@@ -5,15 +5,9 @@
 
     <item
         android:id="@+id/action_search"
-        android:title="@string/action_search"
+        android:title="Play Store"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_action_search"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_search2"
-        android:title="Carte"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_place"
+        android:icon="@drawable/ic_shop"
         app:showAsAction="ifRoom" />
 
 </menu>

@@ -6,7 +6,7 @@
     <string name="drawer_close">Close</string>
 
     <string name="nav_item_home">Accueil</string>
-    <string name="nav_item_geo">Geo</string>
+    <string name="nav_item_geo">Géolocalisation</string>
     <string name="nav_item_bicloo">Bicloo</string>
     <string name="nav_item_arrets">Arrêts</string>
     <string name="nav_item_settings">Paramètres</string>

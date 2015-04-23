@@ -465,6 +465,13 @@ public class ArretsFragment extends Fragment  {
             return true;
         }
 
+        if (id == R.id.action_search2){
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), ArretcartActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
