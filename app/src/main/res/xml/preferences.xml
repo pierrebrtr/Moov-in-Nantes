@@ -29,7 +29,7 @@
         android:summary="Visiter le site">
 
         <intent android:action="android.intent.action.VIEW"
-            android:data="http://www.android.com" />
+            android:data="http://www.pierre.hellophoto.fr" />
 
     </PreferenceScreen>
     </PreferenceCategory>
