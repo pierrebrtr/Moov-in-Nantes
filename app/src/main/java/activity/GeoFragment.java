@@ -67,8 +67,11 @@ public class GeoFragment extends Fragment implements
 
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
+    public void onActivityCreated(final Bundle savedInstanceState) {
 super.onActivityCreated(savedInstanceState);
+
+
+
 
         swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.containergeo);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -80,94 +83,9 @@ super.onActivityCreated(savedInstanceState);
                 geoList.clear();
                 adapter.notifyDataSetChanged();
 
-                // Creating volley request obj
-                JsonArrayRequest movieReq = new JsonArrayRequest(url,
-                        new Response.Listener<JSONArray>() {
-                            @Override
-                            public void onResponse(JSONArray response) {
-                                Log.d(TAG, response.toString());
+                onConnected(savedInstanceState);
 
 
-                                // Parsing json
-                                for (int i = 0; i < response.length(); i++) {
-                                    try {
-
-                                        JSONObject obj = null;
-                                        try {
-                                            obj = response.getJSONObject(i);
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                        Arretsgeo arret = new Arretsgeo();
-                                        arret.setArret(obj.getString("libelle"));
-
-
-                                        String lieu = obj.getString("codeLieu");
-
-                                        arret.setLieu(lieu);
-
-                                        arret.setGeo(obj.getString("distance"));
-
-
-                                        JSONArray genreArry = obj.getJSONArray("ligne");
-                                        ArrayList<String> genre = new ArrayList<String>();
-                                        int ligne = genreArry.length();
-
-
-                                        for (int v = 0; v < ligne; v++) {
-
-                                            JSONObject nl = genreArry.getJSONObject(v);
-
-                                            genre.add(nl.optString("numLigne").toString());
-
-
-                                        }
-
-
-                                        arret.setLigne(genre);
-                                        geoList.add(arret);
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-
-                                // notifying list adapter about data changes
-                                // so that it renders the list view with updated data
-                                adapter.notifyDataSetChanged();
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        VolleyLog.d(TAG, "Error: " + error.getMessage());
-
-                        Toast.makeText(getActivity(), "No internet connection !", Toast.LENGTH_LONG).show();
-
-
-                        geoList.clear();
-                        Arretsgeo arret2 = new Arretsgeo();
-                        arret2.setArret("Pas de données disponible !");
-
-
-                        ArrayList list = new ArrayList();
-                        list.add(0, " ");
-                        arret2.setLigne(list);
-
-
-                        arret2.setLieu(" ");
-
-                      geoList.add(arret2);
-                        adapter.notifyDataSetChanged();
-
-
-                    }
-
-
-                });
-
-
-                AppController.getInstance().addToRequestQueue(movieReq);
 
                 swipeLayout.setRefreshing(false);
 
