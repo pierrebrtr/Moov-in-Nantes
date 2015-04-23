@@ -84,6 +84,12 @@
         </activity>
         <activity
             android:label="@string/app_name"
+            android:name="activity.ArretcartActivity"
+            android:configChanges="orientation|screenSize"
+            >
+        </activity>
+        <activity
+            android:label="@string/app_name"
             android:name="activity.HorairesActivity"
             android:configChanges="orientation|screenSize"
             >
