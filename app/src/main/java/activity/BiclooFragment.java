@@ -405,11 +405,6 @@ public class BiclooFragment extends Fragment  {
 
     }
 
-    @Override
-    public void onCreateOptionsMenu(
-            Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_main, menu);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -434,7 +429,11 @@ public class BiclooFragment extends Fragment  {
     }
 
 
-
+    @Override
+    public void onCreateOptionsMenu(
+            Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_bicloo, menu);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -449,19 +448,9 @@ public class BiclooFragment extends Fragment  {
 
         if (id == R.id.action_search){
 
-           if (searchContainer.getVisibility() == View.GONE){
-
-              search.requestFocus();
-               InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-               imm.showSoftInput(search, InputMethodManager.SHOW_IMPLICIT);
-               searchContainer.setVisibility(View.VISIBLE);
-
-           } else {
-               InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-               imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
-               searchContainer.setVisibility(View.GONE);
-
-           }
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), BicloocartActivity.class);
+            startActivity(intent);
             return true;
         }
 
