@@ -7,57 +7,32 @@
 
 
     <TextView
-        android:id="@+id/codearret"
+        android:id="@+id/adresse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textColor="@color/year"
-        android:textSize="0dp" />
+        android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/direction"
+        android:id="@+id/placedispo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:textSize="20dp"
+        android:layout_below="@+id/adresse"
+        android:textColor="@color/year"
+        android:textSize="12dp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/ligne"
+        android:id="@+id/velodispo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
+        android:layout_below="@+id/placedispo"
         android:textColor="@color/year"
-        android:textSize="12dp" />
+        android:textSize="12dp"
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/temps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/direction"
-        android:layout_alignParentLeft="true"
-        android:textColor="@color/year"
-        android:textSize="15dp" />
 
-    <TextView
-        android:id="@+id/sens"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/direction"
-        android:layout_alignParentLeft="true"
-        android:textColor="@color/year"
-        android:textSize="0dp" />
-
-    <TextView
-        android:id="@+id/terminus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/direction"
-        android:layout_alignParentLeft="true"
-        android:textColor="@color/year"
-        android:textSize="0dp" />
 
 
 

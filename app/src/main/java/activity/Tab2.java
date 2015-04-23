@@ -44,8 +44,6 @@ public class Tab2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v =inflater.inflate(R.layout.tab_2,container,false);
 
-        CardView cardView = (CardView) v.findViewById(R.id.carddemo);
-        cardView.setVisibility(View.GONE);
 
 
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -98,6 +96,7 @@ public class Tab2 extends Fragment {
                     card.setTitle(condition);
 
 
+
                     CardThumbnail thumb = new CardThumbnail(getActivity());
                     thumb.setUrlResource(icon);
 
@@ -147,6 +146,31 @@ public class Tab2 extends Fragment {
             Toast.makeText(getActivity().getApplicationContext(),
                     "Pas de connexion internet",
                     Toast.LENGTH_LONG).show();
+
+            Card card = new Card(getActivity(), R.layout.row_card);
+
+
+            CardHeader header = new CardHeader(getActivity());
+            header.setTitle("Erreur");
+
+            card.setTitle("Vérifiez votre connection Internet");
+
+
+
+            CardThumbnail thumb = new CardThumbnail(getActivity());
+            thumb.setDrawableResource(R.drawable.ic_cloud);
+
+            card.addCardThumbnail(thumb);
+
+// Add Header to card
+            card.addCardHeader(header);
+
+// Set card in the cardView
+            CardView cardView = (CardView) v.findViewById(R.id.carddemo);
+            cardView.setCard(card);
+
+
+
         }
 
 
