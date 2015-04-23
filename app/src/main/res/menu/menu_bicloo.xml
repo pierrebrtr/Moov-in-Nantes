@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <item
         android:id="@+id/action_search"
-        android:title="@string/action_search"
+        android:title="Carte"
         android:orderInCategory="100"
         android:icon="@drawable/ic_place"
         app:showAsAction="ifRoom" />
