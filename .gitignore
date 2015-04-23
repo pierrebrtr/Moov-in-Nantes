@@ -72,3 +72,4 @@ local.properties
 build/intermediates/dex-cache/cache.xml
 
 local.properties
+*.db
