@@ -135,7 +135,7 @@ super.onCreate(savedInstanceState);
 
 
         listView3 = (ListView) findViewById(R.id.list_horaires);
-        listView3.addHeaderView(headerView);
+        listView3.addHeaderView(headerView, null, false);
         TextView t = (TextView) findViewById(R.id.headertext2);
 
 

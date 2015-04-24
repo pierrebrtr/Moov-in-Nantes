@@ -111,7 +111,7 @@ public class TempsActivity extends ActionBarActivity {
          imageView = (ImageView) headerView.findViewById(R.id.imageView);
 
         listView2 = (ListView) findViewById(R.id.list_temps);
-        listView2.addHeaderView(headerView);
+        listView2.addHeaderView(headerView, null, false);
         TextView t = (TextView) findViewById(R.id.headertext);
         t.setText(id);
 
