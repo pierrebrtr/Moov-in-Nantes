@@ -13,6 +13,7 @@ import com.pandf.moovin.R;
 
 import java.util.List;
 
+import activity.TraficActivity;
 import app.AppController;
 import model.Trafic;
 
@@ -29,7 +30,7 @@ public class CustomListAdapterTrafic extends BaseAdapter {
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
 
-    public CustomListAdapterTrafic(Activity activity, List<Trafic> biclooItems) {
+    public CustomListAdapterTrafic(TraficActivity activity, List<Trafic> biclooItems) {
 
 
         this.activity = activity;
