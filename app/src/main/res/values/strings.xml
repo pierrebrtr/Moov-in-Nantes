@@ -34,4 +34,6 @@
     <string name="aboutLibraries_description_showIcon">true</string>
     <string name="aboutLibraries_description_showVersion">true</string>
     <string name="aboutLibraries_description_text">Moov\'in Nantes</string>
+
+    <string name="changelog_row_prefix_improvement">[b]Nouveauté:[/b]</string>
 </resources>
