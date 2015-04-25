@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_row_selector"
+    android:padding="8dp" >
+
+
+    <TextView
+        android:id="@+id/resume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textColor="@color/year"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/date_debut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/adresse"
+        android:textColor="@color/year"
+        android:textSize="12dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/date_fin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/adresse"
+        android:textColor="@color/year"
+        android:textSize="12dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/heure_debut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/placedispo"
+        android:textColor="@color/year"
+        android:textSize="12dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/heure_fin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/placedispo"
+        android:textColor="@color/year"
+        android:textSize="12dp"
+        android:textStyle="bold" />
+
+
+
+
+
+</RelativeLayout>
