@@ -1,5 +1,8 @@
 package activity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -212,7 +215,10 @@ public class BiclooFragment extends Fragment  {
             searchContainer.setVisibility(View.GONE);
 
 
-
+            final ProgressDialog progress = new ProgressDialog(getActivity());
+            progress.setTitle("Chargement");
+            progress.setMessage("Veuillez patienter pendant le chargement des arrêts");
+            progress.show();
 
             // Creating volley request obj
             JsonArrayRequest movieReq = new JsonArrayRequest(url,
@@ -255,7 +261,7 @@ public class BiclooFragment extends Fragment  {
                                 }
 
                             }
-
+                            progress.dismiss();
                             // notifying list adapter about data changes
                             // so that it renders the list view with updated data
                             adapter.notifyDataSetChanged();
@@ -266,16 +272,21 @@ public class BiclooFragment extends Fragment  {
                     VolleyLog.d(TAG, "Error: " + error.getMessage());
 
 
-
+                    progress.dismiss();
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("ERREUR")
+                            .setMessage("PAS DE CONNEXION INTERNET")
+                            .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent();
+                                    intent.setClass(getActivity(), MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            })
+                            .setCancelable(false)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
                     listbicloo.clear();
-
-                    Bicloo bicloo = new Bicloo();
-                    bicloo.setAdresse("Pas de données disponible");
-
-                    bicloo.setPlacedispo(" ");
-
-                    bicloo.setVelodispo(" ");
-                    listbicloo.add(bicloo);
 
                     adapter.notifyDataSetChanged();
 

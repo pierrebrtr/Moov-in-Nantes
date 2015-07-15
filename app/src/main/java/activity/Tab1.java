@@ -97,13 +97,13 @@ public class Tab1 extends Fragment {
         favorites = sharedPreference.getFavorites(activity);
 
         if (favorites == null) {
-            Toast.makeText(getActivity(), "Pas de favoris ! :(", Toast.LENGTH_SHORT).show();
+            
 
 
         } else {
 
             if (favorites.size() == 0) {
-                Toast.makeText(getActivity(), "Pas de favoris ! :(", Toast.LENGTH_SHORT).show();
+
 
             }
 

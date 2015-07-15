@@ -1,5 +1,8 @@
 package activity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -235,6 +238,11 @@ super.onActivityCreated(savedInstanceState);
         geoList.clear();
         adapter.notifyDataSetChanged();
 
+
+        final ProgressDialog progress = new ProgressDialog(getActivity());
+        progress.setTitle("Chargement");
+        progress.setMessage("Veuillez patienter pendant le chargement des arrêts");
+        progress.show();
         // Creating volley request obj
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
@@ -287,7 +295,7 @@ super.onActivityCreated(savedInstanceState);
                             }
 
                         }
-
+                        progress.dismiss();
                         // notifying list adapter about data changes
                         // so that it renders the list view with updated data
                         adapter.notifyDataSetChanged();
@@ -299,18 +307,20 @@ super.onActivityCreated(savedInstanceState);
 
 
                 geoList.clear();
-                Arretsgeo arret2 = new Arretsgeo();
-                arret2.setArret("Pas de données disponible !");
-
-
-
-                ArrayList list = new ArrayList();
-                list.add(0, " ");
-                arret2.setLigne(list);
-
-                arret2.setLieu(" ");
-
-                geoList.add(arret2);
+                progress.dismiss();
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("ERREUR")
+                        .setMessage("UNE ERREUR EST SURVENUE")
+                        .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent();
+                                intent.setClass(getActivity(), MainActivity.class);
+                                startActivity(intent);
+                            }
+                        })
+                        .setCancelable(false)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
                 adapter.notifyDataSetChanged();
 
 

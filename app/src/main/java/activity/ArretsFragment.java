@@ -1,7 +1,10 @@
 package activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -101,6 +104,10 @@ public class ArretsFragment extends Fragment  {
         // movieList is an empty array at this point.
         adapter = new CustomListAdapter(getActivity(), arretsList, false);
         listView.setAdapter(adapter);
+
+
+
+
 
 
         search = (EditText) getActivity().findViewById(R.id.search);
@@ -210,8 +217,6 @@ public class ArretsFragment extends Fragment  {
                         VolleyLog.d(TAG, "Error: " + error.getMessage());
 
 
-
-
                         arretsList.clear();
 
                         final Arrets temps2 = new Arrets();
@@ -247,6 +252,10 @@ public class ArretsFragment extends Fragment  {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+
+
+
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -342,7 +351,10 @@ public class ArretsFragment extends Fragment  {
         searchContainer.setVisibility(View.GONE);
 
 
-
+        final ProgressDialog progress = new ProgressDialog(getActivity());
+        progress.setTitle("Chargement");
+        progress.setMessage("Veuillez patienter pendant le chargement des arrêts");
+        progress.show();
 
 
 
@@ -396,7 +408,7 @@ public class ArretsFragment extends Fragment  {
                             }
 
                         }
-
+                        progress.dismiss();
                         // notifying list adapter about data changes
                         // so that it renders the list view with updated data
                         adapter.notifyDataSetChanged();
@@ -406,21 +418,23 @@ public class ArretsFragment extends Fragment  {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-
+                progress.dismiss();
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("ERREUR")
+                        .setMessage("PAS DE CONNEXION INTERNET")
+                        .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent();
+                                intent.setClass(getActivity(), MainActivity.class);
+                                startActivity(intent);
+                            }
+                        })
+                        .setCancelable(false)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
                 arretsList.clear();
 
-                final Arrets temps2 = new Arrets();
 
-                temps2.setArret("Pas de donées disponible !");
-
-                ArrayList list = new ArrayList();
-                list.add(0, " ");
-
-                temps2.setLigne(list);
-
-                temps2.setLieu(" ");
-
-                arretsList.add(temps2);
 
                 adapter.notifyDataSetChanged();
 
