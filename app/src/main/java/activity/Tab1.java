@@ -97,7 +97,7 @@ public class Tab1 extends Fragment {
         favorites = sharedPreference.getFavorites(activity);
 
         if (favorites == null) {
-            
+
 
 
         } else {

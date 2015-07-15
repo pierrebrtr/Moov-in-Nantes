@@ -218,7 +218,9 @@ public class TempsActivity extends ActionBarActivity {
 
 
 
+
                 TextView t = (TextView) findViewById(R.id.headertext);
+
 
                 i.putExtra("sens", libelle);
                 i.putExtra("id", arret2);
@@ -227,6 +229,7 @@ public class TempsActivity extends ActionBarActivity {
                 i.putExtra("terminus", terminus);
                 startActivity(i);
 
+            
 
             }
         });

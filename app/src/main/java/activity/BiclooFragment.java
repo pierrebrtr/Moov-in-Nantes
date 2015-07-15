@@ -165,8 +165,10 @@ public class BiclooFragment extends Fragment  {
 
                         bicloo.setPlacedispo(" ");
 
+
                         bicloo.setVelodispo(" ");
                         listbicloo.add(bicloo);
+
 
                         adapter.notifyDataSetChanged();
 
