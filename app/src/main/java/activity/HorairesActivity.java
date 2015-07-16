@@ -1,6 +1,9 @@
 package activity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -96,6 +99,12 @@ super.onCreate(savedInstanceState);
 
 
 
+
+
+        final ProgressDialog progress = new ProgressDialog(this);
+        progress.setTitle("Chargement");
+        progress.setMessage("Veuillez patienter pendant le chargement des horaires");
+        progress.show();
 
 
 
@@ -194,19 +203,6 @@ super.onCreate(savedInstanceState);
         // movieList is an empty array at this point.
 
 
-        final Horaires horaires2 = new Horaires();
-
-        horaires2.setHeure("Chargement");
-
-
-
-
-        ArrayList<String> listdata = new ArrayList<String>();
-        listdata.add(0, " ");
-
-
-        horaires2.setPassages(listdata);
-        horairesList.add(horaires2);
 
         adapter.notifyDataSetChanged();
 
@@ -227,7 +223,7 @@ super.onCreate(savedInstanceState);
 
 
 
-                    horairesList.remove(horaires2);
+
 
 
 
@@ -283,6 +279,7 @@ super.onCreate(savedInstanceState);
                     e.printStackTrace();
 
                 }
+                progress.dismiss();
                 adapter.notifyDataSetChanged();
 
             }
@@ -294,6 +291,14 @@ super.onCreate(savedInstanceState);
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
+
+
+
+
+
+
+
+                adapter.notifyDataSetChanged();
 
             }
         });
@@ -323,18 +328,7 @@ super.onCreate(savedInstanceState);
                 horairesList.clear();
 
 
-                final Horaires horaires2 = new Horaires();
 
-                horaires2.setHeure("Chargement");
-
-                ArrayList<String> listdata = new ArrayList<String>();
-                listdata.add(0, " ");
-
-
-                horaires2.setPassages(listdata);
-
-
-                horairesList.add(horaires2);
 
 
                 adapter.notifyDataSetChanged();
@@ -357,7 +351,7 @@ super.onCreate(savedInstanceState);
 
 
 
-                            horairesList.remove(horaires2);
+                           
 
 
 

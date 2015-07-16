@@ -22,7 +22,11 @@ import com.pandf.moovin.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import app.AppController;
+import it.gmariotti.cardslib.library.cards.actions.BaseSupplementalAction;
+import it.gmariotti.cardslib.library.cards.actions.IconSupplementalAction;
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardHeader;
 import it.gmariotti.cardslib.library.internal.CardThumbnail;
@@ -69,6 +73,9 @@ public class Tab2 extends Fragment {
 
 
 
+
+
+
                     CardView cardView2 = (CardView) v.findViewById(R.id.carddemo);
                     cardView2.setVisibility(View.VISIBLE);
 
@@ -90,11 +97,6 @@ public class Tab2 extends Fragment {
 
                     Card card = new Card(getActivity(), R.layout.row_card);
 
-
-
-
-
-
 // Create a CardHeader
                     CardHeader header = new CardHeader(getActivity());
                     header.setTitle("En direct du ciel :");
@@ -108,12 +110,47 @@ public class Tab2 extends Fragment {
 
                     card.addCardThumbnail(thumb);
 
+
 // Add Header to card
                     card.addCardHeader(header);
 
 // Set card in the cardView
                     CardView cardView = (CardView) v.findViewById(R.id.carddemo);
                     cardView.setCard(card);
+
+
+
+
+
+
+                    Card carddiscover = new Card(getActivity(), R.layout.row_card);
+
+
+
+
+
+
+// Create a CardHeader
+                    CardHeader headerdiscover = new CardHeader(getActivity());
+                    headerdiscover.setTitle("Découvrir");
+
+                    carddiscover.setTitle("Venez découvrir quelques endroits magnifiques de Nantes");
+
+
+
+                    CardThumbnail thumbdiscover = new CardThumbnail(getActivity());
+                    thumbdiscover.setUrlResource(icon);
+
+                    carddiscover.addCardThumbnail(thumbdiscover);
+
+// Add Header to card
+                    carddiscover.addCardHeader(headerdiscover);
+
+// Set card in the cardView
+                    CardView cardViewdiscover = (CardView) v.findViewById(R.id.carddiscover);
+                    cardViewdiscover.setCard(carddiscover);
+
+
 
 
 

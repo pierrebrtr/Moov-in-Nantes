@@ -12,4 +12,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+
+    <style name="carddemo_default_container_padding">
+        <item name="android:clipToPadding">false</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:paddingLeft">@dimen/carddemo_keyline_1_minus_8dp</item>
+        <item name="android:paddingRight">@dimen/carddemo_keyline_1_minus_8dp</item>
+        <item name="android:paddingTop">@dimen/carddemo_keyline_1_minus_8dp</item>
+        <item name="android:paddingBottom">@dimen/carddemo_keyline_1_minus_8dp</item>
+    </style>
+
 </resources>

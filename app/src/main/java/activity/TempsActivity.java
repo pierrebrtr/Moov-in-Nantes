@@ -1,6 +1,9 @@
 package activity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -88,6 +91,12 @@ public class TempsActivity extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
 
+
+
+        final ProgressDialog progress = new ProgressDialog(this);
+        progress.setTitle("Chargement");
+        progress.setMessage("Veuillez patienter pendant le chargement des horaires en temps réel");
+        progress.show();
 
 
         Intent intents = getIntent();
@@ -181,15 +190,7 @@ public class TempsActivity extends ActionBarActivity {
         listView2.setAdapter(adapter);
 
 
-        final Temps temps2 = new Temps();
 
-        temps2.setDirection("Chargement...");
-
-        temps2.setLigne("  ");
-
-        temps2.setTemps(" ");
-
-        directionList.add(temps2);
 
         listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -229,7 +230,7 @@ public class TempsActivity extends ActionBarActivity {
                 i.putExtra("terminus", terminus);
                 startActivity(i);
 
-            
+
 
             }
         });
@@ -254,7 +255,7 @@ public class TempsActivity extends ActionBarActivity {
                                 }
 
 
-                                directionList.remove(temps2);
+
 
                                 Temps temps = new Temps();
 
@@ -287,8 +288,11 @@ public class TempsActivity extends ActionBarActivity {
                                 e.printStackTrace();
                             }
 
+
+
                         }
 
+                        progress.dismiss();
                         // notifying list adapter about data changes
                         // so that it renders the list view with updated data
                         adapter.notifyDataSetChanged();
@@ -298,18 +302,26 @@ public class TempsActivity extends ActionBarActivity {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
+                progress.dismiss();
+
+                new AlertDialog.Builder(TempsActivity.this)
+                        .setTitle("ERREUR")
+                        .setMessage("UNE ERREUR EST SURVENUE")
+                        .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent();
+                                intent.setClass(TempsActivity.this, MainActivity.class);
+
+                                startActivity(intent);
+                            }
+                        })
+                        .setCancelable(false)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
 
                 directionList.clear();
 
-                final Temps temps2 = new Temps();
 
-                temps2.setDirection("Pas de données disponible");
-
-                temps2.setLigne("  ");
-
-                temps2.setTemps(" ");
-
-                directionList.add(temps2);
 
                 adapter.notifyDataSetChanged();
 
@@ -339,15 +351,7 @@ public class TempsActivity extends ActionBarActivity {
 
                 directionList.clear();
 
-                final Temps temps2 = new Temps();
 
-                temps2.setDirection("Chargement...");
-
-                temps2.setLigne("  ");
-
-                temps2.setTemps(" ");
-
-                directionList.add(temps2);
 
 
 
@@ -376,7 +380,7 @@ public class TempsActivity extends ActionBarActivity {
 
 
 
-                                        directionList.remove(temps2);
+
 
 
 
@@ -410,17 +414,24 @@ public class TempsActivity extends ActionBarActivity {
                     public void onErrorResponse(VolleyError error) {
                         VolleyLog.d(TAG, "Error: " + error.getMessage());
 
+                        progress.dismiss();
+
+                        new AlertDialog.Builder(TempsActivity.this)
+                                .setTitle("ERREUR")
+                                .setMessage("UNE ERREUR EST SURVENUE")
+                                .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent();
+                                        intent.setClass(TempsActivity.this, MainActivity.class);
+
+                                        startActivity(intent);
+                                    }
+                                })
+                                .setCancelable(false)
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+
                         directionList.clear();
-
-                        final Temps temps2 = new Temps();
-
-                        temps2.setDirection("Pas de données disponible");
-
-                        temps2.setLigne("  ");
-
-                        temps2.setTemps(" ");
-
-                        directionList.add(temps2);
 
                         adapter.notifyDataSetChanged();
 

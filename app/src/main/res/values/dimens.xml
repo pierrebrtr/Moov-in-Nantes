@@ -12,4 +12,6 @@
     <!-- FAKE HEADER HEIGHT -->
     <dimen name="max_height_header">110dp</dimen>
 
+    <dimen name="carddemo_keyline_1_minus_8dp">8dp</dimen>
+
 </resources>

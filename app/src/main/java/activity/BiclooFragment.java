@@ -98,15 +98,7 @@ public class BiclooFragment extends Fragment  {
                 listbicloo.clear();
 
 
-                final Bicloo bicloo2 = new Bicloo();
 
-                bicloo2.setAdresse("Chargement...");
-                
-                bicloo2.setVelodispo(" ");
-                bicloo2.setPlacedispo(" ");
-                listbicloo.add(bicloo2);
-
-                adapter.notifyDataSetChanged();
 
                 // Creating volley request obj
                 JsonArrayRequest movieReq = new JsonArrayRequest(url,
@@ -129,7 +121,7 @@ public class BiclooFragment extends Fragment  {
 
 
 
-                                        listbicloo.remove(bicloo2);
+
 
                                         Bicloo bicloo = new Bicloo();
                                         bicloo.setAdresse(obj.getString("address"));
@@ -164,6 +156,7 @@ public class BiclooFragment extends Fragment  {
                         bicloo.setAdresse("Pas de données disponible");
 
                         bicloo.setPlacedispo(" ");
+
 
 
                         bicloo.setVelodispo(" ");
