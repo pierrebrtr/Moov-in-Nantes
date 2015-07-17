@@ -144,7 +144,7 @@ public class Tab2 extends Fragment {
 
 
 animatedCircleLoadingView.stopOk();
-                   
+
 
 
 
