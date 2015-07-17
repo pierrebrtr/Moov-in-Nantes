@@ -11,9 +11,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.pandf.moovin.R;
+import com.txusballesteros.bubbles.BubbleLayout;
+import com.txusballesteros.bubbles.BubblesManager;
+import com.txusballesteros.bubbles.OnInitializedCallback;
 
 import adapter.FragmentDrawer;
 import hotchemi.android.rate.AppRate;
@@ -32,10 +36,16 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
+
 
         AppRate.with(this)
                 .setInstallDays(5) // default 10, 0 means install day.
@@ -149,4 +159,12 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
             getSupportActionBar().setTitle(title);
         }
     }
+
+
+
+
+
+
+
+
 }

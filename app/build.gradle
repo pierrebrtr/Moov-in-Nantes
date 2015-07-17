@@ -40,6 +40,7 @@ dependencies {
     compile 'com.github.gabrielemariotti.cards:cardslib-recyclerview:2.0.1'
     compile 'de.hdodenhof:circleimageview:1.2.2'
     compile 'com.github.jlmd:AnimatedCircleLoadingView:1.1@aar'
+    compile 'com.txusballesteros:bubbles:1.1'
 
 
 }

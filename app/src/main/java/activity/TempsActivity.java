@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -34,6 +35,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.pandf.moovin.R;
+import com.txusballesteros.bubbles.BubbleLayout;
+import com.txusballesteros.bubbles.BubblesManager;
+import com.txusballesteros.bubbles.OnInitializedCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,6 +60,7 @@ import model.Temps;
 public class TempsActivity extends ActionBarActivity {
     final Random rnd = new Random();
     private static final String TAG = MainActivity.class.getSimpleName();
+    private BubblesManager bubblesManager;
 
 
     // Movies json url
@@ -90,6 +95,8 @@ public class TempsActivity extends ActionBarActivity {
             final Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        initializeBubblesManager();
 
 
 
@@ -559,7 +566,15 @@ public class TempsActivity extends ActionBarActivity {
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menu_temps, menu);
 
+
+        return true;//return true so that the menu pop up is opened
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
@@ -567,8 +582,70 @@ public class TempsActivity extends ActionBarActivity {
             case android.R.id.home:
                 super.onBackPressed();
         }
+        int id = menuItem.getItemId();
+        if (id == R.id.action_bubble){
+            addNewBubble();
+            return true;
+        }
+
         return (super.onOptionsItemSelected(menuItem));
     }
+
+
+
+    private void addNewBubble() {
+        BubbleLayout bubbleView = (BubbleLayout) LayoutInflater.from(TempsActivity.this).inflate(R.layout.bubble_layout, null);
+
+        bubbleView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = getIntent();
+
+                String text = intent.getExtras().getString("text");
+
+                String libelle = intent.getExtras().getString("libelle");
+
+
+                Intent i = new Intent(TempsActivity.this, TempsActivity.class);
+                i.putExtra("text", text);
+                i.putExtra("libelle", libelle);
+                startActivity(i);
+
+
+
+            }
+        });
+        bubbleView.setOnBubbleRemoveListener(new BubbleLayout.OnBubbleRemoveListener() {
+            @Override
+            public void onBubbleRemoved(BubbleLayout bubble) {
+
+                Toast.makeText(getApplicationContext(),
+                        "Bulle supprimée",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        bubblesManager.addBubble(bubbleView, 60, 20);
+    }
+
+    private void initializeBubblesManager() {
+        bubblesManager = new BubblesManager.Builder(this)
+                .setTrashLayout(R.layout.bubble_trash_layout)
+                .setInitializationCallback(new OnInitializedCallback() {
+                    @Override
+                    public void onInitialized() {
+
+                    }
+                })
+                .build();
+        bubblesManager.initialize();
+    }
+
+
+
+
+
 
 
 

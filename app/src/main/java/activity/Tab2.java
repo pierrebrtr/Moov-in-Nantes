@@ -199,7 +199,7 @@ public class Tab2 extends Fragment {
             CardHeader header = new CardHeader(getActivity());
             header.setTitle("Erreur");
 
-            card.setTitle("Vérifiez votre connection Internet");
+            card.setTitle("Vérifiez votre connexion Internet");
 
 
 
