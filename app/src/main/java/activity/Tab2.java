@@ -1,5 +1,6 @@
 package activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -17,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
 import com.pandf.moovin.R;
 
 import org.json.JSONException;
@@ -40,6 +42,8 @@ public class Tab2 extends Fragment {
     String icon = " ";
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private AnimatedCircleLoadingView animatedCircleLoadingView;
+
 
 
 
@@ -51,9 +55,15 @@ public class Tab2 extends Fragment {
 
 
 
+
+
+
+
+
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
 
         if (networkInfo != null && networkInfo.isConnected()) {
             // Create an object for subclass of AsyncTask
@@ -75,6 +85,10 @@ public class Tab2 extends Fragment {
 
 
 
+                    animatedCircleLoadingView = (AnimatedCircleLoadingView) getActivity().findViewById(R.id.circle_loading_view);
+                    animatedCircleLoadingView.startIndeterminate();
+
+                    buildCardDiscover(getActivity());
 
                     CardView cardView2 = (CardView) v.findViewById(R.id.carddemo);
                     cardView2.setVisibility(View.VISIBLE);
@@ -123,39 +137,14 @@ public class Tab2 extends Fragment {
 
 
 
-                    Card carddiscover = new Card(getActivity(), R.layout.row_card);
 
 
 
 
 
 
-// Create a CardHeader
-                    CardHeader headerdiscover = new CardHeader(getActivity());
-                    headerdiscover.setTitle("Découvrir");
-
-                    carddiscover.setTitle("Venez découvrir quelques endroits magnifiques de Nantes");
-
-
-
-                    CardThumbnail thumbdiscover = new CardThumbnail(getActivity());
-                    thumbdiscover.setUrlResource(icon);
-
-                    carddiscover.addCardThumbnail(thumbdiscover);
-
-// Add Header to card
-                    carddiscover.addCardHeader(headerdiscover);
-
-// Set card in the cardView
-                    CardView cardViewdiscover = (CardView) v.findViewById(R.id.carddiscover);
-                    cardViewdiscover.setCard(carddiscover);
-
-
-
-
-
-
-
+animatedCircleLoadingView.stopOk();
+                   
 
 
 
@@ -186,9 +175,39 @@ public class Tab2 extends Fragment {
 
 
         } else {
+
+
             Toast.makeText(getActivity().getApplicationContext(),
                     "Pas de connexion internet",
                     Toast.LENGTH_LONG).show();
+
+
+
+
+
+
+            Card carddiscover = new Card(getActivity(), R.layout.row_card);
+// Create a CardHeader
+            CardHeader headerdiscover = new CardHeader(getActivity());
+            headerdiscover.setTitle("Découvrir");
+
+            carddiscover.setTitle("Venez découvrir quelques endroits magnifiques de Nantes");
+
+
+
+            CardThumbnail thumbdiscover = new CardThumbnail(getActivity());
+
+// Add Header to card
+            carddiscover.addCardHeader(headerdiscover);
+
+// Set card in the cardView
+            CardView cardViewdiscover = (CardView) v.findViewById(R.id.carddiscover);
+            cardViewdiscover.setCard(carddiscover);
+
+
+
+
+
 
             Card card = new Card(getActivity(), R.layout.row_card);
 
@@ -214,12 +233,17 @@ public class Tab2 extends Fragment {
 
 
 
+
+
         }
 
 
         // Create a Card
 
         return v;
+
+
+
     }
 
 
@@ -254,6 +278,31 @@ public class Tab2 extends Fragment {
 
         super.onCreate(savedInstanceState);
 
+
+
+
+    }
+
+    private void buildCardDiscover(Activity activicty) {
+
+
+        Card carddiscover = new Card(activicty, R.layout.row_card);
+// Create a CardHeader
+        CardHeader headerdiscover = new CardHeader(activicty);
+        headerdiscover.setTitle("Découvrir");
+
+        carddiscover.setTitle("Venez découvrir quelques endroits magnifiques de Nantes");
+
+
+
+        CardThumbnail thumbdiscover = new CardThumbnail(activicty);
+
+// Add Header to card
+        carddiscover.addCardHeader(headerdiscover);
+
+// Set card in the cardView
+        CardView cardViewdiscover = (CardView) getView().findViewById(R.id.carddiscover);
+        cardViewdiscover.setCard(carddiscover);
 
 
 

@@ -13,12 +13,32 @@
         style="@style/carddemo_default_container_padding"
         android:id="@+id/card_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+
+
+
+            <it.gmariotti.cardslib.library.view.CardView
+                android:id="@+id/carddiscover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15dp"/>
 
             <it.gmariotti.cardslib.library.view.CardView
                 android:id="@+id/carddemo"
@@ -30,17 +50,8 @@
                 card:card_layout_resourceID="@layout/card_thumbnail_layout"/>
 
             <!-- Empty view-->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="15dp"/>
 
-            <it.gmariotti.cardslib.library.view.CardView
-                android:id="@+id/carddiscover"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="12dp"/>
+
 
             <!-- Empty view-->
             <View
@@ -53,6 +64,18 @@
 
 
 
+
+    <com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/circle_loading_view"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@color/background"
+        app:mainColor="@color/main_color"
+        app:secondaryColor="@color/secondary_color"
+        android:layout_weight="5.65"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 
 
