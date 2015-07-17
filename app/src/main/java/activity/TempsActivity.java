@@ -376,26 +376,30 @@ public class TempsActivity extends ActionBarActivity {
                                             e.printStackTrace();
                                         }
 
-                                        JSONObject jObject = obj.getJSONObject("ligne");
-
-
-
-
-
-
-
                                         Temps temps = new Temps();
 
-
+                                        JSONObject jObject = obj.getJSONObject("ligne");
+                                        JSONObject jObject2 = obj.getJSONObject("arret");
 
                                         temps.setDirection(obj.getString("terminus"));
 
                                         temps.setLigne(jObject.getString("numLigne"));
 
+
+
+
+
+
+                                        temps.setSens(obj.getString("sens"));
+
+                                        temps.setTerminus(obj.getString("terminus"));
+
                                         String temp = obj.getString("temps").replace("Close", "En approche");
 
                                         temps.setTemps(temp);
 
+
+                                        temps.setArret(jObject2.getString("codeArret"));
                                         directionList.add(temps);
 
 
