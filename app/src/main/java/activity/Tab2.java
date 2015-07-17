@@ -56,9 +56,10 @@ public class Tab2 extends Fragment {
 
 
 
+        animatedCircleLoadingView = (AnimatedCircleLoadingView) v.findViewById(R.id.circle_loading_view);
 
 
-
+        animatedCircleLoadingView.startIndeterminate();
 
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -85,8 +86,8 @@ public class Tab2 extends Fragment {
 
 
 
-                    animatedCircleLoadingView = (AnimatedCircleLoadingView) getActivity().findViewById(R.id.circle_loading_view);
-                    animatedCircleLoadingView.startIndeterminate();
+
+
 
                     buildCardDiscover(getActivity());
 
@@ -133,21 +134,7 @@ public class Tab2 extends Fragment {
                     cardView.setCard(card);
 
 
-
-
-
-
-
-
-
-
-
-
-animatedCircleLoadingView.stopOk();
-
-
-
-
+                animatedCircleLoadingView.stopOk();
 
 
                 } catch (JSONException e) {
@@ -177,13 +164,10 @@ animatedCircleLoadingView.stopOk();
         } else {
 
 
+
             Toast.makeText(getActivity().getApplicationContext(),
                     "Pas de connexion internet",
                     Toast.LENGTH_LONG).show();
-
-
-
-
 
 
             Card carddiscover = new Card(getActivity(), R.layout.row_card);
@@ -234,7 +218,6 @@ animatedCircleLoadingView.stopOk();
 
 
 
-
         }
 
 
@@ -248,14 +231,7 @@ animatedCircleLoadingView.stopOk();
 
 
 
-    public void createCard(View c){
 
-
-
-
-
-
-    }
 
 
 
