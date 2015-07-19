@@ -3,10 +3,12 @@ package activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,12 +19,20 @@ import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.ui.LibsActivity;
 
 import app.AppController;
+import util.SpLite;
+import util.Spfav;
 
 /**
  * Created by dev on 19/04/15.
  */
 public class MyPreferencesActivity extends ActionBarActivity {
+
+    SpLite sharedlite;
     private Toolbar mToolbar;
+
+
+
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -30,7 +40,11 @@ public class MyPreferencesActivity extends ActionBarActivity {
             android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             getFragmentManager().beginTransaction().replace(R.id.content_frame, new MyPreferenceFragment()).commit();
+
+
         }
+
+
 
     @Override
     public void onBackPressed()
@@ -40,7 +54,9 @@ public class MyPreferencesActivity extends ActionBarActivity {
         finish();
     }
 
-    public static class MyPreferenceFragment extends PreferenceFragment{
+    public class MyPreferenceFragment extends PreferenceFragment{
+        String ListPreference;
+        boolean CheckboxPreference;
         @Override
         public void onCreate(final Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
@@ -64,6 +80,42 @@ public class MyPreferencesActivity extends ActionBarActivity {
                     startActivity(intent);
                     return true;
                 }
+            });
+
+            final CheckBoxPreference checkboxPref = (CheckBoxPreference) getPreferenceManager().findPreference("lite");
+
+            checkboxPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    Log.d("MyApp", "Pref " + preference.getKey() + " changed to " + newValue.toString());
+
+
+                    sharedlite = new SpLite();
+
+                    if (newValue.toString() == "true") {
+
+
+                    sharedlite.setPref(getActivity(), "true");
+
+
+
+
+                    } else {
+
+
+                        sharedlite.setPref(getActivity(), "false");
+
+
+
+
+                    }
+
+
+
+                    return true;
+                }
+
+
+
             });
 
             Preference userButtone = (Preference) findPreference("cache");

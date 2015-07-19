@@ -38,6 +38,7 @@ import java.util.ArrayList;
 
 
 import app.AppController;
+import util.SpLite;
 
 
 public class Tab2 extends Fragment {
@@ -50,6 +51,7 @@ public class Tab2 extends Fragment {
     private static final String TAG = MainActivity.class.getSimpleName();
     private AnimatedCircleLoadingView animatedCircleLoadingView;
     private SwipeRefreshLayout swipeLayout;
+    SpLite sharedlite;
 
 
 
@@ -60,6 +62,9 @@ public class Tab2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v =inflater.inflate(R.layout.tab_2,container,false);
 
+
+
+        Toast.makeText(getActivity(), "Chargement...", Toast.LENGTH_SHORT).show();
 
 
 
@@ -142,7 +147,41 @@ public class Tab2 extends Fragment {
                     SmallImageCard cardmeteo = new SmallImageCard(getActivity());
                     cardmeteo.setTitle("En direct du ciel :");
                     cardmeteo.setDescription(condition + " (" + tmp + "°)");
-                    cardmeteo.setDrawable(icon);
+
+
+
+
+                    sharedlite = new SpLite();
+
+                    String foo = null;
+
+
+
+
+
+                    Log.d("LOG", sharedlite.getFavorites(getActivity()).toString());
+
+                    if (sharedlite.getFavorites(getActivity()).contains("true")){
+
+
+                        Log.d("Test", "Lite est activé");
+
+                    }
+
+                    if (sharedlite.getFavorites(getActivity()).contains("false")){
+
+                        cardmeteo.setDrawable(icon);
+                       Log.d("Test", "Lite est désactivé");
+
+                    }
+
+
+
+
+
+
+
+
 
                     mListView.add(carddiscover);
                     mListView.add(cardmeteo);
@@ -262,7 +301,7 @@ public class Tab2 extends Fragment {
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getActivity(), "Rechargement...", Toast.LENGTH_SHORT).show();
+
 
 
                 Intent intent = getActivity().getIntent();
