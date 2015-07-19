@@ -63,7 +63,6 @@
                 android:id="@+id/circle_loading_view"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:background="@color/background"
                 app:mainColor="@color/main_color"
                 app:secondaryColor="@color/secondary_color"
                 android:layout_weight="5.65"

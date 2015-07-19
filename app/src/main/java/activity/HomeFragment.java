@@ -19,7 +19,7 @@ public class HomeFragment extends Fragment {
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Accueil","Favoris"};
+    CharSequence Titles[]={"Moov'in","Favoris"};
     int Numboftabs =2;
 
     @Override

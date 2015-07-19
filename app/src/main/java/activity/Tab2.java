@@ -173,7 +173,7 @@ public class Tab2 extends Fragment {
             Card carddiscover = new Card(getActivity(), R.layout.row_card);
 // Create a CardHeader
             CardHeader headerdiscover = new CardHeader(getActivity());
-            headerdiscover.setTitle("Découvrir");
+            headerdiscover.setTitle("Découvrir (Bientôt)");
 
             carddiscover.setTitle("Venez découvrir quelques endroits magnifiques de Nantes");
 
@@ -265,7 +265,7 @@ public class Tab2 extends Fragment {
         Card carddiscover = new Card(activicty, R.layout.row_card);
 // Create a CardHeader
         CardHeader headerdiscover = new CardHeader(activicty);
-        headerdiscover.setTitle("Découvrir");
+        headerdiscover.setTitle("Découvrir (Bientôt)");
 
         carddiscover.setTitle("Venez découvrir quelques endroits magnifiques de Nantes");
 

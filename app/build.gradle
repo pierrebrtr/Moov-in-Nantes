@@ -8,8 +8,8 @@ android {
         applicationId "com.pandf.moovin"
         minSdkVersion 15
         targetSdkVersion 21
-        versionCode 2
-        versionName "0.1.1"
+        versionCode 3
+        versionName "0.2"
     }
     buildTypes {
         release {
@@ -35,9 +35,7 @@ dependencies {
     compile('com.mikepenz.aboutlibraries:library:4.5.9@aar') {
         transitive = true
     }
-    compile 'com.github.gabrielemariotti.cards:cardslib-core:2.0.1'
-    compile 'com.github.gabrielemariotti.cards:cardslib-cards:2.0.1'
-    compile 'com.github.gabrielemariotti.cards:cardslib-recyclerview:2.0.1'
+    compile 'com.github.dexafree:materiallist:2.4.5'
     compile 'de.hdodenhof:circleimageview:1.2.2'
     compile 'com.github.jlmd:AnimatedCircleLoadingView:1.1@aar'
     compile 'com.txusballesteros:bubbles:1.1'
