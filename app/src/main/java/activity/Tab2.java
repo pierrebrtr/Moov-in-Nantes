@@ -2,11 +2,13 @@ package activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +19,15 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.dexafree.materialList.cards.OnButtonPressListener;
+import com.dexafree.materialList.cards.SmallImageCard;
+import com.dexafree.materialList.cards.WelcomeCard;
+import com.dexafree.materialList.controller.RecyclerItemClickListener;
+import com.dexafree.materialList.model.Card;
+import com.dexafree.materialList.model.CardItemView;
+import com.dexafree.materialList.view.MaterialListView;
 import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
 import com.pandf.moovin.R;
 
@@ -26,13 +36,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+
 import app.AppController;
-import it.gmariotti.cardslib.library.cards.actions.BaseSupplementalAction;
-import it.gmariotti.cardslib.library.cards.actions.IconSupplementalAction;
-import it.gmariotti.cardslib.library.internal.Card;
-import it.gmariotti.cardslib.library.internal.CardHeader;
-import it.gmariotti.cardslib.library.internal.CardThumbnail;
-import it.gmariotti.cardslib.library.view.CardView;
+
 
 public class Tab2 extends Fragment {
 
@@ -43,6 +49,7 @@ public class Tab2 extends Fragment {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private AnimatedCircleLoadingView animatedCircleLoadingView;
+    private SwipeRefreshLayout swipeLayout;
 
 
 
@@ -89,10 +96,8 @@ public class Tab2 extends Fragment {
 
 
 
-                    buildCardDiscover(getActivity());
 
-                    CardView cardView2 = (CardView) v.findViewById(R.id.carddemo);
-                    cardView2.setVisibility(View.VISIBLE);
+
 
 
 
@@ -110,28 +115,43 @@ public class Tab2 extends Fragment {
 
 
 
-                    Card card = new Card(getActivity(), R.layout.row_card);
-
-// Create a CardHeader
-                    CardHeader header = new CardHeader(getActivity());
-                    header.setTitle("En direct du ciel :");
-
-                    card.setTitle(condition +" ("+ tmp +"°)");
 
 
 
-                    CardThumbnail thumb = new CardThumbnail(getActivity());
-                    thumb.setUrlResource(icon);
-
-                    card.addCardThumbnail(thumb);
 
 
-// Add Header to card
-                    card.addCardHeader(header);
 
-// Set card in the cardView
-                    CardView cardView = (CardView) v.findViewById(R.id.carddemo);
-                    cardView.setCard(card);
+
+
+                    MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
+
+
+
+                    WelcomeCard carddiscover = new WelcomeCard(getActivity());
+                    carddiscover.setTitle("Découvrir Nantes");
+                    carddiscover.setSubtitle("Bientôt disponible");
+                    carddiscover.setDescription("Cette fonction va prochainement être integrée !");
+                    carddiscover.setButtonText("OKAY!");
+                    carddiscover.setTitleColor(getResources().getColor(R.color.colorGrey));
+                    carddiscover.setSubtitleColor(getResources().getColor(R.color.colorGrey));
+                    carddiscover.setButtonTextColor(getResources().getColor(R.color.colorGrey));
+
+
+
+
+                    SmallImageCard cardmeteo = new SmallImageCard(getActivity());
+                    cardmeteo.setTitle("En direct du ciel :");
+                    cardmeteo.setDescription(condition + " (" + tmp + "°)");
+                    cardmeteo.setDrawable(icon);
+
+                    mListView.add(carddiscover);
+                    mListView.add(cardmeteo);
+
+
+
+
+
+
 
 
                 animatedCircleLoadingView.stopOk();
@@ -170,50 +190,49 @@ public class Tab2 extends Fragment {
                     Toast.LENGTH_LONG).show();
 
 
-            Card carddiscover = new Card(getActivity(), R.layout.row_card);
-// Create a CardHeader
-            CardHeader headerdiscover = new CardHeader(getActivity());
-            headerdiscover.setTitle("Découvrir (Bientôt)");
-
-            carddiscover.setTitle("Venez découvrir quelques endroits magnifiques de Nantes");
+            final MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
 
 
+            WelcomeCard carddiscover = new WelcomeCard(getActivity());
+            carddiscover.setTitle("Découvrir Nantes");
+            carddiscover.setSubtitle("Bientôt disponible");
+            carddiscover.setDescription("Cette fonction va prochainement être integrée !");
+            carddiscover.setButtonText("OKAY!");
 
-            CardThumbnail thumbdiscover = new CardThumbnail(getActivity());
 
-// Add Header to card
-            carddiscover.addCardHeader(headerdiscover);
-
-// Set card in the cardView
-            CardView cardViewdiscover = (CardView) v.findViewById(R.id.carddiscover);
-            cardViewdiscover.setCard(carddiscover);
+            carddiscover.setTitleColor(getResources().getColor(R.color.colorGrey));
+            carddiscover.setSubtitleColor(getResources().getColor(R.color.colorGrey));
+            carddiscover.setButtonTextColor(getResources().getColor(R.color.colorGrey));
 
 
 
 
 
 
-            Card card = new Card(getActivity(), R.layout.row_card);
+
+            final WelcomeCard carderror = new WelcomeCard(getActivity());
+            carderror.setTitle("Pas de connexion");
+            carderror.setSubtitle("Erreur");
+            carderror.setDescription("Veuillez vérifier votre connexion internet");
+            carderror.setButtonText("OKAY !");
+
+            carderror.setBackgroundColor(getResources().getColor(R.color.colorError));
+            carderror.setDescriptionColor(getResources().getColor(R.color.colorWhite));
+            carderror.setSubtitleColor(getResources().getColor(R.color.colorWhite));
+            carderror.setDividerColor(getResources().getColor(R.color.colorWhite));
+
+            mListView.add(carderror);
+            mListView.add(carddiscover);
 
 
-            CardHeader header = new CardHeader(getActivity());
-            header.setTitle("Erreur");
-
-            card.setTitle("Vérifiez votre connexion Internet");
 
 
 
-            CardThumbnail thumb = new CardThumbnail(getActivity());
-            thumb.setDrawableResource(R.drawable.ic_cloud);
 
-            card.addCardThumbnail(thumb);
 
-// Add Header to card
-            card.addCardHeader(header);
 
-// Set card in the cardView
-            CardView cardView = (CardView) v.findViewById(R.id.carddemo);
-            cardView.setCard(card);
+
+
 
 
 
@@ -239,7 +258,33 @@ public class Tab2 extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
+        swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.refreshome);
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(getActivity(), "Rechargement...", Toast.LENGTH_SHORT).show();
 
+
+                Intent intent = getActivity().getIntent();
+
+
+
+                Intent i = new Intent(Tab2.this.getActivity(), MainActivity.class);
+
+                startActivity(i);
+
+
+
+
+                swipeLayout.setRefreshing(false);
+
+
+            }
+        });
+        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
 
 
@@ -259,30 +304,6 @@ public class Tab2 extends Fragment {
 
     }
 
-    private void buildCardDiscover(Activity activicty) {
-
-
-        Card carddiscover = new Card(activicty, R.layout.row_card);
-// Create a CardHeader
-        CardHeader headerdiscover = new CardHeader(activicty);
-        headerdiscover.setTitle("Découvrir (Bientôt)");
-
-        carddiscover.setTitle("Venez découvrir quelques endroits magnifiques de Nantes");
-
-
-
-        CardThumbnail thumbdiscover = new CardThumbnail(activicty);
-
-// Add Header to card
-        carddiscover.addCardHeader(headerdiscover);
-
-// Set card in the cardView
-        CardView cardViewdiscover = (CardView) getView().findViewById(R.id.carddiscover);
-        cardViewdiscover.setCard(carddiscover);
-
-
-
-    }
 
 
 

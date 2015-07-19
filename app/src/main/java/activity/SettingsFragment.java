@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.pandf.moovin.R;
+
 
 
 public class SettingsFragment extends Fragment {
