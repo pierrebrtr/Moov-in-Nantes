@@ -301,7 +301,7 @@ public class ArretsFragment extends Fragment  {
                     String tag = button.getTag().toString();
                     if (tag.equalsIgnoreCase("grey")) {
                         sharedPreference.addFavorite(getActivity(), item);
-                        Toast.makeText(getActivity(), "Ajouté au favoris !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Ajouté au favoris !", Toast.LENGTH_SHORT).show();
 
                         button.setTag("red");
                         button.setImageResource(R.drawable.ic_heart_red);
@@ -309,7 +309,7 @@ public class ArretsFragment extends Fragment  {
                         sharedPreference.removeFavorite(getActivity(), item);
                         button.setTag("grey");
                         button.setImageResource(R.drawable.ic_heart_white);
-                        Toast.makeText(getActivity(), "Supprimé des favoris !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Supprimé des favoris !", Toast.LENGTH_SHORT).show();
                     }
 
 

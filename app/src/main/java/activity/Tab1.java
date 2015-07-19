@@ -160,14 +160,12 @@ public class Tab1 extends Fragment {
                     button.setTag("grey");
                     button.setImageResource(R.drawable.ic_heart_white);
                     favorites.remove(favorites.get(position));
-                    Toast.makeText(
-                            activity,
-                            activity.getResources().getString(
-                                    R.string.remove_favr),
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Supprimé des favoris", Toast.LENGTH_SHORT).show();
                     sharedPreference.saveFavorites(activity, favorites);
 
                     productListAdapter.notifyDataSetChanged();
+
+
 
                     return true;
                 }
