@@ -64,6 +64,10 @@ public class Tab2 extends Fragment {
 
 
 
+
+
+
+
         Toast.makeText(getActivity(), "Chargement...", Toast.LENGTH_SHORT).show();
 
 
@@ -174,6 +178,8 @@ public class Tab2 extends Fragment {
                        Log.d("Test", "Lite est désactivé");
 
                     }
+
+
 
 
 

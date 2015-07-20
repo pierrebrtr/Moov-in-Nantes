@@ -312,8 +312,8 @@ public class TempsActivity extends ActionBarActivity {
                 progress.dismiss();
 
                 new AlertDialog.Builder(TempsActivity.this)
-                        .setTitle("ERREUR")
-                        .setMessage("UNE ERREUR EST SURVENUE")
+                        .setTitle("Erreur")
+                        .setMessage("Une erreur est survenue")
                         .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent();
@@ -428,8 +428,8 @@ public class TempsActivity extends ActionBarActivity {
                         progress.dismiss();
 
                         new AlertDialog.Builder(TempsActivity.this)
-                                .setTitle("ERREUR")
-                                .setMessage("UNE ERREUR EST SURVENUE")
+                                .setTitle("Erreur")
+                                .setMessage("Une erreur est survenue")
                                 .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intent = new Intent();

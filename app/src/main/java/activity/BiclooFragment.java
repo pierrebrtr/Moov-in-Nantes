@@ -269,8 +269,8 @@ public class BiclooFragment extends Fragment  {
 
                     progress.dismiss();
                     new AlertDialog.Builder(getActivity())
-                            .setTitle("ERREUR")
-                            .setMessage("PAS DE CONNEXION INTERNET")
+                            .setTitle("Erreur")
+                            .setMessage("Pas de connexion internet")
                             .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     Intent intent = new Intent();

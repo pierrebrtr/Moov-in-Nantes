@@ -1,5 +1,7 @@
 package activity;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -87,6 +89,9 @@ public class MyPreferencesActivity extends ActionBarActivity {
             checkboxPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     Log.d("MyApp", "Pref " + preference.getKey() + " changed to " + newValue.toString());
+
+
+
 
 
                     sharedlite = new SpLite();

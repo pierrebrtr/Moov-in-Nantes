@@ -100,6 +100,23 @@
         </activity>
 
 
+        <activity android:name="activity.WidgetConfig1activity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+        </activity>
+
+        <receiver android:name="widget.ExampleAppWidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.pandf.moovin.TEXT_CHANGED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget1_info" />
+        </receiver>
+
+
+
 
     </application>
 
