@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:id="@+id/layoutwidget"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -25,6 +26,6 @@
         android:layout_gravity="center_horizontal" />
 
 
-    <Button android:text="Click Me!" android:id="@+id/buttonwidget" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
 
 </LinearLayout>

@@ -89,7 +89,7 @@ public class ExampleAppWidgetProvider extends AppWidgetProvider {
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget1);
 
 
-            views.setOnClickPendingIntent(R.id.buttonwidget, pendingIntent);
+
 
 
 

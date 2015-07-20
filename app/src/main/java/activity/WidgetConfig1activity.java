@@ -216,17 +216,31 @@ public class WidgetConfig1activity extends Activity {
                 Log.d("fonction", "fonctionnel");
 
 
-                Intent intent = new Intent(getBaseContext(), WidgetConfig1activity.class);
 
-                intent.setData(Uri.parse("tel:/"+ (int)System.currentTimeMillis()));
 
-                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
+
+
+
+
+
+                Intent intent = new Intent(getApplicationContext(), TempsActivity.class);
+
+
+
+
+
+
+                intent.putExtra("text", text);
+                intent.putExtra("libelle", libelle);
 
 
                 // Creating a pending intent, which will be invoked when the user
                 // clicks on the widget
-                PendingIntent pendingIntent = PendingIntent.getActivity(getBaseContext(), 0,
-                        intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+
+
 
                 // Getting an instance of WidgetManager
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getBaseContext());
@@ -240,7 +254,7 @@ public class WidgetConfig1activity extends Activity {
                 views.setTextViewText(R.id.textViewwidget2, libelle);
 
                 //  Attach an on-click listener to the clock
-                views.setOnClickPendingIntent(R.id.buttonwidget, pendingIntent);
+                views.setOnClickPendingIntent(R.id.layoutwidget, pendingIntent);
 
                 // Tell the AppWidgetManager to perform an update on the app widget
                 appWidgetManager.updateAppWidget(mAppWidgetId, views);
