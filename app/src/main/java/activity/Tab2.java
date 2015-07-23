@@ -238,12 +238,11 @@ public class Tab2 extends Fragment {
             final MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
 
 
-            WelcomeCard carddiscover = new WelcomeCard(getActivity());
+            final WelcomeCard carddiscover = new WelcomeCard(getActivity());
             carddiscover.setTitle("Découvrir Nantes");
             carddiscover.setSubtitle("Bientôt disponible");
             carddiscover.setDescription("Cette fonction va prochainement être integrée !");
             carddiscover.setButtonText("OKAY!");
-
 
             carddiscover.setTitleColor(getResources().getColor(R.color.colorGrey));
             carddiscover.setSubtitleColor(getResources().getColor(R.color.colorGrey));

@@ -36,6 +36,8 @@
     <string name="aboutLibraries_description_text">Moov\'in Nantes</string>
 
     <string name="changelog_row_prefix_improvement">[b]Nouveauté:[/b]</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_arrets_maps">Map</string>
 
 
 

@@ -23,6 +23,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.google.android.gms.maps.model.LatLng;
+import com.pandf.moovin.MapsActivity;
 import com.pandf.moovin.R;
 
 import org.json.JSONArray;
@@ -46,6 +48,11 @@ public class BiclooFragment extends Fragment  {
     ConnectionDetector cd;
 
     private List<Bicloo> listbicloo = new ArrayList<Bicloo>();
+
+
+    ArrayList<LatLng> locations;
+
+
     // Log tag
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -77,6 +84,9 @@ public class BiclooFragment extends Fragment  {
         super.onActivityCreated(savedInstanceState);
 
 
+        locations = new ArrayList();
+
+
         listView = (ListView) getActivity().findViewById(R.id.listbicloo);
 
         // movieList is an empty array at this point.
@@ -96,6 +106,8 @@ public class BiclooFragment extends Fragment  {
 
 
                 listbicloo.clear();
+                locations.clear();
+
 
 
 
@@ -118,6 +130,45 @@ public class BiclooFragment extends Fragment  {
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
+
+
+
+
+
+
+
+
+
+
+
+
+                                        JSONObject genreArry = obj.getJSONObject("position");
+
+
+
+
+                                        Double latitude;
+
+                                       Double longitude;
+
+
+
+
+
+                                        latitude = genreArry.getDouble("lat");
+
+                                        longitude = genreArry.getDouble("lng");
+
+
+                                        Log.d("lat", latitude.toString());
+
+
+
+
+                                        locations.add(new LatLng(latitude, longitude));
+
+
+
 
 
 
@@ -238,6 +289,36 @@ public class BiclooFragment extends Fragment  {
 
 
 
+                                    JSONObject genreArry = obj.getJSONObject("position");
+
+
+
+
+                                    Double latitude;
+
+                                    Double longitude;
+
+
+
+
+
+                                    latitude = genreArry.getDouble("lat");
+
+                                    longitude = genreArry.getDouble("lng");
+
+
+                                    Log.d("lat", latitude.toString());
+
+
+                                    Log.d("lng", longitude.toString());
+
+
+
+
+                                    locations.add(new LatLng(latitude, longitude));
+
+
+
 
                                     Bicloo bicloo = new Bicloo();
                                    bicloo.setAdresse(obj.getString("address"));
@@ -279,7 +360,7 @@ public class BiclooFragment extends Fragment  {
                                 }
                             })
                             .setCancelable(false)
-                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setIcon(R.drawable.alert9)
                             .show();
                     listbicloo.clear();
 
@@ -309,7 +390,8 @@ public class BiclooFragment extends Fragment  {
         int id = item.getItemId();
     if (id == R.id.action_search){
         Intent intent = new Intent();
-        intent.setClass(getActivity(), BicloocartActivity.class);
+        intent.setClass(getActivity(), MapsActivity.class);
+        intent.putParcelableArrayListExtra("locations", locations);
         startActivity(intent);
         return true;
     }

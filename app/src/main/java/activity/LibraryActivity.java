@@ -29,11 +29,7 @@ public class LibraryActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent i = new Intent(getApplicationContext(), LibsActivity.class);
-//Pass the fields of your application to the lib so it can find all external lib information
-        i.putExtra(Libs.BUNDLE_FIELDS, Libs.toStringArray(R.string.class.getFields()));
 
-        i.putExtra(Libs.BUNDLE_VERSION, true);
-        i.putExtra(Libs.BUNDLE_LICENSE, true);
         i.putExtra(Libs.BUNDLE_TITLE, "Crédits librairies");
         i.putExtra(Libs.BUNDLE_THEME, R.style.MyMaterialTheme);
         startActivity(i);

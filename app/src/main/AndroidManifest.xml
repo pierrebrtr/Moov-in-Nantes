@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
         android:name="app.AppController"
@@ -20,17 +20,16 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <service android:name="com.txusballesteros.bubbles.BubblesService"
+        <service
+            android:name="com.txusballesteros.bubbles.BubblesService"
             android:enabled="true"
             android:exported="false" />
 
-
         <activity
             android:name="activity.SplashScreen"
-            android:label="@string/app_name"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait"
-            >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,70 +38,59 @@
         </activity>
         <activity
             android:name="activity.MainActivity"
-            android:label="@string/app_name"
             android:configChanges="orientation|screenSize"
-        >
+            android:label="@string/app_name" >
         </activity>
-
         <activity
-            android:label="@string/app_name"
             android:name="activity.TempsActivity"
             android:configChanges="orientation|screenSize"
-            >
-</activity>
+            android:label="@string/app_name" >
+        </activity>
         <activity
-            android:label="@string/app_name"
             android:name="activity.MyPreferencesActivity"
-            android:parentActivityName="activity.MainActivity"
             android:configChanges="orientation|screenSize"
-            >
+            android:label="@string/app_name"
+            android:parentActivityName="activity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="activity.MainActivity" />
         </activity>
         <activity
-            android:label="@string/app_name"
             android:name="activity.ChangelogActivity"
-            android:parentActivityName="activity.MyPreferencesActivity"
             android:configChanges="orientation|screenSize"
-            >
+            android:label="@string/app_name"
+            android:parentActivityName="activity.MyPreferencesActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="activity.MyPreferencesActivity" />
         </activity>
         <activity
-            android:label="@string/app_name"
             android:name="activity.AproposActivity"
-            android:parentActivityName="activity.MyPreferencesActivity"
             android:configChanges="orientation|screenSize"
-            >
+            android:label="@string/app_name"
+            android:parentActivityName="activity.MyPreferencesActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="activity.MyPreferencesActivity" />
         </activity>
         <activity
-            android:label="@string/app_name"
             android:name="activity.BicloocartActivity"
             android:configChanges="orientation|screenSize"
-            >
+            android:label="@string/app_name" >
         </activity>
         <activity
-            android:label="@string/app_name"
             android:name="activity.ArretcartActivity"
             android:configChanges="orientation|screenSize"
-            >
+            android:label="@string/app_name" >
         </activity>
         <activity
-            android:label="@string/app_name"
             android:name="activity.HorairesActivity"
             android:configChanges="orientation|screenSize"
-            >
+            android:label="@string/app_name" >
         </activity>
-
-
-        <activity android:name="activity.WidgetConfig1activity">
+        <activity android:name="activity.WidgetConfig1activity" >
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
@@ -111,13 +99,24 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="com.pandf.moovin.TEXT_CHANGED" />
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
+
+            <meta-data
+                android:name="android.appwidget.provider"
                 android:resource="@xml/widget1_info" />
         </receiver>
 
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_maps_key" />
 
-
-
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps" >
+        </activity>
+        <activity
+            android:name=".ArretsMapsActivity"
+            android:label="@string/title_activity_arrets_maps" >
+        </activity>
     </application>
 
 </manifest>

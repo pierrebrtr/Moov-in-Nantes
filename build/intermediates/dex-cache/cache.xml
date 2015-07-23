@@ -16,6 +16,20 @@
         <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-cf4f5aa960ac567aea6672ab1665bbe2bf5375fa.jar" />
     </item>
     <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="41b3870cbe5fa546d8095b5b89d42cb69f3dd175">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-4ba2aca023aa6b04b2ce8f4cf0d0bffa5cdd462a.jar" />
+    </item>
+    <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="73ccb92b70112f2e463e415ef8d7275de7da6516">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-34650759f9587a55dffb669e090e1590b26642c4.jar" />
+    </item>
+    <item
         jar="/Users/dev/Desktop/dev/Tan/app/libs/volley.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -30,11 +44,32 @@
         <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/gson-2.3.1-73299df11e94a621ee92ed41822dea6a269fc387.jar" />
     </item>
     <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="0e8228b4bc69c6a2c8d7c18498a77e53417d2574">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-629b3429b5b921a3f29f50e5482de47c88a0b13f.jar" />
+    </item>
+    <item
         jar="/Users/dev/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.4.0/f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2/picasso-2.4.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2">
         <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/picasso-2.4.0-dc527ab21422aa2fcb59c950e07421843c98157a.jar" />
+    </item>
+    <item
+        jar="/Users/dev/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/library-2.4.0-f5fd1c5a9af7cbdc45ad4772fdaf327db65b4fad.jar" />
+    </item>
+    <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.github.jlmd/AnimatedCircleLoadingView/1.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1117a648f7f777e6d941b9099e16bbd931c927a8">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-02971be0e820318c06602f5de091384114e8f34b.jar" />
     </item>
     <item
         jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.0.0/classes.jar"
@@ -44,11 +79,25 @@
         <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-cecba99ed461da32e7c5d8502f8abe8fb438f607.jar" />
     </item>
     <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.0/classes.jar"
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.github.gabrielemariotti.changeloglib/library/1.5.2/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="5b37cf49773f7f17aca9830efd3053b0cac56728">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-b964a79a5584bae39982c6fa6abbada694af3f3c.jar" />
+        sha1="494089d9d84042634d2be0355702e96805f847d3">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-3452e35f5940b6c456690acdf3c6faa61226551c.jar" />
+    </item>
+    <item
+        jar="/Users/dev/.gradle/caches/modules-2/files-2.1/com.nhaarman.listviewanimations/lib-manipulation/3.1.0/63737e512fcd9e0ebe9bcd0bb375c2dded74116f/lib-manipulation-3.1.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="63737e512fcd9e0ebe9bcd0bb375c2dded74116f">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/lib-manipulation-3.1.0-d863164eff6db47c9102fdf722f3211f61898079.jar" />
+    </item>
+    <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.mikepenz/aboutlibraries/5.0.9/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="561ebf80ce7c7a16265e9ecca7b964227a412eb9">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-e33a0d5e9c69bc195dcb4c191d21d51464b53862.jar" />
     </item>
     <item
         jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.0.0/classes.jar"
@@ -65,6 +114,34 @@
         <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-bc0e9647c703a1c1916d98d8e00d334a2a86e108.jar" />
     </item>
     <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c976518693e89ad44fbfccfc654941eaec198d08">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-50c6ff8b36e21b99f04af816fd7cd4abfdb51413.jar" />
+    </item>
+    <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-cbf488f0f1f1b5908e744eef1d5ff9102fc6f85b.jar" />
+    </item>
+    <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.2.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e1fa5e1123997a55e3ed65b44892993ff4b58cfe">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-0f34ceef7db7e82354bfd92653641d3b4b5c40f3.jar" />
+    </item>
+    <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9224bc4c54ba95147c7eabd874573763c07cb6be">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-64465246d5ec973f7d2cc3e18b8c07dec765710e.jar" />
+    </item>
+    <item
         jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.github.dexafree/materiallist/2.4.5/classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -72,11 +149,46 @@
         <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-56bb0e84071a8a358a2670dcd6183a93a27d89a9.jar" />
     </item>
     <item
-        jar="/Users/dev/Documents/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-0bd903d84c93415136b7d68b8a7425641d7374d6.jar" />
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-e7cd08c5146e712b79773607c92932b27307dfa6.jar" />
+    </item>
+    <item
+        jar="/Users/dev/.gradle/caches/modules-2/files-2.1/com.squareup/otto/1.3.5/7941cd2c2c8ec006800d75c35f8a9dacf892ab93/otto-1.3.5.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="7941cd2c2c8ec006800d75c35f8a9dacf892ab93">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/otto-1.3.5-bd6aa2d1f635851cf521ce14f8fcef6e87a1c6c7.jar" />
+    </item>
+    <item
+        jar="/Users/dev/Documents/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-c38c04d84d48cd01cffb7fbe58d1ee30336bd80b.jar" />
+    </item>
+    <item
+        jar="/Users/dev/.gradle/caches/modules-2/files-2.1/com.nhaarman.listviewanimations/lib-core/3.1.0/f3f9629b068554d8513a2aaf34418171bf430851/lib-core-3.1.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f3f9629b068554d8513a2aaf34418171bf430851">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/lib-core-3.1.0-95b76f0c9bdd43a50c3883fa984e696be672afea.jar" />
+    </item>
+    <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="7ff613bf78ab057293892fdbd4169eda899c89b9">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-82d071b9d3e69ed875dd49ae0d6f7332f468f4e6.jar" />
+    </item>
+    <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/libs/internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-463ff082ec98612be6140bb4efa81b04fcc7299c.jar" />
     </item>
     <item
         jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.0.0/classes.jar"
@@ -84,6 +196,13 @@
         revision="21.1.2"
         sha1="a96b762bde4139de855735f175ec4d17dca55a6d">
         <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-e7b7c9d1c6c1ffaa47db72e83867898314799ff7.jar" />
+    </item>
+    <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="fb04b12526b0073c7fb1ebb70c5842d82ee95596">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-651c4e7f812351b008108d251a71bab47fef87e6.jar" />
     </item>
     <item
         jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.0.0/classes.jar"
@@ -142,137 +261,18 @@
         <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-4c3694e52f1fa44c6bf0d84528e23750eff39d5c.jar" />
     </item>
     <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3abb4b88f5a8a0584a9b01d3170d7165f12f8588">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-5aa3d8d7936d338ded4317a8ad59617622944f18.jar" />
+    </item>
+    <item
         jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.0.0/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="29fd6d3794b71491c2789708cd8d03c71feb8954">
         <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-10e45df2141a4e11cbc466edad9cffc66a6a9195.jar" />
-    </item>
-    <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.2.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="97f7e239e86ef994de894818fdd8a71d2e89d6aa">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-ac8b14ff05dbb53828361819186b4d7a788eacda.jar" />
-    </item>
-    <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="41b3870cbe5fa546d8095b5b89d42cb69f3dd175">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-4ba2aca023aa6b04b2ce8f4cf0d0bffa5cdd462a.jar" />
-    </item>
-    <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-2641d3b82a8a19179fed2bd9bc87d192a0fec8df.jar" />
-    </item>
-    <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="73ccb92b70112f2e463e415ef8d7275de7da6516">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-34650759f9587a55dffb669e090e1590b26642c4.jar" />
-    </item>
-    <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="0e8228b4bc69c6a2c8d7c18498a77e53417d2574">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-629b3429b5b921a3f29f50e5482de47c88a0b13f.jar" />
-    </item>
-    <item
-        jar="/Users/dev/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/library-2.4.0-f5fd1c5a9af7cbdc45ad4772fdaf327db65b4fad.jar" />
-    </item>
-    <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.github.jlmd/AnimatedCircleLoadingView/1.1/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="1117a648f7f777e6d941b9099e16bbd931c927a8">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-02971be0e820318c06602f5de091384114e8f34b.jar" />
-    </item>
-    <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.github.gabrielemariotti.changeloglib/library/1.5.2/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="494089d9d84042634d2be0355702e96805f847d3">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-3452e35f5940b6c456690acdf3c6faa61226551c.jar" />
-    </item>
-    <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-0da1180901b6670dc4c0e6ea04941f03b0449736.jar" />
-    </item>
-    <item
-        jar="/Users/dev/.gradle/caches/modules-2/files-2.1/com.nhaarman.listviewanimations/lib-manipulation/3.1.0/63737e512fcd9e0ebe9bcd0bb375c2dded74116f/lib-manipulation-3.1.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="63737e512fcd9e0ebe9bcd0bb375c2dded74116f">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/lib-manipulation-3.1.0-d863164eff6db47c9102fdf722f3211f61898079.jar" />
-    </item>
-    <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="c976518693e89ad44fbfccfc654941eaec198d08">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-50c6ff8b36e21b99f04af816fd7cd4abfdb51413.jar" />
-    </item>
-    <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="9224bc4c54ba95147c7eabd874573763c07cb6be">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-64465246d5ec973f7d2cc3e18b8c07dec765710e.jar" />
-    </item>
-    <item
-        jar="/Users/dev/.gradle/caches/modules-2/files-2.1/com.squareup/otto/1.3.5/7941cd2c2c8ec006800d75c35f8a9dacf892ab93/otto-1.3.5.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="7941cd2c2c8ec006800d75c35f8a9dacf892ab93">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/otto-1.3.5-bd6aa2d1f635851cf521ce14f8fcef6e87a1c6c7.jar" />
-    </item>
-    <item
-        jar="/Users/dev/.gradle/caches/modules-2/files-2.1/com.nhaarman.listviewanimations/lib-core/3.1.0/f3f9629b068554d8513a2aaf34418171bf430851/lib-core-3.1.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="f3f9629b068554d8513a2aaf34418171bf430851">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/lib-core-3.1.0-95b76f0c9bdd43a50c3883fa984e696be672afea.jar" />
-    </item>
-    <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="7ff613bf78ab057293892fdbd4169eda899c89b9">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-82d071b9d3e69ed875dd49ae0d6f7332f468f4e6.jar" />
-    </item>
-    <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/libs/internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-af6629482cc80f145e527182380de6e98c434fa0.jar" />
-    </item>
-    <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.mikepenz.aboutlibraries/library/4.5.9/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="9cf43a7984a739880c1c0b8a6959cd9cfb4b242c">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-04de834532015af7002777d52f936d8182c0d199.jar" />
-    </item>
-    <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="fb04b12526b0073c7fb1ebb70c5842d82ee95596">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-651c4e7f812351b008108d251a71bab47fef87e6.jar" />
     </item>
 
 </items>

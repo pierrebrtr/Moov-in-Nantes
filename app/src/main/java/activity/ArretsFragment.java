@@ -30,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.pandf.moovin.ArretsMapsActivity;
 import com.pandf.moovin.R;
 
 import org.json.JSONArray;
@@ -431,7 +432,7 @@ public class ArretsFragment extends Fragment  {
                             }
                         })
                         .setCancelable(false)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setIcon(R.drawable.alert9)
                         .show();
                 arretsList.clear();
 
@@ -516,7 +517,7 @@ public class ArretsFragment extends Fragment  {
 
         if (id == R.id.action_search2){
             Intent intent = new Intent();
-            intent.setClass(getActivity(), ArretcartActivity.class);
+            intent.setClass(getActivity(), ArretsMapsActivity.class);
             startActivity(intent);
             return true;
         }

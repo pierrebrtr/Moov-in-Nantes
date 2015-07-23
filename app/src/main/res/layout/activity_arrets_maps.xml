@@ -1,0 +1,34 @@
+
+
+
+
+<LinearLayout
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <fragment
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:id="@+id/map"
+        tools:context="com.pandf.moovin.MapsActivity"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        map:cameraTargetLat="47.2183710"
+        map:cameraTargetLng="-1.5536210"
+        map:cameraTilt="30"
+        map:cameraZoom="13"
+        tools:ignore="MissingPrefix" />
+
+</LinearLayout>
+
+
+
+
+

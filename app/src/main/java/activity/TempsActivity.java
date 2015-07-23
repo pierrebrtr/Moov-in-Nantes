@@ -323,7 +323,7 @@ public class TempsActivity extends ActionBarActivity {
                             }
                         })
                         .setCancelable(false)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setIcon(R.drawable.alert9)
                         .show();
 
                 directionList.clear();
@@ -439,7 +439,7 @@ public class TempsActivity extends ActionBarActivity {
                                     }
                                 })
                                 .setCancelable(false)
-                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .setIcon(R.drawable.alert9)
                                 .show();
 
                         directionList.clear();
@@ -575,12 +575,24 @@ public class TempsActivity extends ActionBarActivity {
         return true;//return true so that the menu pop up is opened
 
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent = getIntent();
+
+        Intent i = new Intent(TempsActivity.this, MainActivity.class);
+
+        startActivity(i);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case android.R.id.home:
-                super.onBackPressed();
+                Intent intent = getIntent();
+
+                Intent i = new Intent(TempsActivity.this, MainActivity.class);
+
+                startActivity(i);
         }
         int id = menuItem.getItemId();
         if (id == R.id.action_bubble){

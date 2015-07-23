@@ -319,7 +319,7 @@ super.onActivityCreated(savedInstanceState);
                             }
                         })
                         .setCancelable(false)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setIcon(R.drawable.alert9)
                         .show();
                 adapter.notifyDataSetChanged();
 

@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.pandf.moovin.R;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.ui.LibsActivity;
@@ -138,14 +139,8 @@ public class MyPreferencesActivity extends ActionBarActivity {
             userButtonee.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference arg0) {
-                    Intent i = new Intent(getActivity().getApplicationContext(), LibsActivity.class);
-//Pass the fields of your application to the lib so it can find all external lib information
-                    i.putExtra(Libs.BUNDLE_FIELDS, Libs.toStringArray(R.string.class.getFields()));
-                    i.putExtra(Libs.BUNDLE_VERSION, true);
-                    i.putExtra(Libs.BUNDLE_LICENSE, true);
-                    i.putExtra(Libs.BUNDLE_TITLE, "Crédits librairies");
-                    i.putExtra(Libs.BUNDLE_THEME, R.style.Theme_AppCompat);
-                    startActivity(i);
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            "Disponible prochainement.", Toast.LENGTH_LONG).show();
                     return true;
                 }
             });
