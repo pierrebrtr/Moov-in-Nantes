@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:layout_margin="4dp"
-    android:background="@drawable/image1">
+    android:background="@drawable/moovinwidget">
 
 
     <TextView
@@ -15,6 +15,8 @@
         android:layout_height="wrap_content"
         android:text=""
         android:id="@+id/textViewwidget"
+        android:textStyle="bold"
+        android:textSize="0dp"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -22,7 +24,8 @@
         android:layout_height="wrap_content"
         android:text=""
         android:id="@+id/textViewwidget2"
-        android:textSize="0dp"
+        android:textStyle="bold"
+
         android:layout_gravity="center_horizontal" />
 
 

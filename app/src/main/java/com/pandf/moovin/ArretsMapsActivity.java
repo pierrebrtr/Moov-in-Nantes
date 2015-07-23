@@ -160,7 +160,7 @@ public class ArretsMapsActivity extends ActionBarActivity {
 
             longitude = json.getDouble("stop_lon");
 
-        
+
 
             locations.add(new LatLng(latitude, longitude));
 

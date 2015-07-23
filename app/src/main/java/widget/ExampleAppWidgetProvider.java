@@ -95,12 +95,8 @@ public class ExampleAppWidgetProvider extends AppWidgetProvider {
 
 
 
-            // To update a label
 
 
-            // Tell the AppWidgetManager to perform an update on the current app
-            // widget
-            appWidgetManager.updateAppWidget(appWidgetId, views);
         }
     }
 }
