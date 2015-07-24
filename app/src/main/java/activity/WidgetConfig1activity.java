@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -44,6 +45,16 @@ import model.Arrets;
 public class WidgetConfig1activity extends Activity {
 
 
+    int thisWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
+    TextView widgetId = null;
+
+
+
+
+    public static final String PREFS_WIDGET = "PREF_WIDGET";
+    public static final String PREF = "PREF_TEXT1";
+    public static final String PREF2 = "PREF_TEXT2";
+
     public static final String ACTION_TEXT_CHANGED = "com.pandf.moovin.TEXT_CHANGED";
     private int mAppWidgetId = 0 ;
     private static final String url = "https://open.tan.fr/ewp/arrets.json";
@@ -82,12 +93,15 @@ public class WidgetConfig1activity extends Activity {
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        if (extras != null) {
+
+
 
             mAppWidgetId = extras.getInt(
                     AppWidgetManager.EXTRA_APPWIDGET_ID,
                     AppWidgetManager.INVALID_APPWIDGET_ID);
-        }
+
+
+
 
 
 
@@ -195,6 +209,9 @@ public class WidgetConfig1activity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
+                // Getting an instance of WidgetManager
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getBaseContext());
+
                 TextView textView = (TextView) view.findViewById(R.id.lieu);
                 String text = textView.getText().toString();
 
@@ -203,31 +220,24 @@ public class WidgetConfig1activity extends Activity {
                 String libelle = textView2.getText().toString();
 
 
-
-
                 Intent intent2 = new Intent(WidgetConfig1activity.ACTION_TEXT_CHANGED);
                 intent2.putExtra("ID", text);
                 intent2.putExtra("ID2", libelle);
+
+
+                int[] appWidgetIds = appWidgetManager
+                        .getAppWidgetIds(WidgetConfig1activity.this.getComponentName());
+
+                intent2.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+
+
                 getApplicationContext().sendBroadcast(intent2);
-
-
-
-
-                Log.d("fonction", "fonctionnel");
-
-
-
-
 
 
 
 
 
                 Intent intent = new Intent(getApplicationContext(), TempsActivity.class);
-
-
-
-
 
 
                 intent.putExtra("text", text);
@@ -241,10 +251,6 @@ public class WidgetConfig1activity extends Activity {
 
 
 
-
-                // Getting an instance of WidgetManager
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getBaseContext());
-
                 // Instantiating the class RemoteViews with widget_layout
                 RemoteViews views = new RemoteViews(getBaseContext().getPackageName(), R.layout.widget1);
 
@@ -252,6 +258,14 @@ public class WidgetConfig1activity extends Activity {
                 views.setTextViewText(R.id.textViewwidget, text);
 
                 views.setTextViewText(R.id.textViewwidget2, libelle);
+
+                Log.d("APPID", String.valueOf(mAppWidgetId));
+
+
+                setTexte1Save(getApplicationContext(), text, mAppWidgetId);
+
+                setTexte2Save(getApplicationContext(), libelle, mAppWidgetId);
+
 
                 //  Attach an on-click listener to the clock
                 views.setOnClickPendingIntent(R.id.layoutwidget, pendingIntent);
@@ -261,6 +275,7 @@ public class WidgetConfig1activity extends Activity {
 
                 // Return RESULT_OK from this activity
                 Intent resultValue = new Intent();
+
                 resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
                 setResult(RESULT_OK, resultValue);
                 finish();
@@ -277,6 +292,25 @@ public class WidgetConfig1activity extends Activity {
 
 
 
+
+    }
+
+
+    public void setTexte1Save(Context context, String category, int appWidgetId) {
+
+        SharedPreferences.Editor editor = context.getSharedPreferences(PREFS_WIDGET + String.valueOf(appWidgetId), Context.MODE_PRIVATE).edit();
+        editor.putString(PREF + String.valueOf(appWidgetId),
+                category);
+        editor.commit();
+    }
+
+
+    public void setTexte2Save(Context context, String category, int appWidgetId) {
+
+        SharedPreferences.Editor editor = context.getSharedPreferences(PREFS_WIDGET + String.valueOf(appWidgetId), Context.MODE_PRIVATE).edit();
+        editor.putString(PREF2 + String.valueOf(appWidgetId),
+                category);
+        editor.commit();
     }
 
 
@@ -284,7 +318,6 @@ public class WidgetConfig1activity extends Activity {
 
 
 
-    public void onActivityCreated(Bundle savedInstanceState) {
 
 
 
@@ -295,18 +328,4 @@ public class WidgetConfig1activity extends Activity {
 
 
 
-
-
-
-
-
-
-
-
-    }
-
-
-
-
-
-    }
+}
