@@ -89,13 +89,16 @@ public class MyPreferencesActivity extends ActionBarActivity {
 
 
 
-                    ColorPickerDialog colorcalendar = ColorPickerDialog.newInstance(R.string.color_picker_default_title, mColorChoices, 4, 4, 1);
+                    ColorPickerDialog colorcalendar = ColorPickerDialog.newInstance(R.string.color_picker_default_title, mColorChoices, 4, 2, 1);
 
                     //Implement listener to get selected color value
                     colorcalendar.setOnColorSelectedListener(new ColorPickerSwatch.OnColorSelectedListener(){
 
                         @Override
                         public void onColorSelected(int color) {
+
+                            
+
 
                         }
 
