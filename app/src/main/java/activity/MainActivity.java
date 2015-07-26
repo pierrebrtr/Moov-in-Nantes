@@ -39,7 +39,10 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.lime);
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
 
 
@@ -101,7 +104,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
         new AlertDialog.Builder(this)
                 .setMessage("Voulez-vous quitter l\'application ?")
-                .setPositiveButton("OUI", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -111,7 +114,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                         startActivity(intent);
                         finish();
                     }
-                }).setNegativeButton("NON", null).show();
+                }).setNegativeButton("Non", null).show();
 
 
     }
@@ -131,15 +134,15 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 break;
             case 1:
                 fragment = new ArretsFragment();
-                title = "Arrets";
+                title = "Arrêts";
                 break;
             case 2:
                 fragment = new GeoFragment();
-                title = "Geo";
+                title = "Géolocalisation";
                 break;
             case 3:
                 fragment = new BiclooFragment();
-                title = "Bicloo";
+                title = "Bicloos";
                 break;
             case 4:
                 fragment = new SettingsFragment();

@@ -89,18 +89,32 @@ public class ExampleAppWidgetProvider extends AppWidgetProvider {
 
         // Perform this loop procedure for each App Widget that belongs to this
         // provider
+
+
         for (int i = 0; i < N; i++) {
 
             int appWidgetId = appWidgetIds[i];
 
 
-            String text1 = getWidgetNewsCategory(context, appWidgetId);
-            String text2 = getWidgetNewsCategory2(context, appWidgetId);
+
+
+            String text1 = "";
+            String text2 = "";
+
+            text1 = getWidgetNewsCategory(context, appWidgetId);
+             text2 = getWidgetNewsCategory2(context, appWidgetId);
 
 
             // Create an Intent to launch ExampleActivity
             Intent intent = new Intent(context, TempsActivity.class);
 
+
+            intent.removeExtra("text");
+
+            intent.removeExtra("libelle");
+
+            Log.d("TEXT1", text1);
+            Log.d("TEXT2", text2);
 
 
             intent.putExtra("text", text1);
@@ -125,13 +139,14 @@ public class ExampleAppWidgetProvider extends AppWidgetProvider {
 
             views.setTextViewText(R.id.textViewwidget2, text2);
 
-            Log.d("Debug", text1 + " + " + text2);
+
 
             //  Attach an on-click listener to the clock
+
             views.setOnClickPendingIntent(R.id.layoutwidget, pendingIntent);
-
-
             appWidgetManager.updateAppWidget(appWidgetId, views);
+
+
 
 
 
@@ -152,7 +167,7 @@ public class ExampleAppWidgetProvider extends AppWidgetProvider {
         Log.d("Appid provider", String.valueOf(appWidgetId));
 
         return sharedPreferences.getString(
-                PREF + String.valueOf(appWidgetId), null);
+                PREF + String.valueOf(appWidgetId), "");
 
 
 
@@ -168,6 +183,6 @@ public class ExampleAppWidgetProvider extends AppWidgetProvider {
                 PREFS_WIDGET + String.valueOf(appWidgetId),
                 Context.MODE_PRIVATE);
         return sharedPreferences.getString(
-                PREF2 + String.valueOf(appWidgetId), null);
+                PREF2 + String.valueOf(appWidgetId), "");
     }
 }

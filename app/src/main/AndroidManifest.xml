@@ -15,7 +15,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/MyMaterialTheme" >
+        android:theme="@style/defaut" >
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -44,7 +44,8 @@
         <activity
             android:name="activity.TempsActivity"
             android:configChanges="orientation|screenSize"
-            android:label="@string/app_name" >
+            android:label="Prochains départs" >
+
         </activity>
         <activity
             android:name="activity.MyPreferencesActivity"
@@ -86,7 +87,7 @@
         <activity
             android:name="activity.HorairesActivity"
             android:configChanges="orientation|screenSize"
-            android:label="@string/app_name" >
+            android:label="Horaires" >
         </activity>
         <activity android:name="activity.WidgetConfig1activity" >
             <intent-filter>

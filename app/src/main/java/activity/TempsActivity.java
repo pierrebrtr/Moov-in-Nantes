@@ -93,7 +93,7 @@ public class TempsActivity extends ActionBarActivity {
 
     public void onCreate (
             final Bundle savedInstanceState) {
-
+        setTheme(R.style.lime);
         super.onCreate(savedInstanceState);
 
         initializeBubblesManager();
@@ -188,6 +188,8 @@ public class TempsActivity extends ActionBarActivity {
 
         final String url = "https://open.tan.fr/ewp/tempsattente.json/" + intent.getExtras().getString("text") + " ";
 
+
+        Log.d("ArretsActivityID", intent.getExtras().getString("text"));
 
 
         listView2 = (ListView) findViewById(R.id.list_temps);
@@ -529,6 +531,9 @@ public class TempsActivity extends ActionBarActivity {
 
         final String url = "https://open.tan.fr/ewp/tempsattente.json/" + intent.getExtras().getString("text") + " ";
         System.out.println(intent.getExtras().getString("text") + " Test Test ");
+
+
+
 
 
         // movieList is an empty array at this point.

@@ -15,6 +15,7 @@ public class SplashScreen extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.lime);
         setContentView(R.layout.activity_splash);
 
         new Handler().postDelayed(new Runnable() {

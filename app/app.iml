@@ -125,5 +125,6 @@
     <orderEntry type="library" exported="" name="cardview-v7-22.2.1" level="project" />
     <orderEntry type="library" exported="" name="play-services-games-7.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-wallet-7.0.0" level="project" />
+    <orderEntry type="library" exported="" name="colorpicker-unspecified" level="project" />
   </component>
 </module>

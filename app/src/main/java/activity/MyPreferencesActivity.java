@@ -3,6 +3,7 @@ package activity;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -16,6 +17,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.android.colorpicker.ColorPickerDialog;
+import com.android.colorpicker.ColorPickerSwatch;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.pandf.moovin.R;
 import com.mikepenz.aboutlibraries.Libs;
@@ -64,6 +67,45 @@ public class MyPreferencesActivity extends ActionBarActivity {
         public void onCreate(final Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
+
+
+            Preference userButtontheme = (Preference) findPreference("theme");
+            userButtontheme.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference arg0) {
+
+                    int[] mColorChoices=null;
+                    String[] color_array = getResources().getStringArray(R.array.default_color_choice_values);
+
+
+                    if (color_array!=null && color_array.length>0) {
+                        mColorChoices = new int[color_array.length];
+                        for (int i = 0; i < color_array.length; i++) {
+                            mColorChoices[i] = Color.parseColor(color_array[i]);
+                        }
+                    }
+
+
+
+
+
+                    ColorPickerDialog colorcalendar = ColorPickerDialog.newInstance(R.string.color_picker_default_title, mColorChoices, 4, 4, 1);
+
+                    //Implement listener to get selected color value
+                    colorcalendar.setOnColorSelectedListener(new ColorPickerSwatch.OnColorSelectedListener(){
+
+                        @Override
+                        public void onColorSelected(int color) {
+
+                        }
+
+                    });
+
+                    colorcalendar.show(getFragmentManager(),"cal");
+
+                    return true;
+                }
+            });
 
             Preference userButton = (Preference) findPreference("user");
             userButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {

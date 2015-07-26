@@ -237,11 +237,25 @@ public class WidgetConfig1activity extends Activity {
 
 
 
+
                 Intent intent = new Intent(getApplicationContext(), TempsActivity.class);
 
+                setTexte1Save(getApplicationContext(), text, mAppWidgetId);
 
-                intent.putExtra("text", text);
-                intent.putExtra("libelle", libelle);
+                setTexte2Save(getApplicationContext(), libelle, mAppWidgetId);
+
+
+                String text1permanent = getWidgetNewsCategory(getApplicationContext(), mAppWidgetId);
+
+                String text2permanent = getWidgetNewsCategory2(getApplicationContext(), mAppWidgetId);
+
+
+                intent.removeExtra("text");
+
+                intent.removeExtra("libelle");
+
+                intent.putExtra("text", text1permanent);
+                intent.putExtra("libelle", text2permanent);
 
 
                 // Creating a pending intent, which will be invoked when the user
@@ -259,12 +273,9 @@ public class WidgetConfig1activity extends Activity {
 
                 views.setTextViewText(R.id.textViewwidget2, libelle);
 
-                Log.d("APPID", String.valueOf(mAppWidgetId));
 
 
-                setTexte1Save(getApplicationContext(), text, mAppWidgetId);
 
-                setTexte2Save(getApplicationContext(), libelle, mAppWidgetId);
 
 
                 //  Attach an on-click listener to the clock
@@ -317,9 +328,27 @@ public class WidgetConfig1activity extends Activity {
 
 
 
+    public String getWidgetNewsCategory(Context context, int appWidgetId) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                PREFS_WIDGET + String.valueOf(appWidgetId),
+                Context.MODE_PRIVATE);
+        Log.d("RETURN TEXT 1", sharedPreferences.getString(PREF + String.valueOf(appWidgetId), null) + "null ?");
+        Log.d("Appid provider", String.valueOf(appWidgetId));
+
+        return sharedPreferences.getString(
+                PREF + String.valueOf(appWidgetId), "");
 
 
+    }
 
+
+    public String getWidgetNewsCategory2(Context context, int appWidgetId) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                PREFS_WIDGET + String.valueOf(appWidgetId),
+                Context.MODE_PRIVATE);
+        return sharedPreferences.getString(
+                PREF2 + String.valueOf(appWidgetId), "");
+    }
 
 
 

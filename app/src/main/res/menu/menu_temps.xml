@@ -7,7 +7,7 @@
         android:id="@+id/action_bubble"
         android:title="Ajouter une bulle d'accès rapide"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_bus"
+        android:icon="@drawable/bus2"
         app:showAsAction="ifRoom" />
 
 </menu>

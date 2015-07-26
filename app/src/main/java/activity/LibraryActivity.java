@@ -31,7 +31,7 @@ public class LibraryActivity extends ActionBarActivity {
         Intent i = new Intent(getApplicationContext(), LibsActivity.class);
 
         i.putExtra(Libs.BUNDLE_TITLE, "Crédits librairies");
-        i.putExtra(Libs.BUNDLE_THEME, R.style.MyMaterialTheme);
+        i.putExtra(Libs.BUNDLE_THEME, R.style.defaut);
         startActivity(i);
 
     }

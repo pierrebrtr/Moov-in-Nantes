@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2196F3</color>
-    <color name="colorPrimaryDark">#1976D2</color>
-    <color name="tabsScrollColor">#1976D2</color>
+
+    <color name="tabsScrollColor">#FFFFFF</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
-    <color name="navigationBarColor">#2196F3</color>
-    <color name="colorAccent">#2196F3</color>
+
+
 
 
     <color name="colorError">#e74c3c</color>
