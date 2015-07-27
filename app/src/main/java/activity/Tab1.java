@@ -60,7 +60,7 @@ public class Tab1 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTheme(R.style.lime);
+
         activity = getActivity();
     }
 

@@ -110,11 +110,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        Intent intent = new Intent(Intent.ACTION_MAIN);
-                        intent.addCategory(Intent.CATEGORY_HOME);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        finish();
+                        android.os.Process.killProcess(android.os.Process.myPid());
                     }
                 }).setNegativeButton("Non", null).show();
 
@@ -147,8 +143,9 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 title = "Bicloos";
                 break;
             case 4:
-                fragment = new SettingsFragment();
+                Intent i = new Intent(MainActivity.this, MyPreferencesActivity.class);
                 title = "Paramètres";
+                startActivity(i);
                 break;
             default:
                 break;

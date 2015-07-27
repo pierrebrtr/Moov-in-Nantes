@@ -301,7 +301,7 @@ public class MyPreferencesActivity extends ActionBarActivity {
         inflater.inflate(R.menu.menu_settings, menu);
 
 
-        return true;//return true so that the menu pop up is opened
+        return true;
 
     }
 
