@@ -3,6 +3,8 @@ package adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,9 +86,14 @@ public class CustomListAdapter extends BaseAdapter  {
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
 
+
+
+
         TextView arret = (TextView) convertView.findViewById(R.id.arret);
         TextView ligne = (TextView) convertView.findViewById(R.id.ligne);
         TextView lieu = (TextView) convertView.findViewById(R.id.lieu);
+
+
 
 
 

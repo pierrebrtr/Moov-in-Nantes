@@ -9,6 +9,11 @@
     <dimen name="genre">13dip</dimen>
     <dimen name="year">12dip</dimen>
 
+
+
+
+
+
     <!-- FAKE HEADER HEIGHT -->
     <dimen name="max_height_header">110dp</dimen>
 

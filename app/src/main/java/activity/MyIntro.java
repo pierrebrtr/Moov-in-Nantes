@@ -39,7 +39,7 @@ public class MyIntro extends AppIntro {
 
 
 
-        setDoneText("C'est partit !");
+        setDoneText("C'est parti !");
         setSkipText("Passer");
         // Hide Skip/Done button
         showSkipButton(true);

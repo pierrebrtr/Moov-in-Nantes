@@ -284,8 +284,11 @@ public class MyPreferencesActivity extends ActionBarActivity {
             userButtonee.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference arg0) {
-                    Toast.makeText(getActivity().getApplicationContext(),
-                            "Disponible prochainement.", Toast.LENGTH_LONG).show();
+                    new LibsBuilder()
+                            //Pass the fields of your application to the lib so it can find all external lib information
+                            .withFields(R.string.class.getFields())
+
+                            .start(MyPreferencesActivity.this);
                     return true;
                 }
             });

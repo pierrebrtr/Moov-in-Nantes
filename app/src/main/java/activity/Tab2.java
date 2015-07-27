@@ -68,8 +68,7 @@ public class Tab2 extends Fragment {
 
 
 
-        Toast.makeText(getActivity(), "Chargement...", Toast.LENGTH_SHORT).show();
-
+       
 
 
         animatedCircleLoadingView = (AnimatedCircleLoadingView) v.findViewById(R.id.circle_loading_view);

@@ -198,6 +198,13 @@
         <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-463ff082ec98612be6140bb4efa81b04fcc7299c.jar" />
     </item>
     <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.amulyakhare/com.amulyakhare.textdrawable/1.0.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d237556caead5b93d97e18a071059a2c0045978e">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-6ccf962e548c5db6e13d530993935825f843e0eb.jar" />
+    </item>
+    <item
         jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.0.0/classes.jar"
         jumboMode="false"
         revision="21.1.2"

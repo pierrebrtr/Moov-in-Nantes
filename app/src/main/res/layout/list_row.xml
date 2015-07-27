@@ -5,11 +5,11 @@
     android:background="@drawable/list_row_selector"
     android:padding="8dp" >
 
-    <!-- Thumbnail Image -->
 
 
     <!-- Movie Title -->
     <TextView
+
         android:id="@+id/arret"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

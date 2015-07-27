@@ -322,6 +322,9 @@ public class TempsActivity extends ActionBarActivity {
 
                                         scheduleNotification(getNotification("Votre bus passe dans " + timeminute + " minutes"), Timenotif);
 
+                                        Toast.makeText(TempsActivity.this, "Notification créée", Toast.LENGTH_SHORT).show();
+
+
                                         Log.d("ALARM", String.valueOf(Timenotif));
 
 
