@@ -279,7 +279,12 @@ public class TempsActivity extends ActionBarActivity {
 
                 String temps = textView2.getText().toString().replace(" mn", "");
 
-                Timebeforestart = Integer.parseInt(temps);
+                try
+                {
+
+
+                    Timebeforestart = Integer.parseInt(temps);
+
 
 
 
@@ -311,7 +316,10 @@ public class TempsActivity extends ActionBarActivity {
 
                                     int timeminute = aNumberPicker.getValue();
 
-                                        Timenotif = aNumberPicker.getValue() * 10000;
+                                        Timenotif = Timebeforestart - aNumberPicker.getValue();
+                                        Timenotif = Timenotif * 60000;
+
+
 
                                         scheduleNotification(getNotification("Votre bus passe dans " + timeminute + " minutes"), Timenotif);
 
@@ -333,8 +341,15 @@ public class TempsActivity extends ActionBarActivity {
 
 
 
+                } catch(NumberFormatException nfe)
+                {
 
+                    new AlertDialog.Builder(TempsActivity.this)
+                            .setTitle("Erreur")
+                            .setMessage("Votre bus partira bientôt")
+                            .setPositiveButton("Ok", null).show();
 
+                }
 
 
                 return true;
