@@ -65,7 +65,6 @@ import java.util.Random;
 
 import adapter.CustomListAdapterTemps;
 import app.AppController;
-import br.com.goncalves.pugnotification.notification.PugNotification;
 import model.Arrets;
 import model.Temps;
 import util.Spfav;

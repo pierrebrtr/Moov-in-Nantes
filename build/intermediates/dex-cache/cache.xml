@@ -261,11 +261,11 @@
         <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-6dca3229781be1702bdbcb5b15d3598cf7251820.jar" />
     </item>
     <item
-        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.github.halysongoncalves/pugnotification/1.5.0/classes.jar"
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.github.paolorotolo/appintro/3.1.0/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="ee47c460a2a44d955839c0ed886d645a1ef8a00a">
-        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-4b87abde33564d7d906e998d123d7fc855010f68.jar" />
+        sha1="d181a639a6167b6310924e354914daa658e6737c">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-7f55ea3b1439fcbd3d7319a3ce8235a40b3a9cd4.jar" />
     </item>
     <item
         jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.github.hotchemi/Android-Rate/0.4.3/classes.jar"
