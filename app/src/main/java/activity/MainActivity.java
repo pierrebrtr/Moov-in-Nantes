@@ -109,8 +109,11 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-                        android.os.Process.killProcess(android.os.Process.myPid());
+                        final Intent relaunch = new Intent(MainActivity.this, Exiter.class)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK // CLEAR_TASK requires this
+                                        | Intent.FLAG_ACTIVITY_CLEAR_TASK // finish everything else in the task
+                                        | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS); // hide (remove, in this case) task from recents
+                        startActivity(relaunch);
                     }
                 }).setNegativeButton("Non", null).show();
 

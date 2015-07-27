@@ -126,6 +126,12 @@
             android:label="@string/title_activity_arrets_maps" >
         </activity>
 
+        <activity
+            android:name="activity.Exiter"
+            android:label="Quitter" >
+        </activity>
+
+
 
 
         <receiver android:name="activity.NotificationPublisher" />
