@@ -304,7 +304,7 @@ public class TempsActivity extends ActionBarActivity {
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TempsActivity.this);
                 alertDialogBuilder.setTitle("Créer une notification");
-                alertDialogBuilder.setMessage("Nombre de minutes avant le départ :");
+                alertDialogBuilder.setMessage("Nombre de minutes avant le départ théorique:");
                 alertDialogBuilder.setView(linearLayout);
                 alertDialogBuilder
                         .setCancelable(false)
