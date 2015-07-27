@@ -10,7 +10,7 @@
         android:layout_height="@dimen/max_height_header"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@color/background_material_dark" />
+        android:src="?attr/colorPrimary" />
 
     <TextView
         android:id="@+id/headertext2"

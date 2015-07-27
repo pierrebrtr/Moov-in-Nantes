@@ -6,6 +6,9 @@
     <string name="drawer_close">Close</string>
 
 
+    <string name="prefs_theme_key">theme</string>
+
+
     <string name="color_picker_default_title">Thème</string>
 
     <string name="nav_item_home">Accueil</string>
@@ -29,14 +32,14 @@
 
 
     <string-array name="default_color_choice_values" translatable="false">
-        <item>#33b5e5</item>
-        <item>#aa66cc</item>
-        <item>#99cc00</item>
-        <item>#ffbb33</item>
-        <item>#ff4444</item>
-        <item>#0099cc</item>
-        <item>#ff4444</item>
-        <item>#0099cc</item>
+        <item>#2196F3</item>
+        <item>#CDDC39</item>
+        <item>#4CAF50</item>
+        <item>#F44336</item>
+        <item>#E91E63</item>
+        <item>#9C27B0</item>
+        <item>#3F51B5</item>
+        <item>#795548</item>
     </string-array>
 
 

@@ -1,6 +1,7 @@
 package activity;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -14,13 +15,19 @@ import android.widget.ProgressBar;
 
 import com.pandf.moovin.R;
 
+import util.Utility;
+
 /**
  * Created by dev on 23/04/15.
  */
 public class ArretcartActivity extends ActionBarActivity {
+
+
     private Toolbar mToolbar;
     private WebView mWebView;
     public void onCreate(Bundle savedInstanceState) {
+
+        Utility.themer(ArretcartActivity.this);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_arretcart);

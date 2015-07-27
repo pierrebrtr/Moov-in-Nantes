@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -23,6 +24,7 @@ import adapter.FragmentDrawer;
 import hotchemi.android.rate.AppRate;
 import hotchemi.android.rate.OnClickButtonListener;
 import model.Arrets;
+import util.Utility;
 
 
 public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -35,11 +37,11 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.lime);
+
+        Utility.themer(MainActivity.this);
+
         super.onCreate(savedInstanceState);
 
 

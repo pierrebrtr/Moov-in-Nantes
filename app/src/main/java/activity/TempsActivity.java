@@ -1,17 +1,24 @@
 package activity;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,9 +31,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.NumberPicker;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,18 +59,32 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
 import adapter.CustomListAdapterTemps;
 import app.AppController;
+import br.com.goncalves.pugnotification.notification.PugNotification;
+import model.Arrets;
 import model.Temps;
+import util.Spfav;
+import util.Utility;
 
 
 public class TempsActivity extends ActionBarActivity {
     final Random rnd = new Random();
     private static final String TAG = MainActivity.class.getSimpleName();
     private BubblesManager bubblesManager;
+
+
+
+
+
+    private int Timebeforestart;
+    private int Timenotif;
+
+
 
 
     // Movies json url
@@ -71,6 +95,7 @@ public class TempsActivity extends ActionBarActivity {
     private SwipeRefreshLayout swipeLayout2;
     private Menu menu;
     private MenuInflater inflater;
+    private PendingIntent pendingIntent;
 
    private String arret;
 
@@ -91,9 +116,13 @@ public class TempsActivity extends ActionBarActivity {
 
     }
 
+
+
+
+
     public void onCreate (
             final Bundle savedInstanceState) {
-        setTheme(R.style.lime);
+        Utility.themer(TempsActivity.this);
         super.onCreate(savedInstanceState);
 
         initializeBubblesManager();
@@ -208,8 +237,6 @@ public class TempsActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-
-
                 Intent i = new Intent(getBaseContext(), HorairesActivity.class);
 
 
@@ -226,9 +253,6 @@ public class TempsActivity extends ActionBarActivity {
                 String ligne = textView5.getText().toString();
 
 
-
-
-
                 TextView t = (TextView) findViewById(R.id.headertext);
 
 
@@ -240,9 +264,83 @@ public class TempsActivity extends ActionBarActivity {
                 startActivity(i);
 
 
-
             }
         });
+
+
+        listView2.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long arg3) {
+
+
+                TextView textView2 = (TextView) view.findViewById(R.id.temps);
+
+                String temps = textView2.getText().toString().replace(" mn", "");
+
+                Timebeforestart = Integer.parseInt(temps);
+
+
+
+
+
+                RelativeLayout linearLayout = new RelativeLayout(TempsActivity.this);
+                final NumberPicker aNumberPicker = new NumberPicker(TempsActivity.this);
+                aNumberPicker.setMaxValue(Timebeforestart);
+                aNumberPicker.setMinValue(1);
+
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(50, 50);
+                RelativeLayout.LayoutParams numPicerParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                numPicerParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+
+                linearLayout.setLayoutParams(params);
+                linearLayout.addView(aNumberPicker, numPicerParams);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TempsActivity.this);
+                alertDialogBuilder.setTitle("Créer une notification");
+                alertDialogBuilder.setMessage("Nombre de minutes avant le départ :");
+                alertDialogBuilder.setView(linearLayout);
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("Ok",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int id) {
+                                        Log.e("","New Quantity Value : "+ aNumberPicker.getValue());
+
+                                    int timeminute = aNumberPicker.getValue();
+
+                                        Timenotif = aNumberPicker.getValue() * 10000;
+
+                                        scheduleNotification(getNotification("Votre bus passe dans " + timeminute + " minutes"), Timenotif);
+
+                                        Log.d("ALARM", String.valueOf(Timenotif));
+
+
+                                    }
+                                })
+                        .setNegativeButton("Annuler",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+
+
+
+
+
+
+
+                return true;
+            }
+        });
+
 
 
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
@@ -476,11 +574,7 @@ public class TempsActivity extends ActionBarActivity {
             return map;
         }
 
-        // Sets the Bitmap returned by doInBackground
-        @Override
-        protected void onPostExecute(Bitmap result) {
-            imageView.setImageBitmap(result);
-        }
+
 
         // Creates Bitmap from InputStream and returns it
         private Bitmap downloadImage(String url) {
@@ -568,6 +662,35 @@ public class TempsActivity extends ActionBarActivity {
         {
             return ResourceID;
         }
+    }
+
+
+
+
+
+    private void scheduleNotification(Notification notification, int delay) {
+
+        Intent notificationIntent = new Intent(this, NotificationPublisher.class);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        long futureInMillis = SystemClock.elapsedRealtime() + delay;
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+    }
+
+    private Notification getNotification(String content) {
+        long[] pattern = {0, 100, 1000};
+        Notification.Builder builder = new Notification.Builder(this);
+        builder.setContentTitle("Alerte Moov'in");
+        builder.setContentText(content);
+        builder.setSmallIcon(R.drawable.ic_logo);
+        builder.setVibrate(pattern);
+        builder.setLights(Color.WHITE, 1000, 1000);
+
+
+        return builder.build();
     }
 
 

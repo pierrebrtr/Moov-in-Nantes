@@ -2,13 +2,16 @@ package activity;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -19,13 +22,18 @@ import android.widget.Toast;
 
 import com.android.colorpicker.ColorPickerDialog;
 import com.android.colorpicker.ColorPickerSwatch;
+import com.google.gson.Gson;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.pandf.moovin.R;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.ui.LibsActivity;
 
+import org.xml.sax.Parser;
+
 import app.AppController;
 import util.SpLite;
+
+import util.Utility;
 import util.Spfav;
 
 /**
@@ -37,18 +45,33 @@ public class MyPreferencesActivity extends ActionBarActivity {
     private Toolbar mToolbar;
 
 
+    public static final String PREFS_COLOR = "PRODUCT_THEME";
+    public static final String THEME = "Product_theme";
+    public String theme;
+
+
+
+
+
 
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
+
+            Utility.themer(MyPreferencesActivity.this);
+
+
+
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_settings);
-            android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             getFragmentManager().beginTransaction().replace(R.id.content_frame, new MyPreferenceFragment()).commit();
 
 
         }
+
+
 
 
 
@@ -97,8 +120,85 @@ public class MyPreferencesActivity extends ActionBarActivity {
                         @Override
                         public void onColorSelected(int color) {
 
-                            
 
+                            Log.d("COLOR", String.valueOf(color));
+
+
+                            SharedPreferences settings;
+                            SharedPreferences.Editor editor;
+
+                            settings = getSharedPreferences(PREFS_COLOR,
+                                    Context.MODE_PRIVATE);
+                            editor = settings.edit();
+
+                            if (color == -14575885){
+                                String jsonFavorites = "default";
+                                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
+                                        jsonFavorites).commit();
+                                Log.d("Choose", jsonFavorites);
+
+
+                            } else if(color == -3285959){
+                                    String jsonFavorites2 = "lime";
+
+                                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
+                                        jsonFavorites2).commit();
+                                    Log.d("Choose", jsonFavorites2);
+
+                            }else if (color == -769226){
+
+                            String jsonFavorites3 = "red";
+
+                                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
+                                        jsonFavorites3).commit();
+                                    Log.d("Choose", jsonFavorites3);
+
+                            }  else if (color == -11751600){
+                                    String jsonFavorites4 = "green";
+
+                                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
+                                        jsonFavorites4).commit();
+                                    Log.d("Choose", jsonFavorites4);
+
+
+                            }  else if (color == -1499549){
+                                    String jsonFavorites5 = "pink";
+
+                                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
+                                        jsonFavorites5).commit();
+                                    Log.d("Choose", jsonFavorites5);
+
+                            }  else if (color == -6543440){
+                                    String jsonFavorites6 = "purple";
+
+                                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
+                                        jsonFavorites6).commit();
+                                    Log.d("Choose", jsonFavorites6);
+
+                            }  else if (color == -8825528){
+
+                                    String jsonFavorites7 = "brown";
+
+                                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
+                                        jsonFavorites7).commit();
+                                    Log.d("Choose", jsonFavorites7);
+
+
+                            }  else if (color == -12627531){
+                                    String jsonFavorites8 = "indigo";
+
+                                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
+                                        jsonFavorites8).commit();
+                                    Log.d("Choose", jsonFavorites8);
+
+                            }
+
+
+                            Intent intent = getIntent();
+
+                            Intent i = new Intent(MyPreferencesActivity.this, MyPreferencesActivity.class);
+
+                            startActivity(i);
 
                         }
 

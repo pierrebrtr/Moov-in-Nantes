@@ -19,7 +19,7 @@
         jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/Tan/colorpicker/unspecified/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="c434d89a6db5f22d630332ee8488e49299a56026">
+        sha1="b3322c004bd7e9a3c0361d9f4e7ca42002aad570">
         <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-7bc8635686b077792fbae7d7fc1c97f795a07d1d.jar" />
     </item>
     <item
@@ -259,6 +259,13 @@
         revision="21.1.2"
         sha1="e3d791b42eaa90416cd0b2d2e608092794a3baa4">
         <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-6dca3229781be1702bdbcb5b15d3598cf7251820.jar" />
+    </item>
+    <item
+        jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.github.halysongoncalves/pugnotification/1.5.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ee47c460a2a44d955839c0ed886d645a1ef8a00a">
+        <dex dex="/Users/dev/Desktop/dev/Tan/app/build/intermediates/pre-dexed/debug/classes-4b87abde33564d7d906e998d123d7fc855010f68.jar" />
     </item>
     <item
         jar="/Users/dev/Desktop/dev/Tan/app/build/intermediates/exploded-aar/com.github.hotchemi/Android-Rate/0.4.3/classes.jar"

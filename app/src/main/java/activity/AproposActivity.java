@@ -1,6 +1,7 @@
 package activity;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -9,13 +10,20 @@ import android.widget.ImageView;
 
 import com.pandf.moovin.R;
 
+import util.Utility;
+
 /**
  * Created by dev on 19/04/15.
  */
+
 public class AproposActivity extends ActionBarActivity {
+
+
 
     private Toolbar mToolbar;
     public void onCreate(Bundle savedInstanceState) {
+
+        Utility.themer(AproposActivity.this);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_propos);

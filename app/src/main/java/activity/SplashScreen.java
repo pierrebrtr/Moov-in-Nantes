@@ -1,21 +1,33 @@
 package activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 
 import com.pandf.moovin.R;
 
+import util.Utility;
+
 public class SplashScreen extends Activity {
+
+
 
     // Splash screen timer
     private static int SPLASH_TIME_OUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Utility.themer(SplashScreen.this);
+
+
+
         super.onCreate(savedInstanceState);
-        setTheme(R.style.lime);
+
+
         setContentView(R.layout.activity_splash);
 
         new Handler().postDelayed(new Runnable() {

@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -49,6 +50,7 @@ import java.util.Random;
 import adapter.CustomListAdapterHoraires;
 import app.AppController;
 import model.Horaires;
+import util.Utility;
 
 
 public class HorairesActivity extends ActionBarActivity {
@@ -60,6 +62,7 @@ public class HorairesActivity extends ActionBarActivity {
     private SwipeRefreshLayout swipeLayout3;
     final Random rnd = new Random();
     private String configGrade;
+
 
     public final String URL =
             "http://pierre.hellophoto.fr/tan2/" + rnd.nextInt(3) +".png";
@@ -89,7 +92,7 @@ public class HorairesActivity extends ActionBarActivity {
             final Bundle savedInstanceState) {
 
 
-
+        Utility.themer(HorairesActivity.this);
 
 
 
@@ -477,11 +480,6 @@ super.onCreate(savedInstanceState);
             return map;
         }
 
-        // Sets the Bitmap returned by doInBackground
-        @Override
-        protected void onPostExecute(Bitmap result) {
-            imageView.setImageBitmap(result);
-        }
 
         // Creates Bitmap from InputStream and returns it
         private Bitmap downloadImage(String url) {
