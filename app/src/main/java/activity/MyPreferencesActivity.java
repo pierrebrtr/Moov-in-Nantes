@@ -272,8 +272,6 @@ public class MyPreferencesActivity extends ActionBarActivity {
                     AppController.getInstance().getRequestQueue().getCache().clear();
 
                     deleteDirectoryTree(getActivity().getCacheDir());
-                    Toast.makeText(getActivity().getApplicationContext(),
-                            "Le caché a été vidé", Toast.LENGTH_LONG).show();
                     long size = 0;
                     File[] files = getCacheDir().listFiles();
                     for (File f:files) {
