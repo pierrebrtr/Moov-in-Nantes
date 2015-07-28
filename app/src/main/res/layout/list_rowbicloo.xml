@@ -32,6 +32,18 @@
         android:textSize="12dp"
         android:textStyle="bold" />
 
+    <ImageView
+        android:id="@+id/banking"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="3dp"
+        android:background="@null"
+        android:maxHeight="20dp"
+        android:maxWidth="20dp" />
+
+
 
 
 

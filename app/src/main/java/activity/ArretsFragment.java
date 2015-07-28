@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -266,7 +267,6 @@ public class ArretsFragment extends Fragment  {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-
                 TextView textView = (TextView) view.findViewById(R.id.lieu);
                 String text = textView.getText().toString();
 
@@ -296,7 +296,6 @@ public class ArretsFragment extends Fragment  {
 
                     ImageView button = (ImageView) view.findViewById(R.id.imgbtn_favorite);
                     sharedPreference = new Spfav();
-
 
 
                     String tag = button.getTag().toString();
@@ -476,13 +475,6 @@ public class ArretsFragment extends Fragment  {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
     }
-
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
 
 
 

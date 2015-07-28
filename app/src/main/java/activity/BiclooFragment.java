@@ -177,6 +177,8 @@ public class BiclooFragment extends Fragment  {
                                         Bicloo bicloo = new Bicloo();
                                         bicloo.setAdresse(obj.getString("address"));
 
+                                        bicloo.setIcon(String.valueOf(obj.getBoolean("banking")));
+
                                         bicloo.setPlacedispo(obj.getString("available_bike_stands"));
 
                                         bicloo.setVelodispo(obj.getString("available_bikes"));
@@ -322,6 +324,7 @@ public class BiclooFragment extends Fragment  {
 
                                     Bicloo bicloo = new Bicloo();
                                    bicloo.setAdresse(obj.getString("address"));
+                                    bicloo.setIcon(String.valueOf(obj.getBoolean("banking")));
 
                                     bicloo.setPlacedispo(obj.getString("available_bike_stands"));
 

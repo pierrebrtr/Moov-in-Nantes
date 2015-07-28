@@ -4,17 +4,20 @@ public class Bicloo {
     private String adresse;
     private String placedispo;
     private String velodispo;
+    private String showicon;
 
     public Bicloo() {
     }
 
-    public Bicloo(String adresse, String placedispo, String velodispo) {
+    public Bicloo(String adresse, String placedispo, String velodispo,String showicon) {
 
         this.adresse = adresse;
 
         this.placedispo = placedispo;
 
         this.velodispo = velodispo;
+
+        this.showicon = showicon;
     }
 
 
@@ -43,6 +46,14 @@ public class Bicloo {
         this.velodispo = velodispo;
     }
 
+
+    public String getIcon()  {
+        return showicon;
+    }
+
+    public void setIcon(String icon)  {
+        this.showicon = icon;
+    }
 
 
 

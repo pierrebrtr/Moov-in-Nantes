@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -85,11 +86,25 @@ public class CustomListAdapterBicloo extends BaseAdapter  {
         TextView placedispo = (TextView) convertView.findViewById(R.id.placedispo);
         TextView velodispo = (TextView) convertView.findViewById(R.id.velodispo);
 
-
+        ImageView favoriteImg = (ImageView) convertView.findViewById(R.id.banking);
 
 
 
         Bicloo m = biclooItems.get(position);
+
+
+
+        if(m.getIcon().equals("true")){
+
+            favoriteImg.setImageResource(R.drawable.bank);
+            favoriteImg.setTag("bank");
+
+        } else if (m.getIcon().equals("false")){
+
+
+            favoriteImg.setImageResource(R.drawable.nobank);
+            favoriteImg.setTag("nobank");
+        }
 
         // getting movie data for the row
 
@@ -97,6 +112,8 @@ public class CustomListAdapterBicloo extends BaseAdapter  {
 
         // title
         adresse.setText(m.getAdresse());
+
+
 
 
 

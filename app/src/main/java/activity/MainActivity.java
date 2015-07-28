@@ -96,11 +96,6 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
     }
 
-
-
-
-
-
     @Override
     public void onBackPressed() {
 
