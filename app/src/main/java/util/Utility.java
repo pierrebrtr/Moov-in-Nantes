@@ -61,6 +61,10 @@ public class Utility {
 
             activity.setTheme(R.style.indigo);
 
+        }else if(theme == "cyan"){
+
+            activity.setTheme(R.style.cyan);
+
         }
 
         switch (theme){
@@ -88,6 +92,9 @@ public class Utility {
                 break;
             case "indigo":
                 activity.setTheme(R.style.indigo);
+                break;
+            case "cyan":
+                activity.setTheme(R.style.cyan);
                 break;
 
 

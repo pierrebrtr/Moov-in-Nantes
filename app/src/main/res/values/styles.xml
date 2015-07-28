@@ -75,6 +75,15 @@
 
     </style>
 
+    <style name="cyan" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">#00BCD4</item>
+        <item name="colorPrimaryDark">#0097A7</item>
+        <item name="colorAccent">#009688</item>
+
+    </style>
+
 
     <style name="carddemo_default_container_padding">
         <item name="android:clipToPadding">false</item>
