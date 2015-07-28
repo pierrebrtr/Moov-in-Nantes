@@ -16,6 +16,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -120,9 +121,11 @@ public class ExampleAppWidgetProvider extends AppWidgetProvider {
             intent.putExtra("text", text1);
             intent.putExtra("libelle", text2);
 
+            intent.setAction("dummy_unique_action_identifyer" + appWidgetId);
 
 
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
 
 
             // Get the layout for the App Widget and attach an on-click listener

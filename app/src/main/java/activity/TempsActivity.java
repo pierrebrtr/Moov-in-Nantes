@@ -271,7 +271,7 @@ public class TempsActivity extends ActionBarActivity {
 
 
             @Override
-            public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long arg3) {
+            public boolean onItemLongClick(AdapterView<?> arg0, final View view, int position, long arg3) {
 
 
                 TextView textView2 = (TextView) view.findViewById(R.id.temps);
@@ -291,7 +291,7 @@ public class TempsActivity extends ActionBarActivity {
 
                 RelativeLayout linearLayout = new RelativeLayout(TempsActivity.this);
                 final NumberPicker aNumberPicker = new NumberPicker(TempsActivity.this);
-                aNumberPicker.setMaxValue(Timebeforestart);
+                aNumberPicker.setMaxValue(Timebeforestart - 1);
                 aNumberPicker.setMinValue(1);
 
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(50, 50);
@@ -305,22 +305,23 @@ public class TempsActivity extends ActionBarActivity {
                 alertDialogBuilder.setTitle("Créer une notification");
                 alertDialogBuilder.setMessage("Nombre de minutes avant le départ théorique:");
                 alertDialogBuilder.setView(linearLayout);
+
                 alertDialogBuilder
                         .setCancelable(false)
+
                         .setPositiveButton("Ok",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,
                                                         int id) {
-                                        Log.e("","New Quantity Value : "+ aNumberPicker.getValue());
+                                        Log.e("", "New Quantity Value : " + aNumberPicker.getValue());
 
-                                    int timeminute = aNumberPicker.getValue();
+                                        int timeminute = aNumberPicker.getValue();
 
                                         Timenotif = Timebeforestart - aNumberPicker.getValue();
                                         Timenotif = Timenotif * 60000;
 
 
-
-                                        scheduleNotification(getNotification("Votre bus passe dans " + timeminute + " minutes"), Timenotif);
+                                        scheduleNotification(getNotification("Votre bus passe dans " + timeminute + " minutes", view), Timenotif, view);
 
                                         Toast.makeText(TempsActivity.this, "Notification créée", Toast.LENGTH_SHORT).show();
 
@@ -685,7 +686,7 @@ public class TempsActivity extends ActionBarActivity {
 
 
 
-    private void scheduleNotification(Notification notification, int delay) {
+    private void scheduleNotification(Notification notification, int delay, View view) {
 
         Intent notificationIntent = new Intent(this, NotificationPublisher.class);
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
@@ -697,14 +698,52 @@ public class TempsActivity extends ActionBarActivity {
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
     }
 
-    private Notification getNotification(String content) {
-        long[] pattern = {0, 100, 1000};
+    private Notification getNotification(String content, View view) {
+        Intent mapIntent = new Intent(TempsActivity.this, HorairesActivity.class);
+
+        TextView textView2 = (TextView) view.findViewById(R.id.sens);
+        String libelle = textView2.getText().toString();
+
+        TextView textView3 = (TextView) view.findViewById(R.id.terminus);
+        String terminus = textView3.getText().toString();
+
+        TextView textView4 = (TextView) view.findViewById(R.id.codearret);
+        String arret2 = textView4.getText().toString();
+
+        TextView textView5 = (TextView) view.findViewById(R.id.ligne);
+        String ligne = textView5.getText().toString();
+
+
+        TextView t = (TextView) findViewById(R.id.headertext);
+
+
+        mapIntent.putExtra("sens", libelle);
+        mapIntent.putExtra("id", arret2);
+        mapIntent.putExtra("ligne", ligne);
+        mapIntent.putExtra("arret", t.getText().toString());
+        mapIntent.putExtra("terminus", terminus);
+
+
+
+
+
+        PendingIntent mapPendingIntent =
+                PendingIntent.getActivity(this, 0, mapIntent, PendingIntent.FLAG_ONE_SHOT);
+
+
+
+
+
+        long[] pattern = {0, 400, 100, 200, 100, 200};
         Notification.Builder builder = new Notification.Builder(this);
         builder.setContentTitle("Alerte Moov'in");
         builder.setContentText(content);
         builder.setSmallIcon(R.drawable.ic_logo);
         builder.setVibrate(pattern);
         builder.setLights(Color.WHITE, 1000, 1000);
+        builder.addAction(0,
+               "Ouvrir", mapPendingIntent);
+        builder.setAutoCancel(true);
 
 
         return builder.build();

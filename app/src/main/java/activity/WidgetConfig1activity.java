@@ -260,7 +260,10 @@ public class WidgetConfig1activity extends Activity {
 
                 // Creating a pending intent, which will be invoked when the user
                 // clicks on the widget
-                PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+           intent.setAction("dummy_unique_action_identifyer" + mAppWidgetId);
+
+                PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
 
 
