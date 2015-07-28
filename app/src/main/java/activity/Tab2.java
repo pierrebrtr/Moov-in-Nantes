@@ -21,6 +21,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.dexafree.materialList.cards.BasicButtonsCard;
+import com.dexafree.materialList.cards.BasicListCard;
 import com.dexafree.materialList.cards.OnButtonPressListener;
 import com.dexafree.materialList.cards.SmallImageCard;
 import com.dexafree.materialList.cards.WelcomeCard;
@@ -125,18 +127,9 @@ public class Tab2 extends Fragment {
 
 
 
-                    MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
+                    final MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
 
 
-
-                    WelcomeCard carddiscover = new WelcomeCard(getActivity());
-                    carddiscover.setTitle("Découvrir Nantes");
-                    carddiscover.setSubtitle("Bientôt disponible");
-                    carddiscover.setDescription("Cette fonction va prochainement être integrée !");
-                    carddiscover.setButtonText("OKAY!");
-                    carddiscover.setTitleColor(getResources().getColor(R.color.colorGrey));
-                    carddiscover.setSubtitleColor(getResources().getColor(R.color.colorGrey));
-                    carddiscover.setButtonTextColor(getResources().getColor(R.color.colorGrey));
 
 
 
@@ -144,6 +137,11 @@ public class Tab2 extends Fragment {
                     SmallImageCard cardmeteo = new SmallImageCard(getActivity());
                     cardmeteo.setTitle("En direct du ciel :");
                     cardmeteo.setDescription(condition + " (" + tmp + "°)");
+
+
+
+
+
 
 
 
@@ -182,8 +180,8 @@ public class Tab2 extends Fragment {
 
 
 
-                    mListView.add(carddiscover);
                     mListView.add(cardmeteo);
+
 
 
 
@@ -231,35 +229,31 @@ public class Tab2 extends Fragment {
             final MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
 
 
-            final WelcomeCard carddiscover = new WelcomeCard(getActivity());
-            carddiscover.setTitle("Découvrir Nantes");
-            carddiscover.setSubtitle("Bientôt disponible");
-            carddiscover.setDescription("Cette fonction va prochainement être integrée !");
-            carddiscover.setButtonText("OKAY!");
 
-            carddiscover.setTitleColor(getResources().getColor(R.color.colorGrey));
-            carddiscover.setSubtitleColor(getResources().getColor(R.color.colorGrey));
-            carddiscover.setButtonTextColor(getResources().getColor(R.color.colorGrey));
+            BasicButtonsCard card = new BasicButtonsCard(getActivity());
+            card.setTitle("Pas de connexion");
+            card.setDescription("Veuillez vérifier votre connexion internet");
+            card.setLeftButtonTextColor(getResources().getColor(R.color.colorError));
+            card.setLeftButtonText("Rafraichir");
 
-
-
+            card.setOnLeftButtonPressedListener(new OnButtonPressListener() {
+                @Override
+                public void onButtonPressedListener(View view, Card card) {
 
 
+                    Intent intent = getActivity().getIntent();
 
 
-            final WelcomeCard carderror = new WelcomeCard(getActivity());
-            carderror.setTitle("Pas de connexion");
-            carderror.setSubtitle("Erreur");
-            carderror.setDescription("Veuillez vérifier votre connexion internet");
-            carderror.setButtonText("OKAY !");
+                    Intent i = new Intent(Tab2.this.getActivity(), MainActivity.class);
 
-            carderror.setBackgroundColor(getResources().getColor(R.color.colorError));
-            carderror.setDescriptionColor(getResources().getColor(R.color.colorWhite));
-            carderror.setSubtitleColor(getResources().getColor(R.color.colorWhite));
-            carderror.setDividerColor(getResources().getColor(R.color.colorWhite));
+                    startActivity(i);
 
-            mListView.add(carderror);
-            mListView.add(carddiscover);
+                }
+            });
+
+
+            mListView.add(card);
+
 
 
 

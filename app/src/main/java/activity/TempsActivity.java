@@ -62,6 +62,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import adapter.CustomListAdapterTemps;
 import app.AppController;
@@ -689,7 +690,10 @@ public class TempsActivity extends ActionBarActivity {
     private void scheduleNotification(Notification notification, int delay, View view) {
 
         Intent notificationIntent = new Intent(this, NotificationPublisher.class);
-        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
+
+        String uuid = UUID.randomUUID().toString();
+
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, uuid);
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -699,36 +703,28 @@ public class TempsActivity extends ActionBarActivity {
     }
 
     private Notification getNotification(String content, View view) {
-        Intent mapIntent = new Intent(TempsActivity.this, HorairesActivity.class);
 
-        TextView textView2 = (TextView) view.findViewById(R.id.sens);
-        String libelle = textView2.getText().toString();
+        Intent intent = getIntent();
 
-        TextView textView3 = (TextView) view.findViewById(R.id.terminus);
-        String terminus = textView3.getText().toString();
+        String text = intent.getExtras().getString("text");
 
-        TextView textView4 = (TextView) view.findViewById(R.id.codearret);
-        String arret2 = textView4.getText().toString();
-
-        TextView textView5 = (TextView) view.findViewById(R.id.ligne);
-        String ligne = textView5.getText().toString();
+        String libelle = intent.getExtras().getString("libelle");
 
 
-        TextView t = (TextView) findViewById(R.id.headertext);
+        Intent mapIntent = new Intent(TempsActivity.this, TempsActivity.class);
 
 
-        mapIntent.putExtra("sens", libelle);
-        mapIntent.putExtra("id", arret2);
-        mapIntent.putExtra("ligne", ligne);
-        mapIntent.putExtra("arret", t.getText().toString());
-        mapIntent.putExtra("terminus", terminus);
+        String uuid = UUID.randomUUID().toString();
 
+        mapIntent.setAction("dummy_unique_action_identifyer" + uuid);
 
+        mapIntent.putExtra("text", text);
+        mapIntent.putExtra("libelle", libelle);
 
 
 
         PendingIntent mapPendingIntent =
-                PendingIntent.getActivity(this, 0, mapIntent, PendingIntent.FLAG_ONE_SHOT);
+                PendingIntent.getActivity(this, 0, mapIntent, 0);
 
 
 
@@ -816,9 +812,7 @@ public class TempsActivity extends ActionBarActivity {
             @Override
             public void onBubbleRemoved(BubbleLayout bubble) {
 
-                Toast.makeText(getApplicationContext(),
-                        "Bulle supprimée",
-                        Toast.LENGTH_SHORT).show();
+
 
             }
         });

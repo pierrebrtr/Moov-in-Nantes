@@ -5,10 +5,13 @@ import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -27,8 +30,13 @@ import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.pandf.moovin.R;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.ui.LibsActivity;
+import com.squareup.picasso.LruCache;
+import com.squareup.picasso.Picasso;
 
 import org.xml.sax.Parser;
+
+import java.io.File;
+import java.util.List;
 
 import app.AppController;
 import util.SpLite;
@@ -43,7 +51,6 @@ public class MyPreferencesActivity extends ActionBarActivity {
 
     SpLite sharedlite;
     private Toolbar mToolbar;
-
 
     public static final String PREFS_COLOR = "PRODUCT_THEME";
     public static final String THEME = "Product_theme";
@@ -74,7 +81,6 @@ public class MyPreferencesActivity extends ActionBarActivity {
 
 
 
-
     @Override
     public void onBackPressed()
     {
@@ -97,11 +103,11 @@ public class MyPreferencesActivity extends ActionBarActivity {
                 @Override
                 public boolean onPreferenceClick(Preference arg0) {
 
-                    int[] mColorChoices=null;
+                    int[] mColorChoices = null;
                     String[] color_array = getResources().getStringArray(R.array.default_color_choice_values);
 
 
-                    if (color_array!=null && color_array.length>0) {
+                    if (color_array != null && color_array.length > 0) {
                         mColorChoices = new int[color_array.length];
                         for (int i = 0; i < color_array.length; i++) {
                             mColorChoices[i] = Color.parseColor(color_array[i]);
@@ -109,13 +115,10 @@ public class MyPreferencesActivity extends ActionBarActivity {
                     }
 
 
-
-
-
-                    ColorPickerDialog colorcalendar = ColorPickerDialog.newInstance(R.string.color_picker_default_title, mColorChoices, 4, 2, 1);
+                    ColorPickerDialog colorcalendar = ColorPickerDialog.newInstance(R.string.color_picker_default_title, mColorChoices, 3, 3, 1);
 
                     //Implement listener to get selected color value
-                    colorcalendar.setOnColorSelectedListener(new ColorPickerSwatch.OnColorSelectedListener(){
+                    colorcalendar.setOnColorSelectedListener(new ColorPickerSwatch.OnColorSelectedListener() {
 
                         @Override
                         public void onColorSelected(int color) {
@@ -131,65 +134,65 @@ public class MyPreferencesActivity extends ActionBarActivity {
                                     Context.MODE_PRIVATE);
                             editor = settings.edit();
 
-                            if (color == -14575885){
+                            if (color == -14575885) {
                                 String jsonFavorites = "default";
                                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
                                         jsonFavorites).commit();
                                 Log.d("Choose", jsonFavorites);
 
 
-                            } else if(color == -3285959){
-                                    String jsonFavorites2 = "lime";
+                            } else if (color == -3285959) {
+                                String jsonFavorites2 = "lime";
 
                                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
                                         jsonFavorites2).commit();
-                                    Log.d("Choose", jsonFavorites2);
+                                Log.d("Choose", jsonFavorites2);
 
-                            }else if (color == -769226){
+                            } else if (color == -769226) {
 
-                            String jsonFavorites3 = "red";
+                                String jsonFavorites3 = "red";
 
                                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
                                         jsonFavorites3).commit();
-                                    Log.d("Choose", jsonFavorites3);
+                                Log.d("Choose", jsonFavorites3);
 
-                            }  else if (color == -11751600){
-                                    String jsonFavorites4 = "green";
+                            } else if (color == -11751600) {
+                                String jsonFavorites4 = "green";
 
                                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
                                         jsonFavorites4).commit();
-                                    Log.d("Choose", jsonFavorites4);
+                                Log.d("Choose", jsonFavorites4);
 
 
-                            }  else if (color == -1499549){
-                                    String jsonFavorites5 = "pink";
+                            } else if (color == -1499549) {
+                                String jsonFavorites5 = "pink";
 
                                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
                                         jsonFavorites5).commit();
-                                    Log.d("Choose", jsonFavorites5);
+                                Log.d("Choose", jsonFavorites5);
 
-                            }  else if (color == -6543440){
-                                    String jsonFavorites6 = "purple";
+                            } else if (color == -6543440) {
+                                String jsonFavorites6 = "purple";
 
                                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
                                         jsonFavorites6).commit();
-                                    Log.d("Choose", jsonFavorites6);
+                                Log.d("Choose", jsonFavorites6);
 
-                            }  else if (color == -8825528){
+                            } else if (color == -8825528) {
 
-                                    String jsonFavorites7 = "brown";
+                                String jsonFavorites7 = "brown";
 
                                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
                                         jsonFavorites7).commit();
-                                    Log.d("Choose", jsonFavorites7);
+                                Log.d("Choose", jsonFavorites7);
 
 
-                            }  else if (color == -12627531){
-                                    String jsonFavorites8 = "indigo";
+                            } else if (color == -12627531) {
+                                String jsonFavorites8 = "indigo";
 
                                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
                                         jsonFavorites8).commit();
-                                    Log.d("Choose", jsonFavorites8);
+                                Log.d("Choose", jsonFavorites8);
 
                             }
 
@@ -204,7 +207,7 @@ public class MyPreferencesActivity extends ActionBarActivity {
 
                     });
 
-                    colorcalendar.show(getFragmentManager(),"cal");
+                    colorcalendar.show(getFragmentManager(), "cal");
 
                     return true;
                 }
@@ -237,17 +240,12 @@ public class MyPreferencesActivity extends ActionBarActivity {
                     Log.d("MyApp", "Pref " + preference.getKey() + " changed to " + newValue.toString());
 
 
-
-
-
                     sharedlite = new SpLite();
 
                     if (newValue.toString() == "true") {
 
 
-                    sharedlite.setPref(getActivity(), "true");
-
-
+                        sharedlite.setPref(getActivity(), "true");
 
 
                     } else {
@@ -256,30 +254,43 @@ public class MyPreferencesActivity extends ActionBarActivity {
                         sharedlite.setPref(getActivity(), "false");
 
 
-
-
                     }
-
 
 
                     return true;
                 }
 
 
-
             });
 
-            Preference userButtone = (Preference) findPreference("cache");
+            final Preference userButtone = (Preference) findPreference("cache");
+
             userButtone.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference arg0) {
                     String url = "https://open.tan.fr/ewp/arrets.json";
-                    AppController.getInstance().getRequestQueue().getCache().remove(url);
+                    AppController.getInstance().getRequestQueue().getCache().clear();
+
+                    deleteDirectoryTree(getActivity().getCacheDir());
                     Toast.makeText(getActivity().getApplicationContext(),
-                            "Le cache a été vidé.", Toast.LENGTH_LONG).show();
+                            "Le caché a été vidé", Toast.LENGTH_LONG).show();
+                    long size = 0;
+                    File[] files = getCacheDir().listFiles();
+                    for (File f:files) {
+                        size = size+f.length();
+                        size = size/100;
+                    }
+                    userButtone.setSummary("Taille du cache: " + size + " ko");
                     return true;
                 }
             });
+            long size = 0;
+            File[] files = getCacheDir().listFiles();
+            for (File f:files) {
+                size = size+f.length();
+                size = size/100;
+            }
+            userButtone.setSummary("Taille du cache: " + size +" ko");
             Preference userButtonee = (Preference) findPreference("library");
             userButtonee.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -294,6 +305,18 @@ public class MyPreferencesActivity extends ActionBarActivity {
             });
         }
     }
+
+    public static void deleteDirectoryTree(File fileOrDirectory) {
+        if (fileOrDirectory.isDirectory()) {
+            for (File child : fileOrDirectory.listFiles()) {
+                deleteDirectoryTree(child);
+            }
+        }
+
+        fileOrDirectory.delete();
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

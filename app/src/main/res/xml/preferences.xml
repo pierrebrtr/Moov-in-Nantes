@@ -9,7 +9,7 @@
         </PreferenceScreen>
     <PreferenceScreen
         android:title="Vider le cache"
-        android:summary="Fonctionnalité en beta."
+        android:summary="Taille du cache: %size"
         android:key="cache">
     </PreferenceScreen>
         <CheckBoxPreference

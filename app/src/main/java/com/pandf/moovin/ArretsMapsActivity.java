@@ -24,6 +24,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import util.Utility;
+
 public class ArretsMapsActivity extends ActionBarActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
@@ -33,6 +35,7 @@ public class ArretsMapsActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Utility.themer(ArretsMapsActivity.this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arrets_maps);
         setUpMapIfNeeded();

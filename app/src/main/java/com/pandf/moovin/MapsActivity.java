@@ -18,6 +18,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
+import util.Utility;
+
 public class MapsActivity extends ActionBarActivity {
 
     ArrayList<LatLng> locations;
@@ -26,6 +28,7 @@ public class MapsActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Utility.themer(MapsActivity.this);
         super.onCreate(savedInstanceState);
 
 
