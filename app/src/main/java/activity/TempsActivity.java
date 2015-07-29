@@ -132,6 +132,7 @@ public class TempsActivity extends ActionBarActivity {
         final ProgressDialog progress = new ProgressDialog(this);
         progress.setTitle("Chargement");
         progress.setMessage("Veuillez patienter pendant le chargement des horaires en temps réel");
+        progress.setCancelable(false);
         progress.show();
 
 

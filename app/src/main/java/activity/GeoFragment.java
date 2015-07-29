@@ -249,6 +249,7 @@ super.onActivityCreated(savedInstanceState);
         final ProgressDialog progress = new ProgressDialog(getActivity());
         progress.setTitle("Chargement");
         progress.setMessage("Veuillez patienter pendant le chargement des arrêts");
+        progress.setCancelable(false);
         progress.show();
         // Creating volley request obj
         JsonArrayRequest movieReq = new JsonArrayRequest(url,

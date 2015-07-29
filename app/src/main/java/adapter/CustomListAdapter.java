@@ -3,6 +3,7 @@ package adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -104,16 +105,14 @@ public class CustomListAdapter extends BaseAdapter  {
 
 
 
-            if (showicon == true) {
+
+            if (showicon) {
 
                 favoriteImg.setImageResource(R.drawable.ic_heart_red);
                 favoriteImg.setTag("red");
 
-            }
+            }if (!showicon){
 
-        if (showicon == false){
-
-                favoriteImg.setImageResource(R.drawable.ic_heart_white);
 
                 favoriteImg.setTag("grey");
             }

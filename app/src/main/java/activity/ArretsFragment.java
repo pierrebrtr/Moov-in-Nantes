@@ -308,12 +308,11 @@ public class ArretsFragment extends Fragment  {
                         Toast.makeText(getActivity(), "Ajouté au favoris !", Toast.LENGTH_SHORT).show();
 
                         button.setTag("red");
-                        button.setImageResource(R.drawable.ic_heart_red);
-                    } else {
-                        sharedPreference.removeFavorite(getActivity(), item);
-                        button.setTag("grey");
-                        button.setImageResource(R.drawable.ic_heart_white);
-                        Toast.makeText(getActivity(), "Supprimé des favoris !", Toast.LENGTH_SHORT).show();
+
+                    } else if (!tag.equalsIgnoreCase("grey")) {
+
+
+                        Toast.makeText(getActivity(), "Déjà ajouté aux favoris !", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -359,6 +358,7 @@ public class ArretsFragment extends Fragment  {
         final ProgressDialog progress = new ProgressDialog(getActivity());
         progress.setTitle("Chargement");
         progress.setMessage("Veuillez patienter pendant le chargement des arrêts");
+        progress.setCancelable(false);
         progress.show();
 
 

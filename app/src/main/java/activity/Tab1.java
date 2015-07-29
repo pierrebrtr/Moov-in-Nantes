@@ -169,6 +169,12 @@ public class Tab1 extends Fragment {
                         AdapterView<?> parent, View view,
                         int position, long id) {
 
+
+
+
+
+
+
                     ImageView button = (ImageView) view
                             .findViewById(R.id.imgbtn_favorite);
 
