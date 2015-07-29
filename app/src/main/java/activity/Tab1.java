@@ -1,8 +1,11 @@
 package activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -28,15 +31,24 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.pandf.moovin.MapsActivity;
 import com.pandf.moovin.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import adapter.CustomListAdapter;
 import app.AppController;
@@ -53,6 +65,13 @@ public class Tab1 extends Fragment {
 
     CustomListAdapter productListAdapter;
 
+    public static final String PREFS_NAME = "PRODUCT_APP";
+    public static final String FAVORITES = "Product_Favorite";
+
+
+
+    File mfile =new File("/sdcard/favoris.xml");
+
     public Tab1() {
         // Required empty public constructor
     }
@@ -60,7 +79,7 @@ public class Tab1 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setHasOptionsMenu(true);
         activity = getActivity();
     }
 
@@ -186,6 +205,138 @@ public class Tab1 extends Fragment {
 
 
     public void onDetach() {
+
         super.onDetach();
+
     }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        inflater.inflate(R.menu.menu_fav, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.imp){
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("Importer/Exporter")
+                    .setMessage("Cette option va vous permettre de sauvegarder et de restaurer à partir de la mémoire interne de votre téléphone les favoris de l'application")
+                    .setPositiveButton("Importer", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+
+                            favorites.clear();
+                            loadSharedPreferencesFromFile(mfile);
+                            productListAdapter.notifyDataSetChanged();
+
+                            Intent i = new Intent(getActivity(), MainActivity.class);
+
+                            startActivity(i);
+
+                        }
+                    })
+                    .setNegativeButton("Exporter", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            saveSharedPreferencesToFile(mfile);
+                            Toast.makeText(getActivity(),"Export des favoris réussi !", Toast.LENGTH_SHORT).show();
+
+                        }
+                    })
+                    .setCancelable(true)
+                    .setIcon(R.drawable.alert9)
+                    .show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+    private boolean saveSharedPreferencesToFile(File dst) {
+        boolean res = false;
+        ObjectOutputStream output = null;
+        try {
+
+
+            output = new ObjectOutputStream(new FileOutputStream(dst));
+            SharedPreferences pref = getActivity().getSharedPreferences(PREFS_NAME,
+                    Context.MODE_PRIVATE);
+            output.writeObject(pref.getAll());
+
+            res = true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if (output != null) {
+                    output.flush();
+                    output.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return res;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked" })
+    private boolean loadSharedPreferencesFromFile(File src) {
+        boolean res = false;
+        ObjectInputStream input;
+        input = null;
+        try {
+            input = new ObjectInputStream(new FileInputStream(src));
+            SharedPreferences.Editor prefEdit = getActivity().getSharedPreferences(PREFS_NAME,
+                    Context.MODE_PRIVATE).edit();
+            prefEdit.clear();
+            Map<String, ?> entries = (Map<String, ?>) input.readObject();
+            for (Map.Entry<String, ?> entry : entries.entrySet()) {
+                Object v = entry.getValue();
+                String key = entry.getKey();
+
+                if (v instanceof Boolean)
+                    prefEdit.putBoolean(key, ((Boolean) v).booleanValue());
+                else if (v instanceof Float)
+                    prefEdit.putFloat(key, ((Float) v).floatValue());
+                else if (v instanceof Integer)
+                    prefEdit.putInt(key, ((Integer) v).intValue());
+                else if (v instanceof Long)
+                    prefEdit.putLong(key, ((Long) v).longValue());
+                else if (v instanceof String)
+                    prefEdit.putString(key, ((String) v));
+            }
+            prefEdit.commit();
+            res = true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if (input != null) {
+                    input.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return res;
+    }
+
+
+
 }

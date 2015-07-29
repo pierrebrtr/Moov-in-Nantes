@@ -11,6 +11,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -255,19 +257,6 @@ public class Tab2 extends Fragment {
             mListView.add(card);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
 
 
@@ -280,14 +269,16 @@ public class Tab2 extends Fragment {
     }
 
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-
-
-
+        menu.clear();
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+setHasOptionsMenu(true);
 
         swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.refreshome);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -329,6 +320,7 @@ public class Tab2 extends Fragment {
             final Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
 
 
 

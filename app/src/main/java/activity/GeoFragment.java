@@ -10,6 +10,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -67,14 +69,19 @@ public class GeoFragment extends Fragment implements
 
 
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
+        menu.clear();
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
     @Override
     public void onActivityCreated(final Bundle savedInstanceState) {
 super.onActivityCreated(savedInstanceState);
 
 
-
+        setHasOptionsMenu(true);
 
         swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.containergeo);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -352,4 +359,6 @@ super.onActivityCreated(savedInstanceState);
         Log.i(TAG, "Connection suspended");
         mGoogleApiClient.connect();
     }
+
+
 }

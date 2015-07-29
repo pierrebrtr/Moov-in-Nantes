@@ -101,6 +101,10 @@ public class ArretsFragment extends Fragment  {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+
+
+
         listView = (ListView) getActivity().findViewById(R.id.list);
 
         // movieList is an empty array at this point.
@@ -457,7 +461,10 @@ public class ArretsFragment extends Fragment  {
     @Override
     public void onCreateOptionsMenu(
             Menu menu, MenuInflater inflater) {
+
+        menu.clear();
         inflater.inflate(R.menu.menu_main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override

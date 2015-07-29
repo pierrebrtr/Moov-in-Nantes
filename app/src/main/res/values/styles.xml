@@ -25,6 +25,8 @@
         <item name="colorPrimary">#4CAF50</item>
         <item name="colorPrimaryDark">#388E3C</item>
         <item name="colorAccent">#8BC34A</item>
+        <item name="android:panelColorBackground">#4CAF50</item>
+        <item name="android:popupBackground">#FFF</item>
 
     </style>
 
@@ -93,5 +95,7 @@
         <item name="android:paddingTop">@dimen/carddemo_keyline_1_minus_8dp</item>
         <item name="android:paddingBottom">@dimen/carddemo_keyline_1_minus_8dp</item>
     </style>
+
+
 
 </resources>
