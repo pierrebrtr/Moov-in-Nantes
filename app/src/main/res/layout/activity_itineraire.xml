@@ -36,7 +36,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_marginTop="93dp"
+        android:layout_marginTop="62dp"
         android:hint="Départ"
         android:layout_gravity="center_horizontal|top"
         android:layout_alignParentTop="true"
@@ -50,7 +50,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="33dp"
         android:hint="Arrivée"
         android:layout_gravity="center"
         android:layout_below="@+id/autoCompleteTextView1"
@@ -64,9 +64,9 @@
             android:layout_height="wrap_content"
             android:text="Chercher un itinéraire"
             android:id="@+id/button"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_below="@+id/autoCompleteTextView2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="33dp" />
 
     </RelativeLayout>
 

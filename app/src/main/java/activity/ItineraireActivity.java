@@ -1,12 +1,17 @@
 package activity;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
@@ -105,7 +110,6 @@ public class ItineraireActivity extends Activity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                depart.showDropDown();
 
                 itineraireList.clear();
                 lAdapter.notifyDataSetChanged();
@@ -168,7 +172,7 @@ public class ItineraireActivity extends Activity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                arrive.showDropDown();
+
 
                 itineraireList.clear();
                 lAdapter.notifyDataSetChanged();
@@ -342,6 +346,15 @@ public class ItineraireActivity extends Activity {
 
     }
 
+
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(ItineraireActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
 }
 
