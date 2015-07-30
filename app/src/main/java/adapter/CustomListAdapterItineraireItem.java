@@ -31,8 +31,9 @@ public class CustomListAdapterItineraireItem extends BaseAdapter implements Filt
     private List<ItineraireItem> filtereditineraireItems;
     private ItemFilter mFilter = new ItemFilter();
 
-    public CustomListAdapterItineraireItem(Context context, List<ItineraireItem> itineraireItems) {
+    public CustomListAdapterItineraireItem(Activity activity, Context context, List<ItineraireItem> itineraireItems) {
         //super(context, R.layout.your_row, items);
+        this.activity = activity;
         this.context = context;
         this.itineraireItems = itineraireItems;
         this.filtereditineraireItems = itineraireItems;
@@ -40,12 +41,12 @@ public class CustomListAdapterItineraireItem extends BaseAdapter implements Filt
 
     @Override
     public int getCount() {
-        return filtereditineraireItems.size();
+        return itineraireItems.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return filtereditineraireItems.get(position);
+        return itineraireItems.get(position);
     }
 
     @Override
@@ -59,10 +60,9 @@ public class CustomListAdapterItineraireItem extends BaseAdapter implements Filt
 
 
         if (inflater == null)
-            inflater = (LayoutInflater) activity
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.list_row, null);
+            convertView = inflater.inflate(R.layout.list_itineraireitem, null);
 
 
 
@@ -93,7 +93,7 @@ public class CustomListAdapterItineraireItem extends BaseAdapter implements Filt
     private class ItemFilter extends Filter {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            String filterString = constraint.toString().toLowerCase();
+
             FilterResults results = new FilterResults();
 
             int count = itineraireItems.size();
