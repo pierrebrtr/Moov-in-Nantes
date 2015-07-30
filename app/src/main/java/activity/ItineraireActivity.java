@@ -3,6 +3,8 @@ package activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,10 +20,13 @@ import android.widget.MultiAutoCompleteTextView;
 
 import com.pandf.moovin.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import adapter.CustomListAdapter;
+import adapter.CustomListAdapterItineraireItem;
 import model.Arrets;
+import model.ItineraireItem;
 import util.Spfav;
 import util.Utility;
 
@@ -32,6 +37,8 @@ public class ItineraireActivity extends Activity {
 
     private Toolbar mToolbar;
     AutoCompleteTextView depart;
+
+    private List<ItineraireItem> itineraireList = new ArrayList<ItineraireItem>();
 
     Activity activity;
 
@@ -55,10 +62,30 @@ public class ItineraireActivity extends Activity {
         searchContainer.setVisibility(View.GONE);
 
 
+        final CustomListAdapterItineraireItem lAdapter = new CustomListAdapterItineraireItem(getApplicationContext(), itineraireList);
 
 
 
         depart=(AutoCompleteTextView) findViewById(R.id.autoCompleteTextView1);
+
+        depart.setAdapter(lAdapter);
+
+        depart.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
 
@@ -77,3 +104,5 @@ public class ItineraireActivity extends Activity {
 
 
 }
+
+
