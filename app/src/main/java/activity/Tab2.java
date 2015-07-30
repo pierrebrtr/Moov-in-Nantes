@@ -188,12 +188,18 @@ public class Tab2 extends Fragment {
 
 
 
+                    try {
+
 
 
                     animatedCircleLoadingView = (AnimatedCircleLoadingView) v.findViewById(R.id.circle_loading_view);
 
                 animatedCircleLoadingView.stopOk();
 
+
+                    } catch (NullPointerException e) {
+                        // do something other
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
