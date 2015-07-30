@@ -16,6 +16,7 @@
     <string name="nav_item_bicloo">Bicloo</string>
     <string name="nav_item_arrets">Arrêts</string>
     <string name="nav_item_settings">Paramètres</string>
+    <string name="nav_item_itineraire">Itinéraire</string>
 
 
     <!-- navigation drawer item labels  -->
@@ -24,6 +25,7 @@
         <item>@string/nav_item_arrets</item>
         <item>@string/nav_item_geo</item>
         <item>@string/nav_item_bicloo</item>
+
         <item>@string/nav_item_settings</item>
 
 

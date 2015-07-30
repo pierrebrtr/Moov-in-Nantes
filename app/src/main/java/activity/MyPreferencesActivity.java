@@ -59,9 +59,6 @@ public class MyPreferencesActivity extends ActionBarActivity {
 
 
 
-
-
-
         @Override
         protected void onCreate(Bundle savedInstanceState) {
 
@@ -80,14 +77,6 @@ public class MyPreferencesActivity extends ActionBarActivity {
 
 
 
-
-    @Override
-    public void onBackPressed()
-    {
-        Intent intent = new Intent(MyPreferencesActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
 
     public class MyPreferenceFragment extends PreferenceFragment{
         String ListPreference;
@@ -344,6 +333,14 @@ public class MyPreferencesActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(MyPreferencesActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 

@@ -220,6 +220,7 @@ public class Tab1 extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
+        menu.clear();
         inflater.inflate(R.menu.menu_fav, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -236,13 +237,35 @@ public class Tab1 extends Fragment {
                         public void onClick(DialogInterface dialog, int which) {
 
 
-                            favorites.clear();
-                            loadSharedPreferencesFromFile(mfile);
-                            productListAdapter.notifyDataSetChanged();
+                            try {
 
-                            Intent i = new Intent(getActivity(), MainActivity.class);
+                                favorites.clear();
+                                loadSharedPreferencesFromFile(mfile);
+                                productListAdapter.notifyDataSetChanged();
 
-                            startActivity(i);
+                                Intent i = new Intent(getActivity(), MainActivity.class);
+
+                                startActivity(i);
+
+                            } catch(NullPointerException e) {
+
+                                new AlertDialog.Builder(getActivity())
+                                        .setTitle("Erreur")
+                                        .setMessage("Vous n'avez pas de favoris à importer")
+                                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                dialog.dismiss();
+
+                                            }
+                                        })
+
+                                        .setCancelable(true)
+                                        .setIcon(R.drawable.alert9)
+                                        .show();
+                                // do something other
+                            }
+
 
                         }
                     })

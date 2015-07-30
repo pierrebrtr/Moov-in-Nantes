@@ -129,6 +129,11 @@
         </activity>
 
         <activity
+            android:name="activity.ItineraireActivity"
+            android:label="Itineraire" >
+        </activity>
+
+        <activity
             android:name="activity.Exiter"
             android:label="Quitter" >
         </activity>
