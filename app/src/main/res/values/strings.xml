@@ -25,7 +25,7 @@
         <item>@string/nav_item_arrets</item>
         <item>@string/nav_item_geo</item>
         <item>@string/nav_item_bicloo</item>
-
+        <item>@string/nav_item_itineraire</item>
         <item>@string/nav_item_settings</item>
 
 

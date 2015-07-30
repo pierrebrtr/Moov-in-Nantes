@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="54dp"
-        android:hint="Arrivé"
+        android:hint="Arrivée"
         android:layout_gravity="center"
         android:layout_below="@+id/autoCompleteTextView1"
         android:layout_centerHorizontal="true">
