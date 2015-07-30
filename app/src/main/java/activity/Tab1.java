@@ -235,17 +235,13 @@ public class Tab1 extends Fragment {
                     .setMessage("Cette option va vous permettre de sauvegarder et de restaurer à partir de la mémoire interne de votre téléphone les favoris de l'application")
                     .setPositiveButton("Importer", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-
+                            favorites.clear();
 
                             try {
 
-                                favorites.clear();
+
                                 loadSharedPreferencesFromFile(mfile);
-                                productListAdapter.notifyDataSetChanged();
 
-                                Intent i = new Intent(getActivity(), MainActivity.class);
-
-                                startActivity(i);
 
                             } catch(NullPointerException e) {
 
@@ -266,6 +262,11 @@ public class Tab1 extends Fragment {
                                 // do something other
                             }
 
+                            productListAdapter.notifyDataSetChanged();
+
+                            Intent i = new Intent(getActivity(), MainActivity.class);
+
+                            startActivity(i);
 
                         }
                     })
