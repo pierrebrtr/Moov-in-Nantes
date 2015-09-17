@@ -2,32 +2,25 @@ package activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.pandf.moovin.R;
 
 import org.json.JSONArray;
@@ -62,6 +55,7 @@ public class ItineraireActivity extends Activity {
 
     final String basicAuth = "Basic " + Base64.encodeToString("a6ca7725-5504-474f-925b-6aa310d48cce:stream53".getBytes(), Base64.NO_WRAP);
 
+    Toolbar toolbar;
 
     Double firstlat;
     Double firstlon;
@@ -87,16 +81,21 @@ public class ItineraireActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_itineraire);
-        View searchContainer = findViewById(R.id.search_container);
-        final EditText toolbarSearchView = (EditText) findViewById(R.id.search);
-        ImageView searchClearButton = (ImageView) findViewById(R.id.search_clear);
-        searchClearButton.setOnClickListener(new View.OnClickListener() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toolbarSearchView.setText("");
+
+                Intent myIntent = new Intent(ItineraireActivity.this, MainActivity.class);
+
+                ItineraireActivity.this.startActivity(myIntent);
+
             }
         });
-        searchContainer.setVisibility(View.GONE);
+
 
 
         final CustomListAdapterItineraireItem lAdapter = new CustomListAdapterItineraireItem(ItineraireActivity.this, getApplicationContext(), itineraireList);
@@ -173,7 +172,6 @@ public class ItineraireActivity extends Activity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 
-
                 itineraireList.clear();
                 lAdapter.notifyDataSetChanged();
 
@@ -224,6 +222,18 @@ public class ItineraireActivity extends Activity {
         });
 
 
+
+        ImageButton imageButton = (ImageButton) toolbar.findViewById(R.id.button);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String url = "https://api.navitia.io/v1/journeys?from=" + firstlon + ";" + firstlat + "&to=" + secondelon + ";" + secondelat;
+
+
+            }
+        });
 
 
 
@@ -355,6 +365,8 @@ public class ItineraireActivity extends Activity {
         startActivity(intent);
         finish();
     }
+
+
 
 }
 

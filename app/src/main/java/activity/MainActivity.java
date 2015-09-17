@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -12,13 +11,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import com.pandf.moovin.R;
-import com.txusballesteros.bubbles.BubbleLayout;
-import com.txusballesteros.bubbles.BubblesManager;
-import com.txusballesteros.bubbles.OnInitializedCallback;
 
 import adapter.FragmentDrawer;
 import hotchemi.android.rate.AppRate;
@@ -142,11 +137,6 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 title = "Bicloos";
                 break;
             case 4:
-                Intent i2 = new Intent(MainActivity.this, ItineraireActivity.class);
-                title = "Itinéraire";
-                startActivity(i2);
-                break;
-            case 5:
                 Intent i = new Intent(MainActivity.this, MyPreferencesActivity.class);
                 title = "Paramètres";
                 startActivity(i);

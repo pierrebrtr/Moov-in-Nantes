@@ -23,6 +23,9 @@
         android:paddingTop="16dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
+
+        app:paddingEnd="20dp"
+
         app:column_count_landscape="1"
         android:id="@+id/material_listview"/>
 

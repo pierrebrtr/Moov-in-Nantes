@@ -21,54 +21,13 @@
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
+            layout="@layout/toolbar_itineraire" />
 
 
     </LinearLayout>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView1"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginTop="62dp"
-        android:hint="Départ"
-        android:layout_gravity="center_horizontal|top"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-        <requestFocus />
-
-    </AutoCompleteTextView>
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView2"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginTop="33dp"
-        android:hint="Arrivée"
-        android:layout_gravity="center"
-        android:layout_below="@+id/autoCompleteTextView1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-        <requestFocus />
-    </AutoCompleteTextView>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chercher un itinéraire"
-            android:id="@+id/button"
-            android:layout_below="@+id/autoCompleteTextView2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="33dp" />
-
-    </RelativeLayout>
 
 
 

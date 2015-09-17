@@ -2,7 +2,6 @@ package activity;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
@@ -14,11 +13,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -31,7 +28,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -59,16 +55,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
 import adapter.CustomListAdapterTemps;
 import app.AppController;
-import model.Arrets;
 import model.Temps;
-import util.Spfav;
 import util.Utility;
 
 
@@ -789,10 +782,12 @@ public class TempsActivity extends ActionBarActivity {
     private void addNewBubble() {
         BubbleLayout bubbleView = (BubbleLayout) LayoutInflater.from(TempsActivity.this).inflate(R.layout.bubble_layout, null);
 
-        bubbleView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        bubbleView.setOnBubbleClickListener(new BubbleLayout.OnBubbleClickListener() {
 
+            @Override
+            public void onBubbleClick(BubbleLayout bubble) {
+                Toast.makeText(getApplicationContext(), "Chargement..",
+                        Toast.LENGTH_SHORT).show();
                 Intent intent = getIntent();
 
                 String text = intent.getExtras().getString("text");
@@ -804,9 +799,6 @@ public class TempsActivity extends ActionBarActivity {
                 i.putExtra("text", text);
                 i.putExtra("libelle", libelle);
                 startActivity(i);
-
-
-
             }
         });
         bubbleView.setOnBubbleRemoveListener(new BubbleLayout.OnBubbleRemoveListener() {
@@ -817,6 +809,7 @@ public class TempsActivity extends ActionBarActivity {
 
             }
         });
+        bubbleView.setShouldStickToWall(true);
         bubblesManager.addBubble(bubbleView, 60, 20);
     }
 
