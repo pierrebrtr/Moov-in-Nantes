@@ -9,7 +9,7 @@
     <dimen name="genre">13dip</dimen>
     <dimen name="year">12dip</dimen>
 
-
+    <dimen name="heart_size">48sp</dimen>
 
     <dimen name="dropdown">90dp</dimen>
 

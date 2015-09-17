@@ -43,5 +43,10 @@
             android:data="http://www.pierre.hellophoto.fr" />
 
     </PreferenceScreen>
+        <PreferenceScreen
+            android:title=""
+            android:summary=""
+            android:key="easter">
+        </PreferenceScreen>
     </PreferenceCategory>
 </PreferenceScreen>

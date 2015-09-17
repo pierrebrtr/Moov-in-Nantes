@@ -139,6 +139,10 @@
             android:label="Quitter" >
         </activity>
 
+        <activity
+            android:name="activity.EasterActivity"
+            android:label="Easter" >
+        </activity>
 
 
 
