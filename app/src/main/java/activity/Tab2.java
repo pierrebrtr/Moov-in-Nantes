@@ -98,12 +98,6 @@ public class Tab2 extends Fragment {
                     condition = object.getString("condition");
                     icon = object.getString("icon");
                     final MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
-
-
-
-
-
-
                     SmallImageCard cardmeteo = new SmallImageCard(getActivity());
                     cardmeteo.setTitle("En direct du ciel :");
                     cardmeteo.setDescription(condition + " (" + tmp + "°)");
@@ -119,43 +113,7 @@ public class Tab2 extends Fragment {
 
 
                     }
-
                     mListView.add(cardmeteo);
-
-
-
-                    JSONObject objecttomorow = response.getJSONObject("fcst_day_1");
-
-
-                    tmp2 = objecttomorow.getString("tmin") + " à " + objecttomorow.getString("tmax");
-
-                    condition2 = objecttomorow.getString("condition");
-                    icon2 = objecttomorow.getString("icon");
-
-
-                    SmallImageCard cardmeteotomorow = new SmallImageCard(getActivity());
-                    cardmeteotomorow.setTitle("Demain dans le ciel :");
-                    cardmeteotomorow.setDescription(condition2 + " (" + tmp2 + "°)");
-
-                    sharedlite = new SpLite();
-
-
-
-                    Log.d("LOG", sharedlite.getFavorites(getActivity()).toString());
-                    if (sharedlite.getFavorites(getActivity()).contains("false")){
-
-                        cardmeteotomorow.setDrawable(icon2);
-
-
-                    }
-
-
-
-                    mListView.add(cardmeteotomorow);
-
-
-
-
                     try {
 
 
@@ -281,11 +239,7 @@ setHasOptionsMenu(true);
 
 
                 Intent intent = getActivity().getIntent();
-
-
-
                 Intent i = new Intent(Tab2.this.getActivity(), MainActivity.class);
-
                 startActivity(i);
 
 
