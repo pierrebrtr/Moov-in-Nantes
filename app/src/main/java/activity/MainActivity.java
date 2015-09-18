@@ -125,18 +125,22 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 title = getString(R.string.title_home);
                 break;
             case 1:
+                fragment = new MeteoFragment();
+                title = "Météo";
+                break;
+            case 2:
                 fragment = new ArretsFragment();
                 title = "Arrêts";
                 break;
-            case 2:
+            case 3:
                 fragment = new GeoFragment();
                 title = "Géolocalisation";
                 break;
-            case 3:
+            case 4:
                 fragment = new BiclooFragment();
                 title = "Bicloos";
                 break;
-            case 4:
+            case 5:
                 Intent i = new Intent(MainActivity.this, MyPreferencesActivity.class);
                 title = "Paramètres";
                 startActivity(i);

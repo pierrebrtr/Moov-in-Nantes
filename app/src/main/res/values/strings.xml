@@ -12,6 +12,7 @@
     <string name="color_picker_default_title">Thème</string>
 
     <string name="nav_item_home">Accueil</string>
+    <string name="nav_item_meteo">Météo</string>
     <string name="nav_item_geo">Géolocalisation</string>
     <string name="nav_item_bicloo">Bicloo</string>
     <string name="nav_item_arrets">Arrêts</string>
@@ -21,6 +22,7 @@
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_home</item>
+        <item>@string/nav_item_meteo</item>
         <item>@string/nav_item_arrets</item>
         <item>@string/nav_item_geo</item>
         <item>@string/nav_item_bicloo</item>
