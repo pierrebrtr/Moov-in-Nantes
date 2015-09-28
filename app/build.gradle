@@ -42,12 +42,13 @@ dependencies {
     compile 'com.github.gabrielemariotti.changeloglib:library:1.5.2'
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.google.android.gms:play-services:7.0.0'
-    compile 'com.github.dexafree:materiallist:2.4.5'
+    compile 'com.github.dexafree:materiallist:3.0.1'
     compile 'de.hdodenhof:circleimageview:1.2.2'
     compile 'com.github.jlmd:AnimatedCircleLoadingView:1.1.2@aar'
     compile 'com.txusballesteros:bubbles:1.2.1'
     compile 'com.github.paolorotolo:appintro:3.1.0'
     compile 'com.github.recruit-lifestyle:FloatingView:1.0'
+    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile project(':colorpicker')
 }
 

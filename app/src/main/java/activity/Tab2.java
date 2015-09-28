@@ -22,10 +22,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.dexafree.materialList.cards.BasicButtonsCard;
-import com.dexafree.materialList.cards.OnButtonPressListener;
-import com.dexafree.materialList.cards.SmallImageCard;
-import com.dexafree.materialList.model.Card;
+import com.dexafree.materialList.card.Card;
+import com.dexafree.materialList.card.OnButtonClickListener;
+import com.dexafree.materialList.card.provider.BasicButtonsCardProvider;
+import com.dexafree.materialList.card.provider.SmallImageCardProvider;
 import com.dexafree.materialList.view.MaterialListView;
 import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
 import com.pandf.moovin.R;
@@ -93,26 +93,37 @@ public class Tab2 extends Fragment {
                     JSONObject object = response.getJSONObject("current_condition");
 
 
+
+
+
                     tmp = object.getString("tmp");
 
                     condition = object.getString("condition");
-                    icon = object.getString("icon");
+
                     final MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
-                    SmallImageCard cardmeteo = new SmallImageCard(getActivity());
-                    cardmeteo.setTitle("En direct du ciel :");
-                    cardmeteo.setDescription(condition + " (" + tmp + "°)");
+
 
                     sharedlite = new SpLite();
 
                     String foo = null;
 
                     Log.d("LOG", sharedlite.getFavorites(getActivity()).toString());
-                    if (sharedlite.getFavorites(getActivity()).contains("false")){
 
-                        cardmeteo.setDrawable(icon);
+                        icon = object.getString("icon");
 
 
-                    }
+
+
+                    Card cardmeteo = new Card.Builder(getActivity())
+                            .withProvider(SmallImageCardProvider.class)
+                            .setTitle("En direct du ciel :")
+                            .setDescription(condition + " (" + tmp + "°)")
+                            .setDrawable(icon)
+                            .endConfig()
+                            .build();
+
+
+
                     mListView.add(cardmeteo);
                     try {
 
@@ -165,45 +176,53 @@ public class Tab2 extends Fragment {
 
 
 
-            BasicButtonsCard card = new BasicButtonsCard(getActivity());
-            card.setTitle("Pas de connexion");
-            card.setDescription("Veuillez vérifier votre connexion internet");
-            card.setLeftButtonTextColor(getResources().getColor(R.color.colorError));
-            card.setLeftButtonText("Rafraichir");
-
-            card.setOnLeftButtonPressedListener(new OnButtonPressListener() {
-                @Override
-                public void onButtonPressedListener(View view, Card card) {
-
-
-                    Intent intent = getActivity().getIntent();
+            Card card = new Card.Builder(getActivity())
+                    .withProvider(BasicButtonsCardProvider.class)
+                    .setTitle("Pas de connexion")
+                    .setDescription("Veuillez vérifier votre connexion internet")
+                    .setLeftButtonText("Rafraichir")
+                    .setOnLeftButtonClickListener(new OnButtonClickListener() {
+                        @Override
+                        public void onButtonClicked(View view, Card card) {
+                            Intent intent = getActivity().getIntent();
 
 
-                    Intent i = new Intent(Tab2.this.getActivity(), MainActivity.class);
+                            Intent i = new Intent(Tab2.this.getActivity(), MainActivity.class);
 
-                    startActivity(i);
+                            startActivity(i);
+                        }
 
-                }
-            });
+                    })
+                    .endConfig()
+                    .build();
+
+
 
 
             mListView.add(card);
 
 
-            BasicButtonsCard card2 = new BasicButtonsCard(getActivity());
-            card2.setTitle("Infos");
-            card2.setDescription("Vous avez besoin d'un site internet pour les horaires ? Cliquez ci-dessous !");
-            card2.setLeftButtonText("Entrer");
-            card2.setLeftButtonTextColor(R.color.main_color);
-            card2.setOnLeftButtonPressedListener(new OnButtonPressListener() {
-                @Override
-                public void onButtonPressedListener(View view, Card card) {
-                    String url = "http://pierre.hellophoto.fr/tan/arrets.php";
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                }
-            });
+
+            Card card2 = new Card.Builder(getActivity())
+                    .withProvider(BasicButtonsCardProvider.class)
+                    .setTitle("Infos")
+                    .setDescription("Vous avez besoin d'un site internet pour les horaires ? Cliquez ci-dessous !")
+                    .setLeftButtonText("Entrer")
+
+                    .setOnLeftButtonClickListener(new OnButtonClickListener() {
+                        @Override
+                        public void onButtonClicked(View view, Card card) {
+                            String url = "http://pierre.hellophoto.fr/tan/arrets.php";
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(url));
+                            startActivity(i);
+                        }
+
+                    })
+                    .endConfig()
+                    .build();
+
+
 
             mListView.add(card2);
 

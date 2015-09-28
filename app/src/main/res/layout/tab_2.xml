@@ -24,6 +24,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
 
+
         app:paddingEnd="20dp"
 
         app:column_count_landscape="1"

@@ -7,19 +7,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,16 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.pandf.moovin.MapsActivity;
 import com.pandf.moovin.R;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -45,14 +30,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import adapter.CustomListAdapter;
-import app.AppController;
-import helper.ConnectionDetector;
 import model.Arrets;
 import util.Spfav;
 
@@ -235,7 +216,7 @@ public class Tab1 extends Fragment {
                     .setMessage("Cette option va vous permettre de sauvegarder et de restaurer à partir de la mémoire interne de votre téléphone les favoris de l'application")
                     .setPositiveButton("Importer", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            favorites.clear();
+
 
                             try {
 
@@ -262,7 +243,7 @@ public class Tab1 extends Fragment {
                                 // do something other
                             }
 
-                            productListAdapter.notifyDataSetChanged();
+
 
                             Intent i = new Intent(getActivity(), MainActivity.class);
 

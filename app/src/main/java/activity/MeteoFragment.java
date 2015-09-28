@@ -2,7 +2,6 @@ package activity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -23,10 +22,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.dexafree.materialList.cards.BasicButtonsCard;
-import com.dexafree.materialList.cards.OnButtonPressListener;
-import com.dexafree.materialList.cards.SmallImageCard;
-import com.dexafree.materialList.model.Card;
+import com.dexafree.materialList.card.Card;
+import com.dexafree.materialList.card.provider.SmallImageCardProvider;
 import com.dexafree.materialList.view.MaterialListView;
 import com.pandf.moovin.R;
 
@@ -88,9 +85,10 @@ public class MeteoFragment extends Fragment  {
 
 
 
-        final MaterialListView mListView = (MaterialListView) getActivity().findViewById(R.id.material_listviewmeteo);
+         MaterialListView mListView = (MaterialListView) getActivity().findViewById(R.id.material_listviewmeteo);
 
 
+      
 
 
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -120,20 +118,19 @@ public class MeteoFragment extends Fragment  {
                         condition = object.getString("condition");
                         icon = object.getString("icon");
                         final MaterialListView mListView = (MaterialListView) getActivity().findViewById(R.id.material_listviewmeteo);
-
-                        SmallImageCard cardmeteo = new SmallImageCard(getActivity());
-                        cardmeteo.setTitle("En direct du ciel :");
-                        cardmeteo.setDescription(condition + " (" + tmp + "°)");
+                        Card cardmeteo = new Card.Builder(getActivity())
+                                .withProvider(SmallImageCardProvider.class)
+                                .setTitle("En direct du ciel :")
+                                .setDescription(condition + " (" + tmp + "°)")
+                                .setDrawable(icon)
+                                .endConfig()
+                                .build();
 
                         sharedlite = new SpLite();
 
                         String foo = null;
 
-                        Log.d("LOG", sharedlite.getFavorites(getActivity()).toString());
-                        if (sharedlite.getFavorites(getActivity()).contains("false")){
 
-                            cardmeteo.setDrawable(icon);
-                        }
 
                         mListView.add(cardmeteo);
 
@@ -143,54 +140,60 @@ public class MeteoFragment extends Fragment  {
                         tmp2 = objecttomorow.getString("tmin") + " à " + objecttomorow.getString("tmax");
                         condition2 = objecttomorow.getString("condition");
                         icon2 = objecttomorow.getString("icon");
-                        SmallImageCard cardmeteotomorow = new SmallImageCard(getActivity());
-                        cardmeteotomorow.setTitle("Demain dans le ciel :");
-                        cardmeteotomorow.setDescription(condition2 + " (" + tmp2 + "°)");
-                        sharedlite = new SpLite();
-                        Log.d("LOG", sharedlite.getFavorites(getActivity()).toString());
-                        if (sharedlite.getFavorites(getActivity()).contains("false")){
-                            cardmeteotomorow.setDrawable(icon2);
-                        }
+                        Card cardmeteotomorow = new Card.Builder(getActivity())
+                                .withProvider(SmallImageCardProvider.class)
+                                .setTitle("Demain dans le ciel :")
+                                .setDescription(condition2 + " (" + tmp2 + "°)")
+                                .setDrawable(icon2)
+                                .endConfig()
+                                .build();
+
                         mListView.add(cardmeteotomorow);
                         JSONObject objectjour2 = response.getJSONObject("fcst_day_2");
                         tmp3 = objectjour2.getString("tmin") + " à " + objectjour2.getString("tmax");
                         condition3 = objectjour2.getString("condition");
                         icon3 = objectjour2.getString("icon");
-                        SmallImageCard cardmeteo2 = new SmallImageCard(getActivity());
-                        cardmeteo2.setTitle(objectjour2.getString("day_long"));
-                        cardmeteo2.setDescription(condition3 + " (" + tmp3 + "°)");
+                        Card cardmeteo2 = new Card.Builder(getActivity())
+                                .withProvider(SmallImageCardProvider.class)
+                                .setTitle(objectjour2.getString("day_long"))
+                                .setDescription(condition3 + " (" + tmp3 + "°)")
+                                .setDrawable(icon3)
+                                .endConfig()
+                                .build();
 
-                        sharedlite = new SpLite();
-                        Log.d("LOG", sharedlite.getFavorites(getActivity()).toString());
-                        if (sharedlite.getFavorites(getActivity()).contains("false")){
-                            cardmeteo2.setDrawable(icon3);
-                        }
+
+
+
                         mListView.add(cardmeteo2);
                         JSONObject objectjour3 = response.getJSONObject("fcst_day_3");
                         tmp4 = objectjour3.getString("tmin") + " à " + objectjour3.getString("tmax");
                         condition4 = objectjour3.getString("condition");
                         icon4 = objectjour3.getString("icon");
-                        SmallImageCard cardmeteo3 = new SmallImageCard(getActivity());
-                        cardmeteo3.setTitle(objectjour3.getString("day_long"));
-                        cardmeteo3.setDescription(condition4 + " (" + tmp4 + "°)");
-                        sharedlite = new SpLite();
-                        Log.d("LOG", sharedlite.getFavorites(getActivity()).toString());
-                        if (sharedlite.getFavorites(getActivity()).contains("false")){
-                            cardmeteo3.setDrawable(icon4);
-                        }
+                        Card cardmeteo3 = new Card.Builder(getActivity())
+                                .withProvider(SmallImageCardProvider.class)
+                                .setTitle(objectjour3.getString("day_long"))
+                                .setDescription(condition4 + " (" + tmp4 + "°)")
+                                .setDrawable(icon4)
+                                .endConfig()
+                                .build();
+
+
+
+
                         mListView.add(cardmeteo3);
                         JSONObject objectjour4 = response.getJSONObject("fcst_day_4");
                         tmp5 = objectjour4.getString("tmin") + " à " + objectjour4.getString("tmax");
                         condition5 = objectjour4.getString("condition");
                         icon5 = objectjour4.getString("icon");
-                        SmallImageCard cardmeteo4 = new SmallImageCard(getActivity());
-                        cardmeteo4.setTitle(objectjour4.getString("day_long"));
-                        cardmeteo4.setDescription(condition5 + " (" + tmp5 + "°)");
-                        sharedlite = new SpLite();
-                        Log.d("LOG", sharedlite.getFavorites(getActivity()).toString());
-                        if (sharedlite.getFavorites(getActivity()).contains("false")){
-                            cardmeteo4.setDrawable(icon5);
-                        }
+                        Card cardmeteo4 = new Card.Builder(getActivity())
+                                .withProvider(SmallImageCardProvider.class)
+                                .setTitle(objectjour4.getString("day_long"))
+                                .setDescription(condition4 + " (" + tmp5 + "°)")
+                                .setDrawable(icon5)
+                                .endConfig()
+                                .build();
+
+
                         mListView.add(cardmeteo4);
 
 
@@ -236,38 +239,6 @@ public class MeteoFragment extends Fragment  {
             Toast.makeText(getActivity().getApplicationContext(),
                     "Pas de connexion internet",
                     Toast.LENGTH_LONG).show();
-
-
-
-
-
-            BasicButtonsCard card = new BasicButtonsCard(getActivity());
-            card.setTitle("Pas de connexion");
-            card.setDescription("Veuillez vérifier votre connexion internet");
-            card.setLeftButtonTextColor(getResources().getColor(R.color.colorError));
-            card.setLeftButtonText("Rafraichir");
-
-            card.setOnLeftButtonPressedListener(new OnButtonPressListener() {
-                @Override
-                public void onButtonPressedListener(View view, Card card) {
-
-
-                    Intent intent = getActivity().getIntent();
-
-
-                    Intent i = new Intent(MeteoFragment.this.getActivity(), MainActivity.class);
-
-                    startActivity(i);
-
-                }
-            });
-
-
-            mListView.add(card);
-
-
-
-
 
 
 

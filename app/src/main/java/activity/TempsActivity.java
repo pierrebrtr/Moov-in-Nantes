@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,6 +38,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -363,6 +367,26 @@ public class TempsActivity extends ActionBarActivity {
                         Log.d(TAG, response.toString());
 
 
+                        if (response.length() == 0) {
+
+                            new AlertDialog.Builder(TempsActivity.this)
+                                    .setTitle("Erreur")
+                                    .setMessage("Pas d'horaire disponible !")
+                                    .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent();
+                                            intent.setClass(TempsActivity.this, MainActivity.class);
+
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .setCancelable(false)
+                                    .setIcon(R.drawable.alert9)
+                                    .show();
+
+                        }
+
+
                         // Parsing json
                         for (int i = 0; i < response.length(); i++) {
                             try {
@@ -483,6 +507,27 @@ public class TempsActivity extends ActionBarActivity {
                             @Override
                             public void onResponse(JSONArray response) {
                                 Log.d(TAG, response.toString());
+
+
+
+                                if (response.length() == 0) {
+
+                                    new AlertDialog.Builder(TempsActivity.this)
+                                            .setTitle("Erreur")
+                                            .setMessage("Pas d'horaire disponible !")
+                                            .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent intent = new Intent();
+                                                    intent.setClass(TempsActivity.this, MainActivity.class);
+
+                                                    startActivity(intent);
+                                                }
+                                            })
+                                            .setCancelable(false)
+                                            .setIcon(R.drawable.alert9)
+                                            .show();
+
+                                }
 
 
                                 // Parsing json
@@ -780,7 +825,32 @@ public class TempsActivity extends ActionBarActivity {
 
 
     private void addNewBubble() {
+        Intent intent = getIntent();
+        String id = intent.getExtras().getString("text");
+        ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+// generate random color
+        int color1 = generator.getRandomColor();
+
+
+
         BubbleLayout bubbleView = (BubbleLayout) LayoutInflater.from(TempsActivity.this).inflate(R.layout.bubble_layout, null);
+
+        TextDrawable drawable = TextDrawable.builder()
+                .buildRound(id, color1);
+
+        TextDrawable drawable2 = TextDrawable.builder()
+                .beginConfig()
+                .fontSize(toPx(20))
+                .endConfig()
+                .buildRound(id, color1);
+
+
+        ImageView image = (ImageView) bubbleView.findViewById(R.id.avatar);
+        image.setImageDrawable(drawable2);
+
+
+
+
 
         bubbleView.setOnBubbleClickListener(new BubbleLayout.OnBubbleClickListener() {
 
@@ -830,7 +900,10 @@ public class TempsActivity extends ActionBarActivity {
 
 
 
-
+    public int toPx(int dp) {
+        Resources resources = getResources();
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
+    }
 
 
 
