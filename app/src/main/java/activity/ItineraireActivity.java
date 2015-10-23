@@ -1,6 +1,7 @@
 package activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +24,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.dexafree.materialList.card.Card;
 import com.dexafree.materialList.card.provider.BasicImageButtonsCardProvider;
+import com.dexafree.materialList.listeners.RecyclerItemClickListener;
 import com.dexafree.materialList.view.MaterialListView;
 import com.pandf.moovin.R;
 
@@ -42,6 +44,8 @@ import java.util.Map;
 
 import adapter.CustomListAdapterItineraireItem;
 import adapter.ItineraireCardProvider;
+import adapter.TransportCardProvider;
+import adapter.WalkCardProvider;
 import app.AppController;
 import model.ItineraireItem;
 import util.Utility;
@@ -243,6 +247,9 @@ public class ItineraireActivity extends Activity {
 
 
                 Log.d("URL", String.valueOf(url));
+                final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
+
+                mListView.clear();
 
                 phase1(url);
 
@@ -382,7 +389,7 @@ public class ItineraireActivity extends Activity {
 
 
 
-    public void phase1(String urlph1) {
+    public void phase1(final String urlph1) {
         final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlph1, null, new Response.Listener<JSONObject>() {
@@ -426,7 +433,7 @@ public class ItineraireActivity extends Activity {
                                 }
 
                                 final SimpleDateFormat outputFormatter =
-                                        new SimpleDateFormat("HH':'mm", Locale.FRANCE);
+                                        new SimpleDateFormat("HH':'mm 'minute(s)'", Locale.FRANCE);
 
                                 final String resultdate = outputFormatter.format(result1);
 
@@ -463,16 +470,22 @@ public class ItineraireActivity extends Activity {
                                 }
 
                                 Card carditineraire = new Card.Builder(ItineraireActivity.this)
-                                        .setTag("MY_CARD")
+                                        .setTag(i)
                                         .withProvider(ItineraireCardProvider.class)
                                         .setTemps(timeString)
                                         .setDirectionTxt(resultdate2 + " --> " + resultdate)
                                         .setMoreinfo(moreinfo)
+
+
                                         .endConfig()
                                         .build();
 
 
+
                                 mListView.add(carditineraire);
+
+
+
 
 
 
@@ -547,6 +560,23 @@ public class ItineraireActivity extends Activity {
 
 
 
+
+        mListView.addOnItemTouchListener(new RecyclerItemClickListener.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(Card card, int position) {
+
+                launchItinerary(Integer.parseInt(card.getTag().toString()), urlph1);
+                Log.d("CARD_TYPE", card.getTag().toString());
+            }
+
+            @Override
+            public void onItemLongClick(Card card, int position) {
+                Log.d("LONG_CLICK", card.getTag().toString());
+            }
+        });
+
+
     }
 
     public static String formatDateTime(Date date) {
@@ -564,6 +594,198 @@ public class ItineraireActivity extends Activity {
             return null;
         }
     }
+
+
+
+
+    public void launchItinerary(final int jsonobjectpos, String urlph2){
+
+
+// custom dialog
+        final Dialog dialog = new Dialog(ItineraireActivity.this);
+        dialog.setContentView(R.layout.dialog_itineraireph2);
+        dialog.setTitle("Itineraire");
+
+        dialog.show();
+
+
+        final MaterialListView mListView = (MaterialListView) dialog.findViewById(R.id.listitinerairephase2);
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlph2, null, new Response.Listener<JSONObject>() {
+
+
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, response.toString());
+
+                // Parsing json object response
+                // response will be a json object
+                JSONArray array = null;
+
+                try {
+                    array = response.getJSONArray("journeys");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+
+
+                    String type = "";
+                    String heuredepart = "";
+                    String heurearrivee = "";
+                    String marchedirection = "";
+                    String minutes = "";
+                    String metre = "";
+                    String directionbus = "";
+                    String lignebus = "";
+                    String arriveebus = "";
+
+
+                    JSONArray sections = array.getJSONObject(jsonobjectpos).getJSONArray("sections");
+
+
+                    for (int p = 0; p < sections.length(); p++) {
+
+
+
+                        type = sections.getJSONObject(p).getString("type");
+
+
+                        if (type.contains("street_network")){
+
+
+                            DateFormat df1 = new SimpleDateFormat("yyyyMMdd'T'HHmmss", new Locale("fr", "FR"));
+
+                            Date result1 = null;
+                            try {
+                                result1 = df1.parse(sections.getJSONObject(p).getString("arrival_date_time"));
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            final SimpleDateFormat outputFormatter =
+                                    new SimpleDateFormat("HH':'mm", Locale.FRANCE);
+
+                          heurearrivee =  outputFormatter.format(result1);
+
+                            Card carditinerairewalk = new Card.Builder(ItineraireActivity.this)
+                                    .setTag("MARCHE")
+                                    .withProvider(WalkCardProvider.class)
+                                    .setHeure(heurearrivee)
+                                    .setDirectionTxt("Aller a " + sections.getJSONObject(p).getJSONObject("to").getJSONObject("stop_point").getString("name"))
+                                    .setMoreinfo(String.valueOf(sections.getJSONObject(p).getInt("duration") / 60) + " min   - ")
+
+
+                                    .endConfig()
+                                    .build();
+
+
+                            mListView.add(carditinerairewalk);
+
+
+                        } else if (type.contains("public_transport")) {
+
+                            DateFormat df1 = new SimpleDateFormat("yyyyMMdd'T'HHmmss", new Locale("fr", "FR"));
+
+                            Date result1 = null;
+                            try {
+                                result1 = df1.parse(sections.getJSONObject(p).getString("arrival_date_time"));
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            Date result2 = null;
+                            try {
+                                result2 = df1.parse(sections.getJSONObject(p).getString("departure_date_time"));
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            final SimpleDateFormat outputFormatter =
+                                    new SimpleDateFormat("HH':'mm", Locale.FRANCE);
+
+                            heurearrivee =  outputFormatter.format(result1);
+
+                            heuredepart =  outputFormatter.format(result2);
+
+                            Card carditinerairewalk = new Card.Builder(ItineraireActivity.this)
+                                    .setTag("MARCHE")
+                                    .withProvider(TransportCardProvider.class)
+                                    .setHeureArrive(heurearrivee)
+                                    .setHeureDepart(heuredepart)
+                                    .setArretDepart(sections.getJSONObject(p).getJSONObject("from").getJSONObject("stop_point").getString("name"))
+                                    .setArretArrive(sections.getJSONObject(p).getJSONObject("to").getJSONObject("stop_point").getString("name"))
+                                    .setDirection(sections.getJSONObject(p).getJSONObject("display_informations").getString("direction"))
+                                    .setLigne(sections.getJSONObject(p).getJSONObject("display_informations").getString("code"))
+                                            .endConfig()
+                                            .build();
+
+
+                            mListView.add(carditinerairewalk);
+
+
+                        }
+
+
+
+
+
+
+
+                    }
+
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+
+
+        }, new Response.ErrorListener() {
+
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_SHORT).show();
+                // hide the progress dialog
+
+            }
+
+
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return createBasicAuthHeader("a6ca7725-5504-474f-925b-6aa310d48cce", "stream53");
+            }
+        };
+
+
+        // Adding request to request queue
+        try {
+            jsonObjReq.getHeaders();
+        } catch (AuthFailureError authFailureError) {
+            authFailureError.printStackTrace();
+        }
+
+
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+
+
+
+
+
+
+    }
+
+
+
 
 }
 

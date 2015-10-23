@@ -14,6 +14,7 @@ import com.pandf.moovin.R;
  */
 public class ItineraireCardProvider extends CardProvider<ItineraireCardProvider> {
 
+
     String temps;
     String dateetheure;
     String mindemarche;
@@ -59,6 +60,7 @@ public class ItineraireCardProvider extends CardProvider<ItineraireCardProvider>
 
 
 
+
     @Override
     public void render(@NonNull View view, @NonNull Card card) {
         super.render(view, card);
@@ -71,7 +73,6 @@ public class ItineraireCardProvider extends CardProvider<ItineraireCardProvider>
         textView2.setText(dateetheure);
         TextView textView3 = (TextView)view.findViewById(R.id.miniti);
         textView3.setText(mindemarche);
-
 
 
 

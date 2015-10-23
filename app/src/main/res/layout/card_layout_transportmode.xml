@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.dexafree.materialList.card.CardLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardView"
+        android:layout_margin="2dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="2dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:measureWithLargestChild="false">
+
+            <TextView
+                android:id="@+id/arretdepar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Arret"
+                android:textSize="30dp"
+                android:gravity="start"
+                android:layout_weight="0.07"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/directionbus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-> Direction"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:editable="false"
+                android:layout_gravity="center"
+                android:gravity="center" />
+
+            <ImageView android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/image_view"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/lignebus"
+                android:src="@drawable/ic_directions_bus_grey_500_24dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.07" />
+
+            <TextView
+                android:id="@+id/ArretArrive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ArretArrive"
+                android:textSize="30dp"
+                android:gravity="start"
+                android:layout_weight="0.07"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/heurearrive"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Heurearrive"
+                android:textSize="20dp"
+                android:gravity="start"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/layout2">
+
+
+            <TextView
+                android:id="@+id/Heure1"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="HeureDepart"
+                android:textSize="20dp"
+                android:gravity="start"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</com.dexafree.materialList.card.CardLayout>
