@@ -88,7 +88,7 @@ public class MeteoFragment extends Fragment  {
          MaterialListView mListView = (MaterialListView) getActivity().findViewById(R.id.material_listviewmeteo);
 
 
-      
+
 
 
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -118,6 +118,7 @@ public class MeteoFragment extends Fragment  {
                         condition = object.getString("condition");
                         icon = object.getString("icon");
                         final MaterialListView mListView = (MaterialListView) getActivity().findViewById(R.id.material_listviewmeteo);
+                        mListView.clearAll();
                         Card cardmeteo = new Card.Builder(getActivity())
                                 .withProvider(SmallImageCardProvider.class)
                                 .setTitle("En direct du ciel :")

@@ -30,20 +30,6 @@
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-d22340413aee48fccdc3b7770ebd7bff21bb9d01.jar" />
     </item>
     <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3033cc3a2c68dff3e5b646d6d084bdbdf7d00b25">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-2dbb69823cee7c5ab0ac7a63cb57376cc0be1b10.jar" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.github.hotchemi\Android-Rate\0.4.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="fd93b90ced7349fb00996f1642b042ad1bd26b12">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-69cb02e017f5a07786d9607e44a74ad9e569e721.jar" />
-    </item>
-    <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.github.dexafree\materiallist\3.0.1\classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -63,27 +49,6 @@
         revision="21.1.2"
         sha1="fb04b12526b0073c7fb1ebb70c5842d82ee95596">
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-4968dc755c54694e4828fa04b544694e640db877.jar" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1-a7ffbc3326c5b75d00e4f599240cc7f23e1f026e.jar" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\1.2.2\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="803c4c913beac8f7980d680c725a40835d1d7c77">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-d206af8a55102a33d862598dda33f8fcaf5c892f.jar" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="055783146ba9654a725442563be78cad303aad1f">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-96ffb52b4d07e9bd5b7da5ee7bc8e6c14976059b.jar" />
     </item>
     <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.amulyakhare\com.amulyakhare.textdrawable\1.0.1\classes.jar"
@@ -107,20 +72,6 @@
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-895b8d870e38477ca3435c08b8b6d1ced059f8a5.jar" />
     </item>
     <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="0e8228b4bc69c6a2c8d7c18498a77e53417d2574">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-9f0625448cec376ccdc569e58a23c7d3acb05494.jar" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.github.jlmd\AnimatedCircleLoadingView\1.1.2\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="22b8a00c808821e8cbf83d18457b376086cbe640">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-eb43a6f808d3b5f0161d6027f042348d75fc5ad7.jar" />
-    </item>
-    <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.0.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -128,39 +79,11 @@
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-242ef4fae0c8beeda5a97ee72c4a6f4d2b38177e.jar" />
     </item>
     <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="e3d791b42eaa90416cd0b2d2e608092794a3baa4">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-f777c17267bc7a31c42885166a805180aaf7a652.jar" />
-    </item>
-    <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.0.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="c976518693e89ad44fbfccfc654941eaec198d08">
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-86aaf35b6ffc238c296b8809463bff6ee6d9cd96.jar" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="29fd6d3794b71491c2789708cd8d03c71feb8954">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-88eea7fd7b54cf539a6c865dfaa93c91e8a1dfe1.jar" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4cd0b093824b3228fffc21ea369b98d0b1db6566">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-f703159a760734a7bf4f493cf6ccaacb5d44b37b.jar" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.txusballesteros\bubbles\1.2.1\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="b7efa6ff2b55fc9c3a29e42b4e7a0f1f8a846940">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-ebe0fce8340903dd3a8bba163c66270858036f1f.jar" />
     </item>
     <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.github.gabrielemariotti.changeloglib\library\1.5.2\classes.jar"
@@ -184,13 +107,6 @@
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-5ef83d5dbb81068f769bc13e8a01c67652c16f17.jar" />
     </item>
     <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\22.2.1\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="e1fa5e1123997a55e3ed65b44892993ff4b58cfe">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-7a108fdcb5beddbc4d77df57bdb513d5f367a952.jar" />
-    </item>
-    <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.0.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -203,20 +119,6 @@
         revision="21.1.2"
         sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\library-2.4.0-788791ffdbfcb74ece9cc912ec8dcc16413acfc9.jar" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="41b3870cbe5fa546d8095b5b89d42cb69f3dd175">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-ea4da3e407ff2d2d5e8d448e69441757851cace1.jar" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-a35ac2ae6e1e824aaf8f78d08b969b695782ee36.jar" />
     </item>
     <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.mikepenz\aboutlibraries\5.0.9\classes.jar"
@@ -245,6 +147,104 @@
         revision="21.1.2"
         sha1="a08d65794b844d8e7540bf9a33859bf3b2482d7f">
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-3617a25da2356aa2960ecb2225022193efd6d7b0.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3033cc3a2c68dff3e5b646d6d084bdbdf7d00b25">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-2dbb69823cee7c5ab0ac7a63cb57376cc0be1b10.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.github.hotchemi\Android-Rate\0.4.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="fd93b90ced7349fb00996f1642b042ad1bd26b12">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-69cb02e017f5a07786d9607e44a74ad9e569e721.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1-a7ffbc3326c5b75d00e4f599240cc7f23e1f026e.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\1.2.2\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="803c4c913beac8f7980d680c725a40835d1d7c77">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-d206af8a55102a33d862598dda33f8fcaf5c892f.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="055783146ba9654a725442563be78cad303aad1f">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-96ffb52b4d07e9bd5b7da5ee7bc8e6c14976059b.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="0e8228b4bc69c6a2c8d7c18498a77e53417d2574">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-9f0625448cec376ccdc569e58a23c7d3acb05494.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.github.jlmd\AnimatedCircleLoadingView\1.1.2\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="22b8a00c808821e8cbf83d18457b376086cbe640">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-eb43a6f808d3b5f0161d6027f042348d75fc5ad7.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e3d791b42eaa90416cd0b2d2e608092794a3baa4">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-f777c17267bc7a31c42885166a805180aaf7a652.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="29fd6d3794b71491c2789708cd8d03c71feb8954">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-88eea7fd7b54cf539a6c865dfaa93c91e8a1dfe1.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4cd0b093824b3228fffc21ea369b98d0b1db6566">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-f703159a760734a7bf4f493cf6ccaacb5d44b37b.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.txusballesteros\bubbles\1.2.1\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b7efa6ff2b55fc9c3a29e42b4e7a0f1f8a846940">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-ebe0fce8340903dd3a8bba163c66270858036f1f.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\22.2.1\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e1fa5e1123997a55e3ed65b44892993ff4b58cfe">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-7a108fdcb5beddbc4d77df57bdb513d5f367a952.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="41b3870cbe5fa546d8095b5b89d42cb69f3dd175">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-ea4da3e407ff2d2d5e8d448e69441757851cace1.jar" />
+    </item>
+    <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-a35ac2ae6e1e824aaf8f78d08b969b695782ee36.jar" />
     </item>
     <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.github.paolorotolo\appintro\3.1.0\classes.jar"

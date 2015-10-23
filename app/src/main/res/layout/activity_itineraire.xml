@@ -24,6 +24,12 @@
             layout="@layout/toolbar_itineraire" />
 
 
+        <com.dexafree.materialList.view.MaterialListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/listitinerairephase1"
+            android:measureWithLargestChild="false" />
+
     </LinearLayout>
 
 

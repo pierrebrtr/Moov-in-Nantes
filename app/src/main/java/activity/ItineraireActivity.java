@@ -21,18 +21,27 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.dexafree.materialList.card.Card;
+import com.dexafree.materialList.card.provider.BasicImageButtonsCardProvider;
+import com.dexafree.materialList.view.MaterialListView;
 import com.pandf.moovin.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import adapter.CustomListAdapterItineraireItem;
+import adapter.ItineraireCardProvider;
 import app.AppController;
 import model.ItineraireItem;
 import util.Utility;
@@ -45,6 +54,7 @@ public class ItineraireActivity extends Activity {
     private Toolbar mToolbar;
     AutoCompleteTextView depart;
     AutoCompleteTextView arrive;
+    public static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private List<ItineraireItem> itineraireList = new ArrayList<ItineraireItem>();
@@ -229,8 +239,12 @@ public class ItineraireActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                String url = "https://api.navitia.io/v1/journeys?from=" + firstlon + ";" + firstlat + "&to=" + secondelon + ";" + secondelat;
+                String url = "https://api.navitia.io/v1/journeys?from=" + firstlon + ";" + firstlat + "&to=" + secondelon + ";" + secondelat + "&datetime=20151023T170500";
 
+
+                Log.d("URL", String.valueOf(url));
+
+                phase1(url);
 
             }
         });
@@ -367,6 +381,189 @@ public class ItineraireActivity extends Activity {
     }
 
 
+
+    public void phase1(String urlph1) {
+        final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlph1, null, new Response.Listener<JSONObject>() {
+
+
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, response.toString());
+
+                // Parsing json object response
+                // response will be a json object
+                JSONArray array = null;
+
+                try {
+                    array = response.getJSONArray("journeys");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+
+                    if (array.length() > 0){
+
+                        for (int i = 0; i < array.length(); i++) {
+
+
+                            try {
+
+
+                              String moreinfo = "";
+
+
+                                String arriveprevue = array.getJSONObject(i).getString("arrival_date_time");
+
+                                DateFormat df1 = new SimpleDateFormat("yyyyMMdd'T'HHmmss", new Locale("fr", "FR"));
+
+                                Date result1 = null;
+                                try {
+                                     result1 = df1.parse(arriveprevue);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                final SimpleDateFormat outputFormatter =
+                                        new SimpleDateFormat("HH':'mm", Locale.FRANCE);
+
+                                final String resultdate = outputFormatter.format(result1);
+
+                                String departprevu = array.getJSONObject(i).getString("departure_date_time");
+
+                                Date result2 = null;
+                                try {
+                                    result2 = df1.parse(departprevu);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                final SimpleDateFormat outputFormatter2 =
+                                        new SimpleDateFormat("dd MMMM HH':'mm", new Locale("fr", "FR"));
+
+                                final String resultdate2 = outputFormatter2.format(result2);
+
+                                    moreinfo = "Nb de transferts : " + array.getJSONObject(i).getInt("nb_transfers");
+
+
+
+
+                                int totalSecs = array.getJSONObject(i).getInt("duration");
+
+                                int hours = totalSecs / 3600;
+                                int minutes = (totalSecs % 3600) / 60;
+                                int seconds = totalSecs % 60;
+                                String timeString = "";
+                                if (hours == 00) {
+                                    timeString = String.format("%02d:%02d", minutes, seconds);
+                                } else {
+
+                                    timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+                                }
+
+                                Card carditineraire = new Card.Builder(ItineraireActivity.this)
+                                        .setTag("MY_CARD")
+                                        .withProvider(ItineraireCardProvider.class)
+                                        .setTemps(timeString)
+                                        .setDirectionTxt(resultdate2 + " --> " + resultdate)
+                                        .setMoreinfo(moreinfo)
+                                        .endConfig()
+                                        .build();
+
+
+                                mListView.add(carditineraire);
+
+
+
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+
+
+                    } else if (array.length() == 0 || array.length() <= 0) {
+
+
+
+
+
+
+
+                        Card card = new Card.Builder(ItineraireActivity.this)
+                                .withProvider(BasicImageButtonsCardProvider.class)
+                                .setTitle("Pas de résultat")
+                                .setDescription("Une erreur est survenue")
+                                .endConfig()
+                                .build();
+
+                        mListView.add(card);
+                    }
+
+
+
+                } catch (NullPointerException e)
+
+            {
+
+            }
+
+
+
+            }
+        }, new Response.ErrorListener() {
+
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_SHORT).show();
+                // hide the progress dialog
+
+            }
+
+
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return createBasicAuthHeader("a6ca7725-5504-474f-925b-6aa310d48cce", "stream53");
+            }
+        };
+
+
+        // Adding request to request queue
+        try {
+            jsonObjReq.getHeaders();
+        } catch (AuthFailureError authFailureError) {
+            authFailureError.printStackTrace();
+        }
+
+
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+
+
+    }
+
+    public static String formatDateTime(Date date) {
+        if (date == null) {
+            return "";
+        } else {
+            return DATE_TIME_FORMAT.format(date);
+        }
+    }
+
+    public static Date parseDateTime(String dateStr) {
+        try {
+            return DATE_TIME_FORMAT.parse(dateStr);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
 
 }
 

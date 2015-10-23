@@ -141,9 +141,14 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 title = "Bicloos";
                 break;
             case 5:
-                Intent i = new Intent(MainActivity.this, MyPreferencesActivity.class);
-                title = "Paramètres";
+                Intent i = new Intent(MainActivity.this, ItineraireActivity.class);
+                title = "Itinéraire";
                 startActivity(i);
+                break;
+            case 6:
+                Intent i2 = new Intent(MainActivity.this, MyPreferencesActivity.class);
+                title = "Paramètres";
+                startActivity(i2);
                 break;
             default:
                 break;
