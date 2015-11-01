@@ -553,6 +553,18 @@ public class ItineraireActivity extends Activity {
                         error.getMessage(), Toast.LENGTH_SHORT).show();
                 // hide the progress dialog
 
+
+                Card card = new Card.Builder(ItineraireActivity.this)
+                        .withProvider(BasicImageButtonsCardProvider.class)
+
+                        .setTitle("Pas de resultat")
+                        .setDescription("Une erreur est survenue")
+                        .endConfig()
+                        .setTag("ERROR")
+                        .build();
+
+                mListView.add(card);
+
             }
 
 
@@ -582,13 +594,19 @@ public class ItineraireActivity extends Activity {
             @Override
             public void onItemClick(Card card, int position) {
 
-                launchItinerary(Integer.parseInt(card.getTag().toString()), urlph1, list.get(position));
-                Log.d("CARD_TYPE", card.getTag().toString());
+                    if (card.getTag().toString().contains("ERROR")){
+
+
+                    }else {
+                        launchItinerary(Integer.parseInt(card.getTag().toString()), urlph1, list.get(position));
+                        Log.d("CARD_TYPE", card.getTag().toString());
+                    }
+
             }
 
             @Override
             public void onItemLongClick(Card card, int position) {
-                Log.d("LONG_CLICK", card.getTag().toString());
+
             }
         });
 
@@ -702,19 +720,40 @@ public class ItineraireActivity extends Activity {
 
                           heurearrivee =  outputFormatter.format(result1);
 
-                            Card carditinerairewalk = new Card.Builder(ItineraireActivity.this)
-                                    .setTag("MARCHE")
-                                    .withProvider(WalkCardProvider.class)
-                                    .setHeure(heurearrivee)
-                                    .setDirectionTxt("Aller a " + sections.getJSONObject(p).getJSONObject("to").getJSONObject("stop_point").getString("name"))
-                                    .setMoreinfo(String.valueOf(sections.getJSONObject(p).getInt("duration") / 60) + " min   - ")
 
 
-                                    .endConfig()
-                                    .build();
+
+                            try {
+                                Card carditinerairewalk = new Card.Builder(ItineraireActivity.this)
+                                        .setTag("MARCHE")
+                                        .withProvider(WalkCardProvider.class)
+                                        .setHeure(heurearrivee)
+                                        .setDirectionTxt("Aller a " + sections.getJSONObject(p).getJSONObject("to").getJSONObject("stop_point").getString("name"))
+                                        .setMoreinfo(String.valueOf(sections.getJSONObject(p).getInt("duration") / 60) + " min   - ")
 
 
-                            mListView.add(carditinerairewalk);
+                                        .endConfig()
+                                        .build();
+
+
+                                mListView.add(carditinerairewalk);
+                            } catch (JSONException e) {
+
+                                Card carditinerairewalk = new Card.Builder(ItineraireActivity.this)
+                                        .setTag("MARCHE")
+                                        .withProvider(WalkCardProvider.class)
+                                        .setHeure(heurearrivee)
+                                        .setDirectionTxt("Aller a " + sections.getJSONObject(p).getJSONObject("to").getString("name"))
+                                        .setMoreinfo(String.valueOf(sections.getJSONObject(p).getInt("duration") / 60) + " min   - ")
+
+
+                                        .endConfig()
+                                        .build();
+
+
+                                mListView.add(carditinerairewalk);
+                                e.printStackTrace();
+                            }
 
 
                         } else if (type.contains("public_transport")) {
