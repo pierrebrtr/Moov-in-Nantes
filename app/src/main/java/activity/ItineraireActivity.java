@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,9 +29,12 @@ import com.dexafree.materialList.card.Card;
 import com.dexafree.materialList.card.provider.BasicImageButtonsCardProvider;
 import com.dexafree.materialList.listeners.RecyclerItemClickListener;
 import com.dexafree.materialList.view.MaterialListView;
+import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.pandf.moovin.R;
+import com.sleepbot.datetimepicker.time.RadialPickerLayout;
+import com.sleepbot.datetimepicker.time.TimePickerDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +44,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -57,7 +62,7 @@ import util.Utility;
 /**
  * Created by dev on 29/07/2015.
  */
-public class ItineraireActivity extends Activity {
+public class ItineraireActivity extends FragmentActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     private Toolbar mToolbar;
     AutoCompleteTextView depart;
@@ -68,19 +73,16 @@ public class ItineraireActivity extends Activity {
     private List<ItineraireItem> itineraireList = new ArrayList<ItineraireItem>();
 
     Activity activity;
-
     private String url1 = "https://api.navitia.io/v1/coverage/fr-nw/places?q=moulinais%20nantes";
-
     final String basicAuth = "Basic " + Base64.encodeToString("a6ca7725-5504-474f-925b-6aa310d48cce:stream53".getBytes(), Base64.NO_WRAP);
-
     Toolbar toolbar;
-
     Double firstlat;
     Double firstlon;
     Double secondelat;
-
     Double secondelon;
     String timeString = "";
+    public static final String DATEPICKER_TAG = "datepicker";
+    public static final String TIMEPICKER_TAG = "timepicker";
 
 
     Map<String, String> createBasicAuthHeader(String username, String password) {
@@ -95,7 +97,7 @@ public class ItineraireActivity extends Activity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         Utility.themer(ItineraireActivity.this);
         super.onCreate(savedInstanceState);
 
@@ -247,7 +249,6 @@ public class ItineraireActivity extends Activity {
                 Log.d("SECLONGITUDE", String.valueOf(Double.valueOf(lng)));
 
 
-
                 InputMethodManager imm = (InputMethodManager) ItineraireActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(depart.getWindowToken(), 0);
 
@@ -268,18 +269,44 @@ public class ItineraireActivity extends Activity {
         });
 
 
-
         ImageButton imageButton = (ImageButton) toolbar.findViewById(R.id.button);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-        
+
+
+
+                Calendar calendar = Calendar.getInstance();
+
+              final DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(ItineraireActivity.this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+              final   TimePickerDialog timePickerDialog = TimePickerDialog.newInstance(ItineraireActivity.this, calendar.get(Calendar.HOUR_OF_DAY) ,calendar.get(Calendar.MINUTE), false, false);
+
+                datePickerDialog.setVibrate(true);
+                datePickerDialog.setYearRange(2015, 2017);
+                datePickerDialog.setCloseOnSingleTapDay(false);
+                datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
+
+
+
+
+
 
             }
         });
 
 
+        if (savedInstanceState != null) {
+            DatePickerDialog dpd = (DatePickerDialog) getSupportFragmentManager().findFragmentByTag(DATEPICKER_TAG);
+            if (dpd != null) {
+                dpd.setOnDateSetListener(this);
+            }
+
+            TimePickerDialog tpd = (TimePickerDialog) getSupportFragmentManager().findFragmentByTag(TIMEPICKER_TAG);
+            if (tpd != null) {
+                tpd.setOnTimeSetListener(this);
+            }
+        }
 
     }
 
@@ -885,8 +912,26 @@ public class ItineraireActivity extends Activity {
     }
 
 
+    @Override
+    public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
+        Toast.makeText(ItineraireActivity.this, "new date:" + year + "-" + month + "-" + day, Toast.LENGTH_LONG).show();
+
+        Calendar calendar = Calendar.getInstance();
+
+       final   TimePickerDialog timePickerDialog = TimePickerDialog.newInstance(ItineraireActivity.this, calendar.get(Calendar.HOUR_OF_DAY) ,calendar.get(Calendar.MINUTE), false, false);
+
+        timePickerDialog.setVibrate(true);
+        timePickerDialog.setCloseOnSingleTapMinute(false);
+        timePickerDialog.show(getSupportFragmentManager(), TIMEPICKER_TAG);
+
+    }
+    @Override
+    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
+        Toast.makeText(ItineraireActivity.this, "new time:" + hourOfDay + "-" + minute, Toast.LENGTH_LONG).show();
 
 
+
+    }
 }
 
 

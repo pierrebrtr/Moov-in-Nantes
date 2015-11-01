@@ -93,18 +93,18 @@
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-96ffb52b4d07e9bd5b7da5ee7bc8e6c14976059b.jar" />
     </item>
     <item
+        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.github.flavienlaurent.datetimepicker\library\0.0.2\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2fc859b7abb78d29169f6a582b45cbe1f3f1a4cc">
+        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-2af0fc987433fe494c6ee6e8a56982bb8d8eabf8.jar" />
+    </item>
+    <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.amulyakhare\com.amulyakhare.textdrawable\1.0.1\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="d237556caead5b93d97e18a071059a2c0045978e">
         <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-5cd525f537caa7d76b92e556ec1567dec9423aaa.jar" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.github.recruit-lifestyle\FloatingView\1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="7bc34d4377c54b7fcc63fba64fc028a5179f4395">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\pre-dexed\debug\classes-ed877766c24084f15fd07afb131ff0f8fd7fbd0e.jar" />
     </item>
     <item
         jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.0.0\classes.jar"
