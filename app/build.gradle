@@ -49,6 +49,7 @@ dependencies {
     compile 'com.github.paolorotolo:appintro:3.1.0'
     compile 'com.github.recruit-lifestyle:FloatingView:1.0'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    compile 'com.orhanobut:dialogplus:1.10@aar'
     compile project(':colorpicker')
 }
 

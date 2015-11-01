@@ -1,7 +1,7 @@
 package activity;
 
 import android.app.Activity;
-import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,7 +9,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
@@ -26,6 +28,8 @@ import com.dexafree.materialList.card.Card;
 import com.dexafree.materialList.card.provider.BasicImageButtonsCardProvider;
 import com.dexafree.materialList.listeners.RecyclerItemClickListener;
 import com.dexafree.materialList.view.MaterialListView;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 import com.pandf.moovin.R;
 
 import org.json.JSONArray;
@@ -74,8 +78,9 @@ public class ItineraireActivity extends Activity {
     Double firstlat;
     Double firstlon;
     Double secondelat;
-    Double secondelon;
 
+    Double secondelon;
+    String timeString = "";
 
 
     Map<String, String> createBasicAuthHeader(String username, String password) {
@@ -243,6 +248,10 @@ public class ItineraireActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+
+                InputMethodManager imm = (InputMethodManager) ItineraireActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(depart.getWindowToken(), 0);
+
                 String url = "https://api.navitia.io/v1/journeys?from=" + firstlon + ";" + firstlat + "&to=" + secondelon + ";" + secondelat + "&datetime=20151023T170500";
 
 
@@ -391,7 +400,7 @@ public class ItineraireActivity extends Activity {
 
     public void phase1(final String urlph1) {
         final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
-
+        final ArrayList<String> list = new ArrayList<String>();
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlph1, null, new Response.Listener<JSONObject>() {
 
 
@@ -433,7 +442,7 @@ public class ItineraireActivity extends Activity {
                                 }
 
                                 final SimpleDateFormat outputFormatter =
-                                        new SimpleDateFormat("HH':'mm 'minute(s)'", Locale.FRANCE);
+                                        new SimpleDateFormat("HH':'mm ", Locale.FRANCE);
 
                                 final String resultdate = outputFormatter.format(result1);
 
@@ -461,13 +470,18 @@ public class ItineraireActivity extends Activity {
                                 int hours = totalSecs / 3600;
                                 int minutes = (totalSecs % 3600) / 60;
                                 int seconds = totalSecs % 60;
-                                String timeString = "";
+
+                                timeString = "";
+
                                 if (hours == 00) {
-                                    timeString = String.format("%02d:%02d", minutes, seconds);
+                                    timeString = String.format("%02d", minutes);
+
                                 } else {
 
-                                    timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+                                    timeString = String.format("%02d:%02d", hours, minutes);
                                 }
+
+                                timeString = timeString + " minutes";
 
                                 Card carditineraire = new Card.Builder(ItineraireActivity.this)
                                         .setTag(i)
@@ -483,6 +497,8 @@ public class ItineraireActivity extends Activity {
 
 
                                 mListView.add(carditineraire);
+
+                                list.add(i, timeString);
 
 
 
@@ -508,7 +524,7 @@ public class ItineraireActivity extends Activity {
 
                         Card card = new Card.Builder(ItineraireActivity.this)
                                 .withProvider(BasicImageButtonsCardProvider.class)
-                                .setTitle("Pas de résultat")
+                                .setTitle("Pas de resultat")
                                 .setDescription("Une erreur est survenue")
                                 .endConfig()
                                 .build();
@@ -566,7 +582,7 @@ public class ItineraireActivity extends Activity {
             @Override
             public void onItemClick(Card card, int position) {
 
-                launchItinerary(Integer.parseInt(card.getTag().toString()), urlph1);
+                launchItinerary(Integer.parseInt(card.getTag().toString()), urlph1, list.get(position));
                 Log.d("CARD_TYPE", card.getTag().toString());
             }
 
@@ -598,18 +614,37 @@ public class ItineraireActivity extends Activity {
 
 
 
-    public void launchItinerary(final int jsonobjectpos, String urlph2){
+    public void launchItinerary(final int jsonobjectpos, String urlph2, String tempsiti){
 
 
 // custom dialog
-        final Dialog dialog = new Dialog(ItineraireActivity.this);
-        dialog.setContentView(R.layout.dialog_itineraireph2);
-        dialog.setTitle("Itineraire");
+    //    final Dialog dialog = new Dialog(ItineraireActivity.this);
+      //  dialog.setContentView(R.layout.dialog_itineraireph2);
+        //dialog.setTitle("Itineraire");
 
-        dialog.show();
+        //dialog.show();
 
 
-        final MaterialListView mListView = (MaterialListView) dialog.findViewById(R.id.listitinerairephase2);
+
+        DialogPlus dialogplus = DialogPlus.newDialog(this)
+                .setContentHolder(new ViewHolder(R.layout.dialog_itineraireph2))
+                .setCancelable(true)
+                .setGravity(Gravity.BOTTOM)
+                .setInAnimation(R.anim.abc_fade_in)
+                .setHeader(R.layout.header_dialogplus)
+                .setOutAnimation(R.anim.abc_fade_out)
+                .setExpanded(false)
+
+
+
+                .create();
+        dialogplus.show();
+
+
+       TextView textiti = (TextView) dialogplus.getHeaderView().findViewById(R.id.textheadertemps);
+        textiti.setText(tempsiti);
+
+        final MaterialListView mListView = (MaterialListView) dialogplus.findViewById(R.id.listitinerairephase2);
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlph2, null, new Response.Listener<JSONObject>() {
 
 
