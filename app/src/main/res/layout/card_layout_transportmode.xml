@@ -21,6 +21,16 @@
             android:measureWithLargestChild="false">
 
             <TextView
+                android:id="@+id/Heure1"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="HeureDepart"
+                android:textSize="20dp"
+                android:gravity="start"
+                android:textStyle="bold" />
+
+
+            <TextView
                 android:id="@+id/arretdepar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,23 +87,6 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/layout2">
-
-
-            <TextView
-                android:id="@+id/Heure1"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="HeureDepart"
-                android:textSize="20dp"
-                android:gravity="start"
-                android:textStyle="bold" />
-
-        </LinearLayout>
 
 
     </android.support.v7.widget.CardView>

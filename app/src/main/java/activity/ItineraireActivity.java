@@ -202,12 +202,22 @@ public class ItineraireActivity extends Activity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 arrive.enoughToFilter();
+
+                itineraireList.clear();
+                lAdapter.notifyDataSetChanged();
+
+
+                setResearchRequest(s, lAdapter);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
+                itineraireList.clear();
                 lAdapter.notifyDataSetChanged();
+
+
+                setResearchRequest(s, lAdapter);
 
             }
         });
@@ -237,17 +247,6 @@ public class ItineraireActivity extends Activity {
                 Log.d("SECLONGITUDE", String.valueOf(Double.valueOf(lng)));
 
 
-            }
-        });
-
-
-
-        ImageButton imageButton = (ImageButton) toolbar.findViewById(R.id.button);
-
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
 
                 InputMethodManager imm = (InputMethodManager) ItineraireActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(depart.getWindowToken(), 0);
@@ -260,7 +259,22 @@ public class ItineraireActivity extends Activity {
 
                 mListView.clearAll();
 
+                arrive.dismissDropDown();
+
                 phase1(url);
+
+
+            }
+        });
+
+
+
+        ImageButton imageButton = (ImageButton) toolbar.findViewById(R.id.button);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+        
 
             }
         });
