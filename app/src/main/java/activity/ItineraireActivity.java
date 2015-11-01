@@ -258,7 +258,7 @@ public class ItineraireActivity extends Activity {
                 Log.d("URL", String.valueOf(url));
                 final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
 
-                mListView.clear();
+                mListView.clearAll();
 
                 phase1(url);
 
@@ -710,7 +710,7 @@ public class ItineraireActivity extends Activity {
 
                             Date result1 = null;
                             try {
-                                result1 = df1.parse(sections.getJSONObject(p).getString("arrival_date_time"));
+                                result1 = df1.parse(sections.getJSONObject(p).getString("departure_date_time"));
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
@@ -722,14 +722,26 @@ public class ItineraireActivity extends Activity {
 
 
 
+                            DateFormat df2 = new SimpleDateFormat("yyyyMMdd'T'HHmmss", new Locale("fr", "FR"));
 
+                            Date result2 = null;
+                            try {
+                                result2 = df2.parse(sections.getJSONObject(p).getString("arrival_date_time"));
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            final SimpleDateFormat outputFormatter2 =
+                                    new SimpleDateFormat("HH':'mm", Locale.FRANCE);
+
+                           String  heurearrivee2 =  outputFormatter2.format(result2);
                             try {
                                 Card carditinerairewalk = new Card.Builder(ItineraireActivity.this)
                                         .setTag("MARCHE")
                                         .withProvider(WalkCardProvider.class)
                                         .setHeure(heurearrivee)
                                         .setDirectionTxt("Aller a " + sections.getJSONObject(p).getJSONObject("to").getJSONObject("stop_point").getString("name"))
-                                        .setMoreinfo(String.valueOf(sections.getJSONObject(p).getInt("duration") / 60) + " min   - ")
+                                        .setMoreinfo(String.valueOf(sections.getJSONObject(p).getInt("duration") / 60) + " min - " + heurearrivee2)
 
 
                                         .endConfig()
@@ -744,7 +756,7 @@ public class ItineraireActivity extends Activity {
                                         .withProvider(WalkCardProvider.class)
                                         .setHeure(heurearrivee)
                                         .setDirectionTxt("Aller a " + sections.getJSONObject(p).getJSONObject("to").getString("name"))
-                                        .setMoreinfo(String.valueOf(sections.getJSONObject(p).getInt("duration") / 60) + " min   - ")
+                                        .setMoreinfo(String.valueOf(sections.getJSONObject(p).getInt("duration") / 60) + " min - " + heurearrivee2)
 
 
                                         .endConfig()

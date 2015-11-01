@@ -1,12 +1,12 @@
 package adapter;
 
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.dexafree.materialList.card.Card;
 import com.dexafree.materialList.card.provider.CardProvider;
 import com.pandf.moovin.R;
@@ -90,7 +90,10 @@ public class TransportCardProvider extends CardProvider<TransportCardProvider> {
         TextView textView5 = (TextView)view.findViewById(R.id.directionbus);
         textView5.setText(direction);
 
-        TextDrawable drawable = TextDrawable.builder().buildRound(ligne, Color.RED);
+        ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+// generate random color
+        int color1 = generator.getRandomColor();
+        TextDrawable drawable = TextDrawable.builder().buildRound(ligne, color1);
 
         ImageView image = (ImageView) view.findViewById(R.id.image_view);
         image.setImageDrawable(drawable);
