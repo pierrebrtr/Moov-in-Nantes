@@ -83,6 +83,7 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
     String timeString = "";
     public static final String DATEPICKER_TAG = "datepicker";
     public static final String TIMEPICKER_TAG = "timepicker";
+    String currentDateandTime;
 
 
     Map<String, String> createBasicAuthHeader(String username, String password) {
@@ -100,6 +101,14 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
     protected void onCreate(final Bundle savedInstanceState) {
         Utility.themer(ItineraireActivity.this);
         super.onCreate(savedInstanceState);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd'T'HHmmss", new Locale("fr", "FR"));
+      currentDateandTime = sdf.format(new Date());
+
+
+
+
+
 
         setContentView(R.layout.activity_itineraire);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -252,7 +261,7 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
                 InputMethodManager imm = (InputMethodManager) ItineraireActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(depart.getWindowToken(), 0);
 
-                String url = "https://api.navitia.io/v1/journeys?from=" + firstlon + ";" + firstlat + "&to=" + secondelon + ";" + secondelat + "&datetime=20151023T170500";
+                String url = "https://api.navitia.io/v1/journeys?from=" + firstlon + ";" + firstlat + "&to=" + secondelon + ";" + secondelat + "&datetime=" + currentDateandTime;
 
 
                 Log.d("URL", String.valueOf(url));
@@ -911,10 +920,59 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
 
     }
 
-
+String dateset;
     @Override
     public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
         Toast.makeText(ItineraireActivity.this, "new date:" + year + "-" + month + "-" + day, Toast.LENGTH_LONG).show();
+
+
+        String daystring = "";
+        String monthstring = "";
+        String yearstring = "";
+        yearstring = "" + year;
+
+        if (month < 10){
+            monthstring = "0" + month;
+            if (day < 10){
+
+
+
+                daystring = "0" + day;
+            } else if (day >= 10){
+
+                daystring = "" + day;
+            }
+
+        } else if (month >= 10){
+
+            monthstring = "" + month;
+
+            if (day < 10){
+
+
+
+                daystring = "0" + day;
+            } else if (day >= 10){
+
+                daystring = "" + day;
+            }
+
+        }
+
+        DateFormat df1 = new SimpleDateFormat("yyyyMMdd'T'HHmmss", new Locale("fr", "FR"));
+
+        Date result1 = null;
+
+        String date = yearstring + monthstring + daystring;
+
+
+
+
+
+         dateset = yearstring + monthstring + daystring + "T";
+
+
+
 
         Calendar calendar = Calendar.getInstance();
 
@@ -922,13 +980,43 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
 
         timePickerDialog.setVibrate(true);
         timePickerDialog.setCloseOnSingleTapMinute(false);
+
         timePickerDialog.show(getSupportFragmentManager(), TIMEPICKER_TAG);
+
+
+
+
+
+
+
+
 
     }
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
         Toast.makeText(ItineraireActivity.this, "new time:" + hourOfDay + "-" + minute, Toast.LENGTH_LONG).show();
 
+
+        if (minute < 10){
+
+            currentDateandTime = dateset + hourOfDay + "0" + minute + "00";
+        }else {
+
+            currentDateandTime = dateset + hourOfDay + minute + "00";
+        }
+
+
+        String url = "https://api.navitia.io/v1/journeys?from=" + firstlon + ";" + firstlat + "&to=" + secondelon + ";" + secondelat + "&datetime=" + currentDateandTime;
+
+
+        Log.d("URL", String.valueOf(url));
+        final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
+
+        mListView.clearAll();
+
+
+
+        phase1(url);
 
 
     }
