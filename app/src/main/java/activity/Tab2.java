@@ -125,6 +125,35 @@ public class Tab2 extends Fragment {
 
 
                     mListView.add(cardmeteo);
+
+
+
+                    Card card2 = new Card.Builder(getActivity())
+                            .withProvider(BasicButtonsCardProvider.class)
+                            .setTitle("Nouveau !")
+                            .setDescription("Les itinéraires sont enfin disponibles ! (Attention instable !)")
+                            .setLeftButtonText("Entrer")
+
+                            .setOnLeftButtonClickListener(new OnButtonClickListener() {
+                                @Override
+                                public void onButtonClicked(View view, Card card) {
+                                    Intent intent = getActivity().getIntent();
+
+
+                                    Intent i = new Intent(Tab2.this.getActivity(), ItineraireActivity.class);
+
+                                    startActivity(i);
+                                }
+
+                            })
+                            .endConfig()
+                            .build();
+
+
+
+                    mListView.add(card2);
+
+
                     try {
 
 
@@ -230,9 +259,11 @@ public class Tab2 extends Fragment {
         }
 
 
-        // Create a Card
 
         return v;
+
+
+
 
 
 

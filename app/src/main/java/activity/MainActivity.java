@@ -150,6 +150,10 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 title = "Paramètres";
                 startActivity(i2);
                 break;
+            case 7:
+                fragment = new LigneFragment();
+                title = "Lignes";
+                break;
             default:
                 break;
         }

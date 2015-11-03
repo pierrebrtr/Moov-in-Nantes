@@ -85,6 +85,7 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
     public static final String TIMEPICKER_TAG = "timepicker";
     String currentDateandTime;
 
+    boolean started = false;
 
     Map<String, String> createBasicAuthHeader(String username, String password) {
         Map<String, String> headerMap = new HashMap<String, String>();
@@ -270,6 +271,8 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
                 mListView.clearAll();
 
                 arrive.dismissDropDown();
+
+                started = true;
 
                 phase1(url);
 
@@ -1010,14 +1013,15 @@ String dateset;
 
 
         Log.d("URL", String.valueOf(url));
-        final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
 
-        mListView.clearAll();
+        if (started) {
+            final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
+
+            mListView.clearAll();
 
 
-
-        phase1(url);
-
+            phase1(url);
+        }
 
     }
 }

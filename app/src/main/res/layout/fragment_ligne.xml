@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context="activity.ArretsFragment">
+
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       android:id="@+id/viewsearch"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        tools:context="activity.ArretsFragment"
+        android:background="?attr/colorPrimary"
+        android:weightSum="1">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_bus"
+            app:border_width="0dp"
+            app:border_color="#FFF"
+            android:layout_marginRight="0dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="120dp"
+            android:layout_weight="0.06" />
+
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchligne"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:text="Tapez votre ligne !"
+            android:textColor="#FFF"
+            android:inputType="textNoSuggestions"
+            android:editable="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chercher !"
+            android:id="@+id/buttonchercher"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.06"
+            android:layout_marginTop="30dp" />
+
+    </LinearLayout>
+
+
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/list_divider"
+        android:dividerHeight="0.5dp"
+        android:listSelector="@drawable/list_row_selector"
+        android:fastScrollEnabled="true"
+        android:fastScrollAlwaysVisible="false"/>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>
