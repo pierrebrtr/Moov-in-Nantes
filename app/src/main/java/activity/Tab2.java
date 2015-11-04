@@ -62,7 +62,7 @@ public class Tab2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v =inflater.inflate(R.layout.tab_2,container,false);
-
+        final MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
 
 
 
@@ -201,7 +201,6 @@ public class Tab2 extends Fragment {
                     Toast.LENGTH_LONG).show();
 
 
-            final MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
 
 
 

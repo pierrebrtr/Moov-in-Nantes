@@ -133,27 +133,28 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 title = "Arrêts";
                 break;
             case 3:
+                fragment = new LigneFragment();
+                title = "Lignes";
+                break;
+            case 4:
                 fragment = new GeoFragment();
                 title = "Géolocalisation";
                 break;
-            case 4:
+            case 5:
                 fragment = new BiclooFragment();
                 title = "Bicloos";
                 break;
-            case 5:
+            case 6:
                 Intent i = new Intent(MainActivity.this, ItineraireActivity.class);
                 title = "Itinéraire";
                 startActivity(i);
                 break;
-            case 6:
+            case 7:
                 Intent i2 = new Intent(MainActivity.this, MyPreferencesActivity.class);
                 title = "Paramètres";
                 startActivity(i2);
                 break;
-            case 7:
-                fragment = new LigneFragment();
-                title = "Lignes";
-                break;
+
             default:
                 break;
         }

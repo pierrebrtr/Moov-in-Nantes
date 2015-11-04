@@ -2,13 +2,13 @@ package activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +17,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +30,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.pandf.moovin.ArretsMapsActivity;
 import com.pandf.moovin.R;
 
 import org.json.JSONArray;
@@ -85,6 +83,24 @@ public class LigneFragment extends Fragment  {
         super.onActivityCreated(savedInstanceState);
 
 
+        final boolean[] clickedonce = {false};
+        final EditText editText = (EditText) getActivity().findViewById(R.id.searchligne);
+
+
+
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (clickedonce[0] != true) {
+                    editText.setText("");
+                    int maxLengthofEditText = 3;
+                    editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLengthofEditText)});
+                }
+            clickedonce[0] = true;
+
+            }
+        });
+
 
         Button imageButton = (Button) getActivity().findViewById(R.id.buttonchercher);
 
@@ -96,7 +112,7 @@ public class LigneFragment extends Fragment  {
 
                                                layout.setVisibility(View.GONE);
 
-                                               EditText editText = (EditText) getActivity().findViewById(R.id.searchligne);
+
 
                                                String ligne = editText.getText().toString();
 
@@ -232,7 +248,7 @@ public class LigneFragment extends Fragment  {
 
 
 
-        setHasOptionsMenu(true);
+
         View searchContainer = getActivity().findViewById(R.id.search_container);
         final EditText toolbarSearchView = (EditText) getActivity().findViewById(R.id.search);
         ImageView searchClearButton = (ImageView) getActivity().findViewById(R.id.search_clear);
@@ -243,6 +259,8 @@ public class LigneFragment extends Fragment  {
             }
         });
         searchContainer.setVisibility(View.GONE);
+
+
 
 
 
@@ -388,6 +406,9 @@ public class LigneFragment extends Fragment  {
         menu.clear();
         inflater.inflate(R.menu.menu_main, menu);
         super.onCreateOptionsMenu(menu, inflater);
+
+
+
     }
 
 
@@ -423,30 +444,6 @@ public class LigneFragment extends Fragment  {
 
         View searchContainer = getActivity().findViewById(R.id.search_container);
 
-        if (id == R.id.action_search){
-
-           if (searchContainer.getVisibility() == View.GONE){
-
-              search.requestFocus();
-               InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-               imm.showSoftInput(search, InputMethodManager.SHOW_IMPLICIT);
-               searchContainer.setVisibility(View.VISIBLE);
-
-           } else {
-               InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-               imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
-               searchContainer.setVisibility(View.GONE);
-
-           }
-            return true;
-        }
-
-        if (id == R.id.action_search2){
-            Intent intent = new Intent();
-            intent.setClass(getActivity(), ArretsMapsActivity.class);
-            startActivity(intent);
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

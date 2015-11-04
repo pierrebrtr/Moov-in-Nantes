@@ -269,6 +269,7 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
                 final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
 
                 mListView.clearAll();
+                mListView.getAdapter().notifyDataSetChanged();
 
                 arrive.dismissDropDown();
 
@@ -558,8 +559,6 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
 
 
 
-
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -605,6 +604,8 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
                 Toast.makeText(getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_SHORT).show();
                 // hide the progress dialog
+
+
 
 
                 Card card = new Card.Builder(ItineraireActivity.this)
@@ -662,6 +663,11 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
 
             }
         });
+
+
+
+
+        mListView.getAdapter().notifyDataSetChanged();
 
 
     }
@@ -1018,6 +1024,7 @@ String dateset;
             final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
 
             mListView.clearAll();
+            mListView.getAdapter().notifyDataSetChanged();
 
 
             phase1(url);
