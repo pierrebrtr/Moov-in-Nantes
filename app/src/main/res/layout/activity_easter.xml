@@ -35,11 +35,6 @@
         android:singleLine="false"
         android:textStyle="bold" />
 
-    <ImageView
-        android:layout_width="178dp"
-        android:layout_height="178dp"
-        android:id="@+id/heart"
-        android:src="@drawable/heart"
-        android:layout_gravity="center" />
+
 
 </FrameLayout>

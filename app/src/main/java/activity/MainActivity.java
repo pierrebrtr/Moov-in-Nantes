@@ -52,7 +52,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 .setInstallDays(5) // default 10, 0 means install day.
                 .setLaunchTimes(10) // default 10
                 .setRemindInterval(1) // default 1
-                .setShowNeutralButton(false) // default true
+
                 .setDebug(false) // default false
                 .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
                     @Override

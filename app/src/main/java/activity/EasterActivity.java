@@ -38,7 +38,7 @@ public class EasterActivity extends ActionBarActivity {
 
         final TextView mSwitcher = (TextView) findViewById(R.id.textMoov);
         final TextView mSwitcher2 = (TextView) findViewById(R.id.textversion);
-        final ImageView heart = (ImageView) findViewById(R.id.heart);
+
 
         final Animation dd = new ScaleAnimation(0.0f,1.0f,0.0f,1.0f,Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF,0.5f);
        OvershootInterpolator interpolator = new OvershootInterpolator(4f);
@@ -47,71 +47,8 @@ public class EasterActivity extends ActionBarActivity {
         mSwitcher.startAnimation(dd);
         mSwitcher2.startAnimation(dd);
 
-        heart.setClickable(true);
-
-        heart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                clickable = clickable + 1;
 
 
-                final Animation dd = new ScaleAnimation(1.0f,0.7f,1.0f,0.7f,Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF,0.5f);
-                OvershootInterpolator interpolator = new OvershootInterpolator(5f);
-                dd.setInterpolator(interpolator);
-                dd.setDuration(600);
-
-                heart.startAnimation(dd);
-
-
-                Vibrator vibrator = (Vibrator) EasterActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
-                // Vibrate for 500 milliseconds
-                vibrator.vibrate(60);
-
-                if(clickable == 10) {
-
-                    Vibrator vibrator2 = (Vibrator) EasterActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
-                    // Vibrate for 500 milliseconds
-                    vibrator2.vibrate(600);
-
-
-                    final boolean mStopHandler = false;
-                    final Handler mHandler = new Handler();
-                    Runnable runnable = new Runnable() {
-                        @Override
-                        public void run() {
-                            // do your stuff - don't create a new runnable here!
-                            if (!mStopHandler) {
-
-                                mHandler.postDelayed(this, 200);
-
-
-                                final Animation dd = new ScaleAnimation(1.0f,0.7f,1.0f,0.7f,Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF,0.5f);
-                                OvershootInterpolator interpolator = new OvershootInterpolator(5f);
-                                dd.setInterpolator(interpolator);
-                                dd.setDuration(200);
-
-                                heart.startAnimation(dd);
-
-
-                                Random rnd = new Random();
-                                int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-                                heart.setColorFilter(color);
-
-                            }
-                        }
-                    };
-
-                    mHandler.post(runnable);
-
-
-
-
-
-                }
-
-            }
-        });
 
 
 
