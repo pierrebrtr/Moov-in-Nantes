@@ -2,6 +2,8 @@ package activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -16,22 +18,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.dexafree.materialList.card.Card;
-import com.dexafree.materialList.card.provider.SmallImageCardProvider;
-import com.dexafree.materialList.view.MaterialListView;
 import com.pandf.moovin.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import adapter.CustomListAdapterMeteo;
 import app.AppController;
+import de.hdodenhof.circleimageview.CircleImageView;
 import helper.ConnectionDetector;
+import model.Meteo;
 import util.SpLite;
 
 
@@ -55,17 +65,28 @@ public class MeteoFragment extends Fragment  {
     String tmp5 = " ";
     String icon5 = " ";
 
+    private ListView listView;
+    private CustomListAdapterMeteo adapter;
+    private List<Meteo> listmeteo = new ArrayList<Meteo>();
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        listView = (ListView) getActivity().findViewById(R.id.listmeteo);
+
+
+
+
+        // movieList is an empty array at this point.
+        adapter = new CustomListAdapterMeteo(getActivity(), listmeteo);
+        listView.setAdapter(adapter);
 
         swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.containermeteo);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                final MaterialListView mListView = (MaterialListView) getActivity().findViewById(R.id.material_listviewmeteo);
-                mListView.clear();
+
                doaskjson();
                 swipeLayout.setRefreshing(false);
             }
@@ -83,10 +104,7 @@ public class MeteoFragment extends Fragment  {
 
     public void doaskjson(){
 
-
-
-         MaterialListView mListView = (MaterialListView) getActivity().findViewById(R.id.material_listviewmeteo);
-
+        listmeteo.clear();
 
 
 
@@ -113,19 +131,13 @@ public class MeteoFragment extends Fragment  {
                         JSONObject object = response.getJSONObject("current_condition");
 
 
+
+
+
                         tmp = object.getString("tmp");
 
                         condition = object.getString("condition");
                         icon = object.getString("icon");
-                        final MaterialListView mListView = (MaterialListView) getActivity().findViewById(R.id.material_listviewmeteo);
-                        mListView.clearAll();
-                        Card cardmeteo = new Card.Builder(getActivity())
-                                .withProvider(SmallImageCardProvider.class)
-                                .setTitle("En direct du ciel :")
-                                .setDescription(condition + " (" + tmp + "°)")
-                                .setDrawable(icon)
-                                .endConfig()
-                                .build();
 
                         sharedlite = new SpLite();
 
@@ -133,69 +145,105 @@ public class MeteoFragment extends Fragment  {
 
 
 
-                        mListView.add(cardmeteo);
 
+
+
+
+
+
+
+                        View headerView = ((LayoutInflater)getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE)).inflate(R.layout.view_list_item_headermeteo, null, false);
+
+
+                     listView.removeHeaderView(getActivity().findViewById(R.id.headermeteo));
+
+                        TextView jour = (TextView) headerView.findViewById(R.id.jourheader);
+                        TextView temps = (TextView) headerView.findViewById(R.id.tempsheader);
+                        TextView temperature = (TextView) headerView.findViewById(R.id.temperatureheader);
+                        CircleImageView image = (CircleImageView) headerView.findViewById(R.id.iconheader);
+                        URL url = null;
+                        try {
+                            url = new URL(icon);
+                            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                            image.setImageBitmap(bmp);
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        jour.setText("En direct du ciel :");
+                        temps.setText(condition);
+                        temperature.setText(tmp + "°");
+                        listView.addHeaderView(headerView);
 
 
                         JSONObject objecttomorow = response.getJSONObject("fcst_day_1");
                         tmp2 = objecttomorow.getString("tmin") + " à " + objecttomorow.getString("tmax");
                         condition2 = objecttomorow.getString("condition");
                         icon2 = objecttomorow.getString("icon");
-                        Card cardmeteotomorow = new Card.Builder(getActivity())
-                                .withProvider(SmallImageCardProvider.class)
-                                .setTitle("Demain dans le ciel :")
-                                .setDescription(condition2 + " (" + tmp2 + "°)")
-                                .setDrawable(icon2)
-                                .endConfig()
-                                .build();
 
-                        mListView.add(cardmeteotomorow);
+
+
+                        Meteo meteo2 = new Meteo();
+
+
+                        meteo2.setJour("Demain dans le ciel :");
+                        meteo2.setTemps(condition2);
+                        meteo2.setMinetmax(tmp2 + "°");
+                        meteo2.setImage(icon2);
+                        listmeteo.add(meteo2);
+
                         JSONObject objectjour2 = response.getJSONObject("fcst_day_2");
                         tmp3 = objectjour2.getString("tmin") + " à " + objectjour2.getString("tmax");
                         condition3 = objectjour2.getString("condition");
                         icon3 = objectjour2.getString("icon");
-                        Card cardmeteo2 = new Card.Builder(getActivity())
-                                .withProvider(SmallImageCardProvider.class)
-                                .setTitle(objectjour2.getString("day_long"))
-                                .setDescription(condition3 + " (" + tmp3 + "°)")
-                                .setDrawable(icon3)
-                                .endConfig()
-                                .build();
 
 
 
+                        Meteo meteo3 = new Meteo();
 
-                        mListView.add(cardmeteo2);
+
+                        meteo3.setJour(objectjour2.getString("day_long"));
+                        meteo3.setTemps(condition3);
+                        meteo3.setMinetmax(tmp3 + "°");
+                        meteo3.setImage(icon3);
+                        listmeteo.add(meteo3);
+
+
                         JSONObject objectjour3 = response.getJSONObject("fcst_day_3");
                         tmp4 = objectjour3.getString("tmin") + " à " + objectjour3.getString("tmax");
                         condition4 = objectjour3.getString("condition");
                         icon4 = objectjour3.getString("icon");
-                        Card cardmeteo3 = new Card.Builder(getActivity())
-                                .withProvider(SmallImageCardProvider.class)
-                                .setTitle(objectjour3.getString("day_long"))
-                                .setDescription(condition4 + " (" + tmp4 + "°)")
-                                .setDrawable(icon4)
-                                .endConfig()
-                                .build();
 
 
 
+                        Meteo meteo4 = new Meteo();
 
-                        mListView.add(cardmeteo3);
+
+                        meteo4.setJour(objectjour3.getString("day_long"));
+                        meteo4.setTemps(condition4);
+                        meteo4.setMinetmax(tmp4 + "°");
+                        meteo4.setImage(icon4);
+                        listmeteo.add(meteo4);
+
+
+
                         JSONObject objectjour4 = response.getJSONObject("fcst_day_4");
                         tmp5 = objectjour4.getString("tmin") + " à " + objectjour4.getString("tmax");
                         condition5 = objectjour4.getString("condition");
                         icon5 = objectjour4.getString("icon");
-                        Card cardmeteo4 = new Card.Builder(getActivity())
-                                .withProvider(SmallImageCardProvider.class)
-                                .setTitle(objectjour4.getString("day_long"))
-                                .setDescription(condition4 + " (" + tmp5 + "°)")
-                                .setDrawable(icon5)
-                                .endConfig()
-                                .build();
 
 
-                        mListView.add(cardmeteo4);
+
+                        Meteo meteo5 = new Meteo();
+
+
+                        meteo5.setJour(objectjour4.getString("day_long"));
+                        meteo5.setTemps(condition5);
+                        meteo5.setMinetmax(tmp5 + "°");
+                        meteo5.setImage(icon5);
+                        listmeteo.add(meteo5);
 
 
 
@@ -214,7 +262,7 @@ public class MeteoFragment extends Fragment  {
 
                     }
 
-
+                    adapter.notifyDataSetChanged();
                 }
 
 

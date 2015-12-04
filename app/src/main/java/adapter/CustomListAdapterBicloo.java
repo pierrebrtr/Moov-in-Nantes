@@ -82,7 +82,7 @@ public class CustomListAdapterBicloo extends BaseAdapter  {
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
 
-        TextView adresse = (TextView) convertView.findViewById(R.id.adresse);
+        TextView adresse = (TextView) convertView.findViewById(R.id.tempsheader);
         TextView placedispo = (TextView) convertView.findViewById(R.id.placedispo);
         TextView velodispo = (TextView) convertView.findViewById(R.id.velodispo);
 

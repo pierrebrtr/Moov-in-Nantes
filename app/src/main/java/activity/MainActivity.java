@@ -48,20 +48,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
 
 
-        AppRate.with(this)
-                .setInstallDays(5) // default 10, 0 means install day.
-                .setLaunchTimes(10) // default 10
-                .setRemindInterval(1) // default 1
 
-                .setDebug(false) // default false
-                .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
-                    @Override
-                    public void onClickButton(int which) {
-                        Log.d(MainActivity.class.getName(), Integer.toString(which));
-                    }
-                })
-                .monitor();
-        AppRate.showRateDialogIfMeetsConditions(this);
 
 
         arrets = new Arrets();
