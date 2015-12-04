@@ -155,7 +155,7 @@ public class MeteoFragment extends Fragment  {
                         View headerView = ((LayoutInflater)getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE)).inflate(R.layout.view_list_item_headermeteo, null, false);
 
 
-                     listView.removeHeaderView(getActivity().findViewById(R.id.headermeteo));
+                        listView.removeHeaderView(getActivity().findViewById(R.id.headermeteo));
 
                         TextView jour = (TextView) headerView.findViewById(R.id.jourheader);
                         TextView temps = (TextView) headerView.findViewById(R.id.tempsheader);
@@ -188,7 +188,7 @@ public class MeteoFragment extends Fragment  {
                         Meteo meteo2 = new Meteo();
 
 
-                        meteo2.setJour("Demain dans le ciel :");
+                        meteo2.setJour("Demain : ");
                         meteo2.setTemps(condition2);
                         meteo2.setMinetmax(tmp2 + "°");
                         meteo2.setImage(icon2);

@@ -43,14 +43,6 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
         setContentView(R.layout.activity_main);
 
-
-
-
-
-
-
-
-
         arrets = new Arrets();
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
