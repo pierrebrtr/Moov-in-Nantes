@@ -3,8 +3,6 @@ package adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +12,6 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.pandf.moovin.R;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 import app.AppController;
@@ -81,6 +76,8 @@ public class CustomListAdapterMeteo extends BaseAdapter  {
     public View getView(int position, View convertView, ViewGroup parent) {
 
 
+
+
         if (inflater == null)
             inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -91,7 +88,12 @@ public class CustomListAdapterMeteo extends BaseAdapter  {
             imageLoader = AppController.getInstance().getImageLoader();
 
 
+        if(position==(getCount()-1)){
+            TextView finaltextrow = (TextView) convertView.findViewById(R.id.textView2);
 
+            finaltextrow.setVisibility(View.GONE);
+
+        }
 
         TextView temps = (TextView) convertView.findViewById(R.id.tempsheader);
         TextView minetmax = (TextView) convertView.findViewById(R.id.temperatureheader);
