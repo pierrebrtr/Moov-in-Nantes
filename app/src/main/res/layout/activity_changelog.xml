@@ -35,7 +35,7 @@
     chg:rowHeaderLayoutId="@layout/changelogrowheader_material_layout"
     chg:rowLayoutId="@layout/changelogrow_material_layout"
     android:layout_gravity="center"
-    chg:changeLogFileResourceUrl="http://pierre.hellophoto.fr/tan2/change.xml"
+    chg:changeLogFileResourceUrl="http://pierre.hellophoto.fr/moovinantes/json/change.xml"
     />
 
     </LinearLayout>
