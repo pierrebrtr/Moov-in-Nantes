@@ -21,6 +21,7 @@ import java.util.List;
 
 import app.AppController;
 import de.hdodenhof.circleimageview.CircleImageView;
+import helper.BitmapWorkerTask;
 import model.Meteo;
 import util.Spfav;
 
@@ -111,17 +112,9 @@ public class CustomListAdapterMeteo extends BaseAdapter  {
         minetmax.setText(m.getMinetmax());
 
         jour.setText(m.getJour());
-        URL url = null;
-        try {
-            url = new URL(m.getImage());
-            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            imageCity.setImageBitmap(bmp);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+      
+        BitmapWorkerTask task = new BitmapWorkerTask(imageCity);
+        task.execute(m.getImage());
 
         return convertView;
 
