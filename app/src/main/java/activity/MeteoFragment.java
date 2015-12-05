@@ -2,8 +2,6 @@ package activity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -31,15 +29,13 @@ import com.pandf.moovin.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import adapter.CustomListAdapterMeteo;
 import app.AppController;
 import de.hdodenhof.circleimageview.CircleImageView;
+import helper.BitmapWorkerTask;
 import helper.ConnectionDetector;
 import model.Meteo;
 import util.SpLite;
@@ -161,16 +157,9 @@ public class MeteoFragment extends Fragment  {
                         TextView temps = (TextView) headerView.findViewById(R.id.tempsheader);
                         TextView temperature = (TextView) headerView.findViewById(R.id.temperatureheader);
                         CircleImageView image = (CircleImageView) headerView.findViewById(R.id.iconheader);
-                        URL url = null;
-                        try {
-                            url = new URL(icon);
-                            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                            image.setImageBitmap(bmp);
-                        } catch (MalformedURLException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+
+                        BitmapWorkerTask task = new BitmapWorkerTask(image);
+                        task.execute(icon);
 
                         jour.setText("En direct du ciel :");
                         temps.setText(condition);
