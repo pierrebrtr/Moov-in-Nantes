@@ -112,7 +112,7 @@ public class CustomListAdapterMeteo extends BaseAdapter  {
         minetmax.setText(m.getMinetmax());
 
         jour.setText(m.getJour());
-      
+
         BitmapWorkerTask task = new BitmapWorkerTask(imageCity);
         task.execute(m.getImage());
 
