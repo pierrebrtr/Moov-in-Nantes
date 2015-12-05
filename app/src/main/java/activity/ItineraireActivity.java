@@ -141,11 +141,7 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 
-                itineraireList.clear();
-                lAdapter.notifyDataSetChanged();
 
-
-                setResearchRequest(s, lAdapter);
 
             }
 
@@ -156,8 +152,11 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                itineraireList.clear();
                 lAdapter.notifyDataSetChanged();
+
+
+                setResearchRequest(s, lAdapter);
 
             }
         });

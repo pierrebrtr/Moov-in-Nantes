@@ -21,6 +21,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.dexafree.materialList.card.Card;
 import com.dexafree.materialList.card.OnButtonClickListener;
@@ -30,6 +31,7 @@ import com.dexafree.materialList.view.MaterialListView;
 import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
 import com.pandf.moovin.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -256,6 +258,99 @@ public class Tab2 extends Fragment {
 
 
         }
+
+        JsonArrayRequest movieReq = new JsonArrayRequest("http://pierre.hellophoto.fr/moovinantes/json/cards.json",
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d(TAG, response.toString());
+
+
+                        // Parsing json
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+
+                                JSONObject obj = null;
+                                try {
+                                    obj = response.getJSONObject(i);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+
+                                final MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
+
+
+                                if (obj.getString("type").equals("1")) {
+
+                                    final String testurl = obj.getString("url");
+                                    Card card2 = new Card.Builder(getActivity())
+                                            .withProvider(BasicButtonsCardProvider.class)
+                                            .setTitle(obj.getString("title"))
+                                            .setDescription(obj.getString("description"))
+                                            .setLeftButtonText(obj.getString("bouton"))
+                                            .setOnLeftButtonClickListener(new OnButtonClickListener() {
+                                                @Override
+                                                public void onButtonClicked(View view, Card card) {
+                                                    String url = testurl;
+                                                    Intent i = new Intent(Intent.ACTION_VIEW);
+                                                    i.setData(Uri.parse(url));
+                                                    startActivity(i);
+                                                }
+
+                                            })
+                                            .endConfig()
+                                            .build();
+
+
+                                    mListView.add(card2);
+                                }  else if (obj.getString("type").equals("2")){
+
+
+                                    Card card2 = new Card.Builder(getActivity())
+                                            .withProvider(SmallImageCardProvider.class)
+                                            .setTitle(obj.getString("title"))
+                                            .setDescription(obj.getString("description"))
+                                            .endConfig()
+                                            .build();
+
+
+
+                                    mListView.add(card2);
+
+                                }
+
+
+                                // adding movie to movies array
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        // notifying list adapter about data changes
+                        // so that it renders the list view with updated data
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+
+
+
+
+            }
+
+
+        });
+
+
+        AppController.getInstance().addToRequestQueue(movieReq);
+
 
 
 
