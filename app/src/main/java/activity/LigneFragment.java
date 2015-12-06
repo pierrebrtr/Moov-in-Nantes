@@ -30,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.pandf.moovin.MapsActivity;
 import com.pandf.moovin.R;
 
 import org.json.JSONArray;
@@ -247,6 +248,7 @@ public class LigneFragment extends Fragment  {
         super.onCreate(savedInstanceState);
 
 
+        setHasOptionsMenu(true);
 
 
         View searchContainer = getActivity().findViewById(R.id.search_container);
@@ -404,11 +406,8 @@ public class LigneFragment extends Fragment  {
             Menu menu, MenuInflater inflater) {
 
         menu.clear();
-        inflater.inflate(R.menu.menu_main, menu);
+        inflater.inflate(R.menu.menu_ligne, menu);
         super.onCreateOptionsMenu(menu, inflater);
-
-
-
     }
 
 
@@ -439,10 +438,21 @@ public class LigneFragment extends Fragment  {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-
         View searchContainer = getActivity().findViewById(R.id.search_container);
+
+        if (id == R.id.ligne){
+            final EditText editText = (EditText) getActivity().findViewById(R.id.searchligne);
+            LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.viewsearch);
+
+            layout.setVisibility(View.GONE);
+
+
+
+            String ligne = editText.getText().toString();
+
+            dosearchligne(ligne);
+            return true;
+        }
 
 
         return super.onOptionsItemSelected(item);
