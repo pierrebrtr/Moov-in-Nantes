@@ -50,6 +50,8 @@ dependencies {
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'com.orhanobut:dialogplus:1.10@aar'
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
+    compile 'com.getbase:floatingactionbutton:1.10.1'
+
 
     compile project(':colorpicker')
 }

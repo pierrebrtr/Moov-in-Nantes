@@ -30,6 +30,7 @@ import com.dexafree.materialList.card.provider.BasicImageButtonsCardProvider;
 import com.dexafree.materialList.listeners.RecyclerItemClickListener;
 import com.dexafree.materialList.view.MaterialListView;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.pandf.moovin.R;
@@ -304,6 +305,23 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
 
 
 
+            }
+        });
+
+        FloatingActionButton button = (FloatingActionButton) findViewById(R.id.favorite);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+
+                final DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(ItineraireActivity.this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                final   TimePickerDialog timePickerDialog = TimePickerDialog.newInstance(ItineraireActivity.this, calendar.get(Calendar.HOUR_OF_DAY) ,calendar.get(Calendar.MINUTE), false, false);
+
+                datePickerDialog.setVibrate(true);
+                datePickerDialog.setYearRange(2015, 2017);
+                datePickerDialog.setCloseOnSingleTapDay(false);
+                datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
             }
         });
 

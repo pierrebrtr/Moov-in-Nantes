@@ -35,7 +35,25 @@
     </LinearLayout>
 
 
+    <com.getbase.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/favorite"
+        android:layout_alignBottom="@+id/toolbar"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false"
+        android:layout_marginRight="0dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="0dp"
+        android:layout_marginBottom="0dp"
+        fab:fab_colorPressed="?attr/colorAccent"
+        fab:fab_icon="@drawable/ic_event_note_white_24dp"
+        fab:fab_colorNormal="?attr/colorPrimary"
+        fab:fab_size="normal"
 
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="false"
+        android:layout_gravity="bottom|right" />
 
 
 

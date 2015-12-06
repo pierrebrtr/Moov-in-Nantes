@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:minHeight="?attr/actionBarSize"
     android:background="?attr/colorPrimary"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-   android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-
+    android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
 
 
     >
@@ -60,6 +62,10 @@
             android:src="@drawable/ic_event_note_white_24dp" />
 
 
+
+
     </RelativeLayout>
+
+
 
 </android.support.v7.widget.Toolbar>
