@@ -171,7 +171,7 @@ public class WidgetConfig1activity extends Activity {
                                 startActivity(intent);
                             }
                         })
-                        .setCancelable(true)
+                        .setCancelable(false)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
                 arretsList.clear();
