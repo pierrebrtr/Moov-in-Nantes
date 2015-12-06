@@ -28,7 +28,6 @@ import com.dexafree.materialList.card.OnButtonClickListener;
 import com.dexafree.materialList.card.provider.BasicButtonsCardProvider;
 import com.dexafree.materialList.card.provider.SmallImageCardProvider;
 import com.dexafree.materialList.view.MaterialListView;
-import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
 import com.pandf.moovin.R;
 
 import org.json.JSONArray;
@@ -52,10 +51,9 @@ public class Tab2 extends Fragment {
     String icon2 = " ";
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private AnimatedCircleLoadingView animatedCircleLoadingView;
+
     private SwipeRefreshLayout swipeLayout;
     SpLite sharedlite;
-
 
 
 
@@ -68,10 +66,7 @@ public class Tab2 extends Fragment {
 
 
 
-        animatedCircleLoadingView = (AnimatedCircleLoadingView) v.findViewById(R.id.circle_loading_view);
 
-
-        animatedCircleLoadingView.startIndeterminate();
 
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -160,9 +155,6 @@ public class Tab2 extends Fragment {
 
 
 
-                    animatedCircleLoadingView = (AnimatedCircleLoadingView) v.findViewById(R.id.circle_loading_view);
-
-                animatedCircleLoadingView.stopOk();
 
 
                     } catch (NullPointerException e) {
@@ -196,8 +188,8 @@ public class Tab2 extends Fragment {
         } else {
 
 
-            animatedCircleLoadingView = (AnimatedCircleLoadingView) v.findViewById(R.id.circle_loading_view);
-            animatedCircleLoadingView.stopFailure();
+
+
             Toast.makeText(getActivity().getApplicationContext(),
                     "Pas de connexion internet",
                     Toast.LENGTH_LONG).show();

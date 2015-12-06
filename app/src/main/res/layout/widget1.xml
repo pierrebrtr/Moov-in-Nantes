@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:layout_margin="4dp"
-    android:background="@drawable/moovinwidget">
+    android:background="@drawable/rectangularshape">
 
 
     <TextView

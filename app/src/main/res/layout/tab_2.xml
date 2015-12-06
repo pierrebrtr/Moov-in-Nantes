@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
 
+
       <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refreshome"
         android:layout_width="match_parent"
@@ -35,17 +36,7 @@
       </android.support.v4.widget.SwipeRefreshLayout>
 
 
-    <com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/circle_loading_view"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:mainColor="?attr/colorPrimary"
-        app:secondaryColor="@color/secondary_color"
-        android:layout_weight="5.65"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal" />
+
 
 
 
