@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -63,7 +63,7 @@ import util.Utility;
 /**
  * Created by dev on 29/07/2015.
  */
-public class ItineraireActivity extends FragmentActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+public class ItineraireActivity extends ActionBarActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     private Toolbar mToolbar;
     AutoCompleteTextView depart;
@@ -115,6 +115,8 @@ public class ItineraireActivity extends FragmentActivity implements DatePickerDi
         setContentView(R.layout.activity_itineraire);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+
+        setSupportActionBar(toolbar);
 
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
