@@ -118,6 +118,8 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
         setSupportActionBar(toolbar);
 
+
+
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
