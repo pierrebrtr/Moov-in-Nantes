@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -12,10 +13,13 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -88,6 +92,9 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
     boolean started = false;
 
+
+    String tempurl;
+
     Map<String, String> createBasicAuthHeader(String username, String password) {
         Map<String, String> headerMap = new HashMap<String, String>();
 
@@ -102,10 +109,14 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
 
 
+
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         Utility.themer(ItineraireActivity.this);
         super.onCreate(savedInstanceState);
+
+
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd'T'HHmmss", new Locale("fr", "FR"));
       currentDateandTime = sdf.format(new Date());
@@ -118,6 +129,17 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
         setContentView(R.layout.activity_itineraire);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+
+
+
+
+        LinearLayout layouttoolbar = (LinearLayout) findViewById(R.id.toolbaritinerary);
+
+        Animation slide_down = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_down);
+        Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_up);
+        layouttoolbar.startAnimation(slide_down);
 
         setSupportActionBar(toolbar);
 
@@ -283,6 +305,7 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
                 arrive.dismissDropDown();
 
                 started = true;
+
 
                 phase1(url);
 
@@ -480,8 +503,12 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
     public void phase1(final String urlph1) {
         final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
+        mListView.clear();
+        mListView.getAdapter().notifyDataSetChanged();
         final ArrayList<String> list = new ArrayList<String>();
+        tempurl = urlph1;
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlph1, null, new Response.Listener<JSONObject>() {
+
 
 
             public void onResponse(JSONObject response) {
@@ -585,6 +612,8 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
 
 
+
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -608,6 +637,8 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
                                 .build();
 
                         mListView.add(card);
+
+                        mListView.getAdapter().notifyDataSetChanged();
                     }
 
 
@@ -668,27 +699,11 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
 
 
-
-        mListView.addOnItemTouchListener(new RecyclerItemClickListener.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(Card card, int position) {
-
-                    if (card.getTag().toString().contains("ERROR")){
+        mListView.getAdapter().notifyDataSetChanged();
 
 
-                    }else {
-                        launchItinerary(Integer.parseInt(card.getTag().toString()), urlph1, list.get(position));
-                        Log.d("CARD_TYPE", card.getTag().toString());
-                    }
 
-            }
-
-            @Override
-            public void onItemLongClick(Card card, int position) {
-
-            }
-        });
+       setListnerUpdate(list);
 
 
 
@@ -714,10 +729,44 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
         }
     }
 
+    String tempsitinerairetemp;
 
 
 
-    public void launchItinerary(final int jsonobjectpos, String urlph2, String tempsiti){
+    public void setListnerUpdate(final ArrayList<String> list) {
+
+        final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
+
+
+
+
+        mListView.addOnItemTouchListener(new RecyclerItemClickListener.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(Card card, int position) {
+
+                if (card.getTag().toString().contains("ERROR")){
+
+
+                }else {
+
+
+                    launchItinerary(Integer.parseInt(card.getTag().toString()), tempurl);
+                    Log.d("CARD_TYPE", card.getTag().toString());
+                }
+
+            }
+
+            @Override
+            public void onItemLongClick(@NonNull Card card, int position) {
+
+            }
+
+        });
+    }
+
+
+    public void launchItinerary(final int jsonobjectpos, String urlph2){
 
 
 // custom dialog
@@ -745,10 +794,12 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
 
        TextView textiti = (TextView) dialogplus.getHeaderView().findViewById(R.id.textheadertemps);
-        textiti.setText(tempsiti);
+
+textiti.setText("");
 
         final MaterialListView mListView = (MaterialListView) dialogplus.findViewById(R.id.listitinerairephase2);
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlph2, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, tempurl, null, new Response.Listener<JSONObject>() {
+
 
 
             public void onResponse(JSONObject response) {
@@ -781,7 +832,11 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
                     JSONArray sections = array.getJSONObject(jsonobjectpos).getJSONArray("sections");
 
 
+                    mListView.clear();
+
                     for (int p = 0; p < sections.length(); p++) {
+
+
 
 
 

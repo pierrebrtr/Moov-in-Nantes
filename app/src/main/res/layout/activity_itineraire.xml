@@ -131,7 +131,7 @@
                         android:layout_alignLeft="@+id/autoCompleteTextView1"
                         android:layout_alignStart="@+id/autoCompleteTextView1"
                         android:layout_marginTop="10dp">
-                        <requestFocus />
+
                     </AutoCompleteTextView>
 
 
@@ -152,6 +152,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
 
 
 
