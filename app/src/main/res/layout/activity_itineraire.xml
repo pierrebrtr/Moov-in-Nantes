@@ -18,10 +18,140 @@
         android:orientation="vertical">
 
 
-        <include
+        <android.support.v7.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/toolbar"
-            layout="@layout/toolbar_itineraire" />
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationContentDescription="@string/abc_action_bar_up_description"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:title="Itinéraire"
+            android:elevation="10dp"
 
+            />
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal"
+            xmlns:fab="http://schemas.android.com/apk/res-auto"
+            style="@style/ToolBarStyle.Event"
+            android:id="@+id/toolbaritinerary"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:minHeight="?attr/actionBarSize"
+            android:background="?attr/colorPrimaryDark"
+            android:elevation="5dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:popupTheme="@style/ToolBarStyle.Event">
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left|center_horizontal">
+
+
+
+                    <ImageButton
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/button"
+                        android:background="#00ff6759"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:clickable="true"
+                        android:longClickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_geo"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="50dp" />
+
+                    <ImageButton
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/button2"
+                        android:background="#00ff6759"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:clickable="true"
+                        android:longClickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_swap_vert_white_24dp"
+                        android:layout_marginLeft="50dp" />
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="234dp"
+                    android:layout_height="match_parent">
+
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTextView1"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Départ"
+                        android:layout_gravity="center_horizontal|top"
+                        android:elegantTextHeight="false"
+                        android:layout_alignTop="@+id/button"
+                        android:layout_toLeftOf="@+id/button"
+                        android:layout_toStartOf="@+id/button"
+                        android:layout_marginRight="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginTop="20dp">
+                        <requestFocus />
+
+                    </AutoCompleteTextView>
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTextView2"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Arrivée"
+                        android:layout_gravity="center"
+                        android:layout_alignBottom="@+id/button"
+                        android:layout_alignLeft="@+id/autoCompleteTextView1"
+                        android:layout_alignStart="@+id/autoCompleteTextView1"
+                        android:layout_marginTop="10dp">
+                        <requestFocus />
+                    </AutoCompleteTextView>
+
+
+
+
+
+
+
+
+
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
 
 
 

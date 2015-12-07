@@ -99,6 +99,9 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
         return headerMap;
     }
 
+
+
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         Utility.themer(ItineraireActivity.this);
@@ -117,6 +120,8 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
 
         setSupportActionBar(toolbar);
+
+
 
 
 
@@ -286,7 +291,7 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
         });
 
 
-        ImageButton imageButton = (ImageButton) toolbar.findViewById(R.id.button);
+        ImageButton imageButton = (ImageButton) findViewById(R.id.button);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
