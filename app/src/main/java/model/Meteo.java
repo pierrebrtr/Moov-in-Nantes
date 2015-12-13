@@ -5,18 +5,19 @@ public class Meteo {
     private String minetmax;
     private String jour;
     private String image;
+    private String meteobg;
 
 
     public Meteo() {
     }
 
-    public Meteo(String temps, String minetmax,String jour, String image) {
+    public Meteo(String temps, String minetmax,String jour, String image, String meteobg) {
 
         this.temps = temps;
         this.jour = jour;
         this.minetmax = minetmax;
         this.image = image;
-
+        this.meteobg = meteobg;
     }
 
 
@@ -49,5 +50,9 @@ public class Meteo {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public String getMeteobg() { return  meteobg;}
+
+    public void setMeteobg(String meteobg) {this.meteobg = meteobg;}
 
 }

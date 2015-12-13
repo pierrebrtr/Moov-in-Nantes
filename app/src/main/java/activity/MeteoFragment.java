@@ -2,12 +2,14 @@ package activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,7 +36,6 @@ import java.util.List;
 
 import adapter.CustomListAdapterMeteo;
 import app.AppController;
-import de.hdodenhof.circleimageview.CircleImageView;
 import helper.BitmapWorkerTask;
 import helper.ConnectionDetector;
 import model.Meteo;
@@ -141,7 +142,15 @@ public class MeteoFragment extends Fragment  {
 
 
 
+                        TypedValue typedValue = new TypedValue();
+                        Resources.Theme theme = getActivity().getTheme();
+                        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+                        int color = typedValue.data;
 
+                        TypedValue typedValue2 = new TypedValue();
+
+                        theme.resolveAttribute(R.attr.colorPrimaryDark, typedValue, true);
+                        int color2 = typedValue.data;
 
 
 
@@ -156,7 +165,7 @@ public class MeteoFragment extends Fragment  {
                         TextView jour = (TextView) headerView.findViewById(R.id.jourheader);
                         TextView temps = (TextView) headerView.findViewById(R.id.tempsheader);
                         TextView temperature = (TextView) headerView.findViewById(R.id.temperatureheader);
-                        CircleImageView image = (CircleImageView) headerView.findViewById(R.id.iconheader);
+                        ImageView image = (ImageView) headerView.findViewById(R.id.iconheader);
 
                         BitmapWorkerTask task = new BitmapWorkerTask(image);
                         task.execute(icon);
@@ -181,6 +190,10 @@ public class MeteoFragment extends Fragment  {
                         meteo2.setTemps(condition2);
                         meteo2.setMinetmax(tmp2 + "°");
                         meteo2.setImage(icon2);
+
+
+
+                        meteo2.setMeteobg("#" + Integer.toHexString(color2));
                         listmeteo.add(meteo2);
 
                         JSONObject objectjour2 = response.getJSONObject("fcst_day_2");
@@ -197,6 +210,7 @@ public class MeteoFragment extends Fragment  {
                         meteo3.setTemps(condition3);
                         meteo3.setMinetmax(tmp3 + "°");
                         meteo3.setImage(icon3);
+                        meteo3.setMeteobg("#" + Integer.toHexString(color));
                         listmeteo.add(meteo3);
 
 
@@ -214,6 +228,7 @@ public class MeteoFragment extends Fragment  {
                         meteo4.setTemps(condition4);
                         meteo4.setMinetmax(tmp4 + "°");
                         meteo4.setImage(icon4);
+                        meteo4.setMeteobg("#" + Integer.toHexString(color2));
                         listmeteo.add(meteo4);
 
 
@@ -232,6 +247,7 @@ public class MeteoFragment extends Fragment  {
                         meteo5.setTemps(condition5);
                         meteo5.setMinetmax(tmp5 + "°");
                         meteo5.setImage(icon5);
+                        meteo5.setMeteobg("#" + Integer.toHexString(color));
                         listmeteo.add(meteo5);
 
 

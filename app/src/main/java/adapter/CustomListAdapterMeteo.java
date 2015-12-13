@@ -3,10 +3,13 @@ package adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -15,7 +18,6 @@ import com.pandf.moovin.R;
 import java.util.List;
 
 import app.AppController;
-import de.hdodenhof.circleimageview.CircleImageView;
 import helper.BitmapWorkerTask;
 import model.Meteo;
 import util.Spfav;
@@ -23,6 +25,7 @@ import util.Spfav;
 
 public class CustomListAdapterMeteo extends BaseAdapter  {
     private Activity activity;
+
     private LayoutInflater inflater;
     private Context context;
     private boolean showicon;
@@ -88,26 +91,28 @@ public class CustomListAdapterMeteo extends BaseAdapter  {
             imageLoader = AppController.getInstance().getImageLoader();
 
 
-        if(position==(getCount()-1)){
-            TextView finaltextrow = (TextView) convertView.findViewById(R.id.textView2);
 
-            finaltextrow.setVisibility(View.GONE);
 
-        }
+
 
         TextView temps = (TextView) convertView.findViewById(R.id.tempsheader);
         TextView minetmax = (TextView) convertView.findViewById(R.id.temperatureheader);
-    CircleImageView imageCity = (CircleImageView) convertView.findViewById(R.id.iconheader);
+    ImageView imageCity = (ImageView) convertView.findViewById(R.id.iconheader);
 
 
         TextView jour = (TextView) convertView.findViewById(R.id.jour);
 
+
+        LinearLayout layout = (LinearLayout) convertView.findViewById(R.id.mainlayoutmeteo);
 
 
 
 
 
         Meteo m = arretsItems.get(position);
+
+
+        layout.setBackgroundColor(Color.parseColor(m.getMeteobg()));
 
         temps.setText(m.getTemps());
 
