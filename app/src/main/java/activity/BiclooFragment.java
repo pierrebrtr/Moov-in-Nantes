@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -23,7 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.Gson;
 import com.pandf.moovin.MapsActivity;
 import com.pandf.moovin.R;
 
@@ -38,6 +39,7 @@ import adapter.CustomListAdapterBicloo;
 import app.AppController;
 import helper.ConnectionDetector;
 import model.Bicloo;
+import model.BiclooMarker;
 
 
 public class BiclooFragment extends Fragment  {
@@ -50,7 +52,7 @@ public class BiclooFragment extends Fragment  {
     private List<Bicloo> listbicloo = new ArrayList<Bicloo>();
 
 
-    ArrayList<LatLng> locations;
+    ArrayList<BiclooMarker> locations;
 
 
     // Log tag
@@ -160,12 +162,12 @@ public class BiclooFragment extends Fragment  {
                                         longitude = genreArry.getDouble("lng");
 
 
-                                        Log.d("lat", latitude.toString());
 
 
 
 
-                                        locations.add(new LatLng(latitude, longitude));
+
+                                        locations.add(new BiclooMarker(latitude, longitude, obj.getString("address")));
 
 
 
@@ -310,15 +312,16 @@ public class BiclooFragment extends Fragment  {
                                     longitude = genreArry.getDouble("lng");
 
 
-                                    Log.d("lat", latitude.toString());
-
-
-                                    Log.d("lng", longitude.toString());
 
 
 
 
-                                    locations.add(new LatLng(latitude, longitude));
+
+
+
+
+
+                                    locations.add(new BiclooMarker(latitude, longitude, obj.getString("address")));
 
 
 
@@ -395,9 +398,14 @@ public class BiclooFragment extends Fragment  {
 
         int id = item.getItemId();
     if (id == R.id.action_search){
+
+        Gson gson = new Gson();
+
+        String jsonCars = gson.toJson(locations);
+
         Intent intent = new Intent();
         intent.setClass(getActivity(), MapsActivity.class);
-        intent.putParcelableArrayListExtra("locations", locations);
+        intent.putExtra("locations", jsonCars);
         startActivity(intent);
         return true;
     }
