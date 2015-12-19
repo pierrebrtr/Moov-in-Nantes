@@ -21,8 +21,8 @@
         <ImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/iconheader"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_below="@+id/textView1"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="5dp"
