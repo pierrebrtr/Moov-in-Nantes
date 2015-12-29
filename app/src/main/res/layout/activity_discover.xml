@@ -14,11 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:scaleType = "centerCrop"
         android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/content"
+        android:id="@+id/content_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -42,7 +41,27 @@
             />
 
 
+
+
     </LinearLayout>
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+
+        </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vous cherchez..."
+        android:id="@+id/textViewsearchdisco"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:textColor="#fff" />
 
 </FrameLayout>

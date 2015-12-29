@@ -16,8 +16,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Display;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.pandf.moovin.R;
 
@@ -58,7 +61,7 @@ public class DiscoverActivity extends ActionBarActivity  {
         Allocation allOut = Allocation.createFromBitmap(rs, outBitmap);
 
         //Set the radius of the blur
-        blurScript.setRadius(30.f);
+        blurScript.setRadius(25.f);
 
         //Perform the Renderscript
         blurScript.setInput(allIn);
@@ -112,12 +115,18 @@ public class DiscoverActivity extends ActionBarActivity  {
         Point size = new Point();
         display.getSize(size);
         Bitmap bmp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
-                getResources(),R.drawable.pierre),size.x,size.y,true);
+                getResources(),R.drawable.wood),size.x,size.y,true);
 
         Drawable d = new BitmapDrawable(getResources(), blurBitmap(bmp));
 
         layout_root.setBackground(d);
 
+
+        TextView textsearch = (TextView) findViewById(R.id.textViewsearchdisco);
+
+        Animation anim_title = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.anim_title);
+        textsearch.startAnimation(anim_title);
 
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
