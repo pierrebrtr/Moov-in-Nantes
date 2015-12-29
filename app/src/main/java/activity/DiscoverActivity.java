@@ -15,17 +15,22 @@ import android.renderscript.ScriptIntrinsicBlur;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.GridHolder;
 import com.pandf.moovin.R;
 
 import java.text.SimpleDateFormat;
 
+import adapter.GridSimpleAdapter;
 import util.Utility;
 
 /**
@@ -106,7 +111,17 @@ public class DiscoverActivity extends ActionBarActivity  {
 
         setSupportActionBar(toolbar);
 
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent myIntent = new Intent(DiscoverActivity.this, MainActivity.class);
+
+                DiscoverActivity.this.startActivity(myIntent);
+
+            }
+        });
         LinearLayout layout_root = (LinearLayout) findViewById(R.id.content_root);
 
 
@@ -126,19 +141,39 @@ public class DiscoverActivity extends ActionBarActivity  {
 
         Animation anim_title = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.anim_title);
+
+
         textsearch.startAnimation(anim_title);
 
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        ImageButton buttonsearch = (ImageButton) findViewById(R.id.discoverImageBtn);
+
+        buttonsearch.startAnimation(anim_title);
+
+
+
+        final GridSimpleAdapter adapter = new GridSimpleAdapter(DiscoverActivity.this, true);
+        buttonsearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DialogPlus dialogplus = DialogPlus.newDialog(DiscoverActivity.this)
+                        .setContentHolder(new GridHolder(3))
+                        .setCancelable(true)
+                        .setAdapter(adapter)
+                        .setGravity(Gravity.CENTER)
+                        .setInAnimation(R.anim.abc_fade_in)
+                        .setOutAnimation(R.anim.abc_fade_out)
+                        .setExpanded(false)
 
-                Intent myIntent = new Intent(DiscoverActivity.this, MainActivity.class);
 
-                DiscoverActivity.this.startActivity(myIntent);
 
+                        .create();
+                dialogplus.show();
             }
         });
+
+
+
+
 
 
 

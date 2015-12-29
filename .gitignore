@@ -93,3 +93,4 @@ app/app.iml
 .idea/gradle.xml
 
 build/intermediates/dex-cache/cache.xml
+app/app.iml

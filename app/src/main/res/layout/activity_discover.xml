@@ -44,24 +44,39 @@
 
 
     </LinearLayout>
-        <LinearLayout
-            android:id="@+id/content"
-            android:layout_width="match_parent"
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Vous cherchez..."
+            android:id="@+id/textViewsearchdisco"
+            android:layout_gravity="center"
+            android:textSize="30dp"
+            android:textColor="#fff" />
 
-            android:orientation="vertical">
 
 
-        </LinearLayout>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/discoverImageBtn"
+            android:src="@drawable/ic_search_white_24dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp" />
+
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vous cherchez..."
-        android:id="@+id/textViewsearchdisco"
-        android:layout_gravity="center"
-        android:textSize="30dp"
-        android:textColor="#fff" />
+
+
 
 </FrameLayout>
