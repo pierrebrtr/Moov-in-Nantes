@@ -167,7 +167,7 @@ public class BiclooFragment extends Fragment  {
 
 
 
-                                        locations.add(new BiclooMarker(latitude, longitude, obj.getString("address")));
+                                        locations.add(new BiclooMarker(latitude, longitude, obj.getString("address"), "Places : " + obj.getString("available_bike_stands"), "Velos : " + obj.getString("available_bikes")));
 
 
 
@@ -321,8 +321,7 @@ public class BiclooFragment extends Fragment  {
 
 
 
-                                    locations.add(new BiclooMarker(latitude, longitude, obj.getString("address")));
-
+                                    locations.add(new BiclooMarker(latitude, longitude, obj.getString("address"), "Places : " + obj.getString("available_bike_stands"), "Velos : " + obj.getString("available_bikes")));
 
 
 

@@ -1,12 +1,12 @@
 package activity;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
+import android.widget.ImageView;
 
 import com.pandf.moovin.R;
 
@@ -29,6 +29,17 @@ public class SplashScreen extends Activity {
 
 
         setContentView(R.layout.activity_splash);
+
+
+
+        ImageView imageloco = (ImageView) findViewById(R.id.imgLogo);
+
+        AnimatorSet animator = (AnimatorSet) AnimatorInflater
+                .loadAnimator(getApplicationContext(), R.animator.splash_anim);
+        animator.setTarget(imageloco);
+        animator.start();
+
+
 
 
        if (isFirstTime){

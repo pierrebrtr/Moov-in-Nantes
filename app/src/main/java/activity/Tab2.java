@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -35,6 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import app.AppController;
+
 import util.SpLite;
 
 
@@ -63,6 +65,7 @@ public class Tab2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v =inflater.inflate(R.layout.tab_2,container,false);
         final MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
+
 
 
 
@@ -122,6 +125,7 @@ public class Tab2 extends Fragment {
 
 
                     mListView.add(cardmeteo);
+
 
 
 

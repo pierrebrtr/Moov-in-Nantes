@@ -36,6 +36,7 @@ dependencies {
 
 
     compile project(':colorpicker')
+
     compile 'com.github.castorflex.smoothprogressbar:library:1.0.0'
     compile 'com.android.support:appcompat-v7:23.+'
     compile 'com.android.support:cardview-v7:22.2.1'

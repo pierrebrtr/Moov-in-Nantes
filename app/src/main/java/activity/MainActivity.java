@@ -126,9 +126,14 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 startActivity(i);
                 break;
             case 7:
-                Intent i2 = new Intent(MainActivity.this, MyPreferencesActivity.class);
-                title = "Paramètres";
+                Intent i2 = new Intent(MainActivity.this, DiscoverActivity.class);
+                title = "Découvrir";
                 startActivity(i2);
+                break;
+            case 8:
+                Intent i3 = new Intent(MainActivity.this, MyPreferencesActivity.class);
+                title = "Paramètres";
+                startActivity(i3);
                 break;
 
             default:

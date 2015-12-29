@@ -345,15 +345,29 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
 
-                final DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(ItineraireActivity.this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-                final   TimePickerDialog timePickerDialog = TimePickerDialog.newInstance(ItineraireActivity.this, calendar.get(Calendar.HOUR_OF_DAY) ,calendar.get(Calendar.MINUTE), false, false);
 
-                datePickerDialog.setVibrate(true);
-                datePickerDialog.setYearRange(2015, 2017);
-                datePickerDialog.setCloseOnSingleTapDay(false);
-                datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
+
+                InputMethodManager imm = (InputMethodManager) ItineraireActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(depart.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(arrive.getWindowToken(), 0);
+
+                String url = "https://api.navitia.io/v1/journeys?from=" + firstlon + ";" + firstlat + "&to=" + secondelon + ";" + secondelat + "&datetime=" + currentDateandTime;
+
+
+                Log.d("URL", String.valueOf(url));
+                final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
+
+                mListView.clearAll();
+                mListView.getAdapter().notifyDataSetChanged();
+
+                arrive.dismissDropDown();
+                depart.dismissDropDown();
+
+                started = true;
+
+
+                phase1(url);
             }
         });
 
@@ -1013,7 +1027,6 @@ textiti.setText("");
 String dateset;
     @Override
     public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
-        Toast.makeText(ItineraireActivity.this, "new date:" + year + "-" + month + "-" + day, Toast.LENGTH_LONG).show();
 
 
         String daystring = "";
@@ -1084,7 +1097,6 @@ String dateset;
     }
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
-        Toast.makeText(ItineraireActivity.this, "new time:" + hourOfDay + "-" + minute, Toast.LENGTH_LONG).show();
 
 
         if (minute < 10){

@@ -129,8 +129,11 @@ public class MapsActivity extends ActionBarActivity {
 
         for(BiclooMarker location : carsList){
                       mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(location.getLatitude(), location.getLongitude()))
-                    .title(location.getLieuname()));
+
+                              .snippet(location.getVelo() + " , " + location.getDispo())
+                              .position(new LatLng(location.getLatitude(), location.getLongitude()))
+                              .title(location.getLieuname()));
+
 
         }
 

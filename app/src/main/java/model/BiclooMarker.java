@@ -4,17 +4,23 @@ public class BiclooMarker {
     private Double latitude;
     public Double longitude;
     private String lieuname;
+    private String velo;
+    private String dispo;
 
     public BiclooMarker() {
     }
 
-    public BiclooMarker(Double latitude, Double longitude, String lieuname) {
+    public BiclooMarker(Double latitude, Double longitude, String lieuname, String velo, String dispo) {
 
         this.latitude = latitude;
 
         this.longitude = longitude;
 
         this.lieuname = lieuname;
+
+        this.velo = velo;
+
+        this.dispo = dispo;
     }
 
 
@@ -44,5 +50,13 @@ public class BiclooMarker {
     }
 
 
+
+    public String  getVelo() {
+        return velo;
+    }
+
+    public String  getDispo() {
+        return dispo;
+    }
 
 }

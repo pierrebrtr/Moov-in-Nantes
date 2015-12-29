@@ -170,7 +170,7 @@ public class MeteoFragment extends Fragment  {
                         BitmapWorkerTask task = new BitmapWorkerTask(image);
                         task.execute(icon);
 
-                        jour.setText("En direct du ciel :");
+                        jour.setText("En direct du ciel");
                         temps.setText(condition);
                         temperature.setText(tmp + "°");
                         listView.addHeaderView(headerView);
@@ -186,7 +186,7 @@ public class MeteoFragment extends Fragment  {
                         Meteo meteo2 = new Meteo();
 
 
-                        meteo2.setJour("Demain : ");
+                        meteo2.setJour("Demain");
                         meteo2.setTemps(condition2);
                         meteo2.setMinetmax(tmp2 + "°");
                         meteo2.setImage(icon2);

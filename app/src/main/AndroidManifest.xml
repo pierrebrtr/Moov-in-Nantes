@@ -100,6 +100,10 @@
             android:name="activity.HorairesActivity"
             android:configChanges="orientation|screenSize"
             android:label="Horaires"></activity>
+        <activity
+            android:name="activity.DiscoverActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="Découvrir"></activity>
         <activity android:name="activity.WidgetConfig1activity">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
