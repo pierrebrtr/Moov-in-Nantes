@@ -19,6 +19,7 @@ import android.view.MenuItem;
 
 import com.android.colorpicker.ColorPickerDialog;
 import com.android.colorpicker.ColorPickerSwatch;
+import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.pandf.moovin.R;
 
@@ -284,8 +285,8 @@ public class MyPreferencesActivity extends ActionBarActivity {
                 @Override
                 public boolean onPreferenceClick(Preference arg0) {
                     new LibsBuilder()
-                            //Pass the fields of your application to the lib so it can find all external lib information
-                            .withFields(R.string.class.getFields())
+                            //provide a style (optional) (LIGHT, DARK, LIGHT_DARK_TOOLBAR)
+                            .withActivityStyle(Libs.ActivityStyle.LIGHT)
 
                             .start(MyPreferencesActivity.this);
                     return true;

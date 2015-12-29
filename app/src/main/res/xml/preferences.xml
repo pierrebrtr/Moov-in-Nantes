@@ -40,7 +40,7 @@
         android:summary="Visiter le site">
 
         <intent android:action="android.intent.action.VIEW"
-            android:data="http://www.pierre.hellophoto.fr" />
+            android:data="http://www.pandfstudio.com" />
 
     </PreferenceScreen>
         <PreferenceScreen

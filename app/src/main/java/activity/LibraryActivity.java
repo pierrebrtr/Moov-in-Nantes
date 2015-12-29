@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 
+import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.pandf.moovin.BuildConfig;
 import com.pandf.moovin.MapsActivity;
 import com.pandf.moovin.R;
@@ -33,11 +34,11 @@ public class LibraryActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent i = new Intent(getApplicationContext(), LibsActivity.class);
-
-        i.putExtra(Libs.BUNDLE_TITLE, "Crédits librairies");
-
-        startActivity(i);
+        new LibsBuilder()
+                //provide a style (optional) (LIGHT, DARK, LIGHT_DARK_TOOLBAR)
+                .withActivityStyle(Libs.ActivityStyle.LIGHT)
+                //start the activity
+                .start(this);
 
     }
 
