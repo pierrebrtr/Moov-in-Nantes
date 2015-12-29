@@ -46,11 +46,11 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textColor="#fff"
         android:gravity="center_horizontal"
         android:text="L'application est éditée par deux jeunes étudiants sous le nom de P&amp;F Studio. Crédits: TAN, Ville de Nantes, JC DECAUX, prevision-meteo.ch."
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/proposligne"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
