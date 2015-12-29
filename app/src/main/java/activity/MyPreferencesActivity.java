@@ -19,8 +19,6 @@ import android.view.MenuItem;
 
 import com.android.colorpicker.ColorPickerDialog;
 import com.android.colorpicker.ColorPickerSwatch;
-import com.mikepenz.aboutlibraries.Libs;
-import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.pandf.moovin.R;
 
 import java.io.File;
@@ -280,18 +278,7 @@ public class MyPreferencesActivity extends ActionBarActivity {
                 size = size/100;
             }
             userButtone.setSummary("Taille du cache: " + size +" ko");
-            Preference userButtonee = (Preference) findPreference("library");
-            userButtonee.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference arg0) {
-                    new LibsBuilder()
-                            //provide a style (optional) (LIGHT, DARK, LIGHT_DARK_TOOLBAR)
-                            .withActivityStyle(Libs.ActivityStyle.LIGHT)
 
-                            .start(MyPreferencesActivity.this);
-                    return true;
-                }
-            });
         }
     }
 

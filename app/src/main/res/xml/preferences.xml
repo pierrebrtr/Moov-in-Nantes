@@ -25,12 +25,6 @@
             android:key="user">
         </PreferenceScreen>
         <PreferenceScreen
-            android:title="Crédits"
-            android:summary="Consulter les licences"
-            android:key="library"
-            >
-        </PreferenceScreen>
-        <PreferenceScreen
             android:title="À propos"
             android:summary="L'équipe de développement"
             android:key="propos">
