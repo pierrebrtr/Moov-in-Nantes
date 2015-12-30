@@ -103,6 +103,7 @@
         <activity
             android:name="activity.DiscoverActivity"
             android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
             android:label="Découvrir"></activity>
         <activity android:name="activity.WidgetConfig1activity">
             <intent-filter>

@@ -31,8 +31,12 @@ import com.orhanobut.dialogplus.OnItemClickListener;
 import com.pandf.moovin.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
+import adapter.CustomPagerAdapterResto;
 import adapter.GridSimpleAdapter;
+import model.DiscoverResto;
 import util.Utility;
 
 /**
@@ -45,7 +49,7 @@ public class DiscoverActivity extends ActionBarActivity  {
     AutoCompleteTextView arrive;
     public static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
     private static final String TAG = MainActivity.class.getSimpleName();
-
+    private List<DiscoverResto> restoList = new ArrayList<DiscoverResto>();
 
     Activity activity;
 
@@ -212,14 +216,26 @@ public class DiscoverActivity extends ActionBarActivity  {
         ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);
 
 
-        switch (position) {
+        DiscoverResto restotest = new DiscoverResto();
 
-            case 0:
-                break;
+        restotest.setAdresse(" 20 rue de Poitou");
+        restotest.setNbcouverts(" 50 couverts");
+        restotest.setNomresto("Une pizza au feu de bois");
+        restotest.setTypecuisine(" Cuisine traditionelle");
+
+        restoList.add(restotest);
 
 
+        DiscoverResto restotest2 = new DiscoverResto();
 
-        }
+        restotest2.setAdresse(" 10 rue des Perdries");
+        restotest2.setNbcouverts(" 20 couverts");
+        restotest2.setNomresto(" Le bon burger");
+        restotest2.setTypecuisine(" Fastfood");
+
+        restoList.add(restotest2);
+
+        viewpager.setAdapter(new CustomPagerAdapterResto(this, restoList));
 
 
 

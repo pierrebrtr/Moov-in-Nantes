@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.dexafree.materialList.card.CardLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:paddingTop="200dp"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardView"
+        android:layout_margin="8dp"
+        android:gravity="center_horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="2dp"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:measureWithLargestChild="false">
+
+            <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:measureWithLargestChild="false">
+
+            <TextView
+                android:id="@+id/restoname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nom du resto"
+                android:textSize="30dp"
+                android:gravity="start"
+                android:layout_weight="0.07" />
+
+            <TextView
+                android:id="@+id/cuisinetype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type de cuisine"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:editable="false"
+                android:layout_weight="0.07" />
+
+            <TextView
+                android:id="@+id/adresseresto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adresse"
+                android:textSize="20dp"
+                android:gravity="start"
+                android:layout_weight="0.72" />
+
+                <TextView
+                    android:id="@+id/restocouvertnb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nb de couverts"
+                    android:textSize="20dp"
+                    android:gravity="start"
+                    android:layout_weight="0.07" />
+
+                <View android:id="@+id/separator"
+                    android:background="#2c2c2c"
+                    android:layout_width = "fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical ="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:measureWithLargestChild="false"
+                    android:gravity="center_horizontal">
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/callbtn"
+                    android:src="@drawable/ic_walk_grey600_48dp" />
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/itinerairebtn"
+                        android:src="@drawable/ic_walk_grey600_48dp" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/restositebtn"
+                        android:src="@drawable/ic_walk_grey600_48dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</com.dexafree.materialList.card.CardLayout>

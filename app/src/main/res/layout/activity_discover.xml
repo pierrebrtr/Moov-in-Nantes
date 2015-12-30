@@ -9,6 +9,9 @@
     android:orientation="vertical"
     tools:context="activity.ItineraireActivity">
 
+
+
+
     <LinearLayout
         android:id="@+id/content_root"
         android:layout_width="match_parent"
@@ -75,14 +78,14 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp" />
 
-    </LinearLayout>
 
+
+    </LinearLayout>
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
 
 </FrameLayout>
