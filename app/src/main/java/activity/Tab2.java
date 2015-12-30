@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -190,26 +192,16 @@ public class Tab2 extends Fragment {
 
 
         } else {
+            ImageView view = (ImageView) v.findViewById(R.id.erreur1);
+            view.setVisibility(View.VISIBLE);
 
+            final View coordinatorLayoutView = v.findViewById(R.id.snackbarPosition);
 
-
-
-            Toast.makeText(getActivity().getApplicationContext(),
-                    "Pas de connexion internet",
-                    Toast.LENGTH_LONG).show();
-
-
-
-
-
-            Card card = new Card.Builder(getActivity())
-                    .withProvider(BasicButtonsCardProvider.class)
-                    .setTitle("Pas de connexion")
-                    .setDescription("Veuillez vérifier votre connexion internet")
-                    .setLeftButtonText("Rafraichir")
-                    .setOnLeftButtonClickListener(new OnButtonClickListener() {
+            Snackbar snackbar = Snackbar
+                    .make(coordinatorLayoutView, "Pas de connexion", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Rafraichir", new View.OnClickListener() {
                         @Override
-                        public void onButtonClicked(View view, Card card) {
+                        public void onClick(View view) {
                             Intent intent = getActivity().getIntent();
 
 
@@ -217,40 +209,14 @@ public class Tab2 extends Fragment {
 
                             startActivity(i);
                         }
-
-                    })
-                    .endConfig()
-                    .build();
+                    });
+                    snackbar.show();
 
 
 
 
-            mListView.add(card);
 
 
-
-            Card card2 = new Card.Builder(getActivity())
-                    .withProvider(BasicButtonsCardProvider.class)
-                    .setTitle("Infos")
-                    .setDescription("Vous avez besoin d'un site internet pour les horaires ? Cliquez ci-dessous !")
-                    .setLeftButtonText("Entrer")
-
-                    .setOnLeftButtonClickListener(new OnButtonClickListener() {
-                        @Override
-                        public void onButtonClicked(View view, Card card) {
-                            String url = "http://pierre.hellophoto.fr/tan/arrets.php";
-                            Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(url));
-                            startActivity(i);
-                        }
-
-                    })
-                    .endConfig()
-                    .build();
-
-
-
-            mListView.add(card2);
 
 
         }

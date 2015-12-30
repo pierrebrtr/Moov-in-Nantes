@@ -3,9 +3,21 @@
     xmlns:card="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/erreur1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:src="@drawable/erreurs" />
 
-
-
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/snackbarPosition">
       <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refreshome"
         android:layout_width="match_parent"
@@ -39,6 +51,6 @@
 
 
 
-
+    </android.support.design.widget.CoordinatorLayout>
 
 </RelativeLayout>
