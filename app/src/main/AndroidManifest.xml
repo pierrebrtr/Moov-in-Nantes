@@ -130,6 +130,10 @@
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_maps"></activity>
         <activity
+            android:name=".Mapsarking"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_maps"></activity>
+        <activity
             android:name=".ArretsMapsActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_arrets_maps"></activity>

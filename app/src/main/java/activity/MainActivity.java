@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.pandf.moovin.Mapsarking;
 import com.pandf.moovin.R;
 
 import adapter.FragmentDrawer;
@@ -131,10 +132,16 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 startActivity(i2);
                 break;
             case 8:
-                Intent i3 = new Intent(MainActivity.this, MyPreferencesActivity.class);
-                title = "Paramètres";
+                Intent i3 = new Intent(MainActivity.this, Mapsarking.class);
+                title = "Parking";
                 startActivity(i3);
                 break;
+            case 9:
+                Intent i4 = new Intent(MainActivity.this, MyPreferencesActivity.class);
+                title = "Paramètres";
+                startActivity(i4);
+                break;
+
 
             default:
                 break;
