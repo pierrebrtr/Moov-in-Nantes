@@ -22,8 +22,8 @@ public class HomeFragment extends Fragment {
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Moov'in","Favoris"};
-    int Numboftabs =2;
+    CharSequence Titles[]={"Moov'in","Info trafic","Favoris"};
+    int Numboftabs =3;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
