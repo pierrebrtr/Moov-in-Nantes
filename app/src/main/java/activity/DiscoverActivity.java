@@ -12,6 +12,7 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Display;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.GridHolder;
+import com.orhanobut.dialogplus.OnItemClickListener;
 import com.pandf.moovin.R;
 
 import java.text.SimpleDateFormat;
@@ -94,20 +96,8 @@ public class DiscoverActivity extends ActionBarActivity  {
         Utility.themer(DiscoverActivity.this);
         super.onCreate(savedInstanceState);
 
-
-
-
-
-
-
-
-
-
         setContentView(R.layout.activity_discover);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-
-
 
         setSupportActionBar(toolbar);
 
@@ -124,6 +114,9 @@ public class DiscoverActivity extends ActionBarActivity  {
         });
         LinearLayout layout_root = (LinearLayout) findViewById(R.id.content_root);
 
+
+        final ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);
+        viewpager.setVisibility(View.GONE);
 
          /* adapt the image to the size of the display */
         Display display = getWindowManager().getDefaultDisplay();
@@ -150,6 +143,8 @@ public class DiscoverActivity extends ActionBarActivity  {
         buttonsearch.startAnimation(anim_title);
 
 
+        final LinearLayout contentlayout = (LinearLayout) findViewById(R.id.content);
+
 
         final GridSimpleAdapter adapter = new GridSimpleAdapter(DiscoverActivity.this, true);
         buttonsearch.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +158,43 @@ public class DiscoverActivity extends ActionBarActivity  {
                         .setInAnimation(R.anim.abc_fade_in)
                         .setOutAnimation(R.anim.abc_fade_out)
                         .setExpanded(false)
+                        .setOnItemClickListener(new OnItemClickListener() {
+                            @Override
+                            public void onItemClick(DialogPlus dialog, Object item, View view, final int position) {
+                                dialog.dismiss();
+                                Animation anim_opacity = AnimationUtils.loadAnimation(getApplicationContext(),
+                                        R.anim.opacity);
 
+                                final Animation anim_slideup = AnimationUtils.loadAnimation(getApplicationContext(),
+                                        R.anim.anim_viewpager);
+
+                                anim_opacity.setAnimationListener(new Animation.AnimationListener() {
+                                    @Override
+                                    public void onAnimationStart(Animation animation) {
+
+                                    }
+
+                                    @Override
+                                    public void onAnimationEnd(Animation animation) {
+                                        contentlayout.setVisibility(View.GONE);
+
+
+                                        setupcardsview(position);
+
+                                        viewpager.setVisibility(View.VISIBLE);
+                                        viewpager.startAnimation(anim_slideup);
+                                    }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation) {
+
+                                    }
+                                });
+
+                                contentlayout.startAnimation(anim_opacity);
+
+                            }
+                        })
 
 
                         .create();
@@ -171,20 +202,28 @@ public class DiscoverActivity extends ActionBarActivity  {
             }
         });
 
-
-
-
-
-
-
-
     }
 
 
 
 
 
+    public void setupcardsview(int position) {
+        ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);
 
+
+        switch (position) {
+
+            case 0:
+                break;
+
+
+
+        }
+
+
+
+    }
 
 
 

@@ -61,16 +61,16 @@ public class GridSimpleAdapter extends BaseAdapter {
         Context context = parent.getContext();
         switch (position) {
             case 0:
-                viewHolder.textView.setText("Un resto");
-                viewHolder.imageView.setImageResource(R.drawable.ic_cloud_grey600_48dp);
+                viewHolder.textView.setText("Un restaurant");
+                viewHolder.imageView.setImageResource(R.drawable.ic_silverware_grey600_48dp);
                 break;
             case 1:
                 viewHolder.textView.setText("Un hotel");
-                viewHolder.imageView.setImageResource(R.drawable.ic_bike_grey600_48dp);
+                viewHolder.imageView.setImageResource(R.drawable.ic_hotel_grey600_48dp);
                 break;
             default:
-                viewHolder.textView.setText("Un bar");
-                viewHolder.imageView.setImageResource(R.drawable.ic_bike_grey600_48dp);
+                viewHolder.textView.setText("Une activité toristique");
+                viewHolder.imageView.setImageResource(R.drawable.ic_walk_grey600_48dp);
                 break;
         }
 
