@@ -96,8 +96,6 @@ public class Tab2 extends Fragment {
 
 
 
-
-
                     tmp = object.getString("tmp");
 
                     condition = object.getString("condition");
@@ -113,9 +111,6 @@ public class Tab2 extends Fragment {
 
                         icon = object.getString("icon");
 
-
-
-
                     Card cardmeteo = new Card.Builder(getActivity())
                             .withProvider(SmallImageCardProvider.class)
                             .setTitle("En direct du ciel :")
@@ -127,9 +122,6 @@ public class Tab2 extends Fragment {
 
 
                     mListView.add(cardmeteo);
-
-
-
 
                     Card card2 = new Card.Builder(getActivity())
                             .withProvider(BasicButtonsCardProvider.class)
@@ -152,16 +144,10 @@ public class Tab2 extends Fragment {
                             .endConfig()
                             .build();
 
-
-
                     mListView.add(card2);
 
 
                     try {
-
-
-
-
 
                     } catch (NullPointerException e) {
                         // do something other
@@ -187,9 +173,7 @@ public class Tab2 extends Fragment {
         });
 
 
-
         AppController.getInstance().addToRequestQueue(jsonObjReq);
-
 
         } else {
             ImageView view = (ImageView) v.findViewById(R.id.erreur1);
@@ -211,13 +195,6 @@ public class Tab2 extends Fragment {
                         }
                     });
                     snackbar.show();
-
-
-
-
-
-
-
 
         }
 
@@ -335,7 +312,7 @@ public class Tab2 extends Fragment {
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-setHasOptionsMenu(true);
+        setHasOptionsMenu(true);
 
         swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.refreshome);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

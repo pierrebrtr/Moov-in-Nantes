@@ -53,6 +53,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
         View searchContainer = findViewById(R.id.search_container);
 
+        searchContainer.setVisibility(View.GONE);
 
 
 
