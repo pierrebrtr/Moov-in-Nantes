@@ -28,6 +28,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.pandf.moovin.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -126,6 +127,7 @@ public class MeteoFragment extends Fragment  {
                         // response will be a json object
 
                         JSONObject object = response.getJSONObject("current_condition");
+
 
 
 

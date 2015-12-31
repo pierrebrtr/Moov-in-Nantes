@@ -15,6 +15,7 @@ import android.renderscript.ScriptIntrinsicBlur;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -25,10 +26,18 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.GridHolder;
 import com.orhanobut.dialogplus.OnItemClickListener;
 import com.pandf.moovin.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,6 +45,7 @@ import java.util.List;
 
 import adapter.CustomPagerAdapterResto;
 import adapter.GridSimpleAdapter;
+import app.AppController;
 import model.DiscoverResto;
 import util.Utility;
 
@@ -213,29 +223,73 @@ public class DiscoverActivity extends ActionBarActivity  {
 
 
     public void setupcardsview(int position) {
-        ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);
+        final ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);
 
 
-        DiscoverResto restotest = new DiscoverResto();
 
-        restotest.setAdresse(" 20 rue de Poitou");
-        restotest.setNbcouverts(" 50 couverts");
-        restotest.setNomresto("Une pizza au feu de bois");
-        restotest.setTypecuisine(" Cuisine traditionelle");
+            if (position == 0) {
+                viewpager.setAdapter(new CustomPagerAdapterResto(this, restoList));
 
-        restoList.add(restotest);
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                        "http://data.nantes.fr/api/publication/23440003400026_J327/tourinsoft_restaurant_table/content/?format=json&limit=50", null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("DEBUG", response.toString());
+
+                        try {
+                            // Parsing json object response
+                            // response will be a json object
 
 
-        DiscoverResto restotest2 = new DiscoverResto();
+                            JSONArray array = response.getJSONArray("data");
 
-        restotest2.setAdresse(" 10 rue des Perdries");
-        restotest2.setNbcouverts(" 20 couverts");
-        restotest2.setNomresto(" Le bon burger");
-        restotest2.setTypecuisine(" Fastfood");
+                            // Parsing json
+                            for (int i = 0; i < array.length(); i++) {
 
-        restoList.add(restotest2);
+                                JSONObject obj = null;
+                                try {
+                                    obj = array.getJSONObject(i);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
 
-        viewpager.setAdapter(new CustomPagerAdapterResto(this, restoList));
+
+                                DiscoverResto resto = new DiscoverResto();
+
+                                resto.setNomresto(obj.getJSONObject("geo").getString("name"));
+                                resto.setAdresse(obj.getString("Adresse2"));
+                                resto.setTypecuisine(obj.getString("Categorie"));
+                                resto.setNbcouverts(obj.getString("CapaciteNbCouverts"));
+
+                                restoList.add(resto);
+
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
+                        }
+
+                        viewpager.getAdapter().notifyDataSetChanged();
+                    }
+
+
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+
+                    }
+                });
+
+
+                AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+            }
+
 
 
 
