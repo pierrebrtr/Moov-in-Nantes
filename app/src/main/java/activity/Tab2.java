@@ -10,15 +10,14 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -38,7 +37,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import app.AppController;
-
+import helper.SpacesItemDecoration;
 import util.SpLite;
 
 
@@ -60,7 +59,10 @@ public class Tab2 extends Fragment {
     SpLite sharedlite;
 
 
-
+    private int dpToPx(final int dp) {
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        return (int) Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
 
 
     @Override
@@ -70,6 +72,9 @@ public class Tab2 extends Fragment {
 
 
 
+        mListView.addItemDecoration(new SpacesItemDecoration(dpToPx(20)));
+
+        mListView.setClipToPadding(false);
 
 
 

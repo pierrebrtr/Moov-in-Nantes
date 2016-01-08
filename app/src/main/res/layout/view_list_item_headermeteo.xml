@@ -8,15 +8,17 @@
         android:layout_height="fill_parent"
         android:background="?attr/colorPrimary"
     android:id="@+id/headermeteo"
-        android:padding="0dp">
+        android:padding="0dp"
+        android:gravity="center_horizontal">
 
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginBottom="30dp"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal">
 
             <ImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
