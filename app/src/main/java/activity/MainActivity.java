@@ -41,6 +41,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
         setContentView(R.layout.activity_main);
 
+
         arrets = new Arrets();
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -62,6 +63,8 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
         drawerFragment.setFocusableInTouchMode(false);
+
+
 
         // display the first navigation drawer view on app launch
         displayView(0);
