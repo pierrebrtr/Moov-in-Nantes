@@ -2,6 +2,7 @@ package activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,9 +28,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.dexafree.materialList.card.Card;
-import com.dexafree.materialList.card.CardLayout;
 import com.dexafree.materialList.card.CardProvider;
-
 import com.dexafree.materialList.card.OnActionClickListener;
 import com.dexafree.materialList.card.action.TextViewAction;
 import com.dexafree.materialList.view.MaterialListView;
@@ -232,6 +232,8 @@ public class Tab2 extends Fragment {
 
                                 if (obj.getString("type").equals("1")) {
 
+
+
                                     final String testurl = obj.getString("url");
                                     Card card2 = new Card.Builder(getActivity())
                                             .withProvider(new CardProvider())
@@ -331,7 +333,12 @@ public class Tab2 extends Fragment {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
 
+
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getActivity().getTheme();
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
         swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.refreshome);
+        swipeLayout.setColorSchemeColors(typedValue.data);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -350,10 +357,7 @@ public class Tab2 extends Fragment {
 
             }
         });
-        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
+
 
 
 
