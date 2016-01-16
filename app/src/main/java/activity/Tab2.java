@@ -26,9 +26,11 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.dexafree.materialList.card.Card;
-import com.dexafree.materialList.card.OnButtonClickListener;
-import com.dexafree.materialList.card.provider.BasicButtonsCardProvider;
-import com.dexafree.materialList.card.provider.SmallImageCardProvider;
+import com.dexafree.materialList.card.CardLayout;
+import com.dexafree.materialList.card.CardProvider;
+
+import com.dexafree.materialList.card.OnActionClickListener;
+import com.dexafree.materialList.card.action.TextViewAction;
 import com.dexafree.materialList.view.MaterialListView;
 import com.pandf.moovin.R;
 
@@ -73,10 +75,7 @@ public class Tab2 extends Fragment {
 
 
         mListView.addItemDecoration(new SpacesItemDecoration(dpToPx(20)));
-
         mListView.setClipToPadding(false);
-
-
 
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -117,7 +116,8 @@ public class Tab2 extends Fragment {
                         icon = object.getString("icon");
 
                     Card cardmeteo = new Card.Builder(getActivity())
-                            .withProvider(SmallImageCardProvider.class)
+                            .withProvider(new CardProvider())
+                            .setLayout(R.layout.material_small_image_card)
                             .setTitle("En direct du ciel :")
                             .setDescription(condition + " (" + tmp + "°)")
                             .setDrawable(icon)
@@ -126,17 +126,20 @@ public class Tab2 extends Fragment {
 
 
 
-                    mListView.add(cardmeteo);
+                    mListView.getAdapter().add(mListView.getAdapter().getItemCount(),cardmeteo, false);
 
                     Card card2 = new Card.Builder(getActivity())
-                            .withProvider(BasicButtonsCardProvider.class)
+                            .withProvider(new CardProvider())
+                            .setLayout(R.layout.material_basic_buttons_card)
                             .setTitle("Nouveau !")
                             .setDescription("Les itinéraires sont enfin disponibles ! (Attention instable !)")
-                            .setLeftButtonText("Entrer")
+                            .addAction(R.id.left_text_button, new TextViewAction(getActivity())
+                            .setText("Entrer")
+                                    .setTextColor(getResources().getColor(R.color.grey_title))
 
-                            .setOnLeftButtonClickListener(new OnButtonClickListener() {
+                            .setListener(new OnActionClickListener() {
                                 @Override
-                                public void onButtonClicked(View view, Card card) {
+                                public void onActionClicked(View view, Card card) {
                                     Intent intent = getActivity().getIntent();
 
 
@@ -145,11 +148,13 @@ public class Tab2 extends Fragment {
                                     startActivity(i);
                                 }
 
-                            })
+
+
+                            }))
                             .endConfig()
                             .build();
 
-                    mListView.add(card2);
+                    mListView.getAdapter().add(mListView.getAdapter().getItemCount(),card2, false);
 
 
                     try {
@@ -229,30 +234,37 @@ public class Tab2 extends Fragment {
 
                                     final String testurl = obj.getString("url");
                                     Card card2 = new Card.Builder(getActivity())
-                                            .withProvider(BasicButtonsCardProvider.class)
+                                            .withProvider(new CardProvider())
+                                            .setLayout(R.layout.material_basic_buttons_card)
                                             .setTitle(obj.getString("title"))
                                             .setDescription(obj.getString("description"))
-                                            .setLeftButtonText(obj.getString("bouton"))
-                                            .setOnLeftButtonClickListener(new OnButtonClickListener() {
-                                                @Override
-                                                public void onButtonClicked(View view, Card card) {
-                                                    String url = testurl;
-                                                    Intent i = new Intent(Intent.ACTION_VIEW);
-                                                    i.setData(Uri.parse(url));
-                                                    startActivity(i);
-                                                }
+                                            .addAction(R.id.left_text_button, new TextViewAction(getActivity())
+                                                    .setText(obj.getString("bouton"))
+                                                    .setTextColor(getResources().getColor(R.color.grey_title))
 
-                                            })
+                                                    .setListener(new OnActionClickListener() {
+                                                        @Override
+                                                        public void onActionClicked(View view, Card card) {
+                                                            String url = testurl;
+                                                            Intent i = new Intent(Intent.ACTION_VIEW);
+                                                            i.setData(Uri.parse(url));
+                                                            startActivity(i);
+                                                        }
+
+
+
+                                                    }))
                                             .endConfig()
                                             .build();
 
 
-                                    mListView.add(card2);
+                                    mListView.getAdapter().add(mListView.getAdapter().getItemCount(),card2, false);
                                 }  else if (obj.getString("type").equals("2")){
 
 
                                     Card card2 = new Card.Builder(getActivity())
-                                            .withProvider(SmallImageCardProvider.class)
+                                            .withProvider(new CardProvider())
+                                            .setLayout(R.layout.material_small_image_card)
                                             .setTitle(obj.getString("title"))
                                             .setDescription(obj.getString("description"))
                                             .endConfig()
@@ -260,7 +272,7 @@ public class Tab2 extends Fragment {
 
 
 
-                                    mListView.add(card2);
+                                    mListView.getAdapter().add(mListView.getAdapter().getItemCount(),card2, false);
 
                                 }
 

@@ -182,6 +182,6 @@ public class Mapsarking extends ActionBarActivity implements OnMapReadyCallback 
     }
 
 
-    
+
 
 }

@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.dexafree.materialList.card.Card;
-import com.dexafree.materialList.card.provider.CardProvider;
+import com.dexafree.materialList.card.CardProvider;
 import com.pandf.moovin.R;
 
 /**

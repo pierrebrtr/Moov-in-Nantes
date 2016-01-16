@@ -30,7 +30,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.dexafree.materialList.card.Card;
-import com.dexafree.materialList.card.provider.BasicImageButtonsCardProvider;
+
+import com.dexafree.materialList.card.CardProvider;
 import com.dexafree.materialList.listeners.RecyclerItemClickListener;
 import com.dexafree.materialList.view.MaterialListView;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
@@ -299,7 +300,7 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
                 Log.d("URL", String.valueOf(url));
                 final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
 
-                mListView.clearAll();
+                mListView.getAdapter().clearAll();
                 mListView.getAdapter().notifyDataSetChanged();
 
                 arrive.dismissDropDown();
@@ -358,7 +359,7 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
                 Log.d("URL", String.valueOf(url));
                 final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
 
-                mListView.clearAll();
+                mListView.getAdapter().clearAll();
                 mListView.getAdapter().notifyDataSetChanged();
 
                 arrive.dismissDropDown();
@@ -517,7 +518,7 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
     public void phase1(final String urlph1) {
         final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
-        mListView.clear();
+        mListView.getAdapter().clear();
         mListView.getAdapter().notifyDataSetChanged();
         final ArrayList<String> list = new ArrayList<String>();
         tempurl = urlph1;
@@ -606,7 +607,9 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
                                 Card carditineraire = new Card.Builder(ItineraireActivity.this)
                                         .setTag(i)
-                                        .withProvider(ItineraireCardProvider.class)
+                                        .withProvider(new ItineraireCardProvider())
+                                        .setLayout(R.layout.card_layout_itiinfo)
+
                                         .setTemps(timeString)
                                         .setDirectionTxt(resultdate2 + " --> " + resultdate)
                                         .setMoreinfo(moreinfo)
@@ -617,7 +620,7 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
 
 
-                                mListView.add(carditineraire);
+                                mListView.getAdapter().add(mListView.getAdapter().getItemCount(),carditineraire, false);
 
                                 list.add(i, timeString);
 
@@ -644,13 +647,14 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
 
                         Card card = new Card.Builder(ItineraireActivity.this)
-                                .withProvider(BasicImageButtonsCardProvider.class)
+                                .withProvider(new CardProvider())
+                                .setLayout(R.layout.material_basic_image_buttons_card_layout)
                                 .setTitle("Pas de resultat")
                                 .setDescription("Une erreur est survenue")
                                 .endConfig()
                                 .build();
 
-                        mListView.add(card);
+                        mListView.getAdapter().add(mListView.getAdapter().getItemCount(),card, false);
 
                         mListView.getAdapter().notifyDataSetChanged();
                     }
@@ -680,15 +684,15 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
 
                 Card card = new Card.Builder(ItineraireActivity.this)
-                        .withProvider(BasicImageButtonsCardProvider.class)
-
+                        .withProvider(new CardProvider())
+                        .setLayout(R.layout.material_basic_image_buttons_card_layout)
                         .setTitle("Pas de resultat")
                         .setDescription("Une erreur est survenue")
                         .endConfig()
                         .setTag("ERROR")
                         .build();
 
-                mListView.add(card);
+                mListView.getAdapter().add(mListView.getAdapter().getItemCount(),card, false);
 
             }
 
@@ -846,7 +850,7 @@ textiti.setText("");
                     JSONArray sections = array.getJSONObject(jsonobjectpos).getJSONArray("sections");
 
 
-                    mListView.clear();
+                    mListView.getAdapter().clear();
 
                     for (int p = 0; p < sections.length(); p++) {
 
@@ -892,7 +896,8 @@ textiti.setText("");
                             try {
                                 Card carditinerairewalk = new Card.Builder(ItineraireActivity.this)
                                         .setTag("MARCHE")
-                                        .withProvider(WalkCardProvider.class)
+                                        .withProvider(new WalkCardProvider())
+                                        .setLayout(R.layout.card_layout_walkmode)
                                         .setHeure(heurearrivee)
                                         .setDirectionTxt("Aller a " + sections.getJSONObject(p).getJSONObject("to").getJSONObject("stop_point").getString("name"))
                                         .setMoreinfo(String.valueOf(sections.getJSONObject(p).getInt("duration") / 60) + " min - " + heurearrivee2)
@@ -902,12 +907,13 @@ textiti.setText("");
                                         .build();
 
 
-                                mListView.add(carditinerairewalk);
+                                mListView.getAdapter().add(mListView.getAdapter().getItemCount(),carditinerairewalk, false);
                             } catch (JSONException e) {
 
                                 Card carditinerairewalk = new Card.Builder(ItineraireActivity.this)
                                         .setTag("MARCHE")
-                                        .withProvider(WalkCardProvider.class)
+                                        .withProvider(new WalkCardProvider())
+                                        .setLayout(R.layout.card_layout_walkmode)
                                         .setHeure(heurearrivee)
                                         .setDirectionTxt("Aller a " + sections.getJSONObject(p).getJSONObject("to").getString("name"))
                                         .setMoreinfo(String.valueOf(sections.getJSONObject(p).getInt("duration") / 60) + " min - " + heurearrivee2)
@@ -917,7 +923,7 @@ textiti.setText("");
                                         .build();
 
 
-                                mListView.add(carditinerairewalk);
+                                mListView.getAdapter().add(mListView.getAdapter().getItemCount(),carditinerairewalk, false);
                                 e.printStackTrace();
                             }
 
@@ -949,7 +955,8 @@ textiti.setText("");
 
                             Card carditinerairewalk = new Card.Builder(ItineraireActivity.this)
                                     .setTag("MARCHE")
-                                    .withProvider(TransportCardProvider.class)
+                                    .withProvider(new TransportCardProvider())
+                                    .setLayout(R.layout.card_layout_transportmode)
                                     .setHeureArrive(heurearrivee)
                                     .setHeureDepart(heuredepart)
                                     .setArretDepart(sections.getJSONObject(p).getJSONObject("from").getJSONObject("stop_point").getString("name"))
@@ -960,7 +967,7 @@ textiti.setText("");
                                             .build();
 
 
-                            mListView.add(carditinerairewalk);
+                            mListView.getAdapter().add(mListView.getAdapter().getItemCount(),carditinerairewalk, false);
 
 
                         }
@@ -1116,7 +1123,7 @@ String dateset;
         if (started) {
             final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
 
-            mListView.clearAll();
+            mListView.getAdapter().clearAll();
             mListView.getAdapter().notifyDataSetChanged();
 
 

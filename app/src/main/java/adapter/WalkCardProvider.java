@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.dexafree.materialList.card.Card;
-import com.dexafree.materialList.card.provider.CardProvider;
+import com.dexafree.materialList.card.CardProvider;
 import com.pandf.moovin.R;
 
 /**
