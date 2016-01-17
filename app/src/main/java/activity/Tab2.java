@@ -54,7 +54,9 @@ public class Tab2 extends Fragment {
     String condition2 = " ";
     String tmp2 = " ";
     String icon2 = " ";
-
+    MaterialListView mListView;
+    View coordinatorLayoutView;
+    ImageView viewimage;
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private SwipeRefreshLayout swipeLayout;
@@ -70,126 +72,146 @@ public class Tab2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v =inflater.inflate(R.layout.tab_2,container,false);
-        final MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
-
+        coordinatorLayoutView = v.findViewById(R.id.snackbarPosition);
+        mListView  = (MaterialListView) v.findViewById(R.id.material_listview);
+   viewimage = (ImageView) v.findViewById(R.id.erreur1);
 
 
         mListView.addItemDecoration(new SpacesItemDecoration(dpToPx(20)));
         mListView.setClipToPadding(false);
+
+
+
+        SetupView();
+
+        return v;
+
+
+
+
+
+
+    }
+
+
+    public void SetupView() {
+
+        mListView.getAdapter().clearAll();
 
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
 
+
         if (networkInfo != null && networkInfo.isConnected()) {
             // Create an object for subclass of AsyncTask
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                "http://www.prevision-meteo.ch/services/json/nantes", null, new Response.Listener<JSONObject>() {
+            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                    "http://www.prevision-meteo.ch/services/json/nantes", null, new Response.Listener<JSONObject>() {
 
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.d(TAG, response.toString());
+                @Override
+                public void onResponse(JSONObject response) {
+                    Log.d(TAG, response.toString());
 
-                try {
-                    // Parsing json object response
-                    // response will be a json object
+                    try {
+                        // Parsing json object response
+                        // response will be a json object
 
-                    JSONObject object = response.getJSONObject("current_condition");
-
-
-
-                    tmp = object.getString("tmp");
-
-                    condition = object.getString("condition");
-
-                    final MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
+                        JSONObject object = response.getJSONObject("current_condition");
 
 
-                    sharedlite = new SpLite();
 
-                    String foo = null;
+                        tmp = object.getString("tmp");
 
-                    Log.d("LOG", sharedlite.getFavorites(getActivity()).toString());
+                        condition = object.getString("condition");
+
+
+                        mListView.getAdapter().clear();
+
+                        sharedlite = new SpLite();
+
+                        String foo = null;
+
+                        Log.d("LOG", sharedlite.getFavorites(getActivity()).toString());
 
                         icon = object.getString("icon");
 
-                    Card cardmeteo = new Card.Builder(getActivity())
-                            .withProvider(new CardProvider())
-                            .setLayout(R.layout.material_small_image_card)
-                            .setTitle("En direct du ciel :")
-                            .setDescription(condition + " (" + tmp + "°)")
-                            .setDrawable(icon)
-                            .endConfig()
-                            .build();
+                        Card cardmeteo = new Card.Builder(getActivity())
+                                .withProvider(new CardProvider())
+                                .setLayout(R.layout.material_small_image_card)
+                                .setTitle("En direct du ciel :")
+                                .setDescription(condition + " (" + tmp + "°)")
+                                .setDrawable(icon)
+                                .endConfig()
+                                .build();
 
 
 
-                    mListView.getAdapter().add(mListView.getAdapter().getItemCount(),cardmeteo, false);
+                        mListView.getAdapter().add(mListView.getAdapter().getItemCount(),cardmeteo, false);
 
-                    Card card2 = new Card.Builder(getActivity())
-                            .withProvider(new CardProvider())
-                            .setLayout(R.layout.material_basic_buttons_card)
-                            .setTitle("Nouveau !")
-                            .setDescription("Les itinéraires sont enfin disponibles ! (Attention instable !)")
-                            .addAction(R.id.left_text_button, new TextViewAction(getActivity())
-                            .setText("Entrer")
-                                    .setTextColor(getResources().getColor(R.color.grey_title))
+                        Card card2 = new Card.Builder(getActivity())
+                                .withProvider(new CardProvider())
+                                .setLayout(R.layout.material_basic_buttons_card)
+                                .setTitle("Nouveau !")
+                                .setDescription("Les itinéraires sont enfin disponibles ! (Attention instable !)")
+                                .addAction(R.id.left_text_button, new TextViewAction(getActivity())
+                                        .setText("Entrer")
+                                        .setTextColor(getResources().getColor(R.color.grey_title))
 
-                            .setListener(new OnActionClickListener() {
-                                @Override
-                                public void onActionClicked(View view, Card card) {
-                                    Intent intent = getActivity().getIntent();
-
-
-                                    Intent i = new Intent(Tab2.this.getActivity(), ItineraireActivity.class);
-
-                                    startActivity(i);
-                                }
+                                        .setListener(new OnActionClickListener() {
+                                            @Override
+                                            public void onActionClicked(View view, Card card) {
+                                                Intent intent = getActivity().getIntent();
 
 
+                                                Intent i = new Intent(Tab2.this.getActivity(), ItineraireActivity.class);
 
-                            }))
-                            .endConfig()
-                            .build();
-
-                    mListView.getAdapter().add(mListView.getAdapter().getItemCount(),card2, false);
+                                                startActivity(i);
+                                            }
 
 
-                    try {
 
-                    } catch (NullPointerException e) {
-                        // do something other
+                                        }))
+                                .endConfig()
+                                .build();
+
+                        mListView.getAdapter().add(mListView.getAdapter().getItemCount(),card2, false);
+
+
+                        try {
+
+                        } catch (NullPointerException e) {
+                            // do something other
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+
                     }
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
 
                 }
 
 
-            }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d(TAG, "Error: " + error.getMessage());
 
 
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                }
+            });
 
 
-            }
-        });
-
-
-        AppController.getInstance().addToRequestQueue(jsonObjReq);
+            AppController.getInstance().addToRequestQueue(jsonObjReq);
 
         } else {
-            ImageView view = (ImageView) v.findViewById(R.id.erreur1);
-            view.setVisibility(View.VISIBLE);
 
-            final View coordinatorLayoutView = v.findViewById(R.id.snackbarPosition);
+            viewimage.setVisibility(View.VISIBLE);
+
+
 
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayoutView, "Pas de connexion", Snackbar.LENGTH_INDEFINITE)
@@ -204,7 +226,7 @@ public class Tab2 extends Fragment {
                             startActivity(i);
                         }
                     });
-                    snackbar.show();
+            snackbar.show();
 
         }
 
@@ -227,7 +249,6 @@ public class Tab2 extends Fragment {
                                 }
 
 
-                                final MaterialListView mListView = (MaterialListView) v.findViewById(R.id.material_listview);
 
 
                                 if (obj.getString("type").equals("1")) {
@@ -311,16 +332,7 @@ public class Tab2 extends Fragment {
 
 
 
-
-        return v;
-
-
-
-
-
-
     }
-
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -345,9 +357,8 @@ public class Tab2 extends Fragment {
 
 
 
-                Intent intent = getActivity().getIntent();
-                Intent i = new Intent(Tab2.this.getActivity(), MainActivity.class);
-                startActivity(i);
+
+              SetupView();
 
 
 

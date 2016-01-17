@@ -78,7 +78,14 @@ public class Tab3 extends Fragment {
 
         menu.clear();
         inflater.inflate(R.menu.menu_tab3, menu);
-       
+        if (state == 1) {
+            menu.findItem(R.id.actus).setIcon(R.drawable.ic_newspaper_white_48dp);
+        } else if (state == 2) {
+
+
+            menu.findItem(R.id.actus).setIcon(R.drawable.ic_clock_white_48dp);
+
+        }
         super.onCreateOptionsMenu(menu, inflater);
     }
 
