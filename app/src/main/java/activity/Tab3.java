@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.DisplayMetrics;
@@ -17,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -46,33 +48,22 @@ import helper.SpacesItemDecoration;
 public class Tab3 extends Fragment {
 
     MaterialListView mListView;
-
+    ImageView viewimage;
     private SwipeRefreshLayout swipeLayout;
     int state = 1;
+    View coordinatorLayoutView;
     private static final String TAG = MainActivity.class.getSimpleName();
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.tab_3,container,false);
-
+        coordinatorLayoutView = v.findViewById(R.id.snackbarPosition);
         swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.refreshome2);
         mListView  = (MaterialListView) v.findViewById(R.id.material_listviewtab3);
         mListView.addItemDecoration(new SpacesItemDecoration(dpToPx(20)));
-
-
+        viewimage = (ImageView) v.findViewById(R.id.erreur1);
         mListView.setClipToPadding(false);
         TanDirect();
-
-
-
-
-
         return v;
-
-
-
-
-
-
     }
 
 
@@ -131,7 +122,7 @@ setHasOptionsMenu(true);
 
 
     public void Tanactus() {
-
+        viewimage.setVisibility(View.GONE);
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -236,6 +227,20 @@ setHasOptionsMenu(true);
             mListView.getAdapter().clearAll();
             AppController.getInstance().addToRequestQueue(jsonObjReq);
 
+        } else {
+
+            viewimage.setVisibility(View.VISIBLE);
+            Snackbar snackbar = Snackbar
+                    .make(coordinatorLayoutView, "Pas de connexion", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Rafraichir", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mListView.getAdapter().clearAll();
+                           viewimage.setVisibility(View.GONE);
+                            Tanactus();
+                        }
+                    });
+            snackbar.show();
         }
 
         if (swipeLayout.isRefreshing()){
@@ -246,9 +251,7 @@ setHasOptionsMenu(true);
     }
 
     public void TanDirect() {
-
-
-
+        viewimage.setVisibility(View.GONE);
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -327,6 +330,20 @@ setHasOptionsMenu(true);
             mListView.getAdapter().clearAll();
             AppController.getInstance().addToRequestQueue(jsonArrayRequest);
 
+        }else {
+
+            viewimage.setVisibility(View.VISIBLE);
+            Snackbar snackbar = Snackbar
+                    .make(coordinatorLayoutView, "Pas de connexion", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Rafraichir", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mListView.getAdapter().clearAll();
+                            viewimage.setVisibility(View.GONE);
+                           TanDirect();
+                        }
+                    });
+            snackbar.show();
         }
 
         if (swipeLayout.isRefreshing()){

@@ -76,27 +76,17 @@ public class Tab2 extends Fragment {
         swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.refreshome);
         mListView  = (MaterialListView) v.findViewById(R.id.material_listview);
    viewimage = (ImageView) v.findViewById(R.id.erreur1);
-
-
         mListView.addItemDecoration(new SpacesItemDecoration(dpToPx(20)));
         mListView.setClipToPadding(false);
-
-
-
         SetupView();
 
         return v;
-
-
-
-
-
 
     }
 
 
     public void SetupView() {
-
+        viewimage.setVisibility(View.GONE);
         mListView.getAdapter().clearAll();
 
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -209,22 +199,14 @@ public class Tab2 extends Fragment {
             AppController.getInstance().addToRequestQueue(jsonObjReq);
 
         } else {
-
             viewimage.setVisibility(View.VISIBLE);
-
-
-
             Snackbar snackbar = Snackbar
                     .make(coordinatorLayoutView, "Pas de connexion", Snackbar.LENGTH_INDEFINITE)
                     .setAction("Rafraichir", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent = getActivity().getIntent();
-
-
-                            Intent i = new Intent(Tab2.this.getActivity(), MainActivity.class);
-
-                            startActivity(i);
+                            viewimage.setVisibility(View.GONE);
+                            SetupView();
                         }
                     });
             snackbar.show();
@@ -318,11 +300,6 @@ public class Tab2 extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-
-
-
-
-
             }
 
 
@@ -332,9 +309,7 @@ public class Tab2 extends Fragment {
         AppController.getInstance().addToRequestQueue(movieReq);
 
         if (swipeLayout.isRefreshing()){
-
             swipeLayout.setRefreshing(false);
-
         }
 
 
@@ -361,18 +336,7 @@ public class Tab2 extends Fragment {
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
-
-
-
               SetupView();
-
-
-
-
-
-
-
             }
         });
 
