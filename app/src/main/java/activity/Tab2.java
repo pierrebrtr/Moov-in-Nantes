@@ -73,6 +73,7 @@ public class Tab2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v =inflater.inflate(R.layout.tab_2,container,false);
         coordinatorLayoutView = v.findViewById(R.id.snackbarPosition);
+        swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.refreshome);
         mListView  = (MaterialListView) v.findViewById(R.id.material_listview);
    viewimage = (ImageView) v.findViewById(R.id.erreur1);
 
@@ -330,6 +331,12 @@ public class Tab2 extends Fragment {
 
         AppController.getInstance().addToRequestQueue(movieReq);
 
+        if (swipeLayout.isRefreshing()){
+
+            swipeLayout.setRefreshing(false);
+
+        }
+
 
 
     }
@@ -349,7 +356,7 @@ public class Tab2 extends Fragment {
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = getActivity().getTheme();
         theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
-        swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.refreshome);
+
         swipeLayout.setColorSchemeColors(typedValue.data);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -363,7 +370,7 @@ public class Tab2 extends Fragment {
 
 
 
-                swipeLayout.setRefreshing(false);
+
 
 
             }

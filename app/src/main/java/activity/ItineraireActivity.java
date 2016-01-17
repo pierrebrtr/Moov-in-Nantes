@@ -23,6 +23,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.datetimepicker.date.DatePickerDialog;
+import com.android.datetimepicker.time.RadialPickerLayout;
+import com.android.datetimepicker.time.TimePickerDialog;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -30,17 +33,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.dexafree.materialList.card.Card;
-
 import com.dexafree.materialList.card.CardProvider;
 import com.dexafree.materialList.listeners.RecyclerItemClickListener;
 import com.dexafree.materialList.view.MaterialListView;
-import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.pandf.moovin.R;
-import com.sleepbot.datetimepicker.time.RadialPickerLayout;
-import com.sleepbot.datetimepicker.time.TimePickerDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,6 +63,7 @@ import adapter.WalkCardProvider;
 import app.AppController;
 import model.ItineraireItem;
 import util.Utility;
+
 
 /**
  * Created by dev on 29/07/2015.
@@ -93,6 +93,11 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
     boolean started = false;
 
+    private Calendar calendar;
+    private DateFormat dateFormat;
+    private SimpleDateFormat timeFormat;
+
+
 
     String tempurl;
 
@@ -116,7 +121,9 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
     protected void onCreate(final Bundle savedInstanceState) {
         Utility.themer(ItineraireActivity.this);
         super.onCreate(savedInstanceState);
-
+        calendar = Calendar.getInstance();
+        dateFormat = DateFormat.getDateInstance(DateFormat.LONG, Locale.getDefault());
+        timeFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss", Locale.getDefault());
 
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd'T'HHmmss", new Locale("fr", "FR"));
@@ -173,9 +180,6 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
-
-
             }
 
             @Override
@@ -222,14 +226,8 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
             }
         });
 
-
-
-
         arrive= (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
-
         arrive.setAdapter(lAdapter);
-
-
         arrive.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -295,8 +293,6 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
                 imm.hideSoftInputFromWindow(depart.getWindowToken(), 0);
 
                 String url = "https://api.navitia.io/v1/journeys?from=" + firstlon + ";" + firstlat + "&to=" + secondelon + ";" + secondelat + "&datetime=" + currentDateandTime;
-
-
                 Log.d("URL", String.valueOf(url));
                 final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
 
@@ -304,15 +300,60 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
                 mListView.getAdapter().notifyDataSetChanged();
 
                 arrive.dismissDropDown();
-
                 started = true;
-
-
                 phase1(url);
 
 
             }
         });
+
+        ImageButton imageButton2 = (ImageButton) findViewById(R.id.button2);
+
+        imageButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                arrive.dismissDropDown();
+                depart.dismissDropDown();
+
+                String tempstr1;
+                String tempstr2;
+
+                Double tempsdbl1;
+                Double tempsdbl2;
+
+
+              tempstr1 = arrive.getText().toString();
+                tempsdbl1 = secondelat;
+                tempsdbl2 = secondelon;
+
+
+                arrive.setText(depart.getText().toString());
+                secondelat = firstlat;
+                secondelon = firstlon;
+
+                depart.setText(tempstr1);
+                firstlat = tempsdbl1;
+                firstlon = tempsdbl2;
+
+                String url = "https://api.navitia.io/v1/journeys?from=" + firstlon + ";" + firstlat + "&to=" + secondelon + ";" + secondelat + "&datetime=" + currentDateandTime;
+                final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
+
+                mListView.getAdapter().clearAll();
+                mListView.getAdapter().notifyDataSetChanged();
+                started = true;
+                phase1(url);
+                arrive.dismissDropDown();
+                depart.dismissDropDown();
+
+
+
+
+
+
+            }
+        });
+
 
 
         ImageButton imageButton = (ImageButton) findViewById(R.id.button);
@@ -321,22 +362,8 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
             @Override
             public void onClick(View v) {
 
-
-
                 Calendar calendar = Calendar.getInstance();
-
-              final DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(ItineraireActivity.this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-              final   TimePickerDialog timePickerDialog = TimePickerDialog.newInstance(ItineraireActivity.this, calendar.get(Calendar.HOUR_OF_DAY) ,calendar.get(Calendar.MINUTE), false, false);
-
-                datePickerDialog.setVibrate(true);
-                datePickerDialog.setYearRange(2015, 2017);
-                datePickerDialog.setCloseOnSingleTapDay(false);
-                datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
-
-
-
-
-
+                DatePickerDialog.newInstance(ItineraireActivity.this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show(getFragmentManager(), "datePicker");
 
             }
         });
@@ -373,17 +400,7 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
         });
 
 
-        if (savedInstanceState != null) {
-            DatePickerDialog dpd = (DatePickerDialog) getSupportFragmentManager().findFragmentByTag(DATEPICKER_TAG);
-            if (dpd != null) {
-                dpd.setOnDateSetListener(this);
-            }
 
-            TimePickerDialog tpd = (TimePickerDialog) getSupportFragmentManager().findFragmentByTag(TIMEPICKER_TAG);
-            if (tpd != null) {
-                tpd.setOnTimeSetListener(this);
-            }
-        }
 
     }
 
@@ -473,8 +490,7 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
+
                 // hide the progress dialog
 
             }
@@ -611,7 +627,7 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
                                         .setLayout(R.layout.card_layout_itiinfo)
 
                                         .setTemps(timeString)
-                                        .setDirectionTxt(resultdate2 + " --> " + resultdate)
+                                        .setDirectionTxt(resultdate2 + " → " + resultdate)
                                         .setMoreinfo(moreinfo)
 
 
@@ -676,8 +692,7 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
+
                 // hide the progress dialog
 
 
@@ -1035,13 +1050,16 @@ String dateset;
     @Override
     public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
 
+        Log.d("DATE", String.valueOf(month));
 
         String daystring = "";
         String monthstring = "";
         String yearstring = "";
         yearstring = "" + year;
 
+        month++;
         if (month < 10){
+
             monthstring = "0" + month;
             if (day < 10){
 
@@ -1058,9 +1076,6 @@ String dateset;
             monthstring = "" + month;
 
             if (day < 10){
-
-
-
                 daystring = "0" + day;
             } else if (day >= 10){
 
@@ -1086,13 +1101,10 @@ String dateset;
 
         Calendar calendar = Calendar.getInstance();
 
-       final   TimePickerDialog timePickerDialog = TimePickerDialog.newInstance(ItineraireActivity.this, calendar.get(Calendar.HOUR_OF_DAY) ,calendar.get(Calendar.MINUTE), false, false);
 
-        timePickerDialog.setVibrate(true);
-        timePickerDialog.setCloseOnSingleTapMinute(false);
 
-        timePickerDialog.show(getSupportFragmentManager(), TIMEPICKER_TAG);
 
+        TimePickerDialog.newInstance(ItineraireActivity.this, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show(getFragmentManager(), "timePicker");
 
 
 

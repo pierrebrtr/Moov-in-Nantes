@@ -53,8 +53,11 @@ public class Tab3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.tab_3,container,false);
+
+        swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.refreshome2);
         mListView  = (MaterialListView) v.findViewById(R.id.material_listviewtab3);
         mListView.addItemDecoration(new SpacesItemDecoration(dpToPx(20)));
+
 
         mListView.setClipToPadding(false);
         TanDirect();
@@ -97,7 +100,6 @@ setHasOptionsMenu(true);
         Resources.Theme theme = getActivity().getTheme();
         theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
 
-        swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.refreshome2);
         swipeLayout.setColorSchemeColors(typedValue.data);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -112,9 +114,6 @@ setHasOptionsMenu(true);
 
                     Tanactus();
                 }
-
-                swipeLayout.setRefreshing(false);
-
 
             }
         });
@@ -132,7 +131,6 @@ setHasOptionsMenu(true);
 
 
     public void Tanactus() {
-        mListView.getAdapter().clearAll();
 
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -185,7 +183,7 @@ setHasOptionsMenu(true);
                                         .withProvider(new CardProvider())
                                         .setLayout(R.layout.material_small_image_card)
                                         .setTitle(obj.getString("INTITULE"))
-                                        .setSubtitle(obj.getString("DATE_DEBUT") + " : " + obj.getString("HEURE_DEBUT") + " -> " + datefin + twice + heurefin)
+                                        .setSubtitle(obj.getString("DATE_DEBUT") + " : " + obj.getString("HEURE_DEBUT") + " → " + datefin + twice + heurefin)
                                         .setSubtitleColor(getResources().getColor(R.color.cardview_dark_background))
                                         .setDescription(text)
                                         .setDrawable("http://pbs.twimg.com/profile_images/666908099853295617/lRhMgYLE_normal.png")
@@ -235,15 +233,21 @@ setHasOptionsMenu(true);
                 }
             });
 
-
+            mListView.getAdapter().clearAll();
             AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+        }
+
+        if (swipeLayout.isRefreshing()){
+
+            swipeLayout.setRefreshing(false);
 
         }
     }
 
     public void TanDirect() {
 
-        mListView.getAdapter().clearAll();
+
 
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -320,7 +324,14 @@ setHasOptionsMenu(true);
 
             });
 
+            mListView.getAdapter().clearAll();
             AppController.getInstance().addToRequestQueue(jsonArrayRequest);
+
+        }
+
+        if (swipeLayout.isRefreshing()){
+
+            swipeLayout.setRefreshing(false);
 
         }
 
