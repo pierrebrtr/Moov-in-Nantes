@@ -28,7 +28,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.pandf.moovin.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -45,7 +44,6 @@ import util.SpLite;
 
 public class MeteoFragment extends Fragment  {
     SpLite sharedlite;
-    SwipeRefreshLayout swipeLayout;
     ConnectionDetector cd;
     String condition = " ";
     String tmp = " ";
@@ -66,6 +64,7 @@ public class MeteoFragment extends Fragment  {
     private ListView listView;
     private CustomListAdapterMeteo adapter;
     private List<Meteo> listmeteo = new ArrayList<Meteo>();
+    private SwipeRefreshLayout swipeLayout;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -80,19 +79,7 @@ public class MeteoFragment extends Fragment  {
         adapter = new CustomListAdapterMeteo(getActivity(), listmeteo);
         listView.setAdapter(adapter);
 
-        swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.containermeteo);
-        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
 
-               doaskjson();
-                swipeLayout.setRefreshing(false);
-            }
-        });
-        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
 
 
 
@@ -287,6 +274,10 @@ public class MeteoFragment extends Fragment  {
 
             AppController.getInstance().addToRequestQueue(jsonObjReq);
 
+            if (swipeLayout.isRefreshing()){
+                swipeLayout.setRefreshing(false);
+            }
+
 
         } else {
 
@@ -347,7 +338,7 @@ public class MeteoFragment extends Fragment  {
 
 
 
-        doaskjson();
+
 
 
 
@@ -366,7 +357,23 @@ public class MeteoFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_meteo, container, false);
+        swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.containermeteo);
 
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                doaskjson();
+
+            }
+        });
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getActivity().getTheme();
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+
+        swipeLayout.setColorSchemeColors(typedValue.data);
+
+        doaskjson();
         // Inflate the layout for this fragment
         return rootView;
 

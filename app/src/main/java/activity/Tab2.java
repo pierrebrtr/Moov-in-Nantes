@@ -336,6 +336,7 @@ public class Tab2 extends Fragment {
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                mListView.getAdapter().clearAll();
               SetupView();
             }
         });

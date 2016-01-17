@@ -95,9 +95,7 @@ setHasOptionsMenu(true);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
-
-
+                mListView.getAdapter().clearAll();
                 if (state == 1) {
 
                     TanDirect();
