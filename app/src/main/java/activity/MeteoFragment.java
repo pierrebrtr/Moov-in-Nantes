@@ -72,9 +72,6 @@ public class MeteoFragment extends Fragment  {
 
         listView = (ListView) getActivity().findViewById(R.id.listmeteo);
 
-
-
-
         // movieList is an empty array at this point.
         adapter = new CustomListAdapterMeteo(getActivity(), listmeteo);
         listView.setAdapter(adapter);
@@ -90,6 +87,8 @@ public class MeteoFragment extends Fragment  {
     public void doaskjson(){
 
         listmeteo.clear();
+
+
 
 
 
@@ -257,6 +256,12 @@ public class MeteoFragment extends Fragment  {
                     }
 
                     adapter.notifyDataSetChanged();
+
+
+                    if (swipeLayout.isRefreshing()){
+                        swipeLayout.setRefreshing(false);
+                    }
+
                 }
 
 
@@ -274,9 +279,6 @@ public class MeteoFragment extends Fragment  {
 
             AppController.getInstance().addToRequestQueue(jsonObjReq);
 
-            if (swipeLayout.isRefreshing()){
-                swipeLayout.setRefreshing(false);
-            }
 
 
         } else {

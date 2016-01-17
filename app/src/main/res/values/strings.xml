@@ -62,7 +62,7 @@
 
     <string-array name="default_color_choice_values" translatable="false">
         <item>#2196F3</item>
-        <item>#CDDC39</item>
+        <item>#FFC107</item>
         <item>#4CAF50</item>
         <item>#F44336</item>
         <item>#E91E63</item>

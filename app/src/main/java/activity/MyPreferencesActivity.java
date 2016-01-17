@@ -113,7 +113,7 @@ public class MyPreferencesActivity extends ActionBarActivity {
                                 Log.d("Choose", jsonFavorites);
 
 
-                            } else if (color == -3285959) {
+                            } else if (color == -16121) {
                                 String jsonFavorites2 = "lime";
 
                                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().putString(THEME,
