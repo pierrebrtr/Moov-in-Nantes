@@ -51,7 +51,7 @@ public class ParkingCardProvider extends CardProvider<ParkingCardProvider> {
         TextView textView = (TextView)view.findViewById(R.id.nnomparking);
         textView.setText(lieu);
         TextView textView3 = (TextView)view.findViewById(R.id.placesparking);
-        textView3.setText("Nb de places : " + nbdeplaces);
+        textView3.setText("Nombre de places : " + nbdeplaces);
 
 
 

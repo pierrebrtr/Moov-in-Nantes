@@ -136,7 +136,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 break;
             case 8:
                 fragment = new ParkingFragment();
-                title = "Parking";
+                title = "Parkings";
                 break;
             case 9:
                 Intent i4 = new Intent(MainActivity.this, MyPreferencesActivity.class);
