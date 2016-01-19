@@ -36,7 +36,7 @@ dependencies {
 
 
     compile project(':colorpicker')
-
+    compile 'fr.tvbarthel.blurdialogfragment:lib:2.1.5'
     compile 'com.android.support:design:23.0.1'
     compile 'com.android.support:appcompat-v7:23.+'
     compile 'com.android.support:cardview-v7:22.2.1'
