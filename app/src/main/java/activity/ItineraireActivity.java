@@ -3,8 +3,10 @@ package activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -37,6 +39,9 @@ import com.dexafree.materialList.card.CardProvider;
 import com.dexafree.materialList.listeners.RecyclerItemClickListener;
 import com.dexafree.materialList.view.MaterialListView;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.pandf.moovin.R;
@@ -64,11 +69,14 @@ import app.AppController;
 import model.ItineraireItem;
 import util.Utility;
 
+import static java.lang.String.valueOf;
+
 
 /**
  * Created by dev on 29/07/2015.
  */
-public class ItineraireActivity extends ActionBarActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+public class ItineraireActivity extends ActionBarActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener,
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
     private Toolbar mToolbar;
     AutoCompleteTextView depart;
@@ -97,7 +105,13 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
     private DateFormat dateFormat;
     private SimpleDateFormat timeFormat;
 
+    boolean hasposition = false;
+    Double myposlat;
+    Double myposlong;
 
+
+    protected GoogleApiClient mGoogleApiClient;
+    protected Location mLastLocation;
 
     String tempurl;
 
@@ -139,7 +153,7 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
 
 
-
+        buildGoogleApiClient();
 
         LinearLayout layouttoolbar = (LinearLayout) findViewById(R.id.toolbaritinerary);
 
@@ -271,6 +285,13 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
             public void onItemClick(AdapterView<?> parent, View view, int pos,
                                     long id) {
 
+
+                if (pos == 0) {
+
+                    buildGoogleApiClient();
+
+                }
+
                 TextView textView = (TextView) view.findViewById(R.id.libelle);
                 String text = textView.getText().toString();
 
@@ -307,12 +328,17 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
             }
         });
 
-        ImageButton imageButton2 = (ImageButton) findViewById(R.id.button2);
+        final Animation anim_exchange = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.anim_exchange);
+
+
+        final ImageButton imageButton2 = (ImageButton) findViewById(R.id.button2);
 
         imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                imageButton2.startAnimation(anim_exchange);
                 arrive.dismissDropDown();
                 depart.dismissDropDown();
 
@@ -411,6 +437,21 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
     public void setResearchRequest(CharSequence s, final CustomListAdapterItineraireItem lAdapter) {
 
 
+        if (hasposition) {
+
+            if (itineraireList.isEmpty() != true) {
+                itineraireList.remove(0);
+            }
+
+            ItineraireItem item2 = new ItineraireItem();
+            item2.setArret("Ma position");
+            item2.setLat(myposlat);
+            item2.setLng(myposlong);
+
+            itineraireList.add(0, item2);
+
+        }
+
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 "https://api.navitia.io/v1/coverage/fr-nw/places?q=" + s + "%20nantes", null, new Response.Listener<JSONObject>() {
@@ -433,7 +474,6 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
                 try {
                     for (int i = 0; i < array.length(); i++) {
 
@@ -469,6 +509,8 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
                         item.setLat(lat);
 
                         itineraireList.add(item);
+
+
 
 
 
@@ -988,15 +1030,7 @@ textiti.setText("");
                         }
 
 
-
-
-
-
-
                     }
-
-
-
 
 
                 } catch (JSONException e) {
@@ -1090,27 +1124,11 @@ String dateset;
 
         String date = yearstring + monthstring + daystring;
 
-
-
-
-
          dateset = yearstring + monthstring + daystring + "T";
-
-
-
 
         Calendar calendar = Calendar.getInstance();
 
-
-
-
         TimePickerDialog.newInstance(ItineraireActivity.this, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show(getFragmentManager(), "timePicker");
-
-
-
-
-
-
 
 
     }
@@ -1142,6 +1160,73 @@ String dateset;
             phase1(url);
         }
 
+    }
+
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(ItineraireActivity.this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+    }
+
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+
+        // in rare cases when a location is not available.
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+
+
+        if (mLastLocation != null) {
+
+            hasposition = true;
+
+            myposlat = mLastLocation.getLatitude();
+
+
+            myposlong = mLastLocation.getLongitude();
+
+
+        } else {
+
+        }
+
+    }
+
+
+
+    @Override
+    public void onConnectionFailed(ConnectionResult result) {
+        // Refer to the javadoc for ConnectionResult to see what error codes might be returned in
+        // onConnectionFailed.
+        Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
+    }
+
+
+    @Override
+    public void onConnectionSuspended(int cause) {
+        // The connection to Google Play services was lost for some reason. We call connect() to
+        // attempt to re-establish the connection.
+        Log.i(TAG, "Connection suspended");
+        mGoogleApiClient.connect();
     }
 }
 

@@ -76,10 +76,6 @@ public class MeteoFragment extends Fragment  {
         adapter = new CustomListAdapterMeteo(getActivity(), listmeteo);
         listView.setAdapter(adapter);
 
-
-
-
-
     }
 
 
@@ -114,11 +110,6 @@ public class MeteoFragment extends Fragment  {
 
                         JSONObject object = response.getJSONObject("current_condition");
 
-
-
-
-
-
                         tmp = object.getString("tmp");
 
                         condition = object.getString("condition");
@@ -139,11 +130,6 @@ public class MeteoFragment extends Fragment  {
 
                         theme.resolveAttribute(R.attr.colorPrimaryDark, typedValue, true);
                         int color2 = typedValue.data;
-
-
-
-
-
 
                         View headerView = ((LayoutInflater)getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE)).inflate(R.layout.view_list_item_headermeteo, null, false);
 

@@ -26,11 +26,7 @@ public class SplashScreen extends Activity {
         boolean isFirstTime = MyFirstLaunchPreference.isFirst(SplashScreen.this);
 
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_splash);
-
-
 
         ImageView imageloco = (ImageView) findViewById(R.id.imgLogo);
 
@@ -38,9 +34,6 @@ public class SplashScreen extends Activity {
                 .loadAnimator(getApplicationContext(), R.animator.splash_anim);
         animator.setTarget(imageloco);
         animator.start();
-
-
-
 
        if (isFirstTime){
 

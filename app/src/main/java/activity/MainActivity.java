@@ -36,26 +36,16 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
         super.onCreate(savedInstanceState);
 
-
-
         setContentView(R.layout.activity_main);
-
-
         arrets = new Arrets();
-
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
-
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-
         View searchContainer = findViewById(R.id.search_container);
 
         searchContainer.setVisibility(View.GONE);
-
-
 
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);

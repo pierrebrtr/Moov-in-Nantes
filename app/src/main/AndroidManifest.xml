@@ -13,6 +13,10 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+
+
+
+
     <permission
         android:name="com.pandf.moovin.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
