@@ -16,4 +16,11 @@
         android:icon="@drawable/ic_place"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/action_price"
+        android:title="Prix"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_cash_multiple_white_24dp"
+        app:showAsAction="ifRoom" />
+
 </menu>

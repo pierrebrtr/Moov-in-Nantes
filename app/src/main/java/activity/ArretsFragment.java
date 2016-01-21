@@ -6,13 +6,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -44,6 +45,7 @@ import java.util.List;
 
 import adapter.CustomListAdapter;
 import app.AppController;
+import helper.BlurryPriceFragment;
 import helper.ConnectionDetector;
 import model.Arrets;
 import util.Spfav;
@@ -227,7 +229,7 @@ public class ArretsFragment extends Fragment  {
 
                         final Arrets temps2 = new Arrets();
 
-                        temps2.setArret("Pas de donées disponible !");
+                        temps2.setArret("Pas de données disponible !");
 
                         ArrayList list = new ArrayList();
                         list.add(0, " ");
@@ -254,10 +256,11 @@ public class ArretsFragment extends Fragment  {
 
             }
         });
-        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getActivity().getTheme();
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+
+        swipeLayout.setColorSchemeColors(typedValue.data);
 
 
 
@@ -426,7 +429,7 @@ public class ArretsFragment extends Fragment  {
                 progress.dismiss();
                 new AlertDialog.Builder(getActivity())
                         .setTitle("Erreur")
-                        .setMessage("Pas de connexion internet")
+                        .setMessage("Une erreur est survenue")
                         .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent();
@@ -434,7 +437,7 @@ public class ArretsFragment extends Fragment  {
                                 startActivity(intent);
                             }
                         })
-                        .setCancelable(false)
+                        .setCancelable(true)
                         .setIcon(R.drawable.alert9)
                         .show();
                 arretsList.clear();
@@ -518,6 +521,15 @@ public class ArretsFragment extends Fragment  {
             Intent intent = new Intent();
             intent.setClass(getActivity(), ArretsMapsActivity.class);
             startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.action_price){
+
+            android.app.FragmentManager fm = getActivity().getFragmentManager();
+
+            BlurryPriceFragment fragment = BlurryPriceFragment.newInstance(10,2.0f,false,false, "http://data.nantes.fr/api/publication/24440040400129_NM_NM_00048/LISTE_TARIFS_TAN_NM_STBL/content/?format=json");
+            fragment.show(fm, String.valueOf("pricetan"));
             return true;
         }
 
