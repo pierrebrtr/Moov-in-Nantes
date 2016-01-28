@@ -225,20 +225,22 @@ public class ArretsFragment extends Fragment  {
                         VolleyLog.d(TAG, "Error: " + error.getMessage());
 
 
+                        new AlertDialog.Builder(getActivity())
+                                .setTitle("Erreur")
+                                .setMessage("Une erreur est survenue")
+                                .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent();
+                                        intent.setClass(getActivity(), MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                })
+                                .setCancelable(false)
+                                .setIcon(R.drawable.alert9)
+                                .show();
                         arretsList.clear();
 
-                        final Arrets temps2 = new Arrets();
 
-                        temps2.setArret("Pas de données disponible !");
-
-                        ArrayList list = new ArrayList();
-                        list.add(0, " ");
-
-                        temps2.setLigne(list);
-
-                        temps2.setLieu(" ");
-
-                        arretsList.add(temps2);
 
                         adapter.notifyDataSetChanged();
 
@@ -437,7 +439,7 @@ public class ArretsFragment extends Fragment  {
                                 startActivity(intent);
                             }
                         })
-                        .setCancelable(true)
+                        .setCancelable(false)
                         .setIcon(R.drawable.alert9)
                         .show();
                 arretsList.clear();
