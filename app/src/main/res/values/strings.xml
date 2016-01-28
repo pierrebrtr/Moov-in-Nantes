@@ -14,7 +14,7 @@
     <string name="nav_item_home">Accueil</string>
     <string name="nav_item_meteo">Météo</string>
     <string name="nav_item_geo">Géolocalisation</string>
-    <string name="nav_item_bicloo">Bicloo</string>
+    <string name="nav_item_bicloo">Bicloos</string>
     <string name="nav_item_arrets">Arrêts</string>
     <string name="nav_item_settings">Paramètres</string>
     <string name="nav_item_iti">Itinéraires</string>

@@ -112,9 +112,6 @@ public class BiclooFragment extends Fragment  {
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getActivity(), "Rechargement...", Toast.LENGTH_SHORT).show();
-
-
                 listbicloo.clear();
                 locations.clear();
 
