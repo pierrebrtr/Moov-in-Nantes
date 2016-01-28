@@ -151,6 +151,11 @@ public class ArretsFragment extends Fragment  {
 
 
         swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.container);
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getActivity().getTheme();
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+
+        swipeLayout.setColorSchemeColors(typedValue.data);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -236,7 +241,7 @@ public class ArretsFragment extends Fragment  {
                                     }
                                 })
                                 .setCancelable(false)
-                                .setIcon(R.drawable.alert9)
+                                .setIcon(R.drawable.ic_alert_circle_black_48dp)
                                 .show();
                         arretsList.clear();
 
@@ -258,11 +263,7 @@ public class ArretsFragment extends Fragment  {
 
             }
         });
-        TypedValue typedValue = new TypedValue();
-        Resources.Theme theme = getActivity().getTheme();
-        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
 
-        swipeLayout.setColorSchemeColors(typedValue.data);
 
 
 
@@ -440,7 +441,7 @@ public class ArretsFragment extends Fragment  {
                             }
                         })
                         .setCancelable(false)
-                        .setIcon(R.drawable.alert9)
+                        .setIcon(R.drawable.ic_alert_circle_black_48dp)
                         .show();
                 arretsList.clear();
 

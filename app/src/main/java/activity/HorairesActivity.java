@@ -1,21 +1,20 @@
 package activity;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -315,11 +314,12 @@ super.onCreate(savedInstanceState);
 
 
 
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = HorairesActivity.this.getTheme();
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+
         swipeLayout3 = (SwipeRefreshLayout) findViewById(R.id.container3);
-        swipeLayout3.setColorScheme(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
+        swipeLayout3.setColorSchemeColors(typedValue.data);
 
 
         swipeLayout3.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

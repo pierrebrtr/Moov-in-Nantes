@@ -381,7 +381,7 @@ public class TempsActivity extends ActionBarActivity {
                                         }
                                     })
                                     .setCancelable(false)
-                                    .setIcon(R.drawable.alert9)
+                                    .setIcon(R.drawable.ic_alert_circle_black_48dp)
                                     .show();
 
                         }
@@ -478,13 +478,12 @@ public class TempsActivity extends ActionBarActivity {
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(movieReq);
 
-
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = TempsActivity.this.getTheme();
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
 
         swipeLayout2 = (SwipeRefreshLayout) findViewById(R.id.container2);
-        swipeLayout2.setColorScheme(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
+        swipeLayout2.setColorSchemeColors(typedValue.data);
 
 
         swipeLayout2.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -524,7 +523,7 @@ public class TempsActivity extends ActionBarActivity {
                                                 }
                                             })
                                             .setCancelable(false)
-                                            .setIcon(R.drawable.alert9)
+                                            .setIcon(R.drawable.ic_alert_circle_black_48dp)
                                             .show();
 
                                 }
@@ -597,7 +596,7 @@ public class TempsActivity extends ActionBarActivity {
                                     }
                                 })
                                 .setCancelable(false)
-                                .setIcon(R.drawable.alert9)
+                                .setIcon(R.drawable.ic_alert_circle_black_48dp)
                                 .show();
 
                         directionList.clear();

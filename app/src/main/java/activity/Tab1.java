@@ -238,7 +238,7 @@ public class Tab1 extends Fragment {
                                         })
 
                                         .setCancelable(true)
-                                        .setIcon(R.drawable.alert9)
+                                        .setIcon(R.drawable.ic_alert_circle_black_48dp)
                                         .show();
                                 // do something other
                             }
@@ -261,7 +261,7 @@ public class Tab1 extends Fragment {
                         }
                     })
                     .setCancelable(true)
-                    .setIcon(R.drawable.alert9)
+                    .setIcon(R.drawable.ic_alert_circle_black_48dp)
                     .show();
             return true;
         }
