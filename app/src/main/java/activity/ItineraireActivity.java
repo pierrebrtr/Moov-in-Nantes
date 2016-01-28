@@ -640,7 +640,7 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
                                 final String resultdate2 = outputFormatter2.format(result2);
 
-                                    moreinfo = "Nb de transferts : " + array.getJSONObject(i).getInt("nb_transfers");
+                                    moreinfo = "Transferts : " + array.getJSONObject(i).getInt("nb_transfers");
 
 
 
@@ -956,7 +956,7 @@ textiti.setText("");
                                         .withProvider(new WalkCardProvider())
                                         .setLayout(R.layout.card_layout_walkmode)
                                         .setHeure(heurearrivee)
-                                        .setDirectionTxt("Aller a " + sections.getJSONObject(p).getJSONObject("to").getJSONObject("stop_point").getString("name"))
+                                        .setDirectionTxt("Aller à " + sections.getJSONObject(p).getJSONObject("to").getJSONObject("stop_point").getString("name"))
                                         .setMoreinfo(String.valueOf(sections.getJSONObject(p).getInt("duration") / 60) + " min - " + heurearrivee2)
 
 
@@ -972,7 +972,7 @@ textiti.setText("");
                                         .withProvider(new WalkCardProvider())
                                         .setLayout(R.layout.card_layout_walkmode)
                                         .setHeure(heurearrivee)
-                                        .setDirectionTxt("Aller a " + sections.getJSONObject(p).getJSONObject("to").getString("name"))
+                                        .setDirectionTxt("Aller à " + sections.getJSONObject(p).getJSONObject("to").getString("name"))
                                         .setMoreinfo(String.valueOf(sections.getJSONObject(p).getInt("duration") / 60) + " min - " + heurearrivee2)
 
 

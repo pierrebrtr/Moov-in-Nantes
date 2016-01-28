@@ -16,7 +16,7 @@
 
 
     <color name="background">#ffeeeeee</color>
-    <color name="main_color">#2196F3</color>
+    <color name="main_color">#2196f3</color>
     <color name="secondary_color">#BDBDBD</color>
 
     <color name="genre">#666666</color>
