@@ -202,6 +202,16 @@ public class MyPreferencesActivity extends ActionBarActivity {
                 }
             });
 
+            Preference userButtonz = (Preference) findPreference("tuto");
+            userButtonz.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference arg0) {
+                    Intent intent = new Intent(getActivity(), MyIntro.class);
+                    startActivity(intent);
+                    return true;
+                }
+            });
+
             Preference userButtona = (Preference) findPreference("propos");
             userButtona.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override

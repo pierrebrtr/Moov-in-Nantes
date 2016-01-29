@@ -25,6 +25,11 @@
             android:key="user">
         </PreferenceScreen>
         <PreferenceScreen
+            android:title="Tutoriel"
+            android:summary="Revoir le tutoriel"
+            android:key="tuto">
+        </PreferenceScreen>
+        <PreferenceScreen
             android:title="À propos"
             android:summary="L'équipe de développement"
             android:key="propos">

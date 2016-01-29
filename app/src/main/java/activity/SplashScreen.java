@@ -35,7 +35,7 @@ public class SplashScreen extends Activity {
         animator.setTarget(imageloco);
         animator.start();
 
-       if (isFirstTime){
+      if (isFirstTime){
 
            new Handler().postDelayed(new Runnable() {
 
