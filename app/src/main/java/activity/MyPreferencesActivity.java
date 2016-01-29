@@ -19,6 +19,7 @@ import android.view.MenuItem;
 
 import com.android.colorpicker.ColorPickerDialog;
 import com.android.colorpicker.ColorPickerSwatch;
+import com.pandf.moovin.BuildConfig;
 import com.pandf.moovin.R;
 
 import java.io.File;
@@ -192,7 +193,9 @@ public class MyPreferencesActivity extends ActionBarActivity {
                 }
             });
 
-            Preference userButton = (Preference) findPreference("user");
+            final Preference userButton = (Preference) findPreference("user");
+            String versionName = BuildConfig.VERSION_NAME;
+            userButton.setSummary("Version: " + versionName);
             userButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference arg0) {
