@@ -12,11 +12,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-
-
-
-
+    <uses-permission android:name="com.android.vending.BILLING" />
     <permission
         android:name="com.pandf.moovin.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
@@ -34,9 +30,7 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <uses-feature
-            android:glEsVersion="0x00020000"
-            android:required="true" />
+
 
         <service
             android:name="com.txusballesteros.bubbles.BubblesService"

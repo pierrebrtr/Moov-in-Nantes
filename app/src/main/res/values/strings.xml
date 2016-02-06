@@ -4,7 +4,7 @@
     <string name="action_search">Recherche</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-
+<string name="nav_item_don">Faire un don</string>
 
     <string name="prefs_theme_key">theme</string>
 
@@ -35,6 +35,7 @@
         <item>@string/nav_item_deco</item>
         <item>@string/nav_item_parking</item>
         <item>@string/nav_item_settings</item>
+        <item>@string/nav_item_don</item>
 
 
     </string-array>
@@ -49,6 +50,7 @@
         <item>@drawable/ic_routes_grey600_48dp</item>
         <item>@drawable/ic_walk_grey600_48dp</item>
         <item>@drawable/ic_parking_grey600_48dp</item>
+        <item>@drawable/ic_settings_grey600_48dp</item>
         <item>@drawable/ic_settings_grey600_48dp</item>
 
     </array>

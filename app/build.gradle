@@ -12,7 +12,7 @@ android {
         applicationId "com.pandf.moovin"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 7
+        versionCode 8
 
 
         versionName "0.5"
@@ -36,7 +36,7 @@ dependencies {
 
 
     compile project(':colorpicker')
-
+    compile 'com.anjlab.android.iab.v3:library:1.0.+'
     compile 'fr.tvbarthel.blurdialogfragment:lib:2.1.5'
     compile 'com.android.support:design:23.0.1'
     compile 'com.android.support:appcompat-v7:23.+'

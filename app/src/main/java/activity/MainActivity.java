@@ -133,6 +133,10 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
                 title = "Paramètres";
                 startActivity(i4);
                 break;
+            case 10:
+                fragment = new DonationFragment();
+                title = "Donation";
+                break;
 
 
             default:
