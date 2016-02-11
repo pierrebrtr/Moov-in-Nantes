@@ -49,7 +49,7 @@ dependencies {
     compile 'com.github.dexafree:materiallist:3.1.2'
     compile 'de.hdodenhof:circleimageview:1.2.2'
     compile 'com.txusballesteros:bubbles:1.2.1'
-    compile 'com.github.paolorotolo:appintro:3.1.0'
+    compile 'com.github.paolorotolo:appintro:3.4.0'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'com.orhanobut:dialogplus:1.10@aar'
     compile 'com.github.citux:datetimepicker:0.2.0'

@@ -12,11 +12,6 @@
         android:summary="Taille du cache: %size"
         android:key="cache">
     </PreferenceScreen>
-        <CheckBoxPreference
-            android:title="Moov'in lite"
-            android:summary="Pour réduire votre consommation de data"
-            android:key="lite">
-        </CheckBoxPreference>
     </PreferenceCategory>
     <PreferenceCategory android:title="Divers" >
         <PreferenceScreen
@@ -42,10 +37,6 @@
             android:data="http://www.pandfstudio.com" />
 
     </PreferenceScreen>
-        <PreferenceScreen
-            android:title=""
-            android:summary=""
-            android:key="easter">
-        </PreferenceScreen>
+
     </PreferenceCategory>
 </PreferenceScreen>

@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.android.colorpicker.ColorPickerDialog;
 import com.android.colorpicker.ColorPickerSwatch;
@@ -205,6 +206,7 @@ public class MyPreferencesActivity extends ActionBarActivity {
                 }
             });
 
+
             Preference userButtonz = (Preference) findPreference("tuto");
             userButtonz.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -225,45 +227,9 @@ public class MyPreferencesActivity extends ActionBarActivity {
                 }
             });
 
-            Preference easter = (Preference) findPreference("easter");
-            easter.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference arg0) {
-                    Intent intent = new Intent(getActivity(), EasterActivity.class);
-                    startActivity(intent);
-                    return true;
-                }
-            });
-
-            final CheckBoxPreference checkboxPref = (CheckBoxPreference) getPreferenceManager().findPreference("lite");
-
-            checkboxPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    Log.d("MyApp", "Pref " + preference.getKey() + " changed to " + newValue.toString());
 
 
-                    sharedlite = new SpLite();
 
-                    if (newValue.toString() == "true") {
-
-
-                        sharedlite.setPref(getActivity(), "true");
-
-
-                    } else {
-
-
-                        sharedlite.setPref(getActivity(), "false");
-
-
-                    }
-
-
-                    return true;
-                }
-
-
-            });
 
             final Preference userButtone = (Preference) findPreference("cache");
 

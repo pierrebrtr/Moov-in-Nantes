@@ -10,7 +10,7 @@ public class MyFirstLaunchPreference {
 
 
 
-    private static final String MY_PREFERENCES = "my_preferences";
+    private static final String MY_PREFERENCES = "my_preferences05";
 
     public static boolean isFirst(Context context){
         final SharedPreferences reader = context.getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);

@@ -32,10 +32,10 @@
         <item>@string/nav_item_geo</item>
         <item>@string/nav_item_bicloo</item>
         <item>@string/nav_item_iti</item>
-        <item>@string/nav_item_deco</item>
+       <!-- <item>@string/nav_item_deco</item> -->
         <item>@string/nav_item_parking</item>
         <item>@string/nav_item_settings</item>
-        <item>@string/nav_item_don</item>
+      <!--  <item>@string/nav_item_don</item> -->
 
 
     </string-array>
@@ -48,37 +48,37 @@
         <item>@drawable/ic_compass_grey600_48dp</item>
         <item>@drawable/ic_bike_grey600_48dp</item>
         <item>@drawable/ic_routes_grey600_48dp</item>
-        <item>@drawable/ic_walk_grey600_48dp</item>
+        <!-- <item>@drawable/ic_walk_grey600_48dp</item> -->
         <item>@drawable/ic_parking_grey600_48dp</item>
         <item>@drawable/ic_settings_grey600_48dp</item>
-        <item>@drawable/ic_settings_grey600_48dp</item>
+    <!-- <item>@drawable/ic_settings_grey600_48dp</item> -->
 
-    </array>
-
-
+</array>
 
 
-  <string name="heart">
-    M25.119,2.564c12.434,0.023,18.68,5.892,24.88,17.612  c6.2-11.721,12.446-17.589,24.877-17.612c13.81-0.025,25.035,10.575,25.061,23.66c0.033,23.708-24.952,47.46-49.938,71.212  C25.016,73.685,0.03,49.932,0.064,26.224C0.085,13.14,11.309,2.539,25.119,2.564z
-  </string>
-
-    <string-array name="default_color_choice_values" translatable="false">
-        <item>#2196F3</item>
-        <item>#FFC107</item>
-        <item>#4CAF50</item>
-        <item>#F44336</item>
-        <item>#E91E63</item>
-        <item>#9C27B0</item>
-        <item>#3F51B5</item>
-        <item>#795548</item>
-        <item>#00BCD4</item>
-    </string-array>
 
 
-    <string name="title_about">À propos</string>
-    <string name="title_home">Accueil</string>
-    <string name="title_arrets">Arrêts</string>
-    <!-- TODO: Remove or change this placeholder text -->
+<string name="heart">
+M25.119,2.564c12.434,0.023,18.68,5.892,24.88,17.612  c6.2-11.721,12.446-17.589,24.877-17.612c13.81-0.025,25.035,10.575,25.061,23.66c0.033,23.708-24.952,47.46-49.938,71.212  C25.016,73.685,0.03,49.932,0.064,26.224C0.085,13.14,11.309,2.539,25.119,2.564z
+</string>
+
+<string-array name="default_color_choice_values" translatable="false">
+  <item>#2196F3</item>
+  <item>#FFC107</item>
+  <item>#4CAF50</item>
+  <item>#F44336</item>
+  <item>#E91E63</item>
+  <item>#9C27B0</item>
+  <item>#3F51B5</item>
+  <item>#795548</item>
+  <item>#00BCD4</item>
+</string-array>
+
+
+<string name="title_about">À propos</string>
+<string name="title_home">Accueil</string>
+<string name="title_arrets">Arrêts</string>
+<!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
