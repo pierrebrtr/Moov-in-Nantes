@@ -20,8 +20,7 @@ public class MyIntro extends AppIntro2 {
     public void init(Bundle savedInstanceState) {
 
 
-
-        setFadeAnimation();
+setFlowAnimation();
 
         // Instead of fragments, you can also use our default slide
         // Just set a title, description, background and image. AppIntro will do the rest

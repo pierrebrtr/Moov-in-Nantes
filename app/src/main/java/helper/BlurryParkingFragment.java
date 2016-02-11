@@ -156,9 +156,11 @@ public class BlurryParkingFragment extends BlurDialogFragment implements OnMapRe
                     map = mapView.getMap();
 
 
-                    map.getUiSettings().setMyLocationButtonEnabled(false);
-                    CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(47.2183710, -1.5536210), 12);
+                    map.getUiSettings().setMyLocationButtonEnabled(true);
+                    CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(47.2183710, -1.5536210), 13);
+
                     map.animateCamera(cameraUpdate);
+
                 }
                 break;
             case ConnectionResult.SERVICE_MISSING:

@@ -46,16 +46,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/activity/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="120" column="22" selection-start-line="120" selection-start-column="22" selection-end-line="120" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MyPreferencesActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/activity/MyPreferencesActivity.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -95,11 +85,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyIntro.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MyIntro.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/activity/MyIntro.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14558059">
-              <caret line="31" column="137" selection-start-line="31" selection-start-column="137" selection-end-line="31" selection-end-column="137" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="28" column="148" selection-start-line="28" selection-start-column="148" selection-end-line="28" selection-end-column="148" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParkingFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/activity/ParkingFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="212" column="41" selection-start-line="212" selection-start-column="41" selection-end-line="212" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BlurryParkingFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/helper/BlurryParkingFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3032929">
+              <caret line="158" column="71" selection-start-line="158" selection-start-column="71" selection-end-line="158" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -125,16 +135,6 @@
           </provider>
           <provider editor-type-id="android-designer">
             <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.1698112">
-              <caret line="37" column="49" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
-              <folding />
-            </state>
           </provider>
         </entry>
       </file>
@@ -2915,8 +2915,10 @@
         <option value="$PROJECT_DIR$/app/src/main/res/xml/preferences.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/activity/MyPreferencesActivity.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/activity/MyIntro.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/activity/MyFirstLaunchPreference.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/activity/ParkingFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/helper/BlurryParkingFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/activity/MyIntro.java" />
       </list>
     </option>
   </component>
@@ -2992,6 +2994,42 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tan" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helper" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tan" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moovin" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -3326,7 +3364,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32739422" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -3334,7 +3372,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32628062" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32628062" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925472" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -3457,8 +3495,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/activity/MyIntro.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14558059">
-          <caret line="31" column="137" selection-start-line="31" selection-start-column="137" selection-end-line="31" selection-end-column="137" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="148" selection-start-line="28" selection-start-column="148" selection-end-line="28" selection-end-column="148" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/activity/ParkingFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="212" column="41" selection-start-line="212" selection-start-column="41" selection-end-line="212" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/pandf/moovin/MapsActivity5.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6759099">
+          <caret line="41" column="45" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/helper/BlurryParkingFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3032929">
+          <caret line="158" column="71" selection-start-line="158" selection-start-column="71" selection-end-line="158" selection-end-column="71" />
           <folding />
         </state>
       </provider>
