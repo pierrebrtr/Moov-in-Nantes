@@ -220,7 +220,7 @@ public class Tab1 extends Fragment {
             new MaterialStyledDialog(getActivity())
                     .setTitle("Importer/Exporter")
                     .setDescription("Cette option va vous permettre de sauvegarder et de restaurer à partir de la mémoire interne de votre téléphone les favoris de l'application")
-                    .setHeaderColor(R.color.colorError)
+                    .setHeaderColor(R.color.colorSuccess)
                     .setIcon(R.drawable.ic_swap_vert_white_24dp)
                     .setPositive("Importer", new MaterialDialog.SingleButtonCallback() {
                         @Override

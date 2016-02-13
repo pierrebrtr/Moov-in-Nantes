@@ -29,6 +29,11 @@
             android:summary="L'équipe de développement"
             android:key="propos">
         </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Contact"
+            android:summary="Nous contacter, signaler un bug"
+            android:key="contact">
+        </PreferenceScreen>
     <PreferenceScreen
         android:title="P&amp;F Studio"
         android:summary="Visiter le site">

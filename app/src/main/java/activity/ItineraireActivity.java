@@ -45,6 +45,7 @@ import com.google.android.gms.location.LocationServices;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.pandf.moovin.R;
+import com.seatgeek.placesautocomplete.PlacesAutocompleteTextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,8 +69,6 @@ import adapter.WalkCardProvider;
 import app.AppController;
 import model.ItineraireItem;
 import util.Utility;
-
-import static java.lang.String.valueOf;
 
 
 /**
@@ -184,6 +183,8 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
 
         final CustomListAdapterItineraireItem lAdapter = new CustomListAdapterItineraireItem(ItineraireActivity.this, getApplicationContext(), itineraireList);
+
+
 
         depart= (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView1);
 

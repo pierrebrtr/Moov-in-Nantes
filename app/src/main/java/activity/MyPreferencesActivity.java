@@ -227,6 +227,19 @@ public class MyPreferencesActivity extends ActionBarActivity {
                 }
             });
 
+            Preference userButtoncontact = (Preference) findPreference("contact");
+            userButtoncontact.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference arg0) {
+                    Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                            "mailto","contact@pandfstudio.com", null));
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Contact");
+                    emailIntent.putExtra(Intent.EXTRA_TEXT, "Votre message...");
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, "contact@pandfstudio.com"); // String[] addresses
+                    startActivity(Intent.createChooser(emailIntent, "Envoyer un email..."));
+                    return true;
+                }
+            });
 
 
 
