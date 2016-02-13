@@ -380,8 +380,6 @@ public class ArretsFragment extends Fragment  {
 
 
 
-
-
         // Creating volley request obj
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {

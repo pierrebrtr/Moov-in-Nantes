@@ -13,11 +13,14 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
     <permission
         android:name="com.pandf.moovin.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.pandf.moovin.permission.MAPS_RECEIVE" />
+
+
 
     <application
         android:name="app.AppController"
@@ -124,6 +127,10 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCF-2Gf4NPXEz-UP_wOT12rlADvyxTUQgo"/>
 
         <activity
             android:name=".MapsActivity"
