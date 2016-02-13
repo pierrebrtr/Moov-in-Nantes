@@ -1,11 +1,10 @@
 package activity;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -19,12 +18,14 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.google.gson.Gson;
 import com.pandf.moovin.MapsActivity;
 import com.pandf.moovin.R;
@@ -357,18 +358,24 @@ public class BiclooFragment extends Fragment  {
 
 
                     progress.dismiss();
-                    new AlertDialog.Builder(getActivity())
+
+
+                    new MaterialStyledDialog(getActivity())
                             .setTitle("Erreur")
-                            .setMessage("Pas de connexion internet")
-                            .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
+                            .setDescription("Une erreur est survenue")
+                            .setHeaderColor(R.color.colorError)
+                            .setCancelable(false)
+                            .setIcon(R.drawable.ic_alert_circle_outline_white_48dp)
+                            .setPositive("Retour", new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                     Intent intent = new Intent();
                                     intent.setClass(getActivity(), MainActivity.class);
                                     startActivity(intent);
                                 }
                             })
-                            .setCancelable(false)
-                            .setIcon(R.drawable.alert9)
+
+
                             .show();
                     listbicloo.clear();
 

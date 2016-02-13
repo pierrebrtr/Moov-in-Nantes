@@ -2,13 +2,13 @@ package activity;
 
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -21,6 +21,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -29,6 +31,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.dexafree.materialList.card.Card;
 import com.dexafree.materialList.listeners.RecyclerItemClickListener;
 import com.dexafree.materialList.view.MaterialListView;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.pandf.moovin.R;
 
 import org.json.JSONArray;
@@ -185,17 +188,24 @@ public class ParkingFragment extends Fragment {
             AppController.getInstance().addToRequestQueue(jsonObjReq);
 
         } else {
-            viewimage.setVisibility(View.VISIBLE);
-            Snackbar snackbar = Snackbar
-                    .make(coordinatorLayoutView, "Pas de connexion", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Rafraichir", new View.OnClickListener() {
+            new MaterialStyledDialog(getActivity())
+                    .setTitle("Erreur")
+                    .setDescription("Une erreur est survenue")
+                    .setHeaderColor(R.color.colorError)
+                    .setCancelable(false)
+
+                    .setIcon(R.drawable.ic_alert_circle_outline_white_48dp)
+                    .setPositive("Retour", new MaterialDialog.SingleButtonCallback() {
                         @Override
-                        public void onClick(View view) {
-                            viewimage.setVisibility(View.GONE);
-                            SetupView();
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            Intent intent = new Intent();
+                            intent.setClass(getActivity(), MainActivity.class);
+                            startActivity(intent);
                         }
-                    });
-            snackbar.show();
+                    })
+
+
+                    .show();
 
         }
 

@@ -1,12 +1,11 @@
 package activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,6 +20,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.pandf.moovin.R;
 
 import java.io.File;
@@ -211,57 +213,50 @@ public class Tab1 extends Fragment {
 
         int id = item.getItemId();
         if (id == R.id.imp){
-            new AlertDialog.Builder(getActivity())
+
+
+
+
+            new MaterialStyledDialog(getActivity())
                     .setTitle("Importer/Exporter")
-                    .setMessage("Cette option va vous permettre de sauvegarder et de restaurer à partir de la mémoire interne de votre téléphone les favoris de l'application")
-                    .setPositiveButton("Importer", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-
+                    .setDescription("Cette option va vous permettre de sauvegarder et de restaurer à partir de la mémoire interne de votre téléphone les favoris de l'application")
+                    .setHeaderColor(R.color.colorError)
+                    .setIcon(R.drawable.ic_swap_vert_white_24dp)
+                    .setPositive("Importer", new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(MaterialDialog dialog, DialogAction which) {
                             try {
-
-
                                 loadSharedPreferencesFromFile(mfile);
-
-
                             } catch(NullPointerException e) {
 
-                                new AlertDialog.Builder(getActivity())
+                                new MaterialStyledDialog(getActivity())
                                         .setTitle("Erreur")
-                                        .setMessage("Vous n'avez pas de favoris à importer")
-                                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int which) {
-
+                                        .setDescription("Vous n'avez pas de favoris à importer")
+                                        .setHeaderColor(R.color.colorError)
+                                        .setIcon(R.drawable.ic_alert_circle_outline_white_48dp)
+                                        .setNeutral("Ok", new MaterialDialog.SingleButtonCallback() {
+                                            @Override
+                                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                                 dialog.dismiss();
-
                                             }
                                         })
-
                                         .setCancelable(true)
-                                        .setIcon(R.drawable.ic_alert_circle_black_48dp)
                                         .show();
                                 // do something other
                             }
 
-
-
                             Intent i = new Intent(getActivity(), MainActivity.class);
-
                             startActivity(i);
-
                         }
                     })
-                    .setNegativeButton("Exporter", new DialogInterface.OnClickListener() {
+                    .setNegative("Exporter", new MaterialDialog.SingleButtonCallback() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                             saveSharedPreferencesToFile(mfile);
                             Toast.makeText(getActivity(),"Export des favoris réussi !", Toast.LENGTH_SHORT).show();
 
                         }
                     })
-                    .setCancelable(true)
-                    .setIcon(R.drawable.ic_alert_circle_black_48dp)
                     .show();
             return true;
         }

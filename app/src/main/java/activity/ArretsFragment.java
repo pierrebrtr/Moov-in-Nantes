@@ -1,13 +1,12 @@
 package activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
@@ -28,10 +27,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.pandf.moovin.ArretsMapsActivity;
 import com.pandf.moovin.R;
 
@@ -159,8 +161,6 @@ public class ArretsFragment extends Fragment  {
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getActivity(), "Rechargement...", Toast.LENGTH_SHORT).show();
-
 
                 arretsList.clear();
 
@@ -230,18 +230,26 @@ public class ArretsFragment extends Fragment  {
                         VolleyLog.d(TAG, "Error: " + error.getMessage());
 
 
-                        new AlertDialog.Builder(getActivity())
+
+
+
+                        new MaterialStyledDialog(getActivity())
                                 .setTitle("Erreur")
-                                .setMessage("Une erreur est survenue")
-                                .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
+                                .setDescription("Une erreur est survenue")
+                                .setHeaderColor(R.color.colorError)
+                                .setCancelable(false)
+
+                                .setIcon(R.drawable.ic_alert_circle_outline_white_48dp)
+                                .setPositive("Retour", new MaterialDialog.SingleButtonCallback() {
+                                    @Override
+                                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                         Intent intent = new Intent();
                                         intent.setClass(getActivity(), MainActivity.class);
                                         startActivity(intent);
                                     }
                                 })
-                                .setCancelable(false)
-                                .setIcon(R.drawable.ic_alert_circle_black_48dp)
+
+
                                 .show();
                         arretsList.clear();
 
@@ -369,6 +377,11 @@ public class ArretsFragment extends Fragment  {
 
 
 
+
+
+
+
+
         // Creating volley request obj
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
@@ -430,18 +443,24 @@ public class ArretsFragment extends Fragment  {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
                 progress.dismiss();
-                new AlertDialog.Builder(getActivity())
+
+                new MaterialStyledDialog(getActivity())
                         .setTitle("Erreur")
-                        .setMessage("Une erreur est survenue")
-                        .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
+                        .setDescription("Une erreur est survenue")
+                        .setHeaderColor(R.color.colorError)
+                        .setCancelable(false)
+
+                        .setIcon(R.drawable.ic_alert_circle_outline_white_48dp)
+                        .setPositive("Retour", new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                 Intent intent = new Intent();
                                 intent.setClass(getActivity(), MainActivity.class);
                                 startActivity(intent);
                             }
                         })
-                        .setCancelable(false)
-                        .setIcon(R.drawable.ic_alert_circle_black_48dp)
+
+
                         .show();
                 arretsList.clear();
 

@@ -2,10 +2,12 @@ package activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -20,12 +22,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.pandf.moovin.R;
 
 import org.json.JSONException;
@@ -271,9 +275,24 @@ public class MeteoFragment extends Fragment  {
 
 
 
-            Toast.makeText(getActivity().getApplicationContext(),
-                    "Pas de connexion internet",
-                    Toast.LENGTH_LONG).show();
+            new MaterialStyledDialog(getActivity())
+                    .setTitle("Erreur")
+                    .setDescription("Une erreur est survenue")
+                    .setHeaderColor(R.color.colorError)
+                    .setCancelable(false)
+
+                    .setIcon(R.drawable.ic_alert_circle_outline_white_48dp)
+                    .setPositive("Retour", new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            Intent intent = new Intent();
+                            intent.setClass(getActivity(), MainActivity.class);
+                            startActivity(intent);
+                        }
+                    })
+
+
+                    .show();
 
 
 

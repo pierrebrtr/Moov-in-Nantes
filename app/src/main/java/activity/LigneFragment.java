@@ -1,10 +1,9 @@
 package activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
@@ -26,11 +25,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.pandf.moovin.MapsActivity;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.pandf.moovin.R;
 
 import org.json.JSONArray;
@@ -370,18 +371,24 @@ public class LigneFragment extends Fragment  {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
 
-                new AlertDialog.Builder(getActivity())
+
+                new MaterialStyledDialog(getActivity())
                         .setTitle("Erreur")
-                        .setMessage("Pas de connexion internet")
-                        .setPositiveButton("Retour", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
+                        .setDescription("Une erreur est survenue")
+                        .setHeaderColor(R.color.colorError)
+                        .setCancelable(false)
+
+                        .setIcon(R.drawable.ic_alert_circle_outline_white_48dp)
+                        .setPositive("Retour", new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                 Intent intent = new Intent();
                                 intent.setClass(getActivity(), MainActivity.class);
                                 startActivity(intent);
                             }
                         })
-                        .setCancelable(false)
-                        .setIcon(R.drawable.alert9)
+
+
                         .show();
                 arretsList.clear();
 
