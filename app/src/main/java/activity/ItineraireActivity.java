@@ -1,6 +1,7 @@
 package activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -8,12 +9,17 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,15 +40,8 @@ import com.dexafree.materialList.listeners.RecyclerItemClickListener;
 import com.dexafree.materialList.view.MaterialListView;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocomplete;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.pandf.moovin.R;
@@ -78,8 +77,8 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
     private Toolbar mToolbar;
-    TextView depart;
-    TextView arrive;
+    AutoCompleteTextView depart;
+    AutoCompleteTextView arrive;
     public static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -134,65 +133,6 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
     }
 
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                Place place = PlaceAutocomplete.getPlace(this, data);
-                Log.i(TAG, "Place: " + place.getName());
-
-
-
-                depart.setText(place.getName());
-
-                firstlat = place.getLatLng().latitude;
-
-
-                firstlon = place.getLatLng().longitude;
-
-            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
-                Status status = PlaceAutocomplete.getStatus(this, data);
-                // TODO: Handle the error.
-                Log.i(TAG, status.getStatusMessage());
-
-            } else if (resultCode == RESULT_CANCELED) {
-                // The user canceled the operation.
-            }
-        }
-
-        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE2) {
-            if (resultCode == RESULT_OK) {
-                Place place = PlaceAutocomplete.getPlace(this, data);
-                Log.i(TAG, "Place: " + place.getName());
-
-                arrive= (TextView) findViewById(R.id.autoCompleteTextView2);
-
-
-
-                arrive.setText(place.getName());
-                secondelat =  place.getLatLng().latitude;
-                secondelon = place.getLatLng().longitude;
-
-                String url = "https://api.navitia.io/v1/journeys?from=" + firstlon + ";" + firstlat + "&to=" + secondelon + ";" + secondelat + "&datetime=" + currentDateandTime;
-
-                final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
-
-                mListView.getAdapter().clearAll();
-                mListView.getAdapter().notifyDataSetChanged();
-                started = true;
-                phase1(url);
-
-            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
-                Status status = PlaceAutocomplete.getStatus(this, data);
-                // TODO: Handle the error.
-                Log.i(TAG, status.getStatusMessage());
-
-            } else if (resultCode == RESULT_CANCELED) {
-                // The user canceled the operation.
-            }
-        }
-    }
 
 
 
@@ -253,53 +193,145 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
 
 
-        depart= (TextView) findViewById(R.id.autoCompleteTextView1);
+        depart= (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView1);
+            depart.setAdapter(lAdapter);
+
+
+                             depart.addTextChangedListener(new TextWatcher() {
+                                       @Override
+                                       public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                                           }
+
+                                       @Override
+                                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                                               depart.enoughToFilter();
+                                            }
+
+                                               @Override
+                                        public void afterTextChanged(Editable s) {
+                                                itineraireList.clear();
+                                                lAdapter.notifyDataSetChanged();
+
+
+                                               setResearchRequest(s, lAdapter);
+
+                                                   }
+                                   });
+
+
+
+        depart.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+                @Override
+                          public void onItemClick(AdapterView<?> parent, View view, int pos,
+                                                   long id) {
+
+                                            TextView textView = (TextView) view.findViewById(R.id.libelle);
+                                    String text = textView.getText().toString();
+
+                                            TextView textView2 = (TextView) view.findViewById(R.id.lat);
+                                    String lat = textView2.getText().toString();
+
+                                            TextView textView3 = (TextView) view.findViewById(R.id.lng);
+                                    String lng = textView3.getText().toString();
+                                    depart.setListSelection(pos);
+                                    depart.setText(text);
+
+                                           firstlat = Double.valueOf(lat);
+                                            firstlon = Double.valueOf(lng);
+                                    Log.d("LATITUDE", String.valueOf(Double.valueOf(lat)));
+
+                }});
 
 
 
 
-        depart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
 
 
-                    Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
+        arrive= (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
+              arrive.setAdapter(lAdapter);
+               arrive.addTextChangedListener(new TextWatcher() {
+                       @Override
+                       public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                                    .build(ItineraireActivity.this);
-                    startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
-                } catch (GooglePlayServicesRepairableException e) {
-                    // TODO: Handle the error.
-                } catch (GooglePlayServicesNotAvailableException e) {
-                    // TODO: Handle the error.
-                }
 
-            }
+                                               itineraireList.clear();
+                               lAdapter.notifyDataSetChanged();
+
+
+                           setResearchRequest(s, lAdapter);
+
+                                    }
+
+                   @Override
+                   public void afterTextChanged(Editable s) {
+                       itineraireList.clear();
+                       lAdapter.notifyDataSetChanged();
+                       setResearchRequest(s, lAdapter);
+
+                   }
+
+                   @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                                arrive.enoughToFilter();
+
+                                itineraireList.clear();
+                                lAdapter.notifyDataSetChanged();
+
+
+                                setResearchRequest(s, lAdapter);
+                           }
         });
 
 
+        arrive.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                              @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int pos,
+                                                                                     long id) {
 
 
+                                  if (pos == 0) {
 
-        arrive= (TextView) findViewById(R.id.autoCompleteTextView2);
-        arrive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
+                                      buildGoogleApiClient();
+
+                                  }
+
+                                  TextView textView = (TextView) view.findViewById(R.id.libelle);
+                                  String text = textView.getText().toString();
+
+                                  TextView textView2 = (TextView) view.findViewById(R.id.lat);
+                                  String lat = textView2.getText().toString();
+
+                                  TextView textView3 = (TextView) view.findViewById(R.id.lng);
+                                  String lng = textView3.getText().toString();
+                                  arrive.setListSelection(pos);
+                                  arrive.setText(text);
+
+                                  secondelat = Double.valueOf(lat);
+                                  Log.d("SECLATITUDE", String.valueOf(Double.valueOf(lat)));
+
+                                  secondelon = Double.valueOf(lng);
+                                  Log.d("SECLONGITUDE", String.valueOf(Double.valueOf(lng)));
 
 
-                    Intent intent =
-                            new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
-                                    .build(ItineraireActivity.this);
-                    startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE2);
-                } catch (GooglePlayServicesRepairableException e) {
-                    // TODO: Handle the error.
-                } catch (GooglePlayServicesNotAvailableException e) {
-                    // TODO: Handle the error.
-                }
+                                  InputMethodManager imm = (InputMethodManager) ItineraireActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                                  imm.hideSoftInputFromWindow(depart.getWindowToken(), 0);
+                                  String url = "https://api.navitia.io/v1/journeys?from=" + firstlon + ";" + firstlat + "&to=" + secondelon + ";" + secondelat + "&datetime=" + currentDateandTime;
+                                  Log.d("URL", String.valueOf(url));
 
-            }
-        });
+                                  final MaterialListView mListView = (MaterialListView) findViewById(R.id.listitinerairephase1);
+
+                                  mListView.getAdapter().clearAll();
+                                  mListView.getAdapter().notifyDataSetChanged();
+                                  arrive.dismissDropDown();
+                                  started = true;
+                                  phase1(url);
+                              }
+
+                              });
 
         final Animation anim_exchange = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.anim_exchange);
@@ -313,6 +345,8 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
                 imageButton2.startAnimation(anim_exchange);
 
+                arrive.dismissDropDown();
+                depart.dismissDropDown();
 
                 String tempstr1;
                 String tempstr2;
@@ -339,6 +373,8 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
                 mListView.getAdapter().clearAll();
                 mListView.getAdapter().notifyDataSetChanged();
+                arrive.dismissDropDown();
+                depart.dismissDropDown();
                 started = true;
                 phase1(url);
 
@@ -385,6 +421,13 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
                 mListView.getAdapter().clearAll();
                 mListView.getAdapter().notifyDataSetChanged();
 
+
+                InputMethodManager imm = (InputMethodManager) ItineraireActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(depart.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(arrive.getWindowToken(), 0);
+
+                arrive.dismissDropDown();
+                depart.dismissDropDown();
 
 
                 started = true;

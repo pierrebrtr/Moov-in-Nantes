@@ -104,44 +104,38 @@
                     android:layout_height="match_parent">
 
 
-                    <TextView
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTextView1"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="Départ"
-                        android:id="@+id/autoCompleteTextView1"
+                        android:ems="10"
+                        android:hint="Départ"
+                        android:elegantTextHeight="false"
                         android:layout_alignTop="@+id/button"
                         android:layout_toLeftOf="@+id/button"
                         android:layout_toStartOf="@+id/button"
                         android:layout_gravity="center_horizontal|top"
                         android:layout_marginRight="0dp"
                         android:layout_marginEnd="0dp"
-                        android:layout_marginTop="30dp"
-                        android:textSize="20dp" />
+                        android:layout_marginTop="20dp">
+
+                    </AutoCompleteTextView>
 
 
 
-                    <TextView
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTextView2"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="Arrivée"
-                        android:id="@+id/autoCompleteTextView2"
+                        android:ems="10"
+                        android:hint="Arrivée"
                         android:layout_gravity="center"
                         android:layout_alignBottom="@+id/button"
                         android:layout_alignLeft="@+id/autoCompleteTextView1"
                         android:layout_alignStart="@+id/autoCompleteTextView1"
-                        android:layout_marginTop="30dp"
-                        android:textSize="20dp" />
-
-
-
-
-
-
-
-
-
-
-
+                        android:layout_marginTop="10dp">
+                    </AutoCompleteTextView>
 
 
 
