@@ -200,6 +200,9 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
                              depart.addTextChangedListener(new TextWatcher() {
                                        @Override
                                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                           itineraireList.clear();
+                                           lAdapter.notifyDataSetChanged();
+                                           setResearchRequest(s, lAdapter);
 
                                            }
 
@@ -210,11 +213,6 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
 
                                                @Override
                                         public void afterTextChanged(Editable s) {
-                                                itineraireList.clear();
-                                                lAdapter.notifyDataSetChanged();
-
-
-                                               setResearchRequest(s, lAdapter);
 
                                                    }
                                    });
@@ -255,33 +253,19 @@ public class ItineraireActivity extends ActionBarActivity implements DatePickerD
                arrive.addTextChangedListener(new TextWatcher() {
                        @Override
                        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-                                               itineraireList.clear();
-                               lAdapter.notifyDataSetChanged();
-
-
+                           itineraireList.clear();
+                           lAdapter.notifyDataSetChanged();
                            setResearchRequest(s, lAdapter);
-
                                     }
 
                    @Override
                    public void afterTextChanged(Editable s) {
-                       itineraireList.clear();
-                       lAdapter.notifyDataSetChanged();
-                       setResearchRequest(s, lAdapter);
 
                    }
 
                    @Override
                         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                                 arrive.enoughToFilter();
-
-                                itineraireList.clear();
-                                lAdapter.notifyDataSetChanged();
-
-
-                                setResearchRequest(s, lAdapter);
                            }
         });
 
