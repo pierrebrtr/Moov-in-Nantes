@@ -141,33 +141,7 @@ public class Tab2 extends Fragment {
 
                         mListView.getAdapter().add(mListView.getAdapter().getItemCount(),cardmeteo, false);
 
-                        Card card2 = new Card.Builder(getActivity())
-                                .withProvider(new CardProvider())
-                                .setLayout(R.layout.material_basic_buttons_card)
-                                .setTitle("Nouveau !")
-                                .setDescription("Les itinéraires sont enfin disponibles ! (Attention instable !)")
-                                .addAction(R.id.left_text_button, new TextViewAction(getActivity())
-                                        .setText("Entrer")
-                                        .setTextColor(getResources().getColor(R.color.grey_title))
 
-                                        .setListener(new OnActionClickListener() {
-                                            @Override
-                                            public void onActionClicked(View view, Card card) {
-                                                Intent intent = getActivity().getIntent();
-
-
-                                                Intent i = new Intent(Tab2.this.getActivity(), ItineraireActivity.class);
-
-                                                startActivity(i);
-                                            }
-
-
-
-                                        }))
-                                .endConfig()
-                                .build();
-
-                        mListView.getAdapter().add(mListView.getAdapter().getItemCount(),card2, false);
 
 
                         try {

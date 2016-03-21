@@ -231,7 +231,7 @@ super.onActivityCreated(savedInstanceState);
             String lon = valueOf(mLastLocation.getLongitude());
             lon = lon.replace(".", ",");
 
-            url = "https://open.tan.fr/ewp/arrets.json/" + lat + "/" + lon + " ";
+            url = "http://open.tan.fr/ewp/arrets.json/" + lat + "/" + lon + " ";
             Log.d("Url", url);
             url_Text.setText(url);
 

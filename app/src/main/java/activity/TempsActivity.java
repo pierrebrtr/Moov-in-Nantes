@@ -213,7 +213,7 @@ public class TempsActivity extends ActionBarActivity {
 
         final Intent intent = getIntent();
 
-        final String url = "https://open.tan.fr/ewp/tempsattente.json/" + intent.getExtras().getString("text") + " ";
+        final String url = "http://open.tan.fr/ewp/tempsattente.json/" + intent.getExtras().getString("text") + " ";
 
 
         Log.d("ArretsActivityID", intent.getExtras().getString("text"));

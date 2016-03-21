@@ -84,7 +84,9 @@ public class ParkingFragment extends Fragment {
 
         mListView  = (MaterialListView) v.findViewById(R.id.material_listviewparking);
    viewimage = (ImageView) v.findViewById(R.id.erreur1);
+
         mListView.addItemDecoration(new SpacesItemDecoration(dpToPx(20)));
+
         mListView.setClipToPadding(false);
         SetupView();
 

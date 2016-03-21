@@ -195,7 +195,7 @@ super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
 
-        final String url = "" + "https://open.tan.fr/ewp/horairesarret.json/" + intent.getExtras().getString("id") + "/" + intent.getExtras().getString("ligne") + "/" + intent.getExtras().getString("sens") + "";
+        final String url = "" + "http://open.tan.fr/ewp/horairesarret.json/" + intent.getExtras().getString("id") + "/" + intent.getExtras().getString("ligne") + "/" + intent.getExtras().getString("sens") + "";
 
 
         Log.d("Erreur", url);

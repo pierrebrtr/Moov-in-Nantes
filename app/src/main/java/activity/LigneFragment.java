@@ -57,7 +57,7 @@ public class LigneFragment extends Fragment  {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     // Movies json url
-    private static final String url = "https://open.tan.fr/ewp/arrets.json";
+    private static final String url = "http://open.tan.fr/ewp/arrets.json";
     private List<Arrets> arretsList = new ArrayList<Arrets>();
     private ListView listView;
     private CustomListAdapter adapter;

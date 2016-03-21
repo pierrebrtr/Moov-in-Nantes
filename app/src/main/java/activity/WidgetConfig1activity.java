@@ -55,7 +55,7 @@ public class WidgetConfig1activity extends Activity {
 
     public static final String ACTION_TEXT_CHANGED = "com.pandf.moovin.TEXT_CHANGED";
     private int mAppWidgetId = 0 ;
-    private static final String url = "https://open.tan.fr/ewp/arrets.json";
+    private static final String url = "http://open.tan.fr/ewp/arrets.json";
     private List<Arrets> arretsList = new ArrayList<Arrets>();
     private ListView listView;
     private CustomListAdapter adapter;
