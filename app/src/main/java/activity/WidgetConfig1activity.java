@@ -29,6 +29,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -120,8 +121,9 @@ public class WidgetConfig1activity extends Activity {
                                     e.printStackTrace();
                                 }
                                 Arrets arret = new Arrets();
-                                arret.setArret(obj.getString("libelle"));
+                                String text = new String(obj.getString("libelle").getBytes("ISO-8859-1"), "UTF-8");
 
+                                arret.setArret(text);
 
                                 String lieu = obj.getString("codeLieu");
 
@@ -147,6 +149,8 @@ public class WidgetConfig1activity extends Activity {
                                 arretsList.add(arret);
 
                             } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
                             }
 

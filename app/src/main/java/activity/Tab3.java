@@ -35,7 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
+import java.text.Normalizer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -118,6 +118,12 @@ setHasOptionsMenu(true);
         return (int) Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
 
+    public static String stripAccents(String s)
+    {
+        s = Normalizer.normalize(s, Normalizer.Form.NFD);
+        s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+        return s;
+    }
 
     public void Tanactus() {
         viewimage.setVisibility(View.GONE);
@@ -157,7 +163,9 @@ setHasOptionsMenu(true);
                                 String datefin = obj.getString("DATE_FIN");
                                 String twice = " : ";
 
-                                String text = new String(obj.getString("RESUME").getBytes("ISO-8859-1"), "UTF-8");
+
+
+                                String text = stripAccents(obj.getString("RESUME"));
 
                                 if (heurefin.equals("") || datefin.equals("") || heurefin.equals(" ") || datefin.equals(" ")) {
 
@@ -185,10 +193,7 @@ setHasOptionsMenu(true);
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                            } catch (UnsupportedEncodingException e) {
-                                e.printStackTrace();
-                            }
-
+                            } 
                         }
 
 

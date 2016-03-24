@@ -55,6 +55,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -406,7 +407,13 @@ public class TempsActivity extends ActionBarActivity {
                                 JSONObject jObject = obj.getJSONObject("ligne");
                                 JSONObject jObject2 = obj.getJSONObject("arret");
 
-                                temps.setDirection(obj.getString("terminus"));
+
+
+                                String text = new String(obj.getString("terminus").getBytes("ISO-8859-1"), "UTF-8");
+
+
+
+                                temps.setDirection(text);
 
                                 temps.setLigne(jObject.getString("numLigne"));
 
@@ -417,7 +424,7 @@ public class TempsActivity extends ActionBarActivity {
 
                                 temps.setSens(obj.getString("sens"));
 
-                                temps.setTerminus(obj.getString("terminus"));
+                                temps.setTerminus(text);
 
                                 String temp = obj.getString("temps").replace("Close", "En approche");
 
@@ -430,8 +437,9 @@ public class TempsActivity extends ActionBarActivity {
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
                             }
-
 
 
                         }
@@ -545,7 +553,11 @@ public class TempsActivity extends ActionBarActivity {
                                         JSONObject jObject = obj.getJSONObject("ligne");
                                         JSONObject jObject2 = obj.getJSONObject("arret");
 
-                                        temps.setDirection(obj.getString("terminus"));
+
+                                        String text = new String(obj.getString("terminus").getBytes("ISO-8859-1"), "UTF-8");
+
+
+                                        temps.setDirection(text);
 
                                         temps.setLigne(jObject.getString("numLigne"));
 
@@ -556,7 +568,7 @@ public class TempsActivity extends ActionBarActivity {
 
                                         temps.setSens(obj.getString("sens"));
 
-                                        temps.setTerminus(obj.getString("terminus"));
+                                        temps.setTerminus(text);
 
                                         String temp = obj.getString("temps").replace("Close", "En approche");
 
@@ -568,6 +580,8 @@ public class TempsActivity extends ActionBarActivity {
 
 
                                     } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    } catch (UnsupportedEncodingException e) {
                                         e.printStackTrace();
                                     }
 
