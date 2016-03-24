@@ -17,6 +17,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -28,9 +29,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.NumberPicker;
@@ -138,26 +137,12 @@ public class TempsActivity extends ActionBarActivity {
 
         String id = intents.getStringExtra("libelle");
         setContentView(R.layout.activity_temps);
-        View searchContainer = findViewById(R.id.search_container);
-        final EditText toolbarSearchView = (EditText) findViewById(R.id.search);
-        ImageView searchClearButton = (ImageView) findViewById(R.id.search_clear);
-        searchClearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toolbarSearchView.setText("");
-            }
-        });
-        searchContainer.setVisibility(View.GONE);
 
-        View headerView = getLayoutInflater().inflate(
-                R.layout.view_list_item_header, listView2, false);
 
-         imageView = (ImageView) headerView.findViewById(R.id.imageView);
 
         listView2 = (ListView) findViewById(R.id.list_temps);
-        listView2.addHeaderView(headerView, null, false);
-        TextView t = (TextView) findViewById(R.id.headertext);
-        t.setText(id);
+
+
 
 
 
@@ -179,37 +164,17 @@ public class TempsActivity extends ActionBarActivity {
 
 
 
-        listView2.setOnScrollListener(new AbsListView.OnScrollListener() {
+        mToolbar = (Toolbar) findViewById(R.id.anim_toolbar);
 
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem,
-                                 int visibleItemCount, int totalItemCount) {
-
-                View headerView = view.findViewById(R.id.header);
-
-                final float mTop = -headerView.getTop();
-                float height = headerView.getHeight();
-                if (mTop > height) {
-                    // ignore
-                    return;
-                }
-                View imgView = headerView.findViewById(R.id.header);
-                imgView.setTranslationY(mTop / 2f);
-
-            }
-        });
-
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+
+        collapsingToolbar.setTitle(id);
 
 
         final Intent intent = getIntent();
@@ -258,7 +223,7 @@ public class TempsActivity extends ActionBarActivity {
                 i.putExtra("sens", libelle);
                 i.putExtra("id", arret2);
                 i.putExtra("ligne", ligne);
-                i.putExtra("arret", t.getText().toString());
+                i.putExtra("arret", collapsingToolbar.getTitle().toString());
                 i.putExtra("terminus", terminus);
                 startActivity(i);
 

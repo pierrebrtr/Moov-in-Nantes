@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,11 +20,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -114,19 +112,7 @@ super.onCreate(savedInstanceState);
 
         String id = intents.getStringExtra("libelle");
         setContentView(R.layout.activity_horaires);
-        View searchContainer = findViewById(R.id.search_container);
-        final EditText toolbarSearchView = (EditText) findViewById(R.id.search);
-        ImageView searchClearButton = (ImageView) findViewById(R.id.search_clear);
-        searchClearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toolbarSearchView.setText("");
-            }
-        });
-        searchContainer.setVisibility(View.GONE);
 
-        View headerView = getLayoutInflater().inflate(
-                R.layout.view_list_item_header2, listView3, false);
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -146,11 +132,9 @@ super.onCreate(savedInstanceState);
 
 
         listView3 = (ListView) findViewById(R.id.list_horaires);
-        listView3.addHeaderView(headerView, null, false);
-        TextView t = (TextView) findViewById(R.id.headertext2);
 
 
-        t.setText(intents.getStringExtra("arret") + "  ->   " + intents.getStringExtra("terminus"));
+
 
         adapter = new CustomListAdapterHoraires(this, horairesList);
         listView3.setAdapter(adapter);
@@ -158,40 +142,18 @@ super.onCreate(savedInstanceState);
 
 
 
-        listView3.setOnScrollListener(new AbsListView.OnScrollListener() {
 
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem,
-                                 int visibleItemCount, int totalItemCount) {
-
-                View headerView = view.findViewById(R.id.header2);
-
-                imageView = (ImageView) headerView.findViewById(R.id.imageView);
-
-                final float mTop = -headerView.getTop();
-                float height = headerView.getHeight();
-                if (mTop > height) {
-                    // ignore
-                    return;
-                }
-                View imgView = headerView.findViewById(R.id.header2);
-                imgView.setTranslationY(mTop / 2f);
-
-            }
-        });
-
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.anim_toolbar);
 
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+
+        collapsingToolbar.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
+        collapsingToolbar.setTitle(intents.getStringExtra("arret") + "  ->   " + intents.getStringExtra("terminus"));
 
         Intent intent = getIntent();
 
