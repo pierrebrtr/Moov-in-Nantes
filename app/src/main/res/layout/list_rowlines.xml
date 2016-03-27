@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="72dp"
+    android:background="@drawable/list_row_selector"
+    android:padding="8dp" >
+
+
+    <ImageView android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/image_viewlines"
+        android:layout_marginLeft="16dp" />
+
+    <!-- Movie Title -->
+    <TextView
+
+        android:id="@+id/ligne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="16dp" />
+
+
+    <!-- Genre -->
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/year"
+        android:textSize="0dp" />
+
+
+    <TextView
+        android:id="@+id/color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/year"
+        android:textSize="0dp" />
+
+
+</LinearLayout>

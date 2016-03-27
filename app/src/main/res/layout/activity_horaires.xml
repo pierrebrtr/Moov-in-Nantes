@@ -69,7 +69,7 @@
                 android:layout_height="match_parent"
                 android:divider="@color/list_divider"
                 android:dividerHeight="1dp"
-                android:listSelector="@drawable/list_row_selector"/>
+                android:drawSelectorOnTop="true"/>
 
 
 

@@ -6,63 +6,14 @@
     tools:context="activity.ArretsFragment">
 
 
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-       android:id="@+id/viewsearch"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        tools:context="activity.ArretsFragment"
-        android:background="?attr/colorPrimary"
-        android:weightSum="1">
-
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:id="@+id/imageView3"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.06"
-            android:src="@drawable/ic_bus"
-            android:layout_marginTop="80dp" />
-
-        <EditText
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchligne"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:text="Tapez votre ligne..."
-            android:textColor="#FFF"
-            android:inputType="textNoSuggestions|textCapCharacters"
-            android:editable="false"
-            android:gravity="center_horizontal"
-            android:enabled="true"
-            android:clickable="false"
-            android:elegantTextHeight="false" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="Chercher"
-            android:id="@+id/buttonchercher"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.06"
-            android:layout_marginTop="30dp"
-            android:nestedScrollingEnabled="false" />
-
-    </LinearLayout>
-
-
-
-
-
     <ListView
         android:id="@+id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:divider="@color/list_divider"
         android:dividerHeight="0.5dp"
-        android:listSelector="@drawable/list_row_selector"
+        android:drawSelectorOnTop="true"
+
         android:fastScrollEnabled="true"
         android:fastScrollAlwaysVisible="false"/>
 

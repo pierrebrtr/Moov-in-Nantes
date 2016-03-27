@@ -14,9 +14,9 @@
         android:id="@+id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:divider="@color/list_divider"
+        android:drawSelectorOnTop="true"
         android:dividerHeight="0.5dp"
-        android:listSelector="@drawable/list_row_selector"
+
         android:fastScrollEnabled="true"
         android:fastScrollAlwaysVisible="false"/>
 
