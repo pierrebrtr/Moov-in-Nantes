@@ -4,9 +4,13 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.pandf.moovin.R;
 
@@ -16,8 +20,41 @@ public class SplashScreen extends Activity {
 
 
 
+    private static int REQUEST_CODE = 1;
+
+
     // Splash screen timer
     private static int SPLASH_TIME_OUT = 2000;
+
+
+    public void checkDrawOverlayPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(SplashScreen.this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, REQUEST_CODE);
+
+            }
+        }
+    }
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,  Intent data) {
+        if (requestCode == REQUEST_CODE) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (Settings.canDrawOverlays(this)) {
+                    // continue here - permission was granted
+                } else {
+
+                    Toast.makeText(SplashScreen.this, "Vous devez accepter la permission pour l'application (au prochain démarage)", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +64,8 @@ public class SplashScreen extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        checkDrawOverlayPermission();
 
         ImageView imageloco = (ImageView) findViewById(R.id.imgLogo);
 

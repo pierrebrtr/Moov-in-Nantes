@@ -35,6 +35,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +69,7 @@ public class LigneFragment extends Fragment  {
 
 
 
+    int page = 1;
 
 
 
@@ -99,7 +102,10 @@ public class LigneFragment extends Fragment  {
             }
         });
 
-        dosearchligne();
+        page = 1;
+        dosearchligne("https://api.navitia.io/v1/coverage/fr-nw/networks/network:tan/lines");
+
+
 
     }
 
@@ -168,10 +174,27 @@ public class LigneFragment extends Fragment  {
 
 
     ArrayList<JSONObject> array = new ArrayList<JSONObject>();
-    public void dosearchligne(){
+    public void dosearchligne(String url){
+
+
+        switch (page){
+            case 1:
+                page= 2;
+                break;
+            case 2:
+                page = 3;
+                break;
+            case 3:
+                page=4;
+                break;
+            case 4:
+            page = 5;
+                break;
+
+        }
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                url1, null, new Response.Listener<JSONObject>() {
+                url, null, new Response.Listener<JSONObject>() {
 
 
             public void onResponse(JSONObject response) {
@@ -198,6 +221,7 @@ public class LigneFragment extends Fragment  {
                         ligne.setId(nl.getString("code"));
 
                         linesList.add(ligne);
+
 
 
                     }
@@ -261,12 +285,47 @@ public class LigneFragment extends Fragment  {
         AppController.getInstance().addToRequestQueue(jsonObjReq);
 
 
+        switch (page){
+            case 1:
+
+                break;
+            case 2:
+               dosearchligne("https://api.navitia.io/v1/coverage/fr-nw/networks/network:tan/lines?start_page=0");
+                break;
+            case 3:
+                dosearchligne("https://api.navitia.io/v1/coverage/fr-nw/networks/network:tan/lines?start_page=1");
+
+                break;
+            case 4:
+                dosearchligne("https://api.navitia.io/v1/coverage/fr-nw/networks/network:tan/lines?start_page=2");
+                break;
+            case 5:
+
+
+                break;
+        }
+
 
 
 
 
 
     }
+
+
+ public void sort(){
+
+     Comparator objComparator = new Comparator<Lines>() {
+
+
+         public int compare(Lines o1, Lines o2) {
+             int no1 = Integer.parseInt((String) o1.getNumero().replaceAll("[^\\d.]", ""));
+             int no2 = Integer.parseInt((String) o2.getNumero().replaceAll("[^\\d.]", ""));
+             return  no1 < no2 ? -1 : no1 == no2 ? 0 : 1;
+         }
+     };
+     Collections.sort(linesList, objComparator);
+ }
     @Override
     public void onCreateOptionsMenu(
             Menu menu, MenuInflater inflater) {

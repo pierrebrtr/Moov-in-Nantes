@@ -262,7 +262,7 @@ setHasOptionsMenu(true);
         if (networkInfo != null && networkInfo.isConnected()) {
             // Create an object for subclass of AsyncTask
 
-            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest("http://pierre.hellophoto.fr/tweets/tweet_json?screen_name=infotrafic_tan",
+            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest("http://pierre.hellophoto.fr/tweets/tweet_json?screen_name=reseau_tan",
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
