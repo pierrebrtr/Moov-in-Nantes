@@ -887,8 +887,6 @@ textiti.setText("");
                 }
 
                 try {
-
-
                     String type = "";
                     String heuredepart = "";
                     String heurearrivee = "";
@@ -898,18 +896,10 @@ textiti.setText("");
                     String directionbus = "";
                     String lignebus = "";
                     String arriveebus = "";
-
-
                     JSONArray sections = array.getJSONObject(jsonobjectpos).getJSONArray("sections");
-
-
                     mListView.getAdapter().clear();
 
                     for (int p = 0; p < sections.length(); p++) {
-
-
-
-
 
                         type = sections.getJSONObject(p).getString("type");
 

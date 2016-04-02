@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -30,6 +32,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 import com.pandf.moovin.R;
 
 import org.json.JSONArray;
@@ -43,10 +47,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import adapter.CustomListAdapter;
 import adapter.CustomListAdapterLigne;
 import adapter.LineAdapterQUICK;
 import app.AppController;
 import helper.ConnectionDetector;
+import model.Arrets;
 import model.Lines;
 import util.Spfav;
 
@@ -103,7 +109,7 @@ public class LigneFragment extends Fragment  {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Lines ligne = linesList.get(position);
                String id2 = ligne.getId();
-                dialogRoute(id2);
+                dialogRoute(id2, ligne.getNumero());
             }
         });
 
@@ -122,7 +128,7 @@ public class LigneFragment extends Fragment  {
 
 
 
-    public void dialogRoute(final String id) {
+    public void dialogRoute(final String id, final String numero) {
 
         final ArrayList<Lines> lineslist2 = new ArrayList<Lines>();
 
@@ -132,30 +138,19 @@ public class LigneFragment extends Fragment  {
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 "https://api.navitia.io/v1/coverage/fr-nw/lines/" + id + "/routes", null, new Response.Listener<JSONObject>() {
-
-
             public void onResponse(JSONObject response) {
                 Log.d(TAG, response.toString());
-
-                // Parsing json object response
-                // response will be a json object
                 Log.d("URL", "https://api.navitia.io/v1/coverage/fr-nw/lines/" + id + "/routes");
-
                 try {
                     JSONArray array = response.getJSONArray("routes");
                     for (int v = 0; v < array.length(); v++) {
                         JSONObject nl = array.getJSONObject(v);
-                     String test2 = nl.getJSONObject("direction").getString("name");
-
+                        String test2 = nl.getJSONObject("direction").getString("name");
                         Lines ligne = new Lines();
                         ligne.setLigne(" →" + test2);
                         ligne.setId(nl.getString("id"));
-
+                        ligne.setNumero(numero);
                         lineslist2.add(ligne);
-
-
-
-
                     }
 
 
@@ -164,12 +159,10 @@ public class LigneFragment extends Fragment  {
                 }
 
                 adapterline.notifyDataSetChanged();
-                sort();
+
 
             }
         }, new Response.ErrorListener() {
-
-
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
@@ -190,14 +183,9 @@ public class LigneFragment extends Fragment  {
                             }
                         })
 
-
                         .show();
 
-
-
             }
-
-
         }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -216,13 +204,6 @@ public class LigneFragment extends Fragment  {
 
         AppController.getInstance().addToRequestQueue(jsonObjReq);
 
-
-
-
-
-
-
-
         AlertDialog.Builder builderSingle = new AlertDialog.Builder(getActivity());
         builderSingle.setTitle("Votre direction ?");
         builderSingle.setAdapter(
@@ -230,23 +211,126 @@ public class LigneFragment extends Fragment  {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String strName = adapterline.getItem(which).getLigne();
-                        AlertDialog.Builder builderInner = new AlertDialog.Builder(
-                               getActivity());
-                        builderInner.setMessage(strName);
-                        builderInner.setTitle("Your Selected Item is");
-                        builderInner.setPositiveButton(
-                                "Ok",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(
-                                            DialogInterface dialog,
-                                            int which) {
-                                        dialog.dismiss();
+                        dialog.dismiss();
+                        DialogPlus dialogplus = DialogPlus.newDialog(getActivity())
+                                .setContentHolder(new ViewHolder(R.layout.dialog_linesarrets))
+                                .setCancelable(true)
+                                .setGravity(Gravity.BOTTOM)
+                                .setInAnimation(R.anim.abc_fade_in)
+                                .setHeader(R.layout.header_dialogplus)
+                                .setOutAnimation(R.anim.abc_fade_out)
+                                .setExpanded(false)
+                                .create();
+                        dialogplus.show();
+
+                        TextView textiti = (TextView) dialogplus.getHeaderView().findViewById(R.id.textheader);
+                        textiti.setText("Ligne " + adapterline.getItem(which).getNumero());
+                        TextView textiti2 = (TextView) dialogplus.getHeaderView().findViewById(R.id.textheadertemps);
+                        textiti2.setText("");
+                        ListView listview = (ListView) dialogplus.findViewById(R.id.listviewlignesarrets);
+                        final ArrayList<Arrets> lineslist3 = new ArrayList<Arrets>();
+                        final CustomListAdapter adapterline2 = new CustomListAdapter(getActivity(), lineslist3, false);
+
+
+
+                        listview.setAdapter(adapterline2);
+
+                        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                                TextView textView = (TextView) view.findViewById(R.id.lieu);
+                                String text = textView.getText().toString();
+
+
+                                TextView textView2 = (TextView) view.findViewById(R.id.arret);
+                                String libelle = textView2.getText().toString();
+
+                                Intent i = new Intent(LigneFragment.this.getActivity(), TempsActivity.class);
+                                i.putExtra("text", text);
+                                i.putExtra("libelle", libelle);
+                                startActivity(i);
+
+
+                            }
+                        });
+
+                        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                                "https://api.navitia.io/v1/coverage/fr-nw/routes/" + adapterline.getItem(which).getId() + "?depth=3", null, new Response.Listener<JSONObject>() {
+                            public void onResponse(JSONObject response) {
+                                Log.d(TAG, response.toString());
+
+                                // Parsing json object response
+                                // response will be a json object
+
+                                try {
+                                    JSONArray array = response.getJSONArray("routes");
+
+
+                                    JSONArray array2 = array.getJSONObject(0).getJSONArray("stop_points");
+
+                                    for (int v = 0; v < array2.length(); v++) {
+
+                                        JSONObject nl = array2.getJSONObject(v);
+
+                                        Arrets arret = new Arrets();
+
+                                        arret.setArret(nl.getString(("name")));
+                                        ArrayList<String> list = new ArrayList<String>();
+                                        list.add(0, numero);
+                                        arret.setLigne(list);
+                                        String test1 = nl.getJSONObject("stop_area").getString("id");
+                                        String test2 = test1.substring(test1.lastIndexOf(":") + 1);
+                                        arret.setLieu(test2);
+                                        Log.d("TEST", arret.getLieu());
+                                        lineslist3.add(arret);
+
+
                                     }
-                                });
-                        builderInner.show();
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+
+                                adapterline2.notifyDataSetChanged();
+
+                            }
+                        }, new Response.ErrorListener() {
+
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+                            }
+
+
+                        }) {
+                            @Override
+                            public Map<String, String> getHeaders() throws AuthFailureError {
+                                return createBasicAuthHeader("a6ca7725-5504-474f-925b-6aa310d48cce", "stream53");
+                            }
+                        };
+
+
+                        // Adding request to request queue
+                        try {
+                            jsonObjReq.getHeaders();
+                        } catch (AuthFailureError authFailureError) {
+                            authFailureError.printStackTrace();
+                        }
+
+
+                        AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+
                     }
+
                 });
         builderSingle.show();
 
@@ -336,7 +420,18 @@ public class LigneFragment extends Fragment  {
 
                         }
 
-                        ligne.setLigne(nl.getString("name"));
+                        String direction = nl.getString("name");
+
+                        if (direction.equals("-")){
+
+                            ligne.setLigne(nl.getJSONArray("routes").getJSONObject(0).getString("name"));
+
+                        }else {
+
+                            ligne.setLigne(direction);
+                        }
+
+
                         ligne.setColor(nl.getString("color"));
                         ligne.setId(nl.getString("id"));
 
