@@ -20,6 +20,9 @@ public class MyIntro extends AppIntro2 {
     public void init(Bundle savedInstanceState) {
 
 
+
+
+
 setFlowAnimation();
 
         // Instead of fragments, you can also use our default slide

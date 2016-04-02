@@ -89,6 +89,7 @@ public class Tab2 extends Fragment {
         viewimage.setVisibility(View.GONE);
         mListView.getAdapter().clearAll();
 
+
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();

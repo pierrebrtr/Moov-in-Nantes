@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.provider.Settings;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -19,6 +20,8 @@ import util.Utility;
 public class SplashScreen extends Activity {
 
 
+    private static String URL = "open.tan.fr/ewp/arrets.json";
+    private static String FILE_NAME = "CachedResponse";
 
     private static int REQUEST_CODE = 1;
 
@@ -76,6 +79,13 @@ public class SplashScreen extends Activity {
 
       if (isFirstTime){
 
+
+          StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+          StrictMode.setThreadPolicy(policy);
+
+
+
+
            new Handler().postDelayed(new Runnable() {
 
             /*
@@ -121,5 +131,6 @@ public class SplashScreen extends Activity {
 
 
     }
+
 
 }

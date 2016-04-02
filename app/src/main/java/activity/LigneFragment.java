@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -142,33 +141,6 @@ public class LigneFragment extends Fragment  {
 
         setHasOptionsMenu(true);
 
-
-        View searchContainer = getActivity().findViewById(R.id.search_container);
-        final EditText toolbarSearchView = (EditText) getActivity().findViewById(R.id.search);
-        ImageView searchClearButton = (ImageView) getActivity().findViewById(R.id.search_clear);
-        searchClearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toolbarSearchView.setText("");
-            }
-        });
-        searchContainer.setVisibility(View.GONE);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 
@@ -215,7 +187,17 @@ public class LigneFragment extends Fragment  {
 
                         Lines ligne = new Lines();
 
-                        ligne.setNumero(nl.getString("code"));
+
+
+                        if (nl.getString("code").equals("Navibus")) {
+                            ligne.setNumero("⛵");
+                        }else if (nl.getString("code").equals("Aéroport")) {
+                            ligne.setNumero("✈️");
+                        } else {
+                            ligne.setNumero(nl.getString("code"));
+
+                        }
+
                         ligne.setLigne(nl.getString("name"));
                         ligne.setColor(nl.getString("color"));
                         ligne.setId(nl.getString("code"));
@@ -232,6 +214,7 @@ public class LigneFragment extends Fragment  {
                 }
 
                 adapter.notifyDataSetChanged();
+                sort();
 
             }
         }, new Response.ErrorListener() {
@@ -290,14 +273,14 @@ public class LigneFragment extends Fragment  {
 
                 break;
             case 2:
-               dosearchligne("https://api.navitia.io/v1/coverage/fr-nw/networks/network:tan/lines?start_page=0");
+               dosearchligne("https://api.navitia.io/v1/coverage/fr-nw/networks/network:tan/lines?start_page=1");
                 break;
             case 3:
-                dosearchligne("https://api.navitia.io/v1/coverage/fr-nw/networks/network:tan/lines?start_page=1");
+                dosearchligne("https://api.navitia.io/v1/coverage/fr-nw/networks/network:tan/lines?start_page=2");
 
                 break;
             case 4:
-                dosearchligne("https://api.navitia.io/v1/coverage/fr-nw/networks/network:tan/lines?start_page=2");
+
                 break;
             case 5:
 
@@ -319,9 +302,43 @@ public class LigneFragment extends Fragment  {
 
 
          public int compare(Lines o1, Lines o2) {
+             boolean validated = false;
+
+             if (o1.getNumero().replaceAll("[^\\d.]", "").length() == 0) {
+
+                validated = true;
+                 return 1;
+
+             }
+
+             if (o2.getNumero().replaceAll("[^\\d.]", "").length() == 0) {
+                 validated = true;
+                 return -1;
+
+             }
+
+             if (o1.getNumero().contains("C") || o1.getNumero().contains("E")){
+                 validated = true;
+                 return 1;
+             }
+             if (o2.getNumero().contains("C") || o2.getNumero().contains("E")) {
+                 validated = true;
+                 return -1;
+
+             }
+
              int no1 = Integer.parseInt((String) o1.getNumero().replaceAll("[^\\d.]", ""));
+
              int no2 = Integer.parseInt((String) o2.getNumero().replaceAll("[^\\d.]", ""));
-             return  no1 < no2 ? -1 : no1 == no2 ? 0 : 1;
+
+
+
+             if (validated == false) {
+                 return no1 < no2 ? -1 : no1 == no2 ? 0 : 1;
+             }
+
+
+             return no1;
          }
      };
      Collections.sort(linesList, objComparator);
