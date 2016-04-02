@@ -1,6 +1,8 @@
 package activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -41,6 +44,7 @@ import java.util.List;
 import java.util.Map;
 
 import adapter.CustomListAdapterLigne;
+import adapter.LineAdapterQUICK;
 import app.AppController;
 import helper.ConnectionDetector;
 import model.Lines;
@@ -97,7 +101,9 @@ public class LigneFragment extends Fragment  {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Lines ligne = linesList.get(position);
+               String id2 = ligne.getId();
+                dialogRoute(id2);
             }
         });
 
@@ -114,6 +120,138 @@ public class LigneFragment extends Fragment  {
 
 
 
+
+
+    public void dialogRoute(final String id) {
+
+        final ArrayList<Lines> lineslist2 = new ArrayList<Lines>();
+
+
+        final ArrayAdapter<Lines> adapter2 = new ArrayAdapter<Lines>(getActivity(), android.R.layout.simple_list_item_1, lineslist2);
+        final LineAdapterQUICK adapterline = new LineAdapterQUICK(getActivity(), lineslist2);
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                "https://api.navitia.io/v1/coverage/fr-nw/lines/" + id + "/routes", null, new Response.Listener<JSONObject>() {
+
+
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, response.toString());
+
+                // Parsing json object response
+                // response will be a json object
+                Log.d("URL", "https://api.navitia.io/v1/coverage/fr-nw/lines/" + id + "/routes");
+
+                try {
+                    JSONArray array = response.getJSONArray("routes");
+                    for (int v = 0; v < array.length(); v++) {
+                        JSONObject nl = array.getJSONObject(v);
+                     String test2 = nl.getJSONObject("direction").getString("name");
+
+                        Lines ligne = new Lines();
+                        ligne.setLigne(" →" + test2);
+                        ligne.setId(nl.getString("id"));
+
+                        lineslist2.add(ligne);
+
+
+
+
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                adapterline.notifyDataSetChanged();
+                sort();
+
+            }
+        }, new Response.ErrorListener() {
+
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+                new MaterialStyledDialog(getActivity())
+                        .setTitle("Erreur")
+                        .setDescription("Une erreur est survenue")
+                        .setHeaderColor(R.color.colorError)
+                        .setCancelable(false)
+
+                        .setIcon(R.drawable.ic_alert_circle_outline_white_48dp)
+                        .setPositive("Retour", new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                Intent intent = new Intent();
+                                intent.setClass(getActivity(), MainActivity.class);
+                                startActivity(intent);
+                            }
+                        })
+
+
+                        .show();
+
+
+
+            }
+
+
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return createBasicAuthHeader("a6ca7725-5504-474f-925b-6aa310d48cce", "stream53");
+            }
+        };
+
+
+        // Adding request to request queue
+        try {
+            jsonObjReq.getHeaders();
+        } catch (AuthFailureError authFailureError) {
+            authFailureError.printStackTrace();
+        }
+
+
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+
+
+
+
+
+
+
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(getActivity());
+        builderSingle.setTitle("Votre direction ?");
+        builderSingle.setAdapter(
+                adapterline,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String strName = adapterline.getItem(which).getLigne();
+                        AlertDialog.Builder builderInner = new AlertDialog.Builder(
+                               getActivity());
+                        builderInner.setMessage(strName);
+                        builderInner.setTitle("Your Selected Item is");
+                        builderInner.setPositiveButton(
+                                "Ok",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(
+                                            DialogInterface dialog,
+                                            int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        builderInner.show();
+                    }
+                });
+        builderSingle.show();
+
+
+    }
 
 
 
@@ -200,7 +338,7 @@ public class LigneFragment extends Fragment  {
 
                         ligne.setLigne(nl.getString("name"));
                         ligne.setColor(nl.getString("color"));
-                        ligne.setId(nl.getString("code"));
+                        ligne.setId(nl.getString("id"));
 
                         linesList.add(ligne);
 
@@ -391,6 +529,8 @@ public class LigneFragment extends Fragment  {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 }
