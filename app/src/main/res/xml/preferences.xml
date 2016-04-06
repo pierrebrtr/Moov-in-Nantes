@@ -29,6 +29,7 @@
             android:summary="L'équipe de développement"
             android:key="propos">
         </PreferenceScreen>
+        
         <PreferenceScreen
             android:title="Contact"
             android:summary="Nous contacter, signaler un bug"

@@ -18,6 +18,8 @@ import android.view.MenuItem;
 
 import com.android.colorpicker.ColorPickerDialog;
 import com.android.colorpicker.ColorPickerSwatch;
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.pandf.moovin.BuildConfig;
 import com.pandf.moovin.R;
 
@@ -222,6 +224,20 @@ public class MyPreferencesActivity extends ActionBarActivity {
                 public boolean onPreferenceClick(Preference arg0) {
                     Intent intent = new Intent(getActivity(), AproposActivity.class);
                     startActivity(intent);
+                    return true;
+                }
+            });
+
+            Preference userButtond = (Preference) findPreference("libraries");
+            userButtond.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference arg0) {
+                    new LibsBuilder()
+
+                            //provide a style (optional) (LIGHT, DARK, LIGHT_DARK_TOOLBAR)
+                            .withActivityStyle(Libs.ActivityStyle.LIGHT)
+                            //start the activity
+                            .start(MyPreferencesActivity.this);
                     return true;
                 }
             });
