@@ -984,12 +984,8 @@ public class TempsActivity extends ActionBarActivity  {
                 Toast.makeText(getApplicationContext(), "Chargement..",
                         Toast.LENGTH_SHORT).show();
                 Intent intent = getIntent();
-
                 String text = intent.getExtras().getString("text");
-
                 String libelle = intent.getExtras().getString("libelle");
-
-
                 Intent i = new Intent(TempsActivity.this, TempsActivity.class);
                 i.putExtra("text", text);
                 i.putExtra("libelle", libelle);
@@ -1005,6 +1001,7 @@ public class TempsActivity extends ActionBarActivity  {
             }
         });
         bubbleView.setShouldStickToWall(true);
+
         bubblesManager.addBubble(bubbleView, 60, 20);
     }
 

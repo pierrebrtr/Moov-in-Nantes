@@ -14,7 +14,7 @@
         android:id="@+id/action_bubble"
         android:title="Ajouter une bulle d'accès rapide"
         android:orderInCategory="100"
-        android:icon="@drawable/bus2"
+        android:icon="@drawable/ic_chart_bubble_white_24dp"
         app:showAsAction="ifRoom" />
 
 
