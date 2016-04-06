@@ -18,10 +18,10 @@ android {
         applicationId "com.pandf.moovin"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 10
+        versionCode 11
 
 
-        versionName "0.5.2"
+        versionName "0.5.3"
     }
     buildTypes {
         release {

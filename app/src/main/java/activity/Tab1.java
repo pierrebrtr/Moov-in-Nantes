@@ -53,7 +53,7 @@ public class Tab1 extends Fragment {
 
 
 
-    File mfile =new File("/sdcard/favoris.xml");
+    File mfile =new File("/sdcard/arretsfavoris.xml");
 
     public Tab1() {
         // Required empty public constructor
@@ -135,9 +135,14 @@ public class Tab1 extends Fragment {
                     TextView textView2 = (TextView) view.findViewById(R.id.arret);
                     String libelle = textView2.getText().toString();
 
+                    TextView textView3 = (TextView) view.findViewById(R.id.ligne);
+                    String ligne = textView3.getText().toString();
+
+
                     Intent i = new Intent(getActivity(), TempsActivity.class);
                     i.putExtra("text", text);
                     i.putExtra("libelle", libelle);
+                    i.putExtra("ligne", ligne);
                     startActivity(i);
 
 
@@ -219,7 +224,7 @@ public class Tab1 extends Fragment {
 
             new MaterialStyledDialog(getActivity())
                     .setTitle("Importer/Exporter")
-                    .setDescription("Cette option va vous permettre de sauvegarder et de restaurer à partir de la mémoire interne de votre téléphone les favoris de l'application")
+                    .setDescription("[Si vous avez des bugs, tentez de réinitialiser cette liste en tout supprimant et en exportant] Cette option va vous permettre de sauvegarder et de restaurer à partir de la mémoire interne de votre téléphone les favoris de l'application")
                     .setHeaderColor(R.color.colorSuccess)
                     .setIcon(R.drawable.ic_swap_vert_white_24dp)
                     .setPositive("Importer", new MaterialDialog.SingleButtonCallback() {

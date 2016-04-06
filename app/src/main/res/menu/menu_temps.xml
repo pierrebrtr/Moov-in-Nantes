@@ -4,10 +4,19 @@
     tools:context=".MainActivity">
 
     <item
+        android:id="@+id/action_fave"
+        android:title="Ajouter/Retirer des favoris"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_star_outline_white_24dp"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_bubble"
         android:title="Ajouter une bulle d'accès rapide"
         android:orderInCategory="100"
         android:icon="@drawable/bus2"
         app:showAsAction="ifRoom" />
+
+
 
 </menu>

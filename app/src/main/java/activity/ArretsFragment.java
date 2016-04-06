@@ -25,7 +25,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -297,9 +296,14 @@ public class ArretsFragment extends Fragment  {
                 TextView textView2 = (TextView) view.findViewById(R.id.arret);
                 String libelle = textView2.getText().toString();
 
+                TextView textView3 = (TextView) view.findViewById(R.id.ligne);
+                String ligne = textView3.getText().toString();
+
+
                 Intent i = new Intent(ArretsFragment.this.getActivity(), TempsActivity.class);
                 i.putExtra("text", text);
                 i.putExtra("libelle", libelle);
+                i.putExtra("ligne", ligne);
                 startActivity(i);
 
 
@@ -308,36 +312,6 @@ public class ArretsFragment extends Fragment  {
 
 
 
-            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
-
-                @Override
-                public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long arg3) {
-
-
-                    Arrets item = (Arrets) arg0.getItemAtPosition(position);
-
-                    ImageView button = (ImageView) view.findViewById(R.id.imgbtn_favorite);
-                    sharedPreference = new Spfav();
-
-
-                    String tag = button.getTag().toString();
-                    if (tag.equalsIgnoreCase("grey")) {
-                        sharedPreference.addFavorite(getActivity(), item);
-                        Toast.makeText(getActivity(), "Ajouté au favoris !", Toast.LENGTH_SHORT).show();
-
-                        button.setTag("red");
-
-                    } else if (!tag.equalsIgnoreCase("grey")) {
-
-
-                        Toast.makeText(getActivity(), "Déjà ajouté aux favoris !", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                    return true;
-                }
-            });
 
 
     }

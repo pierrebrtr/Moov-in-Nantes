@@ -1,5 +1,6 @@
 package activity;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Notification;
@@ -59,30 +60,32 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+import adapter.CustomListAdapter;
 import adapter.CustomListAdapterTemps;
 import app.AppController;
+import model.Arrets;
 import model.Temps;
+import util.Spfav;
 import util.Utility;
 
 
-public class TempsActivity extends ActionBarActivity {
+public class TempsActivity extends ActionBarActivity  {
     final Random rnd = new Random();
     private static final String TAG = MainActivity.class.getSimpleName();
     private BubblesManager bubblesManager;
-
-
-
-
-
     private int Timebeforestart;
     private int Timenotif;
-
-
-
+    Spfav sharedPreference;
+    List<Arrets> favorites;
+    Activity activity;
+    CustomListAdapter productListAdapter;
+    public static final String PREFS_NAME = "PRODUCT_APP";
+    public static final String FAVORITES = "Product_Favorite";
 
     // Movies json url
     private Toolbar mToolbar;
@@ -93,6 +96,11 @@ public class TempsActivity extends ActionBarActivity {
     private Menu menu;
     private MenuInflater inflater;
     private PendingIntent pendingIntent;
+    String lieuid = "";
+    String lignesextra = "";
+    String arretextra = "";
+
+    boolean favorited = false;
 
    private String arret;
 
@@ -143,9 +151,6 @@ public class TempsActivity extends ActionBarActivity {
         listView2 = (ListView) findViewById(R.id.list_temps);
 
 
-
-
-
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -175,12 +180,15 @@ public class TempsActivity extends ActionBarActivity {
         final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
 
         collapsingToolbar.setTitle(id);
+        arretextra = id;
 
 
         final Intent intent = getIntent();
 
         final String url = "http://open.tan.fr/ewp/tempsattente.json/" + intent.getExtras().getString("text") + " ";
 
+        lieuid = intent.getExtras().getString("text");
+        lignesextra = intent.getExtras().getString("ligne");
 
         Log.d("ArretsActivityID", intent.getExtras().getString("text"));
 
@@ -600,6 +608,8 @@ public class TempsActivity extends ActionBarActivity {
 
     }
 
+
+
     private class GetXMLTask extends AsyncTask<String, Void, Bitmap> {
         @Override
         protected Bitmap doInBackground(String... urls) {
@@ -767,7 +777,8 @@ public class TempsActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.menu_temps, menu);
-
+        this.menu = menu;
+        testfave();
 
         return true;//return true so that the menu pop up is opened
 
@@ -796,10 +807,146 @@ public class TempsActivity extends ActionBarActivity {
             addNewBubble();
             return true;
         }
+        if (id == R.id.action_fave) {
+            managefave();
+            return true;
+        }
 
         return (super.onOptionsItemSelected(menuItem));
     }
 
+    private void testfave() {
+        sharedPreference = new Spfav();
+        favorites = sharedPreference.getFavorites(TempsActivity.this);
+        final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+
+
+        if (favorites == null) {
+            menu.getItem(0).setIcon(R.drawable.ic_star_outline_white_24dp);
+            favorited = false;
+        } else {
+
+            if (favorites.size() == 0) {
+                menu.getItem(0).setIcon(R.drawable.ic_star_outline_white_24dp);
+                favorited = false;
+            }
+            if (favorites != null) {
+
+                for (int v = 0; v < favorites.size(); v++) {
+                    Arrets arrets = favorites.get(v);
+                    if (arrets.getLieu().contains(lieuid)){
+
+                        menu.getItem(0).setIcon(R.drawable.ic_star_white_24dp);
+                        favorited = true;
+                    }else if (!arrets.getLieu().contains(lieuid)) {
+                        menu.getItem(0).setIcon(R.drawable.ic_star_outline_white_24dp);
+                        favorited = false;
+                    }
+
+                }
+
+            }
+
+
+        }
+
+
+
+
+
+    }
+
+
+    private void managefave() {
+        sharedPreference = new Spfav();
+        favorites = sharedPreference.getFavorites(TempsActivity.this);
+        final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+
+
+        if (favorites == null) {
+
+            if (!favorited) {
+                Arrets item = new Arrets();
+                item.setArret(collapsingToolbar.getTitle().toString());
+                item.setLieu(lieuid);
+
+                ArrayList<String> arretsList = new ArrayList<String>();
+                if (lignesextra.contains("'")){
+                    arretsList = new  ArrayList<String>(Arrays.asList(lignesextra.split(",[ ]*")));
+                }else {
+                    arretsList.add(lignesextra);
+                }
+
+                item.setLigne(arretsList);
+
+                sharedPreference.addFavorite(TempsActivity.this, item);
+                Log.d("FAVORITES", "ADDED");
+                favorited = true;
+            }
+
+            if (favorited){
+                menu.getItem(0).setIcon(R.drawable.ic_star_white_24dp);
+            }else if (!favorited) {
+                menu.getItem(0).setIcon(R.drawable.ic_star_outline_white_24dp);
+            }
+
+        } else {
+
+            if (favorites.size() == 0) {
+                if (!favorited) {
+                    Arrets item = new Arrets();
+                    item.setArret(collapsingToolbar.getTitle().toString());
+                    item.setLieu(lieuid);
+
+                    ArrayList<String> arretsList = new ArrayList<String>();
+                    if (lignesextra.contains("'")){
+                        arretsList = new  ArrayList<String>(Arrays.asList(lignesextra.split(",[ ]*")));
+                    }else {
+                        arretsList.add(lignesextra);
+                    }
+
+                    item.setLigne(arretsList);
+
+                    sharedPreference.addFavorite(TempsActivity.this, item);
+                    Log.d("FAVORITES", "ADDED");
+                    favorited = true;
+                }
+
+            }
+            if (favorites != null) {
+                productListAdapter = new CustomListAdapter(TempsActivity.this, favorites, true);
+            }
+
+            if (favorited) {
+
+                for (int v = 0; v < favorites.size(); v++) {
+                    sharedPreference = new Spfav();
+                    sharedPreference.removeFavorite(TempsActivity.this,
+                            favorites.get(v));
+                    favorites.remove(favorites.get(v));
+                    sharedPreference.saveFavorites(TempsActivity.this, favorites);
+                    Log.d("FAVORITES", "REMOVED");
+                    favorited = false;
+                }
+            }
+
+                if (favorited){
+                    menu.getItem(0).setIcon(R.drawable.ic_star_white_24dp);
+                }else if (!favorited) {
+                    menu.getItem(0).setIcon(R.drawable.ic_star_outline_white_24dp);
+                }
+
+
+
+
+
+            // Inflate the layout for this fragment
+
+        }
+
+
+
+    }
 
 
     private void addNewBubble() {
@@ -808,9 +955,6 @@ public class TempsActivity extends ActionBarActivity {
         ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
 // generate random color
         int color1 = generator.getRandomColor();
-
-
-
         BubbleLayout bubbleView = (BubbleLayout) LayoutInflater.from(TempsActivity.this).inflate(R.layout.bubble_layout, null);
 
         TextDrawable drawable = TextDrawable.builder()
@@ -821,14 +965,8 @@ public class TempsActivity extends ActionBarActivity {
                 .fontSize(toPx(20))
                 .endConfig()
                 .buildRound(id, color1);
-
-
         ImageView image = (ImageView) bubbleView.findViewById(R.id.avatar);
         image.setImageDrawable(drawable2);
-
-
-
-
 
         bubbleView.setOnBubbleClickListener(new BubbleLayout.OnBubbleClickListener() {
 
