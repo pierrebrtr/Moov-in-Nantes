@@ -15,7 +15,7 @@ import model.Arrets;
 
 public class Spfav {
 
-    public static final String PREFS_NAME = "PRODUCT_APP";
+    public static final String PREFS_NAME = "PRODUCT_APP_New";
     public static final String FAVORITES = "Product_Favorite_New";
 
     public Spfav() {

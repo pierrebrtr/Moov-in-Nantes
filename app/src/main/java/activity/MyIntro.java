@@ -4,14 +4,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import com.github.paolorotolo.appintro.AppIntro2;
+import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.pandf.moovin.R;
 
 /**
  * Created by dev on 27/07/2015.
  */
-public class MyIntro extends AppIntro2 {
+public class MyIntro extends AppIntro {
 
     private static final String MY_PREFERENCES = "my_preferences";
 
@@ -21,13 +21,18 @@ public class MyIntro extends AppIntro2 {
 
 
 
+        showSkipButton(true);
+        setSkipText("Passer");
+        setDoneText("Okay");
 
 
-setFlowAnimation();
+
 
         // Instead of fragments, you can also use our default slide
-        // Just set a title, description, background and image. AppIntro will do the rest
+
         addSlide(AppIntroFragment.newInstance("Bienvenue", "Sur Moov'in Nantes", R.drawable.ic_logo, Color.parseColor("#2196F3")));
+
+
         addSlide(AppIntroFragment.newInstance("Itinéraires", "Planifiez tous vos déplacements grâce au moteur d'itinéraire.", R.drawable.itineraire, Color.parseColor("#3F51B5")));
         addSlide(AppIntroFragment.newInstance("Trafic", "Retrouvez les alertes trafic de la Tan.", R.drawable.trafic, Color.parseColor("#388E3C")));
         addSlide(AppIntroFragment.newInstance("Parkings", "Trouvez une place rapidement dans un des parkings Nantais.", R.drawable.parking, Color.parseColor("#C2185B")));
@@ -36,6 +41,7 @@ setFlowAnimation();
         // OPTIONAL METHODS
 
         showDoneButton(true);
+
 
 
         // Turn vibration on and set intensity

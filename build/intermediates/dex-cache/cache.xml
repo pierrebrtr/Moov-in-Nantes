@@ -1,26 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
+<items version="2" />
 
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\transforms\instantRunSlicer\debug\jars\1\5\main_sliceb.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="a34f4f6370c282aa0bcd5ad946fd069af3cfd478">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\transforms\dex\debug\folders\1000\5\main_sliceb_7bdcb0c418eff4c597a4272047d61af0dd01b863\classes.dex" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\transforms\instantRunSlicer\debug\jars\1\5\main_slice.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="c06a537782e8f03ae8885f918a514dd737e04d50">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\transforms\dex\debug\folders\1000\5\main_slice_99565d70a27db982a7965bad592115fe5436d736\classes.dex" />
-    </item>
-    <item
-        jar="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\transforms\instantRunSlicer\debug\jars\1\1a\dependencies.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="ce6a3c8732b72ceddcdf7c642169c664aed4ee8c">
-        <dex dex="C:\Users\pierre\AndroidStudioProjects\Tan\app\build\intermediates\transforms\dex\debug\folders\1000\1a\dependencies_2beb8d294faf33699a96c14535c94f2a887f94f0\classes.dex" />
-    </item>
-
-</items>

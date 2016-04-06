@@ -85,7 +85,7 @@ public class TempsActivity extends ActionBarActivity  {
     Activity activity;
     CustomListAdapter productListAdapter;
     public static final String PREFS_NAME = "PRODUCT_APP";
-    public static final String FAVORITES = "Product_Favorite";
+    public static final String FAVORITES = "Product_Favorite_New";
 
     // Movies json url
     private Toolbar mToolbar;
@@ -821,26 +821,32 @@ public class TempsActivity extends ActionBarActivity  {
         final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
 
 
+        Intent intents = getIntent();
+        lieuid = intents.getExtras().getString("text");
+        lignesextra = intents.getExtras().getString("ligne");
+        arretextra = intents.getExtras().getString("libelle");
+
+
         if (favorites == null) {
             menu.getItem(0).setIcon(R.drawable.ic_star_outline_white_24dp);
             favorited = false;
+
         } else {
 
             if (favorites.size() == 0) {
                 menu.getItem(0).setIcon(R.drawable.ic_star_outline_white_24dp);
                 favorited = false;
+
             }
             if (favorites != null) {
 
+                favorites = sharedPreference.getFavorites(TempsActivity.this);
                 for (int v = 0; v < favorites.size(); v++) {
                     Arrets arrets = favorites.get(v);
-                    if (arrets.getLieu().contains(lieuid)){
-
+                    if (arrets.getLieu().equals(lieuid)){
                         menu.getItem(0).setIcon(R.drawable.ic_star_white_24dp);
                         favorited = true;
-                    }else if (!arrets.getLieu().contains(lieuid)) {
-                        menu.getItem(0).setIcon(R.drawable.ic_star_outline_white_24dp);
-                        favorited = false;
+                        Log.d("TEST FAV", "Already fave");
                     }
 
                 }
@@ -862,12 +868,16 @@ public class TempsActivity extends ActionBarActivity  {
         favorites = sharedPreference.getFavorites(TempsActivity.this);
         final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
 
+        Intent intents = getIntent();
+        lieuid = intents.getExtras().getString("text");
+        lignesextra = intents.getExtras().getString("ligne");
+        arretextra = intents.getExtras().getString("libelle");
 
         if (favorites == null) {
 
             if (!favorited) {
                 Arrets item = new Arrets();
-                item.setArret(collapsingToolbar.getTitle().toString());
+                item.setArret(arretextra);
                 item.setLieu(lieuid);
 
                 ArrayList<String> arretsList = new ArrayList<String>();
@@ -881,60 +891,59 @@ public class TempsActivity extends ActionBarActivity  {
 
                 sharedPreference.addFavorite(TempsActivity.this, item);
                 Log.d("FAVORITES", "ADDED");
+                menu.getItem(0).setIcon(R.drawable.ic_star_white_24dp);
                 favorited = true;
             }
 
-            if (favorited){
-                menu.getItem(0).setIcon(R.drawable.ic_star_white_24dp);
-            }else if (!favorited) {
-                menu.getItem(0).setIcon(R.drawable.ic_star_outline_white_24dp);
-            }
+            Log.d("TEST FAV 2", "NULL");
 
         } else {
 
             if (favorites.size() == 0) {
-                if (!favorited) {
-                    Arrets item = new Arrets();
-                    item.setArret(collapsingToolbar.getTitle().toString());
-                    item.setLieu(lieuid);
-
-                    ArrayList<String> arretsList = new ArrayList<String>();
-                    if (lignesextra.contains("'")){
-                        arretsList = new  ArrayList<String>(Arrays.asList(lignesextra.split(",[ ]*")));
-                    }else {
-                        arretsList.add(lignesextra);
-                    }
-
-                    item.setLigne(arretsList);
-
-                    sharedPreference.addFavorite(TempsActivity.this, item);
-                    Log.d("FAVORITES", "ADDED");
-                    favorited = true;
-                }
-
+                Log.d("TEST FAV 2", "Size 0");
             }
             if (favorites != null) {
                 productListAdapter = new CustomListAdapter(TempsActivity.this, favorites, true);
             }
 
-            if (favorited) {
+            if (!favorited) {
+                Arrets item = new Arrets();
+                item.setArret(arretextra);
+                item.setLieu(lieuid);
 
+                ArrayList<String> arretsList = new ArrayList<String>();
+                if (lignesextra.contains("'")) {
+                    arretsList = new ArrayList<String>(Arrays.asList(lignesextra.split(",[ ]*")));
+                } else {
+                    arretsList.add(lignesextra);
+                }
+
+                item.setLigne(arretsList);
+                sharedPreference.addFavorite(TempsActivity.this, item);
+                Log.d("FAVORITES", "ADDED");
+                menu.getItem(0).setIcon(R.drawable.ic_star_white_24dp);
+                favorited = true;
+
+            } else {
+
+                Intent intents2 = getIntent();
+                lieuid = intents2.getExtras().getString("text");
+                lignesextra = intents2.getExtras().getString("ligne");
+                arretextra = intents2.getExtras().getString("libelle");
                 for (int v = 0; v < favorites.size(); v++) {
-                    sharedPreference = new Spfav();
-                    sharedPreference.removeFavorite(TempsActivity.this,
-                            favorites.get(v));
-                    favorites.remove(favorites.get(v));
-                    sharedPreference.saveFavorites(TempsActivity.this, favorites);
-                    Log.d("FAVORITES", "REMOVED");
-                    favorited = false;
+
+                    if (favorites.get(v).getLieu().equals(lieuid)) {
+                        sharedPreference.removeFavorite(TempsActivity.this,
+                                favorites.get(v));
+                        favorites.remove(favorites.get(v));
+                        sharedPreference.saveFavorites(TempsActivity.this, favorites);
+                        Log.d("FAVORITES", "REMOVED");
+                        menu.getItem(0).setIcon(R.drawable.ic_star_outline_white_24dp);
+                        favorited = false;
+                    }
                 }
             }
 
-                if (favorited){
-                    menu.getItem(0).setIcon(R.drawable.ic_star_white_24dp);
-                }else if (!favorited) {
-                    menu.getItem(0).setIcon(R.drawable.ic_star_outline_white_24dp);
-                }
 
 
 
