@@ -249,9 +249,13 @@ public class LigneFragment extends Fragment  {
                                 TextView textView2 = (TextView) view.findViewById(R.id.arret);
                                 String libelle = textView2.getText().toString();
 
+                                TextView textView3 = (TextView) view.findViewById(R.id.ligne);
+                                String ligne = textView3.getText().toString();
+
                                 Intent i = new Intent(LigneFragment.this.getActivity(), TempsActivity.class);
                                 i.putExtra("text", text);
                                 i.putExtra("libelle", libelle);
+                                i.putExtra("ligne", ligne);
                                 startActivity(i);
 
 
