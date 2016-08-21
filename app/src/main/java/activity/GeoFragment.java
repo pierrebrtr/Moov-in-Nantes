@@ -133,7 +133,7 @@ super.onActivityCreated(savedInstanceState);
                 TextView textView2 = (TextView) view.findViewById(R.id.arretgeo);
                 String libelle = textView2.getText().toString();
 
-                TextView textView3 = (TextView) view.findViewById(R.id.ligne);
+                TextView textView3 = (TextView) view.findViewById(R.id.lignegeo);
                 String ligne = textView3.getText().toString();
 
                 Intent i = new Intent(GeoFragment.this.getActivity(), TempsActivity.class);

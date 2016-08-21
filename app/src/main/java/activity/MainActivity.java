@@ -3,7 +3,10 @@ package activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -35,6 +38,19 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         Utility.themer(MainActivity.this);
 
         super.onCreate(savedInstanceState);
+
+        if(Build.VERSION.SDK_INT >= 23) {
+            if (!Settings.canDrawOverlays(MainActivity.this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, 1234);
+            }
+        }
+        else
+        {
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            startService(intent);
+        }
 
         setContentView(R.layout.activity_main);
         arrets = new Arrets();

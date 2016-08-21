@@ -110,7 +110,6 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:hint="Départ"
-                        android:elegantTextHeight="false"
                         android:layout_alignTop="@+id/button"
                         android:layout_toLeftOf="@+id/button"
                         android:layout_toStartOf="@+id/button"

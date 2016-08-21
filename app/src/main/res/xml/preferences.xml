@@ -29,7 +29,11 @@
             android:summary="L'équipe de développement"
             android:key="propos">
         </PreferenceScreen>
-        
+        <PreferenceScreen
+            android:title="Licences"
+            android:summary="Consulter les licenses"
+            android:key="licenses">
+        </PreferenceScreen>
         <PreferenceScreen
             android:title="Contact"
             android:summary="Nous contacter, signaler un bug"

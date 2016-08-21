@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<notices>
+    <notice>
+        <name>BlurDialogFragmment</name>
+        <url>https://github.com/tvbarthel/BlurDialogFragment</url>
+        <copyright>Copyright (C) 2014 tvbarthel</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>  <notice>
+        <name>ChangelogLib</name>
+        <url>https://github.com/gabrielemariotti/changeloglib</url>
+        <copyright>Copyright 2013-2015 Gabriele Mariotti</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>  <notice>
+        <name>Gson</name>
+        <url>https://github.com/google/gson</url>
+        <copyright>Copyright 2008 Google Inc.</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>  <notice>
+        <name>MaterialList</name>
+        <url>https://github.com/dexafree/MaterialList/</url>
+        <copyright>Copyright (c) 2014 Dexafree</copyright>
+        <license>MIT License</license>
+    </notice>  <notice>
+        <name>CircleImageView</name>
+        <url>https://github.com/hdodenhof/CircleImageView</url>
+        <copyright>Copyright 2014 - 2016 Henning Dodenhof</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+ <notice>
+        <name>Bubbles for Android</name>
+        <url>https://github.com/txusballesteros/bubbles-for-android</url>
+        <copyright>Copyright Txus Ballesteros 2015 (@txusballesteros)</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+ <notice>
+        <name>AppIntro</name>
+        <url>https://github.com/PaoloRotolo/AppIntro</url>
+        <copyright>Copyright 2015 Paolo Rotolo
+            Copyright 2016 Maximilian Narr</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+ <notice>
+        <name>TextDrawable</name>
+        <url>https://github.com/amulyakhare/TextDrawable</url>
+        <copyright>Copyright (c) 2014 Amulya Khare</copyright>
+        <license>MIT License</license>
+    </notice>
+    <notice>
+        <name>DialogPlus</name>
+        <url>https://github.com/orhanobut/dialogplus</url>
+        <copyright>Copyright 2016 Orhan Obut</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>DateTimePicker</name>
+        <url>https://github.com/flavienlaurent/datetimepicker</url>
+        <copyright>Copyright 2013 Flavien Laurent (DatePicker) edisonw (TimePicker)</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <notice>
+        <name>MaterialStyledDialogs</name>
+        <url>https://github.com/javiersantos/MaterialStyledDialogs</url>
+        <copyright>Copyright 2016 Javier Santos</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>LicensesDialog</name>
+        <url>https://github.com/PSDev/LicensesDialog</url>
+        <copyright>Copyright 2013-2016 Philip Schiffer</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+</notices>

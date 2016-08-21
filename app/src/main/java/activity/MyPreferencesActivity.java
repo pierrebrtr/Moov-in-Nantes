@@ -18,14 +18,13 @@ import android.view.MenuItem;
 
 import com.android.colorpicker.ColorPickerDialog;
 import com.android.colorpicker.ColorPickerSwatch;
-import com.mikepenz.aboutlibraries.Libs;
-import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.pandf.moovin.BuildConfig;
 import com.pandf.moovin.R;
 
 import java.io.File;
 
 import app.AppController;
+import de.psdev.licensesdialog.LicensesDialog;
 import util.SpLite;
 import util.Utility;
 
@@ -71,8 +70,6 @@ public class MyPreferencesActivity extends ActionBarActivity {
         public void onCreate(final Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
-
-
             Preference userButtontheme = (Preference) findPreference("theme");
             userButtontheme.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -228,19 +225,7 @@ public class MyPreferencesActivity extends ActionBarActivity {
                 }
             });
 
-            Preference userButtond = (Preference) findPreference("libraries");
-            userButtond.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference arg0) {
-                    new LibsBuilder()
 
-                            //provide a style (optional) (LIGHT, DARK, LIGHT_DARK_TOOLBAR)
-                            .withActivityStyle(Libs.ActivityStyle.LIGHT)
-                            //start the activity
-                            .start(MyPreferencesActivity.this);
-                    return true;
-                }
-            });
 
             Preference userButtoncontact = (Preference) findPreference("contact");
             userButtoncontact.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -257,6 +242,19 @@ public class MyPreferencesActivity extends ActionBarActivity {
             });
 
 
+            Preference userButtonlicenses = (Preference) findPreference("licenses");
+            userButtonlicenses.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference arg0) {
+                    new LicensesDialog.Builder(MyPreferencesActivity.this)
+                            .setNotices(R.raw.notices)
+                            .setIncludeOwnLicense(false)
+                            .setCloseText("Fermer")
+                            .build()
+                            .show();
+                    return true;
+                }
+            });
 
 
             final Preference userButtone = (Preference) findPreference("cache");
