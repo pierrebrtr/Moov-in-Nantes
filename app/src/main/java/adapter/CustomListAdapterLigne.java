@@ -3,6 +3,7 @@ package adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,7 +105,7 @@ public class CustomListAdapterLigne extends BaseAdapter  {
         // getting movie data for the row
 
         TextDrawable drawable1 = TextDrawable.builder()
-                .buildRound(m.getNumero(), color1);
+                .buildRound(m.getNumero(), Color.parseColor("#" + m.getColor() ));
 
         // title
         ligne.setText(m.getLigne());

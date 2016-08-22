@@ -383,11 +383,10 @@ public class LigneFragment extends Fragment  {
                 page = 3;
                 break;
             case 3:
-                page=4;
+                page = 4;
                 break;
-            case 4:
-            page = 5;
-                break;
+
+
 
         }
 
@@ -451,6 +450,7 @@ public class LigneFragment extends Fragment  {
                 }
 
                 adapter.notifyDataSetChanged();
+
                 sort();
 
             }
@@ -514,15 +514,11 @@ public class LigneFragment extends Fragment  {
                 break;
             case 3:
                 dosearchligne("https://api.navitia.io/v1/coverage/fr-nw/networks/network:tan/lines?start_page=2");
+                break;
+            case 4 :
 
                 break;
-            case 4:
 
-                break;
-            case 5:
-
-
-                break;
         }
 
 
@@ -554,15 +550,8 @@ public class LigneFragment extends Fragment  {
 
              }
 
-             if (o1.getNumero().contains("C") || o1.getNumero().contains("E")){
-                 validated = true;
-                 return 1;
-             }
-             if (o2.getNumero().contains("C") || o2.getNumero().contains("E")) {
-                 validated = true;
-                 return -1;
 
-             }
+
 
              int no1 = Integer.parseInt((String) o1.getNumero().replaceAll("[^\\d.]", ""));
 

@@ -288,21 +288,24 @@ setHasOptionsMenu(true);
                                     Date date = new SimpleDateFormat("E MMM dd hh:mm:ss Z yyyy", Locale.ENGLISH).parse(datestr);
                                     String str = new SimpleDateFormat("dd MMMM 'à' HH:mm ").format(date);
 
-                                    Card card = new Card.Builder(getActivity())
-                                            .withProvider(new CardProvider())
-                                            .setLayout(R.layout.material_small_image_card)
-                                            .setTitle("Trafic info Tan")
-                                            .setSubtitle(str)
-                                            .setSubtitleColor(getResources().getColor(R.color.cardview_dark_background))
-                                            .setDescription(obj.getString("text"))
-                                            .setDrawable(obj.getJSONObject("user").getString("profile_image_url"))
-                                            .endConfig()
-                                            .build();
 
-                                    mListView.getAdapter().add(mListView.getAdapter().getItemCount(),card, false);
+                                    if (obj.getString("text").contains("#Infotrafic")) {
+
+                                        Card card = new Card.Builder(getActivity())
+                                                .withProvider(new CardProvider())
+                                                .setLayout(R.layout.material_small_image_card)
+                                                .setTitle("Trafic info Tan")
+                                                .setSubtitle(str)
+                                                .setSubtitleColor(getResources().getColor(R.color.cardview_dark_background))
+                                                .setDescription(obj.getString("text"))
+                                                .setDrawable(obj.getJSONObject("user").getString("profile_image_url"))
+                                                .endConfig()
+                                                .build();
+
+                                        mListView.getAdapter().add(mListView.getAdapter().getItemCount(), card, false);
 
 
-
+                                    }
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
