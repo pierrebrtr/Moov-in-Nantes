@@ -128,7 +128,14 @@ public class SplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        checkDrawOverlayPermission();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            checkDrawOverlayPermission();
+
+        } else {
+            Launch();
+        }
+
 
         ImageView imageloco = (ImageView) findViewById(R.id.imgLogo);
 

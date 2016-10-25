@@ -550,7 +550,15 @@ public class LigneFragment extends Fragment  {
 
              }
 
+             if (o1.getNumero().contains("C") || o1.getNumero().contains("E")){
+                 validated = true;
+                 return -1;
+             }
+             if (o2.getNumero().contains("C") || o2.getNumero().contains("E")) {
+                 validated = true;
+                 return 1;
 
+             }
 
 
              int no1 = Integer.parseInt((String) o1.getNumero().replaceAll("[^\\d.]", ""));
